@@ -1,7 +1,8 @@
 {
   "name": "trouvaille-deliveries",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular",
   "id": "d94299ed"
