@@ -1,7 +1,8 @@
-name: "Test App"
+name: "Run Tests on Master"
 
 on:
   push:
+  pull_request:
     branches:
       - "master"
 
@@ -12,7 +13,7 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - name: Install Dependencies
-        run: npm install
+      # - name: Install Dependencies
+      #   run: npm install
       - name: Run Tests
         run: npm run test
