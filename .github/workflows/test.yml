@@ -16,6 +16,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: install chrome headless
-      - run: sudo apt-get
+        run: sudo apt-get
       - name: Run Tests
-      - run: npm run test-github
+        run: npm run test-github
