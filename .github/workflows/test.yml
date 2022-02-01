@@ -1,10 +1,11 @@
 name: "Run Tests on Master"
 
 on:
+  workflow_dispatch:
   push:
   pull_request:
     branches:
-      - "master"
+      - "release/**"
 
 jobs:
   build:
@@ -15,7 +16,9 @@ jobs:
         uses: actions/checkout@master
       - name: Install Dependencies
         run: npm install
-      - name: Run Tests
+      - name: Build
+        run: npm run build
+      - name: Test
         run: npm run test-github
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
