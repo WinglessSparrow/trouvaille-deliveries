@@ -15,13 +15,15 @@ export class CarScannerComponent implements OnInit {
     this.form = this.fb.group({ carId: ['', Validators.required] });
   }
 
+  //TODO check if camera works
+  //TODO wire the manual QR Code button
+  //TODO some logic to send to the server
+
   ngOnInit() {}
 
   async scan() {}
 
   setQR(code: QRCode) {
     this.code = code;
-
-    //TODO some logic to send to the server
   }
 }

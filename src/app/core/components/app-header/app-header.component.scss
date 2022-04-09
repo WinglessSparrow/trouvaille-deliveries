@@ -1,1 +1,81 @@
+@use "../../../shared/style/variables.scss" as var;
+@import "../../../shared/style/mixins.scss";
 
+$border-radius: 25px;
+$padding: 20px;
+
+.menu-button {
+    background-color: transparent;
+    border: none;
+
+    margin-left: $padding;
+    font-size: 2rem;
+
+    color: var.$trou-purple-primary;
+
+    &:hover {
+        color: var.$trou-purple-hover;
+    }
+
+    &:active {
+        color: var.$trou-purple-active;
+    }
+}
+
+.connection-indicator {
+    display: flex;
+    @include center-flex;
+    height: 60%;
+    border-radius: 50%;
+
+    aspect-ratio: 1/1;
+
+    margin-right: $padding;
+
+    font-size: 15px;
+    color: white;
+}
+
+.connected {
+    background-color: var.$trou-vibrant-green;
+}
+
+.disconnected {
+    background-color: red;
+}
+
+header {
+    @include trou-shadow;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+
+    margin-bottom: 8px;
+
+    height: 50px;
+    width: 100%;
+
+    background-color: white;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+
+    .underline {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: 89%;
+        height: 2px;
+
+        background-color: var.$trou-purple-primary;
+    }
+}
+
+.hidden {
+    display: none;
+}

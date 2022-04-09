@@ -1,24 +1,24 @@
-name: "Deploy Android"
+# name: "Deploy Android"
 
-on:
-  workflow_dispatch:
+# on:
+#   workflow_dispatch:
 
-#ionic is a bitch
-#you need to build the sdk
-#then open in android studio
-#deploy from there
-#tf?!
+# #ionic is a bitch
+# #you need to build the sdk
+# #then open in android studio
+# #deploy from there
+# #tf?!
 
-jobs:
-  build:
-    name: Build & Deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Install Dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Run Tests
-        run: npm run test
+# jobs:
+#   build:
+#     name: Build & Deploy
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Repo
+#         uses: actions/checkout@master
+#       - name: Install Dependencies
+#         run: npm install
+#       - name: Build
+#         run: npm run build
+#       - name: Run Tests
+#         run: npm run test

@@ -1,4 +1,6 @@
-<span>menu button</span>
-<span>name</span>
-<span>connection</span>
-<div></div>
+<header [ngClass]="{'hidden':!isActive}">
+    <button class="menu-button" (click)="toggleMenu()"><i class="fas fa-bars"></i></button>
+    <h2 class="name">{{text}}</h2>
+    <div class="connection-indicator connected" [ngClass]="isConnected?'connected':'disconnected'"><i class="fas fa-wifi"></i></div>
+    <div class="underline"></div>
+</header>

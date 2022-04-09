@@ -1,12 +1,6 @@
 @use "../../shared/style/variables.scss" as var;
 @import "../../shared/style/mixins.scss";
 
-:host{
-    div{
-        padding-top: 10%;
-    }
-}
-
 .center {
     display: flex;
     flex-direction: column;

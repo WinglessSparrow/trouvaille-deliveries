@@ -38,8 +38,12 @@
 
     font-size: min(10vw, 1.2rem);
 
+    @include button-effect();
+}
+
+@mixin button-effect {
     &:hover {
-        transition: .2s;
+        transition: 0.2s;
         background-color: var.$trou-purple-hover;
     }
 
