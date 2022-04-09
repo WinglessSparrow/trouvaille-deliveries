@@ -3,6 +3,12 @@ name: "Deploy Android"
 on:
   workflow_dispatch:
 
+#ionic is a bitch
+#you need to build the sdk
+#then open in android studio
+#deploy from there
+#tf?!
+
 jobs:
   build:
     name: Build & Deploy

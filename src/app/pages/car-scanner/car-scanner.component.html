@@ -1,0 +1,12 @@
+<div>
+  <trou-label text="Scan Car's QR-Code"></trou-label>
+  <div class="center">
+    <scanner (qrCodeRead)="setQR($event)" [isActive]=true></scanner>
+  
+    <h1>{{code}}</h1>
+
+    <input-btn label="Car Id" name="carId"></input-btn>
+  
+    <button class="trou-prim-button">logOut</button>
+  </div>
+</div>

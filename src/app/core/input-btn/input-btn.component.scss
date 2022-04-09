@@ -1,0 +1,40 @@
+@use "../../shared/style/variables.scss" as var;
+@import "../../shared/style/mixins.scss";
+
+input:focus {
+    outline: none;
+}
+
+input {
+    @include trou-input;
+}
+
+.group {
+    display: flex;
+    flex-direction: row;
+
+    align-items: stretch;
+
+    button {
+        @include trou-prim-button;
+
+        font-size: 1.3rem;
+        flex-grow: 1;
+        height: auto;
+
+        //I'm categorically not using JS to automate, we gonna live with 39px
+        flex-basis: 39px;
+    }
+}
+
+:host {
+    display: flex;
+    flex-direction: column;
+
+    width: 90%;
+
+    > label {
+        margin-bottom: 5px;
+        font-size: 1.2rem;
+    }
+}

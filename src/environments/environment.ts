@@ -4,10 +4,18 @@
 
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicRouteStrategy } from '@ionic/angular';
+import { AuthentificationServiceModel } from 'src/app/shared/models/authentification-service-model';
+import { AuthentificationMockService } from 'src/app/shared/services/mock/authentification-mock.service';
 
 export const environment = {
   production: false,
-  IOC: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  IOC: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: AuthentificationServiceModel,
+      useClass: AuthentificationMockService,
+    }
+  ],
 };
 
 /*

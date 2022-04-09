@@ -1,0 +1,22 @@
+@use "../../../shared/style/variables.scss" as var;
+@import "../../../shared/style/mixins.scss";
+
+input:focus {
+    outline: none;
+}
+
+input {
+    @include trou-input;
+}
+
+:host {
+    display: flex;
+    flex-direction: column;
+
+    align-self: stretch;
+
+    > label {
+        margin-bottom: 5px;
+        font-size: 1.2rem;
+    }
+}

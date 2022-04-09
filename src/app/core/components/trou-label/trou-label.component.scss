@@ -1,0 +1,10 @@
+@use "../../../shared/style/variables.scss" as var;
+@import "../../../shared/style/mixins.scss";
+
+h2 {
+    background-color: var.$trou-blue-primary;
+    color: white;
+    padding: 5px;
+    width: 85%;
+    @include trou-shadow;
+}

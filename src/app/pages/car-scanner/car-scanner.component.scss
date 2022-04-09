@@ -1,0 +1,21 @@
+@use "../../shared/style/variables.scss" as var;
+@import "../../shared/style/mixins.scss";
+
+:host{
+    div{
+        padding-top: 10%;
+    }
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    @include center-flex;
+
+    gap: 25px;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+}

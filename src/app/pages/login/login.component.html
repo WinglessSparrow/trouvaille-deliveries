@@ -1,0 +1,14 @@
+
+<form [formGroup]="form" (ngSubmit)="login($event)" class="custom-form">
+
+    <div class="trou-logo-group">
+        <img src="../../../assets/svg/logo_minified.svg" class="trou-logo">
+        <h2>Trouvaille <br />
+            Deliveries</h2>
+    </div>
+
+    <input-group label="Email" name="email" type="email"></input-group>
+    <input-group label="Password" name="password" type="password"></input-group>
+    
+    <Button type="submit" class="trou-prim-button">Log In</Button>
+</form>

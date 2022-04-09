@@ -1,0 +1,48 @@
+@use "variables.scss" as var;
+@import "mixins.scss";
+
+@import url("https://fonts.googleapis.com/css?family=Questrial&display=swap");
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+
+    background-color: var.$trou-purple-secondary;
+}
+* {
+    font-family: "Questrial";
+    font-weight: lighter;
+}
+
+.custom-form {
+    display: flex;
+    flex-direction: column;
+
+    @include center-flex;
+
+    gap: 30px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+
+    align-self: stretch;
+
+    > label {
+        margin-bottom: 5px;
+        font-size: 1.2rem;
+    }
+}
+
+.trou-prim-button {
+    @include trou-shadow;
+    @include trou-prim-button;
+}
+
+.trou-logo {
+    width: clamp(80px, 8vw, 110px);
+    filter: var.$trou-purple-primary-filter;
+}

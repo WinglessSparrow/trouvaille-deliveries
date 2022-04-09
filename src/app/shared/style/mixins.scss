@@ -1,0 +1,49 @@
+@use "variables.scss" as var;
+
+@mixin center-flex {
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin fill-flex {
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+@mixin trou-shadow {
+    box-shadow: var.$trou-shadow-grey -2px 3px 7px -1px;
+}
+
+@mixin trou-input {
+    @include trou-shadow;
+
+    height: 35px;
+
+    width: 100%;
+
+    background-color: white;
+
+    border: none;
+    border-bottom: solid 2px var.$trou-purple-primary;
+}
+
+@mixin trou-prim-button {
+    width: clamp(200px, 50%, 300px);
+    height: 50px;
+
+    color: white;
+    background-color: var.$trou-purple-primary;
+
+    border: none;
+
+    font-size: min(10vw, 1.2rem);
+
+    &:hover {
+        transition: .2s;
+        background-color: var.$trou-purple-hover;
+    }
+
+    &:active {
+        background-color: var.$trou-purple-active;
+    }
+}

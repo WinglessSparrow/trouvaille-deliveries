@@ -1,0 +1,23 @@
+@use "../../shared/style/variables.scss" as var;
+@import "../../shared/style/mixins.scss";
+
+:host {
+    display: flex;
+    @include center-flex;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: var.$trou-purple-secondary;
+}
+
+form {
+    width: clamp(200px, 70%, 500px);
+    height: 100%;
+}
+
+.trou-logo-group {
+    display: flex;
+    flex-direction: column;
+    @include center-flex;
+
+    color: var.$trou-purple-primary;
+}
