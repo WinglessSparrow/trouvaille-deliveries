@@ -1,5 +1,7 @@
 @use "variables.scss" as var;
 
+$padding: 20px;
+
 @mixin center-flex {
     justify-content: center;
     align-items: center;
@@ -49,5 +51,23 @@
 
     &:active {
         background-color: var.$trou-purple-active;
+    }
+}
+
+@mixin menu-button {
+    background-color: transparent;
+    border: none;
+
+    margin-left: $padding;
+    font-size: 2rem;
+
+    color: var.$trou-purple-primary;
+
+    &:hover {
+        color: var.$trou-purple-hover;
+    }
+
+    &:active {
+        color: var.$trou-purple-active;
     }
 }

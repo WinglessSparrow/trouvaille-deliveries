@@ -1,5 +1,5 @@
-@use "../../shared/style/variables.scss" as var;
-@import "../../shared/style/mixins.scss";
+@use "../../../shared/style/variables.scss" as var;
+@import "../../../shared/style/mixins.scss";
 
 input:focus {
     outline: none;

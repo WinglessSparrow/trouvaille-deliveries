@@ -1,6 +1,6 @@
-<header [ngClass]="{'hidden':!isActive}">
-    <button class="menu-button" (click)="toggleMenu()"><i class="fas fa-bars"></i></button>
-    <h2 class="name">{{text}}</h2>
+<header [ngClass]="{'hidden':!headerService.isActive}">
+    <button class="menu-button" (click)="openMenu()"><i class="fas fa-bars"></i></button>
+    <h2 class="name">{{text | async}}</h2>
     <div class="connection-indicator connected" [ngClass]="isConnected?'connected':'disconnected'"><i class="fas fa-wifi"></i></div>
     <div class="underline"></div>
 </header>

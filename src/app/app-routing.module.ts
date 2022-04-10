@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CarScannerComponent } from './pages/car-scanner/car-scanner.component';
+import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { Pages } from './shared/classes/pages';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'carScanner', component: CarScannerComponent },
+  { path: Pages.Login, component: LoginComponent },
+  { path: Pages.CarScanner, component: CarScannerComponent },
+  { path: Pages.Home, component: HomeComponent },
 ];
 
 @NgModule({

@@ -1,0 +1,29 @@
+@use "../../../shared/style/variables.scss" as var;
+@import "../../../shared/style/mixins.scss";
+
+@mixin hover-stl {
+    background-color: var.$trou-purple-primary;
+    color: white;
+    border-color: var.$trou-blue-primary;
+}
+
+button {
+    width: 100%;
+    height: 45px;
+
+    border: none;
+    background-color: none;
+
+    background-color: white;
+    color: var.$trou-purple-primary;
+
+    border-bottom: 2px solid var.$trou-purple-primary;
+
+    &.chosen {
+        @include hover-stl();
+    }
+
+    &:hover {
+        @include hover-stl();
+    }
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { QRCode } from 'jsqr';
 @Component({
   selector: 'car-scanner',
@@ -11,7 +12,7 @@ export class CarScannerComponent implements OnInit {
 
   code: QRCode;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({ carId: ['', Validators.required] });
   }
 
@@ -21,9 +22,13 @@ export class CarScannerComponent implements OnInit {
 
   ngOnInit() {}
 
-  async scan() {}
+  logOut() {
+    this.router.navigateByUrl('/home');
+  }
 
   setQR(code: QRCode) {
     this.code = code;
+    //TODO check with the Server for the QR Code to be correct, show error if not correct
+    this.router.navigateByUrl('/home');
   }
 }

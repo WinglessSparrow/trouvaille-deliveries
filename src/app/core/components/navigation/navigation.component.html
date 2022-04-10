@@ -1,0 +1,9 @@
+<div class="wrapper" [ngClass]="!(isOpen | async)?'hidden':'shown'">
+  <div class="header">
+    <img src="../../../assets/svg/logo_minified.svg" class="trou-logo">
+    <button class="button" (click)="close()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+  <ng-content class="pages"></ng-content>
+</div>

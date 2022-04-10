@@ -1,0 +1,61 @@
+@use "../../../shared/style/variables.scss" as var;
+@import "../../../shared/style/mixins.scss";
+$radius: 25px;
+$margin-header: 10px;
+
+.wrapper {
+    transition: 0.7s;
+
+    z-index: 1;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 75%;
+    height: 100%;
+
+    background-color: white;
+
+    border-bottom-right-radius: $radius;
+    border-top-right-radius: $radius;
+
+    box-shadow: var.$trou-shadow-grey 1px 2px 10px 1px;
+}
+
+.hidden {
+    transform: translateX(-100%);
+    box-shadow: none;
+}
+
+.shown {
+    transform: translate(0);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 3px solid var.$trou-purple-primary;
+    padding: 10px;
+    padding-right: 20px;
+}
+
+.trou-logo {
+    width: 60px;
+    margin-right: $margin-header;
+}
+
+.button {
+    @include menu-button;
+
+    padding: 0;
+
+    background-color: transparent;
+    border: none;
+
+    margin-left: $margin-header;
+    font-size: 2rem;
+    color: var.$trou-purple-primary;
+}

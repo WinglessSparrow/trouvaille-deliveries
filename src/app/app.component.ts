@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { HeaderService } from './core/services/prod/header.service';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-
   public appPages = [
     { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
     { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
@@ -16,5 +17,22 @@ export class AppComponent {
     { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+
+  constructor(private router: Router, private headerService: HeaderService) {
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const url = event.url;
+
+        console.log(url);
+
+        if (url == '/carScanner') {
+          headerService.isActive = false;
+        }
+
+        if (url == '/home') {
+          headerService.isActive = true;
+        }
+      }
+    });
+  }
 }

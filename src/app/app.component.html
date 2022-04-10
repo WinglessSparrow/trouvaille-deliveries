@@ -29,7 +29,12 @@
 </ion-app> -->
 
 <div class="app">
-  <app-header [isActive]="false"></app-header>
+  <navigation>
+    <nav-button text="hi" route="/home"></nav-button>
+    <nav-button text="hi2" route="/carScanner"></nav-button>
+    <nav-button text="hi3" route=""></nav-button>
+  </navigation>
+  <app-header></app-header>
   
   <router-outlet></router-outlet>
 </div>
