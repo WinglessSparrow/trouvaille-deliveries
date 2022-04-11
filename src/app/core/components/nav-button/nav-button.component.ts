@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { PageDescriptor } from 'src/app/shared/classes/pageDesciptor';
 import { NavigationService } from '../../services/prod/navigation.service';
 
@@ -10,6 +11,7 @@ import { NavigationService } from '../../services/prod/navigation.service';
 export class NavButtonComponent implements OnInit {
   @Input() text: string;
   @Input() route: string;
+  isChosen: boolean = false;
 
   constructor(private nav: NavigationService) {}
 

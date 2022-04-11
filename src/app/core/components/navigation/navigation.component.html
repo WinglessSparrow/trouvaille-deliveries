@@ -1,4 +1,4 @@
-<div class="wrapper" [ngClass]="!(isOpen | async)?'hidden':'shown'">
+<div #wrapper class="wrapper" [ngClass]="!(isOpen | async)?'hidden':'shown'">
   <div class="header">
     <img src="../../../assets/svg/logo_minified.svg" class="trou-logo">
     <button class="button" (click)="close()">
