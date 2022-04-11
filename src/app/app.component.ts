@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { HeaderService } from './core/services/prod/header.service';
+import { PageDescriptor } from './shared/classes/pageDesciptor';
+import { Pages } from './shared/classes/pages';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +10,14 @@ import { HeaderService } from './core/services/prod/header.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  public appPages = [
-    { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
+  public pages = [
+    new PageDescriptor(Pages.Home, 'Home'),
+    new PageDescriptor(Pages.Map, 'Map'),
+    new PageDescriptor(Pages.ScanDelivery, 'Scan Delivery'),
+    new PageDescriptor(Pages.AllDeliveries, 'All Deliveries'),
+    new PageDescriptor(Pages.DeliveriesToLoad, 'Loading Order'),
+    new PageDescriptor(Pages.Time, 'Time'),
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(private router: Router, private headerService: HeaderService) {
     router.events.subscribe((event) => {

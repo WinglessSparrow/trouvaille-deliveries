@@ -9,9 +9,6 @@ import { CoreModule } from './core/core.module';
 import { PagesModule } from './pages/pages.module';
 
 
-
-
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

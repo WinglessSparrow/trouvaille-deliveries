@@ -30,9 +30,10 @@
 
 <div class="app">
   <navigation>
-    <nav-button text="Login" route=""></nav-button>
-    <nav-button text="Home" route="home"></nav-button>
-    <nav-button text="Car Scanner" route="carScanner"></nav-button>
+    <nav-button *ngFor="let page of pages" [text]="page.name" [route]="page.route"></nav-button>
+    <!-- <nav-button text="Login" route=""></nav-button> -->
+    <!-- <nav-button text="Home" route="home"></nav-button> -->
+    <!-- <nav-button text="Car Scanner" route="carScanner"></nav-button> -->
   </navigation>
   <app-header></app-header>
   

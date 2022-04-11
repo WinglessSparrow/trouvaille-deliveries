@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class HeaderService {
   private headerText$: BehaviorSubject<string> = new BehaviorSubject<string>(
-    'Header'
+    'Home'
   );
   private _isActive: boolean = false;
 
