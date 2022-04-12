@@ -1,10 +1,98 @@
 @use "../../../shared/style/variables.scss" as var;
 @import "../../../shared/style/mixins.scss";
 
-h2 {
+//TODO make font scaling, (future me's problem)
+
+$main-margin: 10px;
+
+.main-wrapper {
+    display: flex;
+    width: 100%;
+    margin-bottom: $main-margin;
+}
+
+.wrapper {
     background-color: var.$trou-blue-primary;
     color: white;
     padding: 5px;
-    width: 85%;
     @include trou-shadow;
+}
+
+h2 {
+    margin: 0;
+}
+
+//width of the label
+.full {
+    width: 100%;
+}
+
+.half {
+    width: 65%;
+}
+
+.threeThirds {
+    width: 85%;
+}
+
+//Type of the label
+.centered {
+    h2 {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.right-hand {
+    h2 {
+        text-align: end;
+    }
+}
+
+.numeric {
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+        width: auto;
+    }
+
+    h2:first {
+        text-align: left;
+    }
+    h2:nth-child(2) {
+        text-align: end;
+    }
+}
+
+.link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 0;
+
+    button {
+        @include trou-prim-button;
+
+        font-size: 1.3rem;
+        width: 40px;
+        height: auto;
+    }
+    h2 {
+        margin: 5px;
+    }
+}
+
+//align label on the Screen
+.middle {
+    justify-content: center;
+}
+
+.left {
+    justify-content: flex-start;
+}
+
+.right {
+    justify-content: flex-end;
 }

@@ -1,5 +1,5 @@
 <label for="{{name}}">{{label}}</label>
 <div class="group">
-  <input type="{{type}}" name="{{name}}" id="{{name}}">
-  <button ><i class="fas fa-angle-right"></i></button>
+  <input type="{{type}}" name="{{name}}" id="{{name}}" [(ngModel)]="this.value">
+  <button (click)="clickInvoke()"><i class="fas fa-angle-right"></i></button>
 </div>

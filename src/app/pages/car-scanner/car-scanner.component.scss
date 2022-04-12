@@ -1,15 +1,19 @@
 @use "../../shared/style/variables.scss" as var;
-@import "../../shared/style/mixins.scss";
 
-.center {
-    display: flex;
-    flex-direction: column;
-    @include center-flex;
+.wrapper {
+    height: 100%;
 
-    gap: 25px;
-}
+    .center {
+        display: flex;
+        flex-direction: column;
 
-form {
-    display: flex;
-    flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        gap: 30px;
+
+        button {
+            margin-top: 20px;
+        }
+    }
 }

@@ -28,15 +28,16 @@
   </ion-split-pane>
 </ion-app> -->
 
+
+
 <div class="app">
+  <app-header></app-header>
   <navigation>
     <nav-button *ngFor="let page of pages" [text]="page.name" [route]="page.route"></nav-button>
-    <!-- <nav-button text="Login" route=""></nav-button> -->
-    <!-- <nav-button text="Home" route="home"></nav-button> -->
-    <!-- <nav-button text="Car Scanner" route="carScanner"></nav-button> -->
   </navigation>
-  <app-header></app-header>
-  
-  <router-outlet></router-outlet>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 

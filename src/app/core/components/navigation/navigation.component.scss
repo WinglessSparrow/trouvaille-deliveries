@@ -13,7 +13,7 @@ $margin-header: 10px;
     left: 0;
 
     width: 75%;
-    height: 100%;
+    height: 100vh;
 
     background-color: white;
 
@@ -24,7 +24,7 @@ $margin-header: 10px;
 }
 
 .hidden {
-    transform: translateX(-100%);
+    transform: translateX(-101%);
     box-shadow: none;
 }
 

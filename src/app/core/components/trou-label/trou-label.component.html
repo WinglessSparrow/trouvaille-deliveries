@@ -1,1 +1,7 @@
-<h2>{{text}}</h2>
+<div class="main-wrapper" [ngClass]="this.position">
+    <div class="wrapper" [ngClass]="[this.type, this.length]">
+        <h2>{{this.text}}</h2>
+        <h2 *ngIf="this.type === labelType.numeric">{{this.secondText}}</h2>
+        <button *ngIf="this.type == labelType.link" (click)="btnClick.emit()"><i class="fas fa-angle-right"></i></button>
+    </div>
+</div>

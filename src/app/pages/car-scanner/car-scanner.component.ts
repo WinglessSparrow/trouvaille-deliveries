@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { QRCode } from 'jsqr';
+import { Pages } from 'src/app/shared/classes/pages';
 @Component({
   selector: 'car-scanner',
   templateUrl: './car-scanner.component.html',
@@ -10,25 +11,36 @@ import { QRCode } from 'jsqr';
 export class CarScannerComponent implements OnInit {
   form: FormGroup;
 
-  code: QRCode;
-
   constructor(private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({ carId: ['', Validators.required] });
   }
 
-  //TODO check if camera works
-  //TODO wire the manual QR Code button
-  //TODO some logic to send to the server
-
   ngOnInit() {}
 
-  logOut() {
-    this.router.navigateByUrl('/home');
+  ngAfterViewInit() {
+    //TODO check if camera works
+    //TODO SHOW MODAL IF NOT
   }
 
-  setQR(code: QRCode) {
-    this.code = code;
-    //TODO check with the Server for the QR Code to be correct, show error if not correct
-    this.router.navigateByUrl('/home');
+  logOut() {
+    //TODO logOut resets Token, Car Id, ?Session? etc.
+    this.router.navigateByUrl('');
+  }
+
+  verifyCarCode(code: string): boolean {
+    //TODO TEMP JUST RETURNS TRUE -> REDO WITH SERVICE CALL AND SHIT
+    return true;
+  }
+
+  receiveCarCode(value: string) {
+    if (this.verifyCarCode(value)) {
+      this.router.navigateByUrl('/' + Pages.Home);
+    } else {
+      //TODO SHOW MODAL FOR WRONG INPUT
+    }
+  }
+
+  setQRFromCamera(code: QRCode) {
+    this.receiveCarCode(code.data);
   }
 }

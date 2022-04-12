@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
 
     if (authResult) {
       this.router.navigateByUrl('/carScanner');
+    } else {
+      //TODO SHOW ERROR MODAL
     }
   }
 }

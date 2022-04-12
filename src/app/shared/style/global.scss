@@ -42,6 +42,21 @@ html {
     @include trou-prim-button;
 }
 
+.trou-warning-button {
+    @include trou-shadow;
+    @include trou-prim-button;
+
+    &:hover {
+        background-color: rgb(241, 85, 85);
+    }
+
+    &:active {
+        background-color: rgb(153, 5, 5);
+    }
+
+    background-color: red;
+}
+
 .trou-logo {
     width: clamp(80px, 8vw, 110px);
     filter: var.$trou-purple-primary-filter;
