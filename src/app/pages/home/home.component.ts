@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/carScanner');
   }
 
-  reportProblem(){
-    //TODO
+  reportProblem() {
+    //TODO implement function
   }
 }

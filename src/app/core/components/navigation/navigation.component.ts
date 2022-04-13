@@ -30,7 +30,6 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.isOpen = this.nav.isShown.asObservable();
-    //TODO set Home at the beginning
   }
 
   close() {

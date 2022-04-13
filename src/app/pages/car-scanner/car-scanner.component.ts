@@ -34,6 +34,7 @@ export class CarScannerComponent implements OnInit {
 
   receiveCarCode(value: string) {
     if (this.verifyCarCode(value)) {
+      //TODO starts the async service that gets the Data, because the server needs both car and credentials
       this.router.navigateByUrl('/' + Pages.Home);
     } else {
       //TODO SHOW MODAL FOR WRONG INPUT

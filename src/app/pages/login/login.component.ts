@@ -30,15 +30,18 @@ export class LoginComponent implements OnInit {
     const values = this.form.value;
 
     const auth: Authentification = new Authentification(
-      values.email,
-      values.password
+      values.password,
+      values.email
     );
 
     const authResult: Boolean = this.auth.logIn(auth);
 
     if (authResult) {
+      //TODO SET THE TOKEN IN THE STORE, SHOULD BE DONE WITHIN THE SERVICE!
       this.router.navigateByUrl('/carScanner');
     } else {
+      console.log('Wrong Auth data');
+
       //TODO SHOW ERROR MODAL
     }
   }

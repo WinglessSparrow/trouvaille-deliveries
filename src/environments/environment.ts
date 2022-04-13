@@ -4,7 +4,9 @@
 
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicRouteStrategy } from '@ionic/angular';
+import { ConnectionMockService } from 'src/app/core/services/mock/connection-mock.service';
 import { AuthentificationServiceModel } from 'src/app/shared/models/authentification-service-model';
+import { ConnectionServiceModel } from 'src/app/shared/models/connection-service-model';
 import { AuthentificationMockService } from 'src/app/shared/services/mock/authentification-mock.service';
 
 export const environment = {
@@ -14,7 +16,11 @@ export const environment = {
     {
       provide: AuthentificationServiceModel,
       useClass: AuthentificationMockService,
-    }
+    },
+    {
+      provide: ConnectionServiceModel,
+      useClass: ConnectionMockService,
+    },
   ],
 };
 
