@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { PageDescriptor } from 'src/app/shared/classes/pageDesciptor';
 import { NavigationService } from '../../services/prod/navigation.service';
 
 @Component({
@@ -11,13 +9,22 @@ import { NavigationService } from '../../services/prod/navigation.service';
 export class NavButtonComponent implements OnInit {
   @Input() text: string;
   @Input() route: string;
-  isChosen: boolean = false;
+  isChosen: boolean;
 
   constructor(private nav: NavigationService) {}
 
   ngOnInit() {}
 
-  navigate() {
-    this.nav.select(new PageDescriptor(this.route, this.text));
+  async navigate() {
+    await this.nav.select(this);
+    this.nav.navigateToSelected();
+  }
+
+  on() {
+    this.isChosen = true;
+  }
+
+  off() {
+    this.isChosen = false;
   }
 }

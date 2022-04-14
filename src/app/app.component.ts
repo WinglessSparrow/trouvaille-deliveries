@@ -19,19 +19,20 @@ export class AppComponent {
     new PageDescriptor(Pages.Time, 'Time'),
   ];
 
-  constructor(private router: Router, private headerService: HeaderService) {
-    router.events.subscribe((event) => {
+  //TODO move to header service (headerRootingService) or component
+  constructor(private router: Router, private headerService: HeaderService) {}
+
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const url = event.url;
 
-        console.log(url);
+        console.log('Routing to: ' + url);
 
-        if (url == '/carScanner') {
-          headerService.isActive = false;
-        }
-
-        if (url == '/home') {
-          headerService.isActive = true;
+        if (url === '/carScanner' || url === '/') {
+          this.headerService.deactivate();
+        } else {
+          this.headerService.activate();
         }
       }
     });

@@ -14,47 +14,54 @@ export class NavigationService {
   private _isShown: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
-  private _currSelected: PageDescriptor;
+  private _currSelected: NavButtonComponent;
   private _buttons: QueryList<NavButtonComponent>;
 
   constructor(private route: Router, private header: HeaderService) {}
 
   public set buttons(value: QueryList<NavButtonComponent>) {
+    // debugger;
+    //setting the button to the current page
     this._buttons = value;
-    const tempBtn = this._buttons.find((btn) => {
-      return btn.route === Pages.Home;
-    });
+    const currRoute = this.route.url.split('/')[1];
 
-    this._currSelected = new PageDescriptor(tempBtn.route, tempBtn.text);
-    this.changeButtonState(true);
+    if (currRoute === '' || currRoute === '/' + Pages.CarScanner) {
+      this._currSelected = this._buttons.find((btn) => {
+        return btn.route === Pages.Home;
+      });
+    } else {
+      //this ensure that you stay in the same tab after reload
+      //prbly useless, since you cannot really reload on mobile
+      this._currSelected = this._buttons.find((btn) => {
+        return btn.route === currRoute;
+      });
+    }
+
+    this.select(this._currSelected);
+    // this.navigateToSelected();
   }
 
-  select(curr: PageDescriptor) {
-    this.changeButtonState(false);
+  public async select(curr: NavButtonComponent) {
+    this._currSelected.off();
 
     this._currSelected = curr;
 
-    this.changeButtonState(true);
+    this.header.headerText = this._currSelected.text;
 
-    this.route.navigateByUrl('/' + this._currSelected.route);
-
-    this.header.headerText.next(this._currSelected.name);
+    this._currSelected.on();
 
     this.close();
   }
 
-  changeButtonState(isChosen: boolean) {
-    const btn = this._buttons.find((btn) => {
-      return btn.text === this._currSelected.name;
-    });
-    if (btn != null || btn != undefined) btn.isChosen = isChosen;
+  public navigateToSelected() {
+    this.route.navigateByUrl('/' + this._currSelected.route);
   }
 
-  open() {
+  public open() {
     this._isShown.next(true);
   }
 
-  close() {
+  public close() {
     this._isShown.next(false);
   }
 

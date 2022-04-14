@@ -13,20 +13,20 @@ export class AppHeaderComponent implements OnInit {
   @Output() changeIsConnected = new EventEmitter<boolean>();
   @Output() toggleMenuEvent = new EventEmitter();
 
-  isConnected: Observable<boolean> = new Observable();
-  text: Observable<string> = new Observable();
+  isConnected$: Observable<boolean> = new Observable();
+  text$: Observable<string> = new Observable();
 
   constructor(
     public headerService: HeaderService,
     private nav: NavigationService,
     connection: ConnectionServiceModel
   ) {
-    this.isConnected = connection.getConnectionStatus();
-    this.isConnected.subscribe((val) => this.connectionStatusChanged(val));
+    this.isConnected$ = connection.getConnectionStatus();
+    this.isConnected$.subscribe((val) => this.connectionStatusChanged(val));
   }
 
   ngOnInit() {
-    this.text = this.headerService.headerText.asObservable();
+    this.text$ = this.headerService.getTextObservable();
   }
 
   connectionStatusChanged(val: boolean) {
