@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
   LabelLength,
+  LabelTextSize,
   LabelType,
 } from '../../../shared/components/trou-label/trou-label.component';
 
@@ -14,6 +15,7 @@ export class HomeSummaryComponent implements OnInit {
 
   public length = LabelLength;
   public labelType = LabelType;
+  public labelTextSize = LabelTextSize;
 
   constructor() {}
 

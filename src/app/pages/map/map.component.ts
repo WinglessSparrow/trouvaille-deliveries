@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { LabelType } from 'src/app/shared/components/trou-label/trou-label.component';
+import { Router } from '@angular/router';
+import { NavigationService } from 'src/app/core/services/prod/navigation.service';
+import { Pages } from 'src/app/shared/classes/pages';
+import { ButtonType } from 'src/app/shared/components/trou-btn/trou-btn.component';
+import {
+  LabelTextSize,
+  LabelType,
+} from 'src/app/shared/components/trou-label/trou-label.component';
 
 @Component({
   selector: 'map',
@@ -11,8 +18,22 @@ export class MapComponent implements OnInit {
   nextAddress: string = 'Ottenhofener str 14';
 
   labelTypes = LabelType;
+  textSizes = LabelTextSize;
+  btnType = ButtonType;
 
-  constructor() {}
+  constructor(private navigation: NavigationService, private router: Router) {
+    //TODO Map logic and stuff, maybe even a custom Map view (I hope not)
+  }
 
   ngOnInit() {}
+
+  goToNextDelivery() {
+    //TODO Implement goToNextDelivery
+  }
+  goToCurrentDelivery() {
+    //TODO Implement goToCurrentDelivery
+  }
+  goToDeliveryScan() {
+    this.navigation.navigate(Pages.ScanDelivery);
+  }
 }

@@ -1,4 +1,10 @@
 <trou-label text="Today's Summary: "></trou-label>
 <div class="wrapper">
-    <trou-label *ngFor="let item of data" [text]="item[0]" [secondText]="item[1]" [length]="this.length.full" [type]="this.labelType.numeric"></trou-label>
+    <trou-label *ngFor="let item of data" 
+    [textSize]="labelTextSize.medium" 
+    [text]="item[0]" 
+    [secondText]="item[1]" 
+    [length]="this.length.full" 
+    [type]="this.labelType.numeric">
+</trou-label>
 </div>

@@ -1,0 +1,8 @@
+<div class="map-controls">
+    <div class="direct-control">
+        <button (click)="zoomIn.emit()"><i class="fas fa-plus"></i> </button>
+        <button (click)="zoomOut.emit()"><i class="fas fa-minus"></i> </button>
+        <button class="center-btn" (click)="center.emit()"><i class="fas fa-bullseye"></i> center</button>
+    </div>
+    <button class="reload-btn" (click)="reload.emit()"><i class="fas fa-redo"></i></button>
+</div>

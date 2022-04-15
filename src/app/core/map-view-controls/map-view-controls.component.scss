@@ -1,0 +1,48 @@
+@use "../../shared/style/variables.scss" as var;
+@import "../../shared/style/mixins.scss";
+
+$heigh: 50px;
+
+.map-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    // width: 100%;
+    width: clamp(200px, 100%, 700px);
+    height: $heigh;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    button {
+        @include trou-prim-button(var.$trou-purple-primary, var.$trou-purple-hover, var.$trou-purple-active);
+        @include trou-shadow;
+    }
+
+    .direct-control {
+        display: flex;
+        flex-direction: row;
+
+        gap: 1px;
+
+        button {
+            width: $heigh;
+        }
+
+        .center-btn {
+            display: flex;
+            width: 120px;
+            gap: 10px;
+            align-items: center;
+        }
+    }
+
+    .reload-btn {
+        width: $heigh;
+    }
+
+    i {
+        font-size: 2rem;
+    }
+}

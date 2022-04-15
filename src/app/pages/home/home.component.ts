@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
+  LabelTextSize,
   LabelType,
   Position,
 } from 'src/app/shared/components/trou-label/trou-label.component';

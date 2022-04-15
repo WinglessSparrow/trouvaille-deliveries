@@ -16,7 +16,7 @@ input {
     align-items: stretch;
 
     button {
-        @include trou-prim-button;
+        @include trou-prim-button(var.$trou-purple-primary, var.$trou-purple-hover, var.$trou-purple-active);
 
         font-size: 1.3rem;
         flex-grow: 1;

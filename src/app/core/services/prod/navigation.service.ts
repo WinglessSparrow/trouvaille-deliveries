@@ -38,7 +38,19 @@ export class NavigationService {
     }
 
     this.select(this._currSelected);
-    // this.navigateToSelected();
+  }
+
+  public navigate(page: Pages) {
+    const btn = this._buttons.find((btn) => {
+      return btn.route === page;
+    });
+
+    if (btn != undefined) {
+      this.select(btn);
+      this.navigateToSelected();
+    } else {
+      this.route.navigateByUrl('/' + page);
+    }
   }
 
   public async select(curr: NavButtonComponent) {

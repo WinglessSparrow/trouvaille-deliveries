@@ -1,6 +1,8 @@
 <div class="wrapper">
     <map-view></map-view>
     
-    <trou-label [text]="this.currAddress" [type]="labelTypes.link" ></trou-label>
-    <trou-label [text]="this.nextAddress" [type]="labelTypes.link"></trou-label>
+    <trou-label [text]="this.currAddress" [textSize]="textSizes.medium" [type]="labelTypes.link" (btnClick)="goToNextDelivery()"></trou-label>
+    <trou-label [text]="this.nextAddress" [textSize]="textSizes.medium" [type]="labelTypes.link" (btnClick)="goToCurrentDelivery()"></trou-label>
+
+    <trou-btn class="btn center" (click)="goToDeliveryScan()" [type]="btnType.default">Scan Delivery</trou-btn>
 </div>

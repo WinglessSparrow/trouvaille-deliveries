@@ -6,9 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map-view.component.scss'],
 })
 export class MapViewComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
 
+  //TODO Implement 4 map control Methods
+
+  zoomIn() {}
+
+  zoomOut() {}
+
+  center() {}
+
+  reload() {}
 }

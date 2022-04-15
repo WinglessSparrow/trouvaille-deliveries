@@ -39,12 +39,12 @@ html {
 
 .trou-prim-button {
     @include trou-shadow;
-    @include trou-prim-button;
+    @include trou-prim-button(var.$trou-purple-primary, var.$trou-purple-hover, var.$trou-purple-active);
 }
 
 .trou-warning-button {
     @include trou-shadow;
-    @include trou-prim-button;
+    @include trou-prim-button(var.$trou-purple-primary, var.$trou-purple-hover, var.$trou-purple-active);
 
     &:hover {
         background-color: rgb(241, 85, 85);

@@ -1,17 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  LabelType,
-  TrouLabelComponent,
-} from '../shared/components/trou-label/trou-label.component';
-import { AppHeaderComponent } from './components/app-header/app-header.component';
-import { ScannerComponent } from '../shared/components/scanner/scanner.component';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputBtnComponent } from '../shared/components/input-btn/input-btn.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
-import { NavButtonComponent } from './components/nav-button/nav-button.component';
+import { SharedModule } from '../shared/shared.module';
+import { AppHeaderComponent } from './components/app-header/app-header.component';
 import { HomeSummaryComponent } from './components/home-summary/home-summary.component';
 import { MapViewComponent } from './components/map-view/map-view.component';
+import { NavButtonComponent } from './components/nav-button/nav-button.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { MapViewControlsComponent } from './map-view-controls/map-view-controls.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +16,16 @@ import { MapViewComponent } from './components/map-view/map-view.component';
     NavButtonComponent,
     HomeSummaryComponent,
     MapViewComponent,
+    MapViewControlsComponent,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, SharedModule],
   exports: [
     AppHeaderComponent,
     NavigationComponent,
     NavButtonComponent,
     HomeSummaryComponent,
     MapViewComponent,
+    MapViewControlsComponent,
   ],
 })
 export class CoreModule {}

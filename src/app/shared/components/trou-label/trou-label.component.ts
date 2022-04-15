@@ -20,6 +20,13 @@ export enum LabelType {
   link = 'link',
 }
 
+export enum LabelTextSize {
+  big = 'big',
+  default = '',
+  medium = 'medium',
+  small = 'small',
+}
+
 @Component({
   selector: 'trou-label',
   templateUrl: './trou-label.component.html',
@@ -31,8 +38,9 @@ export class TrouLabelComponent implements OnInit {
   @Input() position = Position.left;
   @Input() type: LabelType = LabelType.default;
   @Input() length: LabelLength = LabelLength.default;
+  @Input() textSize: LabelTextSize = LabelTextSize.default;
 
-  @Output() btnClick: EventEmitter<any>;
+  @Output() btnClick: EventEmitter<any> = new EventEmitter<any>();
 
   positions = Position;
   labelType = LabelType;

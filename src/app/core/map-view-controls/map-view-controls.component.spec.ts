@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { TrouLabelComponent } from './trou-label.component';
+import { MapViewControlsComponent } from './map-view-controls.component';
 
-describe('TrouLabelComponent', () => {
-  let component: TrouLabelComponent;
-  let fixture: ComponentFixture<TrouLabelComponent>;
+describe('MapViewControlsComponent', () => {
+  let component: MapViewControlsComponent;
+  let fixture: ComponentFixture<MapViewControlsComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TrouLabelComponent],
-      imports: [IonicModule.forRoot()],
+      declarations: [ MapViewControlsComponent ],
+      imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TrouLabelComponent);
+    fixture = TestBed.createComponent(MapViewControlsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

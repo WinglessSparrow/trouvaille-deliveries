@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { TrouLabelComponent } from './trou-label.component';
+import { TrouBtnComponent } from './trou-btn.component';
 
-describe('TrouLabelComponent', () => {
-  let component: TrouLabelComponent;
-  let fixture: ComponentFixture<TrouLabelComponent>;
+describe('TrouBtnComponent', () => {
+  let component: TrouBtnComponent;
+  let fixture: ComponentFixture<TrouBtnComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TrouLabelComponent],
-      imports: [IonicModule.forRoot()],
+      declarations: [ TrouBtnComponent ],
+      imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TrouLabelComponent);
+    fixture = TestBed.createComponent(TrouBtnComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
