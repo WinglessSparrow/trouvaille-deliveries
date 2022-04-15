@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import {
   LabelType,
   Position,
-} from 'src/app/core/components/trou-label/trou-label.component';
+} from 'src/app/shared/components/trou-label/trou-label.component';
 
 @Component({
   selector: 'home',

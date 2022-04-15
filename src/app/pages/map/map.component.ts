@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LabelType } from 'src/app/shared/components/trou-label/trou-label.component';
 
 @Component({
   selector: 'map',
@@ -6,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit {
+  currAddress: string = 'Ottenhofener str 13 77815 Bühl';
+  nextAddress: string = 'Ottenhofener str 14';
 
-  constructor() { }
+  labelTypes = LabelType;
+
+  constructor() {}
 
   ngOnInit() {}
-
 }

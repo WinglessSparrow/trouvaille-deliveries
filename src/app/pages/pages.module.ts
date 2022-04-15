@@ -11,6 +11,7 @@ import { DeliveryScanComponent } from './delivery-scan/delivery-scan.component';
 import { AllDeliveriesListComponent } from './all-deliveries-list/all-deliveries-list.component';
 import { MapComponent } from './map/map.component';
 import { DeliveryInfoComponent } from './delivery-info/delivery-info.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,13 @@ import { DeliveryInfoComponent } from './delivery-info/delivery-info.component';
     MapComponent,
     DeliveryInfoComponent,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, CoreModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CoreModule,
+    SharedModule,
+  ],
   exports: [
     LoginComponent,
     CarScannerComponent,

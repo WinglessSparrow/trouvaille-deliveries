@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PagesModule } from './pages/pages.module';
-
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +20,7 @@ import { PagesModule } from './pages/pages.module';
     ReactiveFormsModule,
     PagesModule,
     CoreModule,
+    SharedModule,
   ],
   providers: environment.IOC,
   bootstrap: [AppComponent],

@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LabelLength, LabelType } from '../trou-label/trou-label.component';
+import {
+  LabelLength,
+  LabelType,
+} from '../../../shared/components/trou-label/trou-label.component';
 
 @Component({
   selector: 'home-summary',
