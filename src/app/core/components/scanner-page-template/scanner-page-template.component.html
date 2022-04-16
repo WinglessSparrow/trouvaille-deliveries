@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <trou-label text="{{this.header}}"></trou-label>
+  <div class="center">
+    <scanner (qrCodeRead)="this.qrRead.emit($event)" [isActive]="false"></scanner>
+
+    <input-btn label="{{this.inputHeader}}" name="carId" (clickBtn)="this.manualInputClick.emit($event)"></input-btn>
+
+    <ng-content></ng-content>
+  </div>
+</div>

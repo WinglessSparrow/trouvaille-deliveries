@@ -7,6 +7,7 @@ import { HomeSummaryComponent } from './components/home-summary/home-summary.com
 import { MapViewComponent } from './components/map-view/map-view.component';
 import { NavButtonComponent } from './components/nav-button/nav-button.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { ScannerPageTemplateComponent } from './components/scanner-page-template/scanner-page-template.component';
 import { MapViewControlsComponent } from './map-view-controls/map-view-controls.component';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { MapViewControlsComponent } from './map-view-controls/map-view-controls.
     HomeSummaryComponent,
     MapViewComponent,
     MapViewControlsComponent,
+    ScannerPageTemplateComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, SharedModule],
   exports: [
@@ -26,6 +28,7 @@ import { MapViewControlsComponent } from './map-view-controls/map-view-controls.
     HomeSummaryComponent,
     MapViewComponent,
     MapViewControlsComponent,
+    ScannerPageTemplateComponent,
   ],
 })
 export class CoreModule {}

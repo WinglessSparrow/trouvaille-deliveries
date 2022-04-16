@@ -23,6 +23,7 @@ export class MapComponent implements OnInit {
 
   constructor(private navigation: NavigationService, private router: Router) {
     //TODO Map logic and stuff, maybe even a custom Map view (I hope not)
+    //TODO Map with leaflet: https://leafletjs.com/SlavaUkraini/index.html
   }
 
   ngOnInit() {}

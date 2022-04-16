@@ -1,10 +1,7 @@
-<div class="wrapper">
-  <trou-label text="Scan Car's QR-Code"></trou-label>
-  <div class="center">
-    <scanner (qrCodeRead)="setQRFromCamera($event)" [isActive]="false"></scanner>
-
-    <input-btn label="Car Id" name="carId" (clickBtn)="receiveCarCode($event)"></input-btn>
-  
-    <button class="trou-prim-button" (click)="logOut()">Log Out</button>
-  </div>
-</div>
+<scanner-page-template 
+  header="Scan Car's QR-Code" 
+  inputHeader="Car ID"
+  (manualInputClick)="this.receiveCarCode($event)"
+  (qrRead)="this.setQRFromCamera($event)">
+  <trou-btn (click)="this.logOut()">Log Out</trou-btn>
+</scanner-page-template>

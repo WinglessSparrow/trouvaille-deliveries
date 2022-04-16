@@ -1,3 +1,6 @@
-<p>
-  delivery-scan works!
-</p>
+<scanner-page-template 
+    header="Scan Delivery QR-Code" 
+    inputHeader="Delivery ID" 
+    (qrRead)="redirectFromCamera($event)" 
+    (manualInputClick)="redirectToDelivery($event)">
+</scanner-page-template>
