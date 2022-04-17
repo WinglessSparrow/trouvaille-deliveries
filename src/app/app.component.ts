@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+
 import { HeaderService } from './core/services/prod/header.service';
-import { PageDescriptor } from './shared/classes/pageDesciptor';
+import { PageDescriptor } from './shared/classes/pageDescriptor';
 import { Pages } from './shared/classes/pages';
 
 @Component({
@@ -18,11 +19,10 @@ export class AppComponent {
     new PageDescriptor(Pages.DeliveriesToLoad, 'Loading Order'),
     new PageDescriptor(Pages.Time, 'Time'),
   ];
-
-  //TODO move to header service (headerRootingService) or component
   constructor(private router: Router, private headerService: HeaderService) {}
 
   ngOnInit() {
+    //TODO move to header service (headerRootingService) or component
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const url = event.url;

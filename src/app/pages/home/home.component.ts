@@ -38,5 +38,6 @@ export class HomeComponent implements OnInit {
 
   reportProblem() {
     //TODO implement function
+    throw Error("testing Error Handling");
   }
 }

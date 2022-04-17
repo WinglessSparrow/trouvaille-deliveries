@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export enum ButtonType {
   warning = 'warning',
   default = 'default',
+  contrast = 'contrast',
 }
 
 @Component({

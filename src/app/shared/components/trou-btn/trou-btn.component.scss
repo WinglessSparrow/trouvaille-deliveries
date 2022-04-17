@@ -15,3 +15,7 @@
 .warning {
     @include trou-prim-button(var.$trou-red-primary, var.$trou-red-hover, var.$trou-red-active);
 }
+
+.contrast{
+    @include trou-prim-button(var.$trou-blue-primary, var.$trou-blue-hover, var.$trou-blue-active);
+}

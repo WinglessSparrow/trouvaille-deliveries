@@ -1,0 +1,34 @@
+@use "../../style/variables.scss" as var;
+@import "../../style/mixins.scss";
+
+@keyframes slide-in {
+    from {
+        transform: translateX(-150%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+.wrapper {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    right: 0;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 10px;
+
+    width: 90%;
+    height: 300px;
+
+    background-color: white;
+
+    border-bottom: solid 2px var.$trou-blue-primary;
+    @include trou-shadow;
+
+    // animation: slide-in 0.5s alternate;
+}

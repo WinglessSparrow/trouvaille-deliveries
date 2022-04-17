@@ -3,12 +3,11 @@
   <navigation>
     <nav-button *ngFor="let page of pages" [text]="page.name" [route]="page.route"></nav-button>
   </navigation>
-
+  
   <div class="content">
     <router-outlet></router-outlet>
   </div>
 
-  <loading></loading>
-  <error></error>
+    <trou-modal></trou-modal>
 </div>
 
