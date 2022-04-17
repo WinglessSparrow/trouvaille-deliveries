@@ -1,3 +1,3 @@
-<div class="wrapper" [hidden]="!(modalOpen$ | async)" [@slideInOut]>
+<div class="wrapper" (hidden)="changeHidden()" [hidden]="!(modalOpen$ | async)" [@slideInOut]>
   <ng-template #modalContent></ng-template>
 </div>

@@ -1,4 +1,10 @@
-import { animate, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import {
   Component,
   ComponentRef,
@@ -58,5 +64,9 @@ export class TrouModalComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.modalContentRef.destroy();
+  }
+
+  changeHidden() {
+    //TODO animation from here or smth;
   }
 }

@@ -22,6 +22,9 @@ export class GlobalErrorHandler implements ErrorHandler {
     //   //   error?.status
     //   // )
     // );
+
+    //TODO check for diefferent types of error
+    //TODO pass correct Type and Context accordingley
     this.modalService.openModal(
       ErrorComponent,
       new ErrorContext('test', 'test', 'test', () => {
