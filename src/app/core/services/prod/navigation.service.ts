@@ -1,8 +1,6 @@
 import { Injectable, QueryList } from '@angular/core';
 import { Router } from '@angular/router';
-import { is } from 'immer/dist/internal';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { PageDescriptor } from 'src/app/shared/classes/pageDesciptor';
+import { BehaviorSubject } from 'rxjs';
 import { Pages } from 'src/app/shared/classes/pages';
 import { NavButtonComponent } from '../../components/nav-button/nav-button.component';
 import { HeaderService } from './header.service';
@@ -20,7 +18,6 @@ export class NavigationService {
   constructor(private route: Router, private header: HeaderService) {}
 
   public set buttons(value: QueryList<NavButtonComponent>) {
-    // debugger;
     //setting the button to the current page
     this._buttons = value;
     const currRoute = this.route.url.split('/')[1];

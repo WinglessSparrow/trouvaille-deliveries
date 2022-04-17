@@ -8,7 +8,7 @@ import { MapViewComponent } from './components/map-view/map-view.component';
 import { NavButtonComponent } from './components/nav-button/nav-button.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { ScannerPageTemplateComponent } from './components/scanner-page-template/scanner-page-template.component';
-import { MapViewControlsComponent } from './map-view-controls/map-view-controls.component';
+import { MapViewControlsComponent } from './components/map-view-controls/map-view-controls.component';
 
 @NgModule({
   declarations: [

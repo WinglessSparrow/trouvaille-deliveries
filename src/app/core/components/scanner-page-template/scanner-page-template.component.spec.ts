@@ -9,8 +9,8 @@ describe('ScannerPageTemplateComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ScannerPageTemplateComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [ScannerPageTemplateComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ScannerPageTemplateComponent);

@@ -2,8 +2,12 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { ErrorHandler } from '@angular/core';
 import { RouteReuseStrategy } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicRouteStrategy } from '@ionic/angular';
+import { GlobalErrorHandler } from 'src/app/core/error-handling/global-error-handler';
+import { HttpLoadingInterceptor } from 'src/app/core/error-handling/http-loading.interceptor';
 import { ConnectionMockService } from 'src/app/core/services/mock/connection-mock.service';
 import { AuthentificationServiceModel } from 'src/app/shared/models/authentification-service-model';
 import { ConnectionServiceModel } from 'src/app/shared/models/connection-service-model';
@@ -20,6 +24,15 @@ export const environment = {
     {
       provide: ConnectionServiceModel,
       useClass: ConnectionMockService,
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpLoadingInterceptor,
+      multi: true,
     },
   ],
 };
