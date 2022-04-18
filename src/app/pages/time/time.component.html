@@ -1,3 +1,12 @@
-<p>
-  time works!
-</p>
+<div class="wrapper">
+  <trou-label text="Driving Time" [type]="labelType.numeric"></trou-label>
+  
+  <!-- TODO move boolean statements somewhere -->
+  <trou-btn (click)="startDriving()" [disabled]="(state | async) != timeStates.NotDrive">Start Driving</trou-btn>
+  <trou-btn (click)="stopDriving()" [disabled]="(state | async) != timeStates.Drive">End Driving</trou-btn>
+  
+  <trou-label text="Pause Time" [type]="labelType.numeric"></trou-label>
+  
+  <trou-btn (click)="startPause()" [disabled]="(state | async) != timeStates.Drive">Start Pause</trou-btn>
+  <trou-btn (click)="stopPause()" [disabled]="(state | async) != timeStates.Pause">End Pause</trou-btn>
+</div>

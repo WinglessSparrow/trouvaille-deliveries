@@ -5,6 +5,10 @@
     width: clamp(200px, 50%, 300px);
     button {
         @include trou-shadow;
+        &:disabled {
+            background-color: var.$trou-blue-active;
+            border-bottom: 2px solid var.$trou-red-primary;
+        }
     }
 }
 
@@ -16,6 +20,6 @@
     @include trou-prim-button(var.$trou-red-primary, var.$trou-red-hover, var.$trou-red-active);
 }
 
-.contrast{
+.contrast {
     @include trou-prim-button(var.$trou-blue-primary, var.$trou-blue-hover, var.$trou-blue-active);
 }
