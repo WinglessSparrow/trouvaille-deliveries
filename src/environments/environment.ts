@@ -4,7 +4,7 @@
 
 import { ErrorHandler } from '@angular/core';
 import { RouteReuseStrategy } from '@angular/router';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicRouteStrategy } from '@ionic/angular';
 import { GlobalErrorHandler } from 'src/app/core/error-handling/global-error-handler';
 import { HttpLoadingInterceptor } from 'src/app/core/error-handling/http-loading.interceptor';
@@ -34,6 +34,10 @@ export const environment = {
       useClass: HttpLoadingInterceptor,
       multi: true,
     },
+    // {
+    //   provide: HttpClient,
+    //   useClass: HttpClient
+    // }
   ],
 };
 
