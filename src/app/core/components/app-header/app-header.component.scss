@@ -3,6 +3,11 @@
 
 $border-radius: 25px;
 
+.sticky-container {
+    position: sticky;
+    top: 0;
+}
+
 .menu-button {
     @include menu-button;
 }

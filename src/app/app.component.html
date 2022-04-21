@@ -1,13 +1,16 @@
 <div class="app">
-  <app-header></app-header>
   <navigation>
     <nav-button *ngFor="let page of pages" [text]="page.name" [route]="page.route"></nav-button>
   </navigation>
-  
+  <app-header></app-header>
+
+
+
   <div class="content">
     <router-outlet></router-outlet>
   </div>
-
-    <trou-modal></trou-modal>
+  
+  <trou-modal></trou-modal>
 </div>
+
 

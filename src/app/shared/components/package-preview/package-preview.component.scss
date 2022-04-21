@@ -1,0 +1,52 @@
+@use "./../../style/variables.scss" as var;
+@import "./../../style/mixins.scss";
+
+$ball-size: 25px;
+$padding: 5px;
+
+:root {
+    --ball-color: red;
+}
+
+.wrapper {
+    @include trou-shadow;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    // width: calc(100% - $padding);
+    max-width: 100vw;
+    height: calc(75px - $padding);
+    // height: 75px;
+    // height: 75px;
+
+    padding: $padding;
+
+    background-color: white;
+
+    .state {
+        grid-row: 1 / 3;
+
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        font-size: 1.4rem;
+
+        // margin: $padding;
+        margin-right: $padding;
+
+        border-right: solid 2px var.$trou-blue-primary;
+
+        .colored-ball {
+            width: $ball-size;
+            height: $ball-size;
+
+            aspect-ratio: 1 / 1;
+
+            border-radius: 50%;
+            background-color: var(--ball-color);
+        }
+    }
+}
