@@ -15,6 +15,10 @@ export class Package {
   private _returnIdAddress: number;
   private _externTrackingNumber: string;
 
+  constructor(value: any) {
+    Object.assign(this, value);
+  }
+
   /**
    * Getter packageId
    * @return {number}
