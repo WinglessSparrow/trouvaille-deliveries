@@ -1,7 +1,7 @@
-import { Package } from "src/app/shared/classes/package";
+import { Package } from 'src/app/shared/classes/package';
 
-export class ChangePackage{
-    static readonly type = '[PACKAGE] ChangePackage';
+export class ChangePackage {
+  static readonly type = '[PACKAGE] ChangePackage';
 
-    constructor(public payload: Package){}
+  constructor(public payload: Package) {}
 }
