@@ -14,11 +14,6 @@ import { LabelType } from 'src/app/shared/components/trou-label/trou-label.compo
 export class TimeComponent implements OnInit {
   constructor(private stateMachine: TimeStateMachineService) {}
 
-  // drivingBegin: Date;
-  // drivingEnd: Date;
-  // pauseBegin: Date;
-  // pauseEnd: Date;
-
   state: Observable<TimeStates> = new Observable<TimeStates>();
 
   isPauseStop: boolean = false;

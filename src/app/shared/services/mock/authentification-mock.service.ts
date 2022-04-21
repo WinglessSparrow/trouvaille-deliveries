@@ -19,11 +19,11 @@ export class AuthentificationMockService extends AuthentificationServiceModel {
   }
 
   logIn(auth: Authentification): Boolean {
-    console.log('Loging In with: ' + auth.email + ' | ' + auth.password);
+    console.log('Loging In with: ' + auth.username + ' | ' + auth.password);
 
     const result: boolean =
       this.allowedPasswords.filter((val: Authentification) => {
-        return val.email === auth.email && val.password === auth.password;
+        return val.username === auth.username && val.password === auth.password;
       }).length > 0;
 
     if (result) {

@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.fb.group({
-      email: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
     const values = this.form.value;
 
     const auth: Authentification = new Authentification(
-      values.password,
-      values.email
+      values.username,
+      values.password
     );
 
     const authResult: Boolean = this.auth.logIn(auth);

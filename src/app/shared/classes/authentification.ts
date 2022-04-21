@@ -1,10 +1,10 @@
 export class Authentification {
   private _password: string;
-  private _email: string;
+  private _username: string;
 
-  constructor(password: string, email: string) {
+  constructor(username: string, password: string) {
     this._password = password;
-    this._email = email;
+    this._username = username;
   }
 
   public get password(): string {
@@ -13,10 +13,10 @@ export class Authentification {
   public set password(v: string) {
     this._password = v;
   }
-  public get email(): string {
-    return this._email;
+  public get username(): string {
+    return this._username;
   }
-  public set email(v: string) {
-    this._email = v;
+  public set username(v: string) {
+    this._username = v;
   }
 }
