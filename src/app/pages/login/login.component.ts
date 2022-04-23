@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Authentification } from 'src/app/shared/classes/authentification';
+import { Authentification } from 'src/app/shared/classes/back-end-communication/authentification';
 import { AuthentificationServiceModel } from 'src/app/shared/models/authentification-service-model';
 
 @Component({
@@ -34,15 +34,14 @@ export class LoginComponent implements OnInit {
       values.password
     );
 
-    const authResult: Boolean = this.auth.logIn(auth);
+    const authResult: boolean = await this.auth.authenticate(auth);
 
     if (authResult) {
-      //TODO SET THE TOKEN IN THE STORE, SHOULD BE DONE WITHIN THE SERVICE!
+      //TODO setting the token and shit
+      //TODO setting of the token should init the Delivery Store
       this.router.navigateByUrl('/carScanner');
     } else {
-      console.log('Wrong Auth data');
-
-      //TODO SHOW ERROR MODAL
+      throw Error('Wrong Password or Username');
     }
   }
 }

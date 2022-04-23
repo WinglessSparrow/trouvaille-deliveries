@@ -1,16 +1,17 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Delivery } from '../../classes/back-end-communication/delivery';
+
 import { PreviewModel } from '../../classes/preview-model';
-import { PackageStates } from '../../models/package-states';
 
 @Component({
-  selector: 'package-preview',
-  templateUrl: './package-preview.component.html',
-  styleUrls: ['./package-preview.component.scss'],
+  selector: 'delivery-preview',
+  templateUrl: './delivery-preview.component.html',
+  styleUrls: ['./delivery-preview.component.scss'],
 })
-export class PackagePreviewComponent implements OnInit {
+export class DeliveryPreviewComponent implements OnInit {
   @HostBinding('style.--ball-color') color: string = 'blue';
 
-  @Input() data: PreviewModel;
+  @Input() data: Delivery;
 
   constructor() {}
 

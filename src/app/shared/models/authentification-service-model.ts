@@ -1,8 +1,7 @@
-import { Authentification } from '../classes/authentification';
+import { Authentification } from '../classes/back-end-communication/authentification';
 
 export abstract class AuthentificationServiceModel {
-  //TODO async?
-  constructor() {}
-  abstract logIn(auth: Authentification): Boolean;
+  abstract authenticate(auth: Authentification): Promise<boolean>;
   abstract logOff();
+  abstract reAuthenticate();
 }

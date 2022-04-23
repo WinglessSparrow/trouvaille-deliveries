@@ -4,7 +4,7 @@
 
 import { ErrorHandler } from '@angular/core';
 import { RouteReuseStrategy } from '@angular/router';
-import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicRouteStrategy } from '@ionic/angular';
 import { GlobalErrorHandler } from 'src/app/core/error-handling/global-error-handler';
 import { HttpLoadingInterceptor } from 'src/app/core/error-handling/http-loading.interceptor';
@@ -12,6 +12,10 @@ import { ConnectionMockService } from 'src/app/core/services/mock/connection-moc
 import { AuthentificationServiceModel } from 'src/app/shared/models/authentification-service-model';
 import { ConnectionServiceModel } from 'src/app/shared/models/connection-service-model';
 import { AuthentificationMockService } from 'src/app/shared/services/mock/authentification-mock.service';
+import { DeliveriesManagerModel } from 'src/app/shared/models/deliveries-manager-model';
+import { DeliveriesManagerMockService } from 'src/app/core/services/mock/deliveries-manager-mock.service';
+import { TokenRefresherModel } from 'src/app/shared/models/token-refresher-model';
+import { TokenRefresherMockService } from 'src/app/core/services/mock/token-refresher-mock.service';
 
 export const environment = {
   production: false,
@@ -34,10 +38,14 @@ export const environment = {
       useClass: HttpLoadingInterceptor,
       multi: true,
     },
-    // {
-    //   provide: HttpClient,
-    //   useClass: HttpClient
-    // }
+    {
+      provide: DeliveriesManagerModel,
+      useClass: DeliveriesManagerMockService,
+    },
+    {
+      provide: TokenRefresherModel,
+      useClass: TokenRefresherMockService,
+    },
   ],
 };
 

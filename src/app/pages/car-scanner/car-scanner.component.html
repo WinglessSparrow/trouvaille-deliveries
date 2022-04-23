@@ -1,7 +1,9 @@
-<scanner-page-template 
-  header="Scan Car's QR-Code" 
-  inputHeader="Car ID"
-  (manualInputClick)="this.receiveCarCode($event)"
-  (qrRead)="this.setQRFromCamera($event)">
-  <trou-btn (click)="this.logOut()">Log Out</trou-btn>
-</scanner-page-template>
+<div class="wrapper">
+  <scanner-page-template
+    header="Scan Car's QR-Code"
+    inputHeader="Car ID"
+    (manualInputClick)="this.receiveCarCode($event)"
+    (qrRead)="this.setQRFromCamera($event)">
+    <trou-btn (click)="this.logOut()">Log Out</trou-btn>
+  </scanner-page-template>
+</div>

@@ -1,19 +1,5 @@
 @use "../../shared/style/variables.scss" as var;
 
 .wrapper {
-    height: 100%;
-
-    .center {
-        display: flex;
-        flex-direction: column;
-
-        justify-content: flex-start;
-        align-items: center;
-
-        gap: 30px;
-
-        button {
-            margin-top: 20px;
-        }
-    }
+    margin-top: 10vh;
 }

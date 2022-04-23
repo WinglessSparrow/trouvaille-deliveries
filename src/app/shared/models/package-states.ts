@@ -6,5 +6,4 @@ export enum PackageStates {
   DeliveryNotPossible = 'Delivery Not Possible',
   PickUpNotPossible = 'Pick Up Not Possible',
   AddressNotIdentifiable = 'Address Not Identifiable',
-
 }
