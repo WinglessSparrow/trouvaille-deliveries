@@ -63,7 +63,11 @@ export class ScannerComponent implements OnInit {
     requestAnimationFrame(this.scan.bind(this));
   }
 
-  async scan() {
+  async stopScan() {
+    this.videoElement.srcObject.getTracks()[0].stop();
+  }
+
+  private async scan() {
     if (this.videoElement.readyState === this.videoElement.HAVE_ENOUGH_DATA) {
       if (this.loading) {
         await this.loading.dismiss();
@@ -102,6 +106,7 @@ export class ScannerComponent implements OnInit {
 
         //found, pass Data upwards
         this.qrCodeRead.emit(code);
+        this.stopScan();
       } else {
         if (this.isActive) {
           requestAnimationFrame(this.scan.bind(this));

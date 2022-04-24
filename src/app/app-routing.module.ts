@@ -10,17 +10,41 @@ import { LoginComponent } from './pages/login/login.component';
 import { MapComponent } from './pages/map/map.component';
 import { TimeComponent } from './pages/time/time.component';
 import { Pages } from './shared/classes/pages';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
-  { path: Pages.Login, component: LoginComponent },
-  { path: Pages.CarScanner, component: CarScannerComponent },
-  { path: Pages.Home, component: HomeComponent },
-  { path: Pages.DeliveriesToLoad, component: DeliveriesListLoadComponent },
-  { path: Pages.DeliveryInfo, component: DeliveryInfoComponent },
-  { path: Pages.AllDeliveries, component: AllDeliveriesListComponent },
-  { path: Pages.ScanDelivery, component: DeliveryScanComponent },
-  { path: Pages.Time, component: TimeComponent },
-  { path: Pages.Map, component: MapComponent },
+  {
+    path: Pages.Login,
+    component: LoginComponent,
+  },
+  {
+    path: Pages.CarScanner,
+    component: CarScannerComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: Pages.Home, component: HomeComponent, canActivate: [AuthGuard] },
+  {
+    path: Pages.DeliveriesToLoad,
+    component: DeliveriesListLoadComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: Pages.DeliveryInfo,
+    component: DeliveryInfoComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: Pages.AllDeliveries,
+    component: AllDeliveriesListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: Pages.ScanDelivery,
+    component: DeliveryScanComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: Pages.Time, component: TimeComponent, canActivate: [AuthGuard] },
+  { path: Pages.Map, component: MapComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
