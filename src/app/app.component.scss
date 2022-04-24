@@ -1,8 +1,5 @@
 .app {
   position: relative;
-
-  // display: grid;
-  // grid-template-rows: min(7vh) minmax(90vh, auto);
 }
 
 .header {
@@ -11,11 +8,5 @@
 }
 
 .content {
-  // grid-row: 2;
-
-  // padding-top: 200px;
-
-  min-height: 100vh;
-
-  // margin-top: 5vh;
+  min-height: 80vh;
 }

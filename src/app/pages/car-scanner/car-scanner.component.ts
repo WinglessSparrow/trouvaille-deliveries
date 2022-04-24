@@ -1,43 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { QRCode } from 'jsqr';
+import { ScannerPageTemplateComponent } from 'src/app/core/components/scanner-page-template/scanner-page-template.component';
+import {
+  ClearDeliveries,
+  InitDeliveriesState,
+} from 'src/app/core/state/deliveries/deliveries.action';
+import { ClearToken } from 'src/app/core/state/token/token.action';
+import { CarIdVerificationModel } from 'src/app/shared/classes/car-id-verification-model';
 import { Pages } from 'src/app/shared/classes/pages';
+import { ScannerComponent } from 'src/app/shared/components/scanner/scanner.component';
 @Component({
   selector: 'car-scanner',
   templateUrl: './car-scanner.component.html',
   styleUrls: ['./car-scanner.component.scss'],
 })
 export class CarScannerComponent implements OnInit {
-  form: FormGroup;
+  @ViewChild(ScannerPageTemplateComponent, { static: false })
+  scannerWrapper: ScannerPageTemplateComponent;
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.form = this.fb.group({ carId: ['', Validators.required] });
-  }
+  constructor(
+    private router: Router,
+    private store: Store,
+    private carVerification: CarIdVerificationModel
+  ) {}
 
   ngOnInit() {}
 
+  ngOnDestroy() {
+    this.scannerWrapper.scanner.stopScan();
+  }
+
   ngAfterViewInit() {
     //TODO check if camera works
-    //TODO SHOW MODAL IF NOT
   }
 
   logOut() {
-    //TODO logOut resets Token, Car Id, ?Session? etc.
+    //clearing deliveries
+    this.store.dispatch(new ClearDeliveries());
+    this.store.dispatch(new ClearToken());
+
     this.router.navigateByUrl('');
   }
 
-  verifyCarCode(code: string): boolean {
-    //TODO TEMP JUST RETURNS TRUE -> REDO WITH SERVICE CALL AND SHIT
-    return true;
-  }
+  async receiveCarCode(value: string) {
+    if (await this.carVerification.verifyCarId(value)) {
+      this.store.dispatch(new InitDeliveriesState());
 
-  receiveCarCode(value: string) {
-    if (this.verifyCarCode(value)) {
-      //TODO starts the async service that gets the Data, because the server needs both car and credentials
       this.router.navigateByUrl('/' + Pages.Home);
     } else {
-      //TODO SHOW MODAL FOR WRONG INPUT
+      throw Error('The Code is not a Valid Car-ID');
     }
   }
 

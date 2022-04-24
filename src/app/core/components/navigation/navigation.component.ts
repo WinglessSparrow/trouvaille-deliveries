@@ -14,7 +14,7 @@ export class NavigationComponent implements OnInit {
 
   isOpen: Observable<boolean> = new Observable();
 
-  constructor(public nav: NavigationService, private router: Router) {}
+  constructor(public nav: NavigationService) {}
 
   ngAfterViewInit() {
     setTimeout(() => {

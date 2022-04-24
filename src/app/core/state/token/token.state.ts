@@ -32,9 +32,6 @@ export class TokenState {
   setToken({ setState }: StateContext<TokenStateModel>, { payload }: SetToken) {
     let newState = new TokenStateModel();
     newState.token = payload;
-
-    this.store.dispatch(new InitDeliveriesState());
-
     setState(newState);
   }
 

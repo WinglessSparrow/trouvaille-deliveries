@@ -32,6 +32,7 @@
               }
             ],
             "styles": [
+              "./node_modules/leaflet/dist/leaflet.css",
               "src/app/shared/style/global.scss",
               "src/app/shared/style/variables.scss",
               "src/app/shared/style/mixins.scss"

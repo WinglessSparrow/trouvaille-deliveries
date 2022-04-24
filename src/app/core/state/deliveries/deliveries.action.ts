@@ -8,7 +8,13 @@ export class ChangeState {
 }
 
 export class InitDeliveriesState {
-  static readonly type = '[DELIVERY] InitState';
+  static readonly type = '[DELIVERY] InitDeliveriesState';
+
+  constructor() {}
+}
+
+export class ClearDeliveries {
+  static readonly type = '[DELIVERY] ClearDeliveries';
 
   constructor() {}
 }

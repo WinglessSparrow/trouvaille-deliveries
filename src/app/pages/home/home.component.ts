@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { ModalService } from 'src/app/core/services/prod/modal.service';
+import { ClearDeliveries } from 'src/app/core/state/deliveries/deliveries.action';
 import {
   LabelTextSize,
   LabelType,
@@ -22,11 +24,7 @@ export class HomeComponent implements OnInit {
   public positions = Position;
   public labelTypes = LabelType;
 
-  constructor(
-    private router: Router,
-    private modalService: ModalService,
-    private http: HttpClient
-  ) {
+  constructor(private router: Router, private store: Store) {
     //FIXME Temp data
     this.summaryData.push(['test', '13']);
     this.summaryData.push(['test1', '98/100']);
@@ -43,14 +41,12 @@ export class HomeComponent implements OnInit {
     // this.modalService.openModal(LoadingComponent, new LoadingContext('Test'));
   }
 
-  logOut() {
-    // this.router.navigateByUrl('/carScanner');
-    throw Error('Hi, Im an error');
+  back() {
+    this.store.dispatch(new ClearDeliveries());
+    this.router.navigateByUrl('/carScanner');
   }
 
   reportProblem() {
     //TODO implement function
-    // throw Error('testing Error Handling');
-    this.http.get('https://httpstat.us/404?sleep=2000').toPromise();
   }
 }

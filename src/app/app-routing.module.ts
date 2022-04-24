@@ -22,7 +22,11 @@ const routes: Routes = [
     component: CarScannerComponent,
     canActivate: [AuthGuard],
   },
-  { path: Pages.Home, component: HomeComponent, canActivate: [AuthGuard] },
+  {
+    path: Pages.Home,
+    component: HomeComponent,
+    //canActivate: [AuthGuard]
+  },
   {
     path: Pages.DeliveriesToLoad,
     component: DeliveriesListLoadComponent,
@@ -44,7 +48,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: Pages.Time, component: TimeComponent, canActivate: [AuthGuard] },
-  { path: Pages.Map, component: MapComponent, canActivate: [AuthGuard] },
+  {
+    path: Pages.Map,
+    component: MapComponent,
+    //canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({

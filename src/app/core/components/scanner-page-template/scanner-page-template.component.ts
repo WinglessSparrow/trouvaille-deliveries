@@ -1,8 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { QRCode } from 'jsqr';
 import { Pages } from 'src/app/shared/classes/pages';
+import { ScannerComponent } from 'src/app/shared/components/scanner/scanner.component';
 
 @Component({
   selector: 'scanner-page-template',
@@ -10,6 +18,8 @@ import { Pages } from 'src/app/shared/classes/pages';
   styleUrls: ['./scanner-page-template.component.scss'],
 })
 export class ScannerPageTemplateComponent implements OnInit {
+  @ViewChild(ScannerComponent, { static: false }) scanner: ScannerComponent;
+
   @Input() header = 'header';
   @Input() inputHeader = 'input Header';
 

@@ -4,7 +4,11 @@ import produce from 'immer';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { DeliveriesManagerModel } from 'src/app/shared/models/deliveries-manager-model';
 
-import { ChangeState, InitDeliveriesState } from './deliveries.action';
+import {
+  ChangeState,
+  ClearDeliveries,
+  InitDeliveriesState,
+} from './deliveries.action';
 
 export class DeliveryStateModel {
   deliveries: Delivery[];
@@ -44,6 +48,14 @@ export class DeliveryState {
 
     let newState = new DeliveryStateModel();
     newState.deliveries = deliveriesTemp;
+    setState(newState);
+  }
+
+  @Action(ClearDeliveries)
+  async clearDeliveries({ setState }: StateContext<DeliveryStateModel>) {
+    let newState = new DeliveryStateModel();
+    newState.deliveries = [];
+
     setState(newState);
   }
 }

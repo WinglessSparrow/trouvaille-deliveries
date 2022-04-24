@@ -1,10 +1,10 @@
 <div class="wrapper">
   <trou-label [text]="this.userName" [position]="this.positions.middle" [type]="this.labelTypes.centered"></trou-label>
   
-  <home-summary [data]="this.summaryData"></home-summary>
+  <home-summary *ngIf="this.summaryData != null" [data]="this.summaryData"></home-summary>
   
   <div class="buttons-wrapper">
     <button class="trou-warning-button" (click)="reportProblem()">Report Problem</button>
-    <button class="trou-prim-button" (click)="logOut()">Log Off</button>
+    <button class="trou-prim-button" (click)="back()">Back To Car Scan</button>
   </div>
 </div>

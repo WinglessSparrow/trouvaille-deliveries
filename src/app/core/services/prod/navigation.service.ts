@@ -28,7 +28,6 @@ export class NavigationService {
       });
     } else {
       //this ensure that you stay in the same tab after reload
-      //prbly useless, since you cannot really reload on mobile
       this._currSelected = this._buttons.find((btn) => {
         return btn.route === currRoute;
       });
@@ -51,13 +50,13 @@ export class NavigationService {
   }
 
   public async select(curr: NavButtonComponent) {
-    this._currSelected?.off();
+    this._currSelected.off();
 
     this._currSelected = curr;
 
     this.header.headerText = this._currSelected?.text;
 
-    this._currSelected?.on();
+    this._currSelected.on();
 
     this.close();
   }

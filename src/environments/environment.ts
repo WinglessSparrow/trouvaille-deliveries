@@ -16,6 +16,8 @@ import { DeliveriesManagerModel } from 'src/app/shared/models/deliveries-manager
 import { DeliveriesManagerMockService } from 'src/app/core/services/mock/deliveries-manager-mock.service';
 import { TokenRefresherModel } from 'src/app/shared/models/token-refresher-model';
 import { TokenRefresherMockService } from 'src/app/core/services/mock/token-refresher-mock.service';
+import { CarIdVerificationModel } from 'src/app/shared/classes/car-id-verification-model';
+import { CarIdVerificationMockService } from 'src/app/core/services/mock/car-id-verification-mock.service';
 
 export const environment = {
   production: false,
@@ -45,6 +47,10 @@ export const environment = {
     {
       provide: TokenRefresherModel,
       useClass: TokenRefresherMockService,
+    },
+    {
+      provide: CarIdVerificationModel,
+      useClass: CarIdVerificationMockService,
     },
   ],
 };
