@@ -49,12 +49,12 @@ export class NavigationService {
     }
   }
 
-  public async select(curr: NavButtonComponent) {
+  public select(curr: NavButtonComponent) {
     this._currSelected.off();
 
     this._currSelected = curr;
 
-    this.header.headerText = this._currSelected?.text;
+    this.header.headerText = this._currSelected.text;
 
     this._currSelected.on();
 
@@ -75,5 +75,13 @@ export class NavigationService {
 
   public get isShown(): BehaviorSubject<boolean> {
     return this._isShown;
+  }
+
+  /**
+   * Getter currSelected
+   * @return {NavButtonComponent}
+   */
+  public get currSelected(): NavButtonComponent {
+    return this._currSelected;
   }
 }

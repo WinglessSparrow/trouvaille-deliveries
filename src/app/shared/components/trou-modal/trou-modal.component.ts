@@ -29,20 +29,19 @@ export enum ModalType {
   templateUrl: './trou-modal.component.html',
   styleUrls: ['./trou-modal.component.scss'],
   animations: [
-    //TODO Move animations... somewhere
     trigger('slideInOut', [
       transition(':enter', [
         style({ transform: 'translateX(-100%)' }),
         animate('200ms ease-in', style({ transform: 'translateX(0%)' })),
       ]),
       transition(':leave', [
-        animate('200ms ease-in', style({ transform: 'translateX(+100%)' })),
+        animate('200ms ease-in', style({ transform: 'translateX(100%)' })),
       ]),
     ]),
   ],
 })
 export class TrouModalComponent implements OnInit {
-  @ViewChild('modalContent', { read: ViewContainerRef })
+  @ViewChild('modalContent', { read: ViewContainerRef, static: true })
   viewContainer: ViewContainerRef;
   modalContentRef: ComponentRef<ModalContentBase>;
 
@@ -51,11 +50,15 @@ export class TrouModalComponent implements OnInit {
   constructor(public modalService: ModalService) {}
 
   ngOnInit() {
-    this.modalService.modal = this;
-    this.modalOpen$ = this.modalService.modalActive;
+    this.setContent(
+      this.modalService.nextModalContext.content,
+      this.modalService.nextModalContext.context
+    );
   }
 
   setContent(content: Type<ModalContentBase>, context: ModalContext) {
+    this.viewContainer.clear();
+
     this.modalContentRef = this.viewContainer.createComponent(content);
     this.modalContentRef.instance.setContext(context);
   }
@@ -63,7 +66,7 @@ export class TrouModalComponent implements OnInit {
   ngAfterViewInit() {}
 
   ngOnDestroy(): void {
-    this.modalContentRef.destroy();
+    // this.modalContentRef.destroy();
   }
 
   changeHidden() {

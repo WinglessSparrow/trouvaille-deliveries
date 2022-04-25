@@ -1,7 +1,10 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { HeaderService } from './core/services/prod/header.service';
+import { ModalService } from './core/services/prod/modal.service';
 import { PageDescriptor } from './shared/classes/pageDescriptor';
 import { Pages } from './shared/classes/pages';
 
@@ -9,6 +12,17 @@ import { Pages } from './shared/classes/pages';
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('200ms ease-in', style({ transform: 'translateX(0%)' })),
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({ transform: 'translateX(+100%)' })),
+      ]),
+    ]),
+  ],
 })
 export class AppComponent {
   public pages = [
@@ -19,9 +33,18 @@ export class AppComponent {
     new PageDescriptor(Pages.DeliveriesToLoad, 'Loading Order'),
     new PageDescriptor(Pages.Time, 'Time'),
   ];
-  constructor(private router: Router, private headerService: HeaderService) {}
+
+  isModalOpen$: Observable<boolean> = new Observable();
+
+  constructor(
+    private router: Router,
+    private headerService: HeaderService,
+    private modal: ModalService
+  ) {}
 
   ngOnInit() {
+    this.isModalOpen$ = this.modal.modalActive;
+
     //TODO move to header service (headerRootingService) or component
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

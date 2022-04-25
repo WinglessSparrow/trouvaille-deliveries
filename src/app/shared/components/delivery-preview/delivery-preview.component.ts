@@ -1,4 +1,6 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DeliveryInfoService } from 'src/app/core/services/prod/delivery-info.service';
 import { Delivery } from '../../classes/back-end-communication/delivery';
 
 import { PreviewModel } from '../../classes/preview-model';
@@ -13,9 +15,13 @@ export class DeliveryPreviewComponent implements OnInit {
 
   @Input() data: Delivery;
 
-  constructor() {}
+  constructor(private deliveryService: DeliveryInfoService) {}
 
   ngOnInit() {
     this.color = PreviewModel.getColorFromState(this.data.state);
+  }
+
+  goToDelivery() {
+    this.deliveryService.routeToDelivery(this.data.id);
   }
 }

@@ -4,13 +4,12 @@
   </navigation>
   <app-header></app-header>
 
-
-
   <div class="content">
     <router-outlet></router-outlet>
-  </div>
-  
-  <trou-modal></trou-modal>
+  </div>  
+
+  <trou-modal *ngIf="(isModalOpen$ | async)" [@slideInOut]></trou-modal>
+
 </div>
 
 

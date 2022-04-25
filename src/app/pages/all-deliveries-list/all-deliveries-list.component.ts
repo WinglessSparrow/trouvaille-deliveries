@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { InitDeliveriesState } from 'src/app/core/state/deliveries/deliveries.action';
 import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { PreviewModel } from 'src/app/shared/classes/preview-model';
@@ -20,4 +21,8 @@ export class AllDeliveriesListComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit() {}
+
+  DEBUG_getDeliveries() {
+    this.store.dispatch(InitDeliveriesState);
+  }
 }

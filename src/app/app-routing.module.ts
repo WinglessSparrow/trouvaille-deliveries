@@ -33,14 +33,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: Pages.DeliveryInfo,
+    path: Pages.DeliveryInfo + '/:id',
     component: DeliveryInfoComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: Pages.AllDeliveries,
     component: AllDeliveriesListComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: Pages.ScanDelivery,

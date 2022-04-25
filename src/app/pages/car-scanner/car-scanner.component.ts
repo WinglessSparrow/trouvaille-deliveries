@@ -39,17 +39,16 @@ export class CarScannerComponent implements OnInit {
 
   logOut() {
     //clearing deliveries
-    this.store.dispatch(new ClearDeliveries());
-    this.store.dispatch(new ClearToken());
+    this.store.dispatch([new ClearDeliveries(), new ClearToken()]);
 
     this.router.navigateByUrl('');
   }
 
   async receiveCarCode(value: string) {
     if (await this.carVerification.verifyCarId(value)) {
-      this.store.dispatch(new InitDeliveriesState());
-
-      this.router.navigateByUrl('/' + Pages.Home);
+      this.store.dispatch(new InitDeliveriesState()).subscribe(() => {
+        this.router.navigateByUrl('/' + Pages.Home);
+      });
     } else {
       throw Error('The Code is not a Valid Car-ID');
     }
