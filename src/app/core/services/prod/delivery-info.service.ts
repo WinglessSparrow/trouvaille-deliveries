@@ -11,6 +11,6 @@ export class DeliveryInfoService {
 
   public routeToDelivery(id: string) {
     this.header.headerText = 'Delivery Info';
-    this.router.navigateByUrl(`${Pages.DeliveryInfo}/id`);
+    this.router.navigateByUrl(`${Pages.DeliveryInfo}/${id}`);
   }
 }

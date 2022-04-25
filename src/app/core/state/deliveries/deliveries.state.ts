@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import {
+  Action,
+  createSelector,
+  Selector,
+  State,
+  StateContext,
+} from '@ngxs/store';
 import produce from 'immer';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { DeliveriesManagerModel } from 'src/app/shared/models/deliveries-manager-model';
@@ -29,6 +35,12 @@ export class DeliveryState {
   @Selector()
   static getDeliveries(state: DeliveryStateModel) {
     return state.deliveries;
+  }
+
+  static getDelivery(id: string) {
+    return createSelector([DeliveryState], (state: DeliveryStateModel) => {
+      return state.deliveries.find((val) => val.id === id);
+    });
   }
 
   @Action(ChangeState)

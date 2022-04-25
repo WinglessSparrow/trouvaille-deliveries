@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { InitDeliveriesState } from 'src/app/core/state/deliveries/deliveries.action';
@@ -18,11 +19,7 @@ export class AllDeliveriesListComponent implements OnInit {
 
   @Select(DeliveryState.getDeliveries) deliveries$: Observable<Delivery[]>;
 
-  constructor(private store: Store) {}
+  constructor() {}
 
   ngOnInit() {}
-
-  DEBUG_getDeliveries() {
-    this.store.dispatch(InitDeliveriesState);
-  }
 }
