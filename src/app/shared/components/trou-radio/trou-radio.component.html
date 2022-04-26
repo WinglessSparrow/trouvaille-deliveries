@@ -1,0 +1,8 @@
+<label class="wrapper" [ngClass]="{'inactive' : !isActive}">
+  <div class="text-wrapper">
+    <div class="circle"></div>
+    <ng-content></ng-content>
+  </div>
+  <input type="radio" [name]="this.name" [value]="this.value" [ngModel]="this.model" (ngModelChange)="this.modelChange.emit($event)">
+</label>
+<div class="overlay" [ngClass]="{'inactive' : !isActive}"></div>

@@ -1,1 +1,7 @@
-<trou-label [text]="delivery.id"></trou-label>
+
+<trou-label text="Id:&nbsp;">{{delivery.id}}</trou-label>
+<trou-label [length]="labelLength.half" text="Recipient: "></trou-label>
+<trou-label >{{delivery.recipient.name}}</trou-label>
+<trou-label >{{delivery.recipient.address}}</trou-label>
+<trou-label [length]="labelLength.half" text="State"></trou-label>
+<delivery-state-view></delivery-state-view>

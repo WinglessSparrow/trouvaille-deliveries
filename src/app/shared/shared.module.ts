@@ -11,6 +11,7 @@ import { ScannerComponent } from './components/scanner/scanner.component';
 import { TrouBtnComponent } from './components/trou-btn/trou-btn.component';
 import { TrouLabelComponent } from './components/trou-label/trou-label.component';
 import { TrouModalComponent } from './components/trou-modal/trou-modal.component';
+import { TrouRadioComponent } from './components/trou-radio/trou-radio.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TrouModalComponent } from './components/trou-modal/trou-modal.component
     LoadingComponent,
     TrouModalComponent,
     DeliveryPreviewComponent,
+    TrouRadioComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -35,6 +37,7 @@ import { TrouModalComponent } from './components/trou-modal/trou-modal.component
     LoadingComponent,
     TrouModalComponent,
     DeliveryPreviewComponent,
+    TrouRadioComponent,
   ],
 })
 export class SharedModule {}

@@ -5,7 +5,6 @@ export class PreviewModel {
     let retVal: string = 'purple';
     switch (state) {
       case PackageStates.Delivered:
-
       case PackageStates.PickedUp:
         retVal = 'green';
         break;

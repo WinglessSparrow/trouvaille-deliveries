@@ -24,6 +24,7 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.isOpen = this.nav.isShown.asObservable();
+    // this.nav.buttons = this.buttons;
   }
 
   close() {

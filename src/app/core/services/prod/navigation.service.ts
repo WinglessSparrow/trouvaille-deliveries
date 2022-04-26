@@ -50,13 +50,14 @@ export class NavigationService {
   }
 
   public select(curr: NavButtonComponent) {
-    this._currSelected.off();
+    this._currSelected?.off();
 
     this._currSelected = curr;
 
-    this.header.headerText = this._currSelected.text;
+    //FIXME better way of setting header name, because some pages don't have a page descriptor
+    this.header.headerText = this._currSelected?.text;
 
-    this._currSelected.on();
+    this._currSelected?.on();
 
     this.close();
   }

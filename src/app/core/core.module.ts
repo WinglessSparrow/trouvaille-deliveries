@@ -9,6 +9,7 @@ import { NavButtonComponent } from './components/nav-button/nav-button.component
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { ScannerPageTemplateComponent } from './components/scanner-page-template/scanner-page-template.component';
 import { MapViewControlsComponent } from './components/map-view-controls/map-view-controls.component';
+import { DeliveryStateViewComponent } from './components/delivery-state-view/delivery-state-view.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MapViewControlsComponent } from './components/map-view-controls/map-vie
     MapViewComponent,
     MapViewControlsComponent,
     ScannerPageTemplateComponent,
+    DeliveryStateViewComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, SharedModule],
   exports: [
@@ -29,6 +31,7 @@ import { MapViewControlsComponent } from './components/map-view-controls/map-vie
     MapViewComponent,
     MapViewControlsComponent,
     ScannerPageTemplateComponent,
+    DeliveryStateViewComponent,
   ],
 })
 export class CoreModule {}

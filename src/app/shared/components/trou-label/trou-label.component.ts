@@ -33,8 +33,8 @@ export enum LabelTextSize {
   styleUrls: ['./trou-label.component.scss'],
 })
 export class TrouLabelComponent implements OnInit {
-  @Input() text: string = 'Text';
-  @Input() secondText: string = 'XX/XX';
+  @Input() text: string = '';
+  @Input() secondText: string = '';
   @Input() position = Position.left;
   @Input() type: LabelType = LabelType.default;
   @Input() length: LabelLength = LabelLength.default;
