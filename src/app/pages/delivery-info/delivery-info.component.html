@@ -1,7 +1,7 @@
 
-<trou-label text="Id:&nbsp;">{{delivery.id}}</trou-label>
+<trou-label text="Id:&nbsp;">{{delivery.idDelivery}}</trou-label>
 <trou-label [length]="labelLength.half" text="Recipient: "></trou-label>
-<trou-label >{{delivery.recipient.name}}</trou-label>
-<trou-label >{{delivery.recipient.address}}</trou-label>
+<trou-label >{{delivery.customer.name}}</trou-label>
+<trou-label >{{delivery.dstAddress.address}}</trou-label>
 <trou-label [length]="labelLength.half" text="State"></trou-label>
 <delivery-state-view [currState]="delivery.state" (stateChanged)="stateChanged($event)" ></delivery-state-view>

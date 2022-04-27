@@ -13,15 +13,15 @@ import { PreviewModel } from '../../classes/preview-model';
 export class DeliveryPreviewComponent implements OnInit {
   @HostBinding('style.--ball-color') color: string = 'blue';
 
-  @Input() data: Delivery;
+  @Input() delivery: Delivery;
 
   constructor(private deliveryService: DeliveryInfoService) {}
 
   ngOnInit() {
-    this.color = PreviewModel.getColorFromState(this.data.state);
+    this.color = PreviewModel.getColorFromState(this.delivery.state);
   }
 
   goToDelivery() {
-    this.deliveryService.routeToDelivery(this.data.id);
+    this.deliveryService.routeToDelivery(this.delivery.idDelivery);
   }
 }

@@ -1,14 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { HeaderService } from 'src/app/core/services/prod/header.service';
-import {
-  ChangeDeliveryState,
-  InitDeliveriesState,
-} from 'src/app/core/state/deliveries/deliveries.action';
+import { ChangeDeliveryState } from 'src/app/core/state/deliveries/deliveries.action';
 import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
+import { Customer } from 'src/app/shared/classes/back-end-communication/customer';
 import { ChangeStatePayload } from 'src/app/shared/classes/change-state-payload';
 import { LabelLength } from 'src/app/shared/components/trou-label/trou-label.component';
 import { PackageStates } from 'src/app/shared/models/package-states';

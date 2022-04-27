@@ -47,7 +47,7 @@ export class DeliveryState {
 
   static getDelivery(id: string) {
     return createSelector([DeliveryState], (state: DeliveryStateModel) => {
-      return state.deliveries.find((val) => val.id === id);
+      return state.deliveries.find((val) => val.idDelivery === id);
     });
   }
 
@@ -77,7 +77,7 @@ export class DeliveryState {
 
     const newState = produce(getState(), (draft: DeliveryStateModel) => {
       const temp = draft.deliveries.find(
-        (val) => tempPayload.delivery.id === val.id
+        (val) => tempPayload.delivery.idDelivery === val.idDelivery
       );
       temp.state = tempPayload.state;
     });

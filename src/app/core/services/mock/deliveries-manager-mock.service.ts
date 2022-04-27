@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Address } from 'src/app/shared/classes/back-end-communication/address';
+import { Customer } from 'src/app/shared/classes/back-end-communication/customer';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { DeliveriesManagerModel } from 'src/app/shared/models/deliveries-manager-model';
 import { PackageStates } from 'src/app/shared/models/package-states';
@@ -12,49 +14,55 @@ export class DeliveriesManagerMockService implements DeliveriesManagerModel {
 
   private _deliveries: Delivery[] = [
     new Delivery({
-      index: 11,
-      id: '0-21831kod092i1-d',
-      recipient: {
-        name: 'Huila Morzovyi',
-        address: 'ottenhofener Str 10',
-      },
-      state: PackageStates.AddressNotIdentifiable,
+      index: 0,
+      idDelivery: '0-21831kod092i1-d',
+      customer: new Customer({
+        firstName: 'Huila',
+        lastName: 'Morzovyi',
+        email: 'mail',
+      }),
+      dstAddress: new Address({
+        zipcode: 77815,
+        streetName: 'Ottenhofener Str.',
+        streetNumber: 13,
+        city: 'Buehl',
+        country: 'Germany',
+      }),
+      state: PackageStates.Delivered,
     }),
     new Delivery({
       index: 1,
-      id: '0-2183112rfdd092i1-d',
-      recipient: {
-        name: 'Holo the Wise wolf',
-        address: 'ottenhofener Str 7',
-      },
-      state: PackageStates.PickedUp,
+      idDelivery: '0-2fgh831kod092i1-f',
+      customer: new Customer({
+        firstName: 'Holo',
+        lastName: 'The Wise Wolf',
+        email: 'mail',
+      }),
+      dstAddress: new Address({
+        zipcode: 77815,
+        streetName: 'Ottenhofener Str.',
+        streetNumber: 14,
+        city: 'Buehl',
+        country: 'Germany',
+      }),
+      state: PackageStates.DeliveryNotPossible,
     }),
     new Delivery({
-      index: 0,
-      id: '0-21831k556c092i1-d',
-      recipient: {
-        name: 'Johnatan Joestar',
-        address: 'ottenhofener Str 17',
-      },
-      state: PackageStates.PickUpNotPossible,
-    }),
-    new Delivery({
-      index: 3,
-      id: '0-21831ko21542i1-d',
-      recipient: {
-        name: 'Pavel Hujavel',
-        address: 'ottenhofener Str 13',
-      },
+      index: 2,
+      idDelivery: '0-21831ghd091i1-d',
+      customer: new Customer({
+        firstName: 'Pavel',
+        lastName: 'Hujavel',
+        email: 'mail',
+      }),
+      dstAddress: new Address({
+        zipcode: 77815,
+        streetName: 'Ottenhofener Str.',
+        streetNumber: 11,
+        city: 'Buehl',
+        country: 'Germany',
+      }),
       state: PackageStates.InDelivery,
-    }),
-    new Delivery({
-      index: 9,
-      id: '0-21831kod092gsd-d',
-      recipient: {
-        name: 'Mister Twister',
-        address: 'ottenhofener Str 3',
-      },
-      state: PackageStates.Delivered,
     }),
   ];
 
@@ -83,7 +91,7 @@ export class DeliveriesManagerMockService implements DeliveriesManagerModel {
   public async changeState(newDelivery: Delivery) {
     await new Promise((resolve) => setTimeout(() => {}, 3000));
     console.log(
-      `bip-bop I'm  a mock, \n I changed the state of the delivery ${newDelivery.id} to ${newDelivery.state}`
+      `bip-bop I'm  a mock, \n I changed the state of the delivery ${newDelivery.idDelivery} to ${newDelivery.state}`
     );
   }
 }

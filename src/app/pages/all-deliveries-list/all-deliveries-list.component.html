@@ -1,3 +1,3 @@
 <div class="wrapper">
-  <delivery-preview *ngFor="let p of (deliveries$ | async)" [data]="this.p"></delivery-preview>
+  <delivery-preview *ngFor="let delivery of (deliveries$ | async)" [delivery]="delivery"></delivery-preview>
 </div>

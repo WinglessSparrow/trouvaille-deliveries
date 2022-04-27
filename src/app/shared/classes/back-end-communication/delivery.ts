@@ -1,24 +1,36 @@
 import { immerable } from 'immer';
 import { PackageStates } from '../../models/package-states';
-import { Package } from './package';
-import { Person } from './Person';
+import { Address } from './address';
+import { Customer } from './customer';
 
 export class Delivery {
   [immerable] = true;
 
   private _index: number;
-  private _id: string;
 
-  private _package: Package;
+  private _customer: Customer;
 
-  private _recipient: Person;
-  private _sender: Person;
+  private _dstAddress: Address;
+  private _srcAddress: Address;
+
+  private _idDelivery: string;
+  private _idPickUp: string;
+  private _idReturn: string;
 
   private _state: PackageStates;
+
+  private _weight: number;
+  private _height: number;
+  private _width: number;
+  private _depth: number;
+  private _price: number;
+
+  private externTrackingNumber: string;
 
   constructor(val: any) {
     Object.assign(this, val);
   }
+
   /**
    * Getter index
    * @return {number}
@@ -28,35 +40,51 @@ export class Delivery {
   }
 
   /**
-   * Getter id
+   * Getter customer
+   * @return {Customer}
+   */
+  public get customer(): Customer {
+    return this._customer;
+  }
+
+  /**
+   * Getter dstAddress
+   * @return {Address}
+   */
+  public get dstAddress(): Address {
+    return this._dstAddress;
+  }
+
+  /**
+   * Getter srcAddress
+   * @return {Address}
+   */
+  public get srcAddress(): Address {
+    return this._srcAddress;
+  }
+
+  /**
+   * Getter idDelivery
    * @return {string}
    */
-  public get id(): string {
-    return this._id;
+  public get idDelivery(): string {
+    return this._idDelivery;
   }
 
   /**
-   * Getter package
-   * @return {Package}
+   * Getter idPickUp
+   * @return {string}
    */
-  public get package(): Package {
-    return this._package;
+  public get idPickUp(): string {
+    return this._idPickUp;
   }
 
   /**
-   * Getter recipient
-   * @return {Person}
+   * Getter idReturn
+   * @return {string}
    */
-  public get recipient(): Person {
-    return this._recipient;
-  }
-
-  /**
-   * Getter sender
-   * @return {Person}
-   */
-  public get sender(): Person {
-    return this._sender;
+  public get idReturn(): string {
+    return this._idReturn;
   }
 
   /**
@@ -68,6 +96,54 @@ export class Delivery {
   }
 
   /**
+   * Getter weight
+   * @return {number}
+   */
+  public get weight(): number {
+    return this._weight;
+  }
+
+  /**
+   * Getter height
+   * @return {number}
+   */
+  public get height(): number {
+    return this._height;
+  }
+
+  /**
+   * Getter width
+   * @return {number}
+   */
+  public get width(): number {
+    return this._width;
+  }
+
+  /**
+   * Getter depth
+   * @return {number}
+   */
+  public get depth(): number {
+    return this._depth;
+  }
+
+  /**
+   * Getter price
+   * @return {number}
+   */
+  public get price(): number {
+    return this._price;
+  }
+
+  /**
+   * Getter $externTrackingNumber
+   * @return {string}
+   */
+  public get $externTrackingNumber(): string {
+    return this.externTrackingNumber;
+  }
+
+  /**
    * Setter index
    * @param {number} value
    */
@@ -76,35 +152,51 @@ export class Delivery {
   }
 
   /**
-   * Setter id
+   * Setter customer
+   * @param {Customer} value
+   */
+  public set customer(value: Customer) {
+    this._customer = value;
+  }
+
+  /**
+   * Setter dstAddress
+   * @param {Address} value
+   */
+  public set dstAddress(value: Address) {
+    this._dstAddress = value;
+  }
+
+  /**
+   * Setter srcAddress
+   * @param {Address} value
+   */
+  public set srcAddress(value: Address) {
+    this._srcAddress = value;
+  }
+
+  /**
+   * Setter idDelivery
    * @param {string} value
    */
-  public set id(value: string) {
-    this._id = value;
+  public set idDelivery(value: string) {
+    this._idDelivery = value;
   }
 
   /**
-   * Setter package
-   * @param {Package} value
+   * Setter idPickUp
+   * @param {string} value
    */
-  public set package(value: Package) {
-    this._package = value;
+  public set idPickUp(value: string) {
+    this._idPickUp = value;
   }
 
   /**
-   * Setter recipient
-   * @param {Person} value
+   * Setter idReturn
+   * @param {string} value
    */
-  public set recipient(value: Person) {
-    this._recipient = value;
-  }
-
-  /**
-   * Setter sender
-   * @param {Person} value
-   */
-  public set sender(value: Person) {
-    this._sender = value;
+  public set idReturn(value: string) {
+    this._idReturn = value;
   }
 
   /**
@@ -113,5 +205,53 @@ export class Delivery {
    */
   public set state(value: PackageStates) {
     this._state = value;
+  }
+
+  /**
+   * Setter weight
+   * @param {number} value
+   */
+  public set weight(value: number) {
+    this._weight = value;
+  }
+
+  /**
+   * Setter height
+   * @param {number} value
+   */
+  public set height(value: number) {
+    this._height = value;
+  }
+
+  /**
+   * Setter width
+   * @param {number} value
+   */
+  public set width(value: number) {
+    this._width = value;
+  }
+
+  /**
+   * Setter depth
+   * @param {number} value
+   */
+  public set depth(value: number) {
+    this._depth = value;
+  }
+
+  /**
+   * Setter price
+   * @param {number} value
+   */
+  public set price(value: number) {
+    this._price = value;
+  }
+
+  /**
+   * Setter $externTrackingNumber
+   * @param {string} value
+   */
+  public set $externTrackingNumber(value: string) {
+    this.externTrackingNumber = value;
   }
 }

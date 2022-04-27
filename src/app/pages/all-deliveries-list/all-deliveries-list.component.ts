@@ -1,12 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { InitDeliveriesState } from 'src/app/core/state/deliveries/deliveries.action';
 import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
-import { PreviewModel } from 'src/app/shared/classes/preview-model';
-import { PackageStates } from 'src/app/shared/models/package-states';
 
 @Component({
   selector: 'all-deliveries-list',
