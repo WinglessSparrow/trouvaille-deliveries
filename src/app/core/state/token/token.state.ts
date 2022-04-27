@@ -18,10 +18,7 @@ export class TokenStateModel {
 export class TokenState {
   //TODO getting packages from getter Service
 
-  constructor(
-    private store: Store,
-    private tokenRefresher: TokenRefresherModel
-  ) {}
+  constructor(private tokenRefresher: TokenRefresherModel) {}
 
   @Selector()
   static getToken(state: TokenStateModel) {

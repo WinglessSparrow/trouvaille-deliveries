@@ -65,7 +65,7 @@ export class DeliveriesManagerMockService implements DeliveriesManagerModel {
       setTimeout(() => {
         this.loading.stopLoading();
         resolve(this._deliveries);
-      }, 3000)
+      }, 1000)
     );
   }
 
@@ -76,7 +76,7 @@ export class DeliveriesManagerMockService implements DeliveriesManagerModel {
       setTimeout(() => {
         this.loading.stopLoading();
         resolve(2);
-      }, 3000)
+      }, 1000)
     );
   }
 

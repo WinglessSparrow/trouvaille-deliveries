@@ -14,12 +14,11 @@ import { PackageStates } from 'src/app/shared/models/package-states';
   styleUrls: ['./all-deliveries-list.component.scss'],
 })
 export class AllDeliveriesListComponent implements OnInit {
-  //TODO Make it disappear in a wonderfull service
   //TODO make up some way to notify the user in case a new delivery is coming in
 
   @Select(DeliveryState.getDeliveries) deliveries$: Observable<Delivery[]>;
 
-  constructor() {}
+  constructor(private store: Store) {}
 
   ngOnInit() {}
 }

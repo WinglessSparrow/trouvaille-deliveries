@@ -1,8 +1,11 @@
+import { immerable } from 'immer';
 import { PackageStates } from '../../models/package-states';
 import { Package } from './package';
 import { Person } from './Person';
 
 export class Delivery {
+  [immerable] = true;
+
   private _index: number;
   private _id: string;
 

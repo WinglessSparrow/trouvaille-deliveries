@@ -1,10 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { HeaderService } from 'src/app/core/services/prod/header.service';
+import {
+  ChangeDeliveryState,
+  InitDeliveriesState,
+} from 'src/app/core/state/deliveries/deliveries.action';
 import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
+import { ChangeStatePayload } from 'src/app/shared/classes/change-state-payload';
 import { LabelLength } from 'src/app/shared/components/trou-label/trou-label.component';
 import { PackageStates } from 'src/app/shared/models/package-states';
 
@@ -14,10 +19,11 @@ import { PackageStates } from 'src/app/shared/models/package-states';
   styleUrls: ['./delivery-info.component.scss'],
 })
 export class DeliveryInfoComponent implements OnInit, OnDestroy {
-  deliverySubscription: Subscription;
-  delivery: Delivery;
-
   public labelLength = LabelLength;
+  public delivery: Delivery;
+
+  private deliverySubscription: Subscription;
+  private id: string;
 
   constructor(
     private header: HeaderService,
@@ -28,22 +34,24 @@ export class DeliveryInfoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.header.menuOff();
 
-    // const id = this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
 
-    // const delivery$ = this.store.select(DeliveryState.getDelivery(id));
-    // this.deliverySubscription = delivery$.subscribe((val) => {
-    //   this.delivery = val;
-    // });
+    this.renewState();
+  }
 
-    this.delivery = new Delivery({
-      index: 11,
-      id: '0-21831kod092i1-d',
-      recipient: {
-        name: 'Huila Morzovyi',
-        address: 'ottenhofener Str 10',
-      },
-      state: PackageStates.AddressNotIdentifiable,
+  renewState() {
+    const delivery$ = this.store.select(DeliveryState.getDelivery(this.id));
+    this.deliverySubscription = delivery$.subscribe((val) => {
+      this.delivery = val;
     });
+  }
+
+  stateChanged(event: PackageStates) {
+    console.log(event);
+
+    this.store.dispatch(
+      new ChangeDeliveryState(new ChangeStatePayload(event, this.delivery))
+    );
   }
 
   ngOnDestroy() {

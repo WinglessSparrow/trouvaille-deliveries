@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <trou-radio *ngFor="let state of states" [name]="this.state" [value]="this.state" [(model)]="currState">
+  <trou-radio *ngFor="let state of states" [name]="this.state" [value]="this.state" [(model)]="currState" (modelChange)="onNewState($event)">
     <h3>
       {{state}}
     </h3>

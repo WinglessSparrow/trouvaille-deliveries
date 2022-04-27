@@ -1,7 +1,8 @@
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
+import { ChangeStatePayload } from 'src/app/shared/classes/change-state-payload';
 import { PackageStates } from 'src/app/shared/models/package-states';
 
-export class ChangeState {
+export class ChangeDeliveryState {
   static readonly type = '[DELIVERY] ChangeState';
 
   constructor(public payload: ChangeStatePayload) {}
@@ -17,17 +18,4 @@ export class ClearDeliveries {
   static readonly type = '[DELIVERY] ClearDeliveries';
 
   constructor() {}
-}
-
-export class ChangeStatePayload {
-  private _state: PackageStates;
-  private _delivery: Delivery;
-
-  public get state(): PackageStates {
-    return this._state;
-  }
-
-  public get delivery(): Delivery {
-    return this._delivery;
-  }
 }

@@ -6,23 +6,28 @@ import {
   State,
   StateContext,
 } from '@ngxs/store';
-import produce from 'immer';
+import produce, { immerable } from 'immer';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
+import { ChangeStatePayload } from 'src/app/shared/classes/change-state-payload';
 import { DeliveriesManagerModel } from 'src/app/shared/models/deliveries-manager-model';
+import { StateManagerModel } from 'src/app/shared/models/state-manager-model';
 
 import {
-  ChangeState,
+  ChangeDeliveryState,
   ClearDeliveries,
   InitDeliveriesState,
 } from './deliveries.action';
 
 export class DeliveryStateModel {
+  [immerable] = true;
+
   deliveries: Delivery[];
 }
 
 @State<DeliveryStateModel>({
   name: 'deliveries',
   defaults: {
+    [immerable]: true,
     deliveries: [],
   },
 })
@@ -30,7 +35,10 @@ export class DeliveryStateModel {
 export class DeliveryState {
   //TODO getting packages from getter Service
 
-  constructor(private deliverManager: DeliveriesManagerModel) {}
+  constructor(
+    private deliveryManager: DeliveriesManagerModel,
+    private deliveryStateManger: StateManagerModel
+  ) {}
 
   @Selector()
   static getDeliveries(state: DeliveryStateModel) {
@@ -43,20 +51,9 @@ export class DeliveryState {
     });
   }
 
-  @Action(ChangeState)
-  changeState(
-    { getState }: StateContext<DeliveryStateModel>,
-    { payload }: ChangeState
-  ) {
-    const newState = produce(getState(), (draft: DeliveryStateModel) => {
-      //TODO Set new state (check with StateMachine), call a http or smth
-      //deliveryManager.sendState() idk
-    });
-  }
-
   @Action(InitDeliveriesState)
   async initState({ setState }: StateContext<DeliveryStateModel>) {
-    const deliveriesTemp = await this.deliverManager.getAllPackages();
+    const deliveriesTemp = await this.deliveryManager.getAllPackages();
 
     let newState = new DeliveryStateModel();
     newState.deliveries = deliveriesTemp;
@@ -67,6 +64,25 @@ export class DeliveryState {
   async clearDeliveries({ setState }: StateContext<DeliveryStateModel>) {
     let newState = new DeliveryStateModel();
     newState.deliveries = [];
+
+    setState(newState);
+  }
+
+  @Action(ChangeDeliveryState)
+  async changeDeliveryState(
+    { setState, getState }: StateContext<DeliveryStateModel>,
+    payload: ChangeDeliveryState
+  ) {
+    const tempPayload = payload.payload;
+
+    const newState = produce(getState(), (draft: DeliveryStateModel) => {
+      const temp = draft.deliveries.find(
+        (val) => tempPayload.delivery.id === val.id
+      );
+      temp.state = tempPayload.state;
+    });
+
+    await this.deliveryStateManger.changeState(tempPayload);
 
     setState(newState);
   }

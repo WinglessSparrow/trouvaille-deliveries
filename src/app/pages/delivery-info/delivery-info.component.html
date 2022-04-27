@@ -4,4 +4,4 @@
 <trou-label >{{delivery.recipient.name}}</trou-label>
 <trou-label >{{delivery.recipient.address}}</trou-label>
 <trou-label [length]="labelLength.half" text="State"></trou-label>
-<delivery-state-view></delivery-state-view>
+<delivery-state-view [currState]="delivery.state" (stateChanged)="stateChanged($event)" ></delivery-state-view>
