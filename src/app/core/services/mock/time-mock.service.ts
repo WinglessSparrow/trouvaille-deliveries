@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { TimeDescriptor } from 'src/app/shared/classes/time-descriptor';
 import { TimeServiceModel } from 'src/app/shared/models/time-service-model';
-import { TimeStateMachineService } from '../prod/time-state-machine.service';
+import { TimeCounterService } from '../prod/time-counter.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TimeMockService extends TimeServiceModel {
-  constructor(timeState: TimeStateMachineService) {
-    super(timeState);
+  constructor(private timer: TimeCounterService) {
+    super();
   }
 
   public getTimes(): Promise<TimeDescriptor> {
@@ -20,14 +20,18 @@ export class TimeMockService extends TimeServiceModel {
   }
 
   public startDriving() {
-    if (this._timeDescriptors.timeStart == undefined) {
-      this._timeDescriptors.timeStart = new Date();
-    }
+    this.timer.addWorkInterval();
   }
 
-  public stopDriving() {}
+  public stopDriving() {
+    this.timer.concludeWorkInterval();
+  }
 
-  public startPause() {}
+  public startPause() {
+    this.timer.addPauseInterval();
+  }
 
-  public stopPause() {}
+  public stopPause() {
+    this.timer.concludePauseInterval();
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { TimeCounterService } from 'src/app/core/services/prod/time-counter.service';
 import {
   TimeStateMachineService,
   TimeStates,
@@ -15,21 +16,20 @@ import { TimeServiceModel } from 'src/app/shared/models/time-service-model';
 export class TimeComponent implements OnInit {
   constructor(
     private stateMachine: TimeStateMachineService,
+    public timer: TimeCounterService,
     private timeService: TimeServiceModel
   ) {}
 
   state: Observable<TimeStates> = new Observable<TimeStates>();
-  isPauseStop: boolean = false;
-
-  generalTime: string;
-  pauseTime: string;
+  today: string;
 
   labelType = LabelType;
   timeStates = TimeStates;
 
   ngOnInit() {
     this.state = this.stateMachine.currState;
-    this.state.subscribe(() => {});
+    this.timer.init();
+    this.today = new Date().toLocaleDateString();
   }
 
   //TODO getting time through time-service-model
