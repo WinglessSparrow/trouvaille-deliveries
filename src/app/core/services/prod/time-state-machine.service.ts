@@ -7,11 +7,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class TimeStateMachineService {
   constructor() {}
 
-  // private _currState = TimeStates.NotDrive;
   private _currState: BehaviorSubject<TimeStates> =
     new BehaviorSubject<TimeStates>(TimeStates.NotDrive);
 
-  //it is shit, I know, but I'm not doing a full fckn State machine for 3 States,
   //this is perfectly fine
   public changeState(state: TimeStates) {
     var change: boolean = false;

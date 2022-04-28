@@ -3,7 +3,7 @@ import { Address } from 'src/app/shared/classes/back-end-communication/address';
 import { Customer } from 'src/app/shared/classes/back-end-communication/customer';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { DeliveriesManagerModel } from 'src/app/shared/models/deliveries-manager-model';
-import { PackageStates } from 'src/app/shared/models/package-states';
+import { DeliveryStates } from 'src/app/shared/models/delivery-states';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class DeliveriesManagerMockService implements DeliveriesManagerModel {
   private _deliveries: Delivery[] = [
     new Delivery({
       index: 0,
-      idDelivery: '0-21831kod092i1-d',
+      idDelivery: '0-a0',
       customer: new Customer({
         firstName: 'Huila',
         lastName: 'Morzovyi',
@@ -28,11 +28,11 @@ export class DeliveriesManagerMockService implements DeliveriesManagerModel {
         city: 'Buehl',
         country: 'Germany',
       }),
-      state: PackageStates.Delivered,
+      state: DeliveryStates.DELIVERED,
     }),
     new Delivery({
       index: 1,
-      idDelivery: '0-2fgh831kod092i1-f',
+      idDelivery: '0-a1',
       customer: new Customer({
         firstName: 'Holo',
         lastName: 'The Wise Wolf',
@@ -45,11 +45,11 @@ export class DeliveriesManagerMockService implements DeliveriesManagerModel {
         city: 'Buehl',
         country: 'Germany',
       }),
-      state: PackageStates.DeliveryNotPossible,
+      state: DeliveryStates.DELIVERY_FAILED,
     }),
     new Delivery({
       index: 2,
-      idDelivery: '0-21831ghd091i1-d',
+      idDelivery: '0-a2',
       customer: new Customer({
         firstName: 'Pavel',
         lastName: 'Hujavel',
@@ -62,7 +62,24 @@ export class DeliveriesManagerMockService implements DeliveriesManagerModel {
         city: 'Buehl',
         country: 'Germany',
       }),
-      state: PackageStates.InDelivery,
+      state: DeliveryStates.IN_CAR,
+    }),
+    new Delivery({
+      index: 3,
+      idDelivery: '0-a3',
+      customer: new Customer({
+        firstName: 'Johnatan',
+        lastName: 'Joestar',
+        email: 'mail',
+      }),
+      dstAddress: new Address({
+        zipcode: 77815,
+        streetName: 'Ottenhofener Str.',
+        streetNumber: 11,
+        city: 'Buehl',
+        country: 'Germany',
+      }),
+      state: DeliveryStates.REQUESTED_PICKUP,
     }),
   ];
 

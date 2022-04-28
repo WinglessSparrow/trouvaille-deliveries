@@ -12,6 +12,8 @@ import { TimeComponent } from './pages/time/time.component';
 import { Pages } from './shared/classes/pages';
 import { AuthGuard } from './shared/guards/auth.guard';
 
+//FIXME AuthGuard ist turned off, for now, do not forget to turn it ON!
+
 const routes: Routes = [
   {
     path: Pages.Login,
@@ -20,7 +22,7 @@ const routes: Routes = [
   {
     path: Pages.CarScanner,
     component: CarScannerComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: Pages.Home,
@@ -30,7 +32,7 @@ const routes: Routes = [
   {
     path: Pages.DeliveriesToLoad,
     component: DeliveriesListLoadComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: Pages.DeliveryInfo + '/:id',
@@ -45,7 +47,7 @@ const routes: Routes = [
   {
     path: Pages.ScanDelivery,
     component: DeliveryScanComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   { path: Pages.Time, component: TimeComponent, canActivate: [AuthGuard] },
   {

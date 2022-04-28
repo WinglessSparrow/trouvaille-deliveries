@@ -3,7 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { ModalService } from 'src/app/core/services/prod/modal.service';
-import { ClearDeliveries } from 'src/app/core/state/deliveries/deliveries.action';
+import {
+  ClearDeliveries,
+  InitDeliveriesState,
+} from 'src/app/core/state/deliveries/deliveries.action';
 import {
   LabelTextSize,
   LabelType,
@@ -35,7 +38,9 @@ export class HomeComponent implements OnInit {
     this.summaryData.push(['test6', '10/11']);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(new InitDeliveriesState());
+  }
 
   ngAfterViewInit() {
     // this.modalService.openModal(LoadingComponent, new LoadingContext('Test'));

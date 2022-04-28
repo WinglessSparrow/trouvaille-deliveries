@@ -1,23 +1,27 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
-import { PackageStates } from 'src/app/shared/models/package-states';
+import { DeliveryStates } from 'src/app/shared/models/delivery-states';
+import { DeliveryStateMachineService } from '../../services/prod/delivery-state-machine.service';
 
 @Component({
   selector: 'delivery-state-view',
   templateUrl: './delivery-state-view.component.html',
   styleUrls: ['./delivery-state-view.component.scss'],
+  providers: [DeliveryStateMachineService],
 })
 export class DeliveryStateViewComponent implements OnInit {
-  @Input() currState: PackageStates;
-  @Output() stateChanged: EventEmitter<PackageStates> =
-    new EventEmitter<PackageStates>();
-  states = Object.values(PackageStates);
+  @Input() currState: DeliveryStates;
+  @Output() stateChanged: EventEmitter<DeliveryStates> =
+    new EventEmitter<DeliveryStates>();
+  states = Object.values(DeliveryStates);
 
-  constructor() {}
+  constructor(public stateMachine: DeliveryStateMachineService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.stateMachine.nextState(this.currState);
+  }
 
-  public onNewState(event: PackageStates) {
+  public onNewState(event: DeliveryStates) {
+    this.stateMachine.nextState(event);
     this.stateChanged.emit(event);
   }
 }

@@ -1,6 +1,6 @@
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { ChangeStatePayload } from 'src/app/shared/classes/change-state-payload';
-import { PackageStates } from 'src/app/shared/models/package-states';
+import { DeliveryStates } from 'src/app/shared/models/delivery-states';
 
 export class ChangeDeliveryState {
   static readonly type = '[DELIVERY] ChangeState';

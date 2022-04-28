@@ -1,16 +1,16 @@
-import { PackageStates } from '../models/package-states';
+import { DeliveryStates } from '../models/delivery-states';
 import { Delivery } from './back-end-communication/delivery';
 
 export class ChangeStatePayload {
-  private _state: PackageStates;
+  private _state: DeliveryStates;
   private _delivery: Delivery;
 
-  constructor(_state: PackageStates, _delivery: Delivery) {
+  constructor(_state: DeliveryStates, _delivery: Delivery) {
     this._state = _state;
     this._delivery = _delivery;
   }
 
-  public get state(): PackageStates {
+  public get state(): DeliveryStates {
     return this._state;
   }
 

@@ -1,5 +1,5 @@
 import { immerable } from 'immer';
-import { PackageStates } from '../../models/package-states';
+import { DeliveryStates } from '../../models/delivery-states';
 import { Address } from './address';
 import { Customer } from './customer';
 
@@ -17,7 +17,7 @@ export class Delivery {
   private _idPickUp: string;
   private _idReturn: string;
 
-  private _state: PackageStates;
+  private _state: DeliveryStates;
 
   private _weight: number;
   private _height: number;
@@ -89,9 +89,9 @@ export class Delivery {
 
   /**
    * Getter state
-   * @return {PackageStates}
+   * @return {DeliveryStates}
    */
-  public get state(): PackageStates {
+  public get state(): DeliveryStates {
     return this._state;
   }
 
@@ -201,9 +201,9 @@ export class Delivery {
 
   /**
    * Setter state
-   * @param {PackageStates} value
+   * @param {DeliveryStates} value
    */
-  public set state(value: PackageStates) {
+  public set state(value: DeliveryStates) {
     this._state = value;
   }
 

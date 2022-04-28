@@ -9,7 +9,7 @@ import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery
 import { Customer } from 'src/app/shared/classes/back-end-communication/customer';
 import { ChangeStatePayload } from 'src/app/shared/classes/change-state-payload';
 import { LabelLength } from 'src/app/shared/components/trou-label/trou-label.component';
-import { PackageStates } from 'src/app/shared/models/package-states';
+import { DeliveryStates } from 'src/app/shared/models/delivery-states';
 
 @Component({
   selector: 'delivery-info',
@@ -44,7 +44,7 @@ export class DeliveryInfoComponent implements OnInit, OnDestroy {
     });
   }
 
-  stateChanged(event: PackageStates) {
+  stateChanged(event: DeliveryStates) {
     console.log(event);
 
     this.store.dispatch(

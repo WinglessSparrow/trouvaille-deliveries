@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { DeliveryInfoService } from 'src/app/core/services/prod/delivery-info.service';
 import { Delivery } from '../../classes/back-end-communication/delivery';
 
-import { PreviewModel } from '../../classes/preview-model';
+import { DeliveryStateParsingHelper } from '../../classes/delivery-state-parsing-helper ';
 
 @Component({
   selector: 'delivery-preview',
@@ -18,7 +18,7 @@ export class DeliveryPreviewComponent implements OnInit {
   constructor(private deliveryService: DeliveryInfoService) {}
 
   ngOnInit() {
-    this.color = PreviewModel.getColorFromState(this.delivery.state);
+    this.color = DeliveryStateParsingHelper.getColorFromState(this.delivery.state);
   }
 
   goToDelivery() {

@@ -74,7 +74,6 @@ export class DeliveryState {
     payload: ChangeDeliveryState
   ) {
     const tempPayload = payload.payload;
-
     const newState = produce(getState(), (draft: DeliveryStateModel) => {
       const temp = draft.deliveries.find(
         (val) => tempPayload.delivery.idDelivery === val.idDelivery
@@ -82,8 +81,18 @@ export class DeliveryState {
       temp.state = tempPayload.state;
     });
 
-    await this.deliveryStateManger.changeState(tempPayload);
+    const success = await this.deliveryStateManger.changeState(tempPayload);
 
-    setState(newState);
+    if (success) {
+      setState(newState);
+    } else {
+      throw Error(
+        `Illegal Delivery State Change from ${
+          getState().deliveries.find(
+            (val) => tempPayload.delivery.idDelivery === val.idDelivery
+          ).state
+        } to ${payload.payload.state}`
+      );
+    }
   }
 }

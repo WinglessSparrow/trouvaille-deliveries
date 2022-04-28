@@ -1,5 +1,10 @@
 <div class="wrapper">
-  <trou-radio *ngFor="let state of states" [name]="this.state" [value]="this.state" [(model)]="currState" (modelChange)="onNewState($event)">
+  <trou-radio *ngFor="let state of states" 
+  [name]="this.state" 
+  [value]="this.state" 
+  [(model)]="currState" 
+  (modelChange)="onNewState($event)" 
+  [activeParameters]="stateMachine.getCurrStateObservable()">
     <h3>
       {{state}}
     </h3>
