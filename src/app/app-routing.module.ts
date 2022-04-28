@@ -49,7 +49,11 @@ const routes: Routes = [
     component: DeliveryScanComponent,
     // canActivate: [AuthGuard],
   },
-  { path: Pages.Time, component: TimeComponent, canActivate: [AuthGuard] },
+  {
+    path: Pages.Time,
+    component: TimeComponent,
+    // canActivate: [AuthGuard]
+  },
   {
     path: Pages.Map,
     component: MapComponent,

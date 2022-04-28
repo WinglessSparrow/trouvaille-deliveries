@@ -20,6 +20,8 @@ import { CarIdVerificationModel } from 'src/app/shared/classes/car-id-verificati
 import { CarIdVerificationMockService } from 'src/app/core/services/mock/car-id-verification-mock.service';
 import { StateManagerModel } from 'src/app/shared/models/state-manager-model';
 import { StateManagerMockService } from 'src/app/core/services/mock/state-manager-mock.service';
+import { TimeServiceModel } from 'src/app/shared/models/time-service-model';
+import { TimeMockService } from 'src/app/core/services/mock/time-mock.service';
 
 export const environment = {
   production: false,
@@ -57,6 +59,10 @@ export const environment = {
     {
       provide: StateManagerModel,
       useClass: StateManagerMockService,
+    },
+    {
+      provide: TimeServiceModel,
+      useClass: TimeMockService,
     },
   ],
 };
