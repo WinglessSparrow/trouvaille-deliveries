@@ -1,4 +1,4 @@
-import { Injectable, QueryList } from '@angular/core';
+import { Injectable, NgZone, QueryList } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Pages } from 'src/app/shared/classes/pages';
@@ -15,7 +15,11 @@ export class NavigationService {
   private _currSelected: NavButtonComponent;
   private _buttons: QueryList<NavButtonComponent>;
 
-  constructor(private route: Router, private header: HeaderService) {}
+  constructor(
+    private route: Router,
+    private header: HeaderService,
+    private zone: NgZone
+  ) {}
 
   public set buttons(value: QueryList<NavButtonComponent>) {
     //setting the button to the current page
@@ -50,16 +54,18 @@ export class NavigationService {
   }
 
   public select(curr: NavButtonComponent) {
-    this._currSelected?.off();
+    this.zone.run(() => {
+      this._currSelected?.off();
 
-    this._currSelected = curr;
+      this._currSelected = curr;
 
-    //FIXME better way of setting header name, because some pages don't have a page descriptor
-    this.header.headerText = this._currSelected?.text;
+      //FIXME better way of setting header name, because some pages don't have a page descriptor
+      this.header.headerText = this._currSelected?.text;
 
-    this._currSelected?.on();
+      this._currSelected?.on();
 
-    this.close();
+      this.close();
+    });
   }
 
   public navigateToSelected() {
@@ -67,11 +73,15 @@ export class NavigationService {
   }
 
   public open() {
-    this._isShown.next(true);
+    this.zone.run(() => {
+      this._isShown.next(true);
+    });
   }
 
   public close() {
-    this._isShown.next(false);
+    this.zone.run(() => {
+      this._isShown.next(false);
+    });
   }
 
   public get isShown(): BehaviorSubject<boolean> {

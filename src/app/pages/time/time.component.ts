@@ -27,6 +27,7 @@ export class TimeComponent implements OnInit {
   timeStates = TimeStates;
 
   ngOnInit() {
+    //TODO Implement getting old values on restart
     this.state = this.stateMachine.currState;
     this.timer.init();
     this.today = new Date().toLocaleDateString();
@@ -49,5 +50,8 @@ export class TimeComponent implements OnInit {
   stopPause() {
     this.stateMachine.changeState(TimeStates.Drive);
     this.timeService.stopPause();
+  }
+  reset() {
+    this.timer.calcTime();
   }
 }

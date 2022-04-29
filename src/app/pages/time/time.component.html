@@ -1,5 +1,6 @@
 <div class="wrapper">
-  <trou-label text="Today is: ">{{today}}</trou-label>
+  <trou-label text="Today">{{today}}</trou-label>
+
   <trou-label text="Driving Time" [secondText]="(timer.workingTime | async)" [type]="labelType.numeric"></trou-label>
   
   <!-- TODO move boolean statements somewhere -->
@@ -10,4 +11,8 @@
   
   <trou-btn (click)="startPause()" [disabled]="(state | async) != timeStates.Drive">Start Pause</trou-btn>
   <trou-btn (click)="stopPause()" [disabled]="(state | async) != timeStates.Pause">End Pause</trou-btn>
+
+  <button class="reset-btn" (click)="reset()">
+    <i class="fa fa-refresh" aria-hidden="true"></i> 
+  </button>
 </div>

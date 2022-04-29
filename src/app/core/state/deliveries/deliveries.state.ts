@@ -6,10 +6,12 @@ import {
   State,
   StateContext,
 } from '@ngxs/store';
+import { StateClass } from '@ngxs/store/internals';
 import produce, { immerable } from 'immer';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { ChangeStatePayload } from 'src/app/shared/classes/change-state-payload';
 import { DeliveriesManagerModel } from 'src/app/shared/models/deliveries-manager-model';
+import { DeliveryStates } from 'src/app/shared/models/delivery-states';
 import { StateManagerModel } from 'src/app/shared/models/state-manager-model';
 
 import {
@@ -43,6 +45,22 @@ export class DeliveryState {
   @Selector()
   static getDeliveries(state: DeliveryStateModel) {
     return state.deliveries;
+  }
+
+  @Selector()
+  static getDeliveriesToLoad(state: any) {
+    return state.deliveries
+      .filter(
+        (delivery: Delivery) => delivery.state === DeliveryStates.IN_CENTRAL
+      )
+      .sort((del1: Delivery, del2: Delivery) => {
+        if (del1.index > del2.index) {
+          return 1;
+        } else if (del1.index < del2.index) {
+          return -1;
+        }
+        return 0;
+      });
   }
 
   static getDelivery(id: string) {

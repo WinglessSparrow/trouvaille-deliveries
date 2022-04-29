@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new InitDeliveriesState());
+    // this.store.dispatch(new InitDeliveriesState());
   }
 
   ngAfterViewInit() {

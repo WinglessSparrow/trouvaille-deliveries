@@ -53,7 +53,7 @@ export class MapViewComponent implements OnInit {
     let posOp: PositionOptions = { enableHighAccuracy: true };
     let pos = await Geolocation.getCurrentPosition(posOp);
 
-    // this._map.panTo(new leaf.LatLng(pos.coords.latitude, pos.coords.longitude));
+    this._map.panTo(new leaf.LatLng(pos.coords.latitude, pos.coords.longitude));
     new leaf.marker(
       new leaf.LatLng(pos.coords.latitude, pos.coords.longitude)
     ).addTo(this._map);

@@ -1,3 +1,4 @@
-<p>
-  deliveries-list-load works!
-</p>
+<div class="wrapper">
+    <delivery-preview *ngFor="let delivery of (deliveries$ | async)" [delivery]="delivery"></delivery-preview>
+</div>
+

@@ -7,7 +7,7 @@ import { TimeInterval } from 'src/app/shared/classes/time-interval';
   providedIn: 'root',
 })
 export class TimeCounterService {
-  private readonly THIRTY_SECONDS: number = 1000;
+  private readonly THIRTY_SECONDS: number = 30000;
   private readonly MAX: number = 2.88e7;
   private readonly MAX_STRING: string = this.convertMsToHMS(this.MAX);
   private readonly MAX_PAUSE: number = 0.45;

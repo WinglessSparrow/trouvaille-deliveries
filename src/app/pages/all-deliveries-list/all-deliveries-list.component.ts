@@ -14,7 +14,7 @@ export class AllDeliveriesListComponent implements OnInit {
 
   @Select(DeliveryState.getDeliveries) deliveries$: Observable<Delivery[]>;
 
-  constructor(private store: Store) {}
+  constructor() {}
 
   ngOnInit() {}
 }
