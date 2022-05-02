@@ -1,39 +1,99 @@
 import { Injectable } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { DeliveryStates } from 'src/app/shared/models/delivery-states';
 import { DeliveryState } from '../../state/deliveries/deliveries.state';
+import { TimeCounterService } from './time-counter.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SummaryProviderService {
-  constructor(private store: Store) {}
+  private _deliveries$: Observable<Delivery[]>;
+  private _summary: ReplaySubject<Array<[string, string]>> = new ReplaySubject(
+    1
+  );
 
-  public getSummary(): Array<[string, string]> {
-    //TODO, make it make sense
-    let deliveries = this.store.selectSnapshot(DeliveryState.getDeliveries);
+  constructor(store: Store, private time: TimeCounterService) {
+    this._deliveries$ = store.select(DeliveryState.getDeliveries);
+    this._deliveries$.subscribe((deliveries) => this.getSummary(deliveries));
+  }
 
-    let summaryData: Array<[string, string]> = new Array();
+  public getSummary(deliveries: Delivery[]) {
+    let summaryData: Array<[string, string]> = new Array<[string, string]>();
     summaryData.push(['All Deliveries', deliveries.length + '']);
+    summaryData.push(['To Load', this.toLoad(deliveries)]);
     summaryData.push(['In Car', this.allInCar(deliveries)]);
-    summaryData.push(['Delivered', '0:32']);
-    summaryData.push(['Driving Time', '2/4']);
-    summaryData.push(['Pause Time', '10/11']);
-    return summaryData;
+    summaryData.push(['Delivered', this.deliverySummary(deliveries)]);
+    summaryData.push(['Pick Up', this.pickUp(deliveries)]);
+    summaryData.push(['Driving Time', this.getTime(this.time.workingTime)]);
+    summaryData.push(['Pause Time', this.getTime(this.time.pauseTime)]);
+
+    this._summary.next(summaryData);
+  }
+
+  public get summary(): Observable<Array<[string, string]>> {
+    return this._summary.asObservable();
+  }
+
+  private pickUp(deliveries: Delivery[]): string {
+    const toPickUp = deliveries.filter((val) => {
+      return (
+        val.state === DeliveryStates.REQUESTED_PICKUP ||
+        val.state === DeliveryStates.PICKED_UP
+      );
+    }).length;
+
+    const pickedUp = deliveries.filter(
+      (val) => val.state === DeliveryStates.PICKED_UP
+    ).length;
+
+    return `${pickedUp}/${toPickUp}`;
+  }
+
+  private getTime(timeObs: Observable<string>) {
+    let time: string;
+    const subscription = timeObs.subscribe((val) => {
+      time = val;
+    });
+    subscription.unsubscribe();
+    return time.split('|')[0];
+  }
+
+  private toLoad(deliveries: Delivery[]): string {
+    return (
+      deliveries.filter((val) => val.state === DeliveryStates.IN_CENTRAL)
+        .length + ''
+    );
   }
 
   private allInCar(deliveries: Delivery[]): string {
     let retVal: string =
-      deliveries.filter((del: Delivery) => {
-        return (
-          del.state != DeliveryStates.IN_CENTRAL &&
-          del.state != DeliveryStates.REQUESTED_PICKUP
-        );
+      deliveries.filter((val: Delivery) => {
+        const truth =
+          val.state != DeliveryStates.IN_CENTRAL &&
+          val.state != DeliveryStates.REQUESTED_PICKUP &&
+          val.state != DeliveryStates.DELIVERED;
+
+        return truth;
       }).length + '';
 
-    retVal += '/' + deliveries.length;
-
     return retVal;
+  }
+
+  private deliverySummary(deliveries: Delivery[]): string {
+    const allToDeliver = deliveries.filter((val) => {
+      return (
+        val.state === DeliveryStates.REQUESTED_PICKUP ||
+        val.state === DeliveryStates.PICKED_UP
+      );
+    }).length;
+
+    const delivered = deliveries.filter(
+      (val) => val.state == DeliveryStates.DELIVERED
+    ).length;
+
+    return `${delivered}/${allToDeliver}`;
   }
 }

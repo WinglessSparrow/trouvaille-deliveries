@@ -82,6 +82,23 @@ export class DeliveriesManagerMockService implements DeliveriesManagerModel {
       state: DeliveryStates.REQUESTED_PICKUP,
     }),
     new Delivery({
+      index: 6,
+      idDelivery: '0-a6',
+      customer: new Customer({
+        firstName: 'Jouske',
+        lastName: 'Jouske',
+        email: 'mail',
+      }),
+      dstAddress: new Address({
+        zipcode: 77815,
+        streetName: 'Ottenhofener Str.',
+        streetNumber: 90,
+        city: 'Buehl',
+        country: 'Germany',
+      }),
+      state: DeliveryStates.PICKED_UP,
+    }),
+    new Delivery({
       index: 4,
       idDelivery: '0-a4',
       customer: new Customer({

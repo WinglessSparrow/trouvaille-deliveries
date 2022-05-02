@@ -1,7 +1,7 @@
 <div class="wrapper">
   <trou-label [text]="this.userName" [position]="this.positions.middle" [type]="this.labelTypes.centered"></trou-label>
   
-  <home-summary *ngIf="this.summaryData != null" [data]="this.summaryData"></home-summary>
+  <home-summary></home-summary>
   
   <div class="buttons-wrapper">
     <button class="trou-warning-button" (click)="reportProblem()">Report Problem</button>

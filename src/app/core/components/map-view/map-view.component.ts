@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as leaf from 'leaflet';
+import * as L from 'leaflet';
 import { Geolocation } from '@capacitor/geolocation';
+import 'leaflet-routing-machine';
 
 @Component({
   selector: 'map-view',
@@ -11,13 +12,13 @@ export class MapViewComponent implements OnInit {
   private _map;
 
   private initMap() {
-    this._map = leaf.map('map', {
+    this._map = L.map('map', {
       center: [39.8282, -98.5795],
       zoom: 3,
       zoomControl: false,
     });
 
-    const tiles = leaf.tileLayer(
+    const tiles = L.tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       {
         maxZoom: 18,
@@ -36,9 +37,18 @@ export class MapViewComponent implements OnInit {
 
   ngAfterViewInit() {
     this.initMap();
-  }
 
-  //TODO Implement 4 map control Methods
+    L.Routing.control({
+      router: L.Routing.osrmv1({
+        serviceUrl: `http://router.project-osrm.org/route/v1/`,
+      }),
+      showAlternatives: true,
+      fitSelectedRoutes: false,
+      show: false,
+      // routeWhileDragging: true,
+      waypoints: [L.latLng(57.74, 11.94), L.latLng(57.6792, 11.949)],
+    }).addTo(this._map);
+  }
 
   zoomIn() {
     this._map.setZoom(this._map.getZoom() + 1);
@@ -49,15 +59,17 @@ export class MapViewComponent implements OnInit {
   }
 
   async center() {
-    //TODO not precise enough!! maybe a problem with the browser << idk
+    //FIXME not precise enough!! maybe a problem with the browser << idk
     let posOp: PositionOptions = { enableHighAccuracy: true };
     let pos = await Geolocation.getCurrentPosition(posOp);
 
-    this._map.panTo(new leaf.LatLng(pos.coords.latitude, pos.coords.longitude));
-    new leaf.marker(
-      new leaf.LatLng(pos.coords.latitude, pos.coords.longitude)
-    ).addTo(this._map);
+    this._map.panTo(new L.LatLng(pos.coords.latitude, pos.coords.longitude));
+    L.marker(new L.LatLng(pos.coords.latitude, pos.coords.longitude)).addTo(
+      this._map
+    );
   }
 
-  reload() {}
+  reload() {
+    //TODO implement
+  }
 }
