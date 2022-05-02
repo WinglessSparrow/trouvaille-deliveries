@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { Geolocation } from '@capacitor/geolocation';
 import 'leaflet-routing-machine';
+import { MapWaypointsServiceModel } from 'src/app/shared/models/map-waypoints-service-model';
 
 @Component({
   selector: 'map-view',
@@ -9,11 +10,12 @@ import 'leaflet-routing-machine';
   styleUrls: ['./map-view.component.scss'],
 })
 export class MapViewComponent implements OnInit {
-  private _map;
+  private _map: L.Map;
+  private _controls: L.Routing.Control;
 
   private initMap() {
     this._map = L.map('map', {
-      center: [39.8282, -98.5795],
+      center: [49.821594, 9.695208],
       zoom: 3,
       zoomControl: false,
     });
@@ -31,23 +33,28 @@ export class MapViewComponent implements OnInit {
     tiles.addTo(this._map);
   }
 
-  constructor() {}
+  private async initRouting() {
+    this._controls.setWaypoints(await this.mapService.getWaypoints());
+    this._controls.setWaypoints(await this.mapService.getWaypoints());
+  }
+
+  constructor(private mapService: MapWaypointsServiceModel) {}
 
   ngOnInit() {}
 
   ngAfterViewInit() {
     this.initMap();
 
-    L.Routing.control({
+    this._controls = L.Routing.control({
       router: L.Routing.osrmv1({
         serviceUrl: `http://router.project-osrm.org/route/v1/`,
       }),
-      showAlternatives: true,
       fitSelectedRoutes: false,
       show: false,
-      // routeWhileDragging: true,
-      waypoints: [L.latLng(57.74, 11.94), L.latLng(57.6792, 11.949)],
+      routeWhileDragging: true,
     }).addTo(this._map);
+
+    this.initRouting();
   }
 
   zoomIn() {
