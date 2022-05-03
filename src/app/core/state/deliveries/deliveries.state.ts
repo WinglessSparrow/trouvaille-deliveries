@@ -74,7 +74,7 @@ export class DeliveryState {
     const deliveriesTemp = await this.deliveryManager.getAllPackages();
 
     let newState = new DeliveryStateModel();
-    newState.deliveries = deliveriesTemp;
+    newState.deliveries = deliveriesTemp.sort((a, b) => a.index - b.index);
     setState(newState);
   }
 

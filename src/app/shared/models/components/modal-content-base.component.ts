@@ -7,7 +7,7 @@ import { ModalContext } from '../data-models/modal-context';
 })
 export abstract class ModalContentBase implements OnInit {
   public context: ModalContext;
-  
+
   constructor() {}
 
   ngOnInit(): void {}

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { Geolocation } from '@capacitor/geolocation';
 import 'leaflet-routing-machine';
-import { MapWaypointsServiceModel } from 'src/app/shared/models/map-waypoints-service-model';
+import { MapNodesRetrieverServiceModel } from 'src/app/shared/models/map-node-retriever-service-model';
+import { MapRoutingManagerService } from '../../services/prod/map-routing-manager.service';
 
 @Component({
   selector: 'map-view',
@@ -33,12 +34,12 @@ export class MapViewComponent implements OnInit {
     tiles.addTo(this._map);
   }
 
-  private async initRouting() {
-    this._controls.setWaypoints(await this.mapService.getWaypoints());
-    this._controls.setWaypoints(await this.mapService.getWaypoints());
-  }
+  // private async initRouting() {
+  //   this._controls.setWaypoints(await this.mapService.getMapNodes());
+  //   this._controls.setWaypoints(await this.mapService.getMapNodes());
+  // }
 
-  constructor(private mapService: MapWaypointsServiceModel) {}
+  constructor(private routingManager: MapRoutingManagerService) {}
 
   ngOnInit() {}
 
@@ -54,7 +55,9 @@ export class MapViewComponent implements OnInit {
       routeWhileDragging: true,
     }).addTo(this._map);
 
-    this.initRouting();
+    this.routingManager.controls = this._controls;
+
+    this.routingManager.initRoute();
   }
 
   zoomIn() {

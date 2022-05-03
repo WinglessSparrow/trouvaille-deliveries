@@ -22,7 +22,7 @@ import { StateManagerModel } from 'src/app/shared/models/state-manager-model';
 import { StateManagerMockService } from 'src/app/core/services/mock/state-manager-mock.service';
 import { TimeServiceModel } from 'src/app/shared/models/time-service-model';
 import { TimeMockService } from 'src/app/core/services/mock/time-mock.service';
-import { MapWaypointsServiceModel } from 'src/app/shared/models/map-waypoints-service-model';
+import { MapNodesRetrieverServiceModel } from 'src/app/shared/models/map-node-retriever-service-model';
 import { MapWaypointsMockService } from 'src/app/core/services/mock/map-waypoints-mock.service';
 
 export const environment = {
@@ -67,7 +67,7 @@ export const environment = {
       useClass: TimeMockService,
     },
     {
-      provide: MapWaypointsServiceModel,
+      provide: MapNodesRetrieverServiceModel,
       useClass: MapWaypointsMockService,
     },
   ],

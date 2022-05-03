@@ -132,6 +132,23 @@ export class DeliveriesManagerMockService implements DeliveriesManagerModel {
       }),
       state: DeliveryStates.IN_CENTRAL,
     }),
+    new Delivery({
+      index: 7,
+      idDelivery: '0-a7',
+      customer: new Customer({
+        firstName: 'Mister',
+        lastName: 'Weiblich',
+        email: 'mail',
+      }),
+      dstAddress: new Address({
+        zipcode: 77815,
+        streetName: 'Weibliche Str.',
+        streetNumber: 41,
+        city: 'FrauStadt',
+        country: 'Hermany',
+      }),
+      state: DeliveryStates.IN_CENTRAL,
+    }),
   ];
 
   public getAllPackages(): Promise<Delivery[]> {

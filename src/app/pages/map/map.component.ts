@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { MapRoutingManagerService } from 'src/app/core/services/prod/map-routing-manager.service';
 import { NavigationService } from 'src/app/core/services/prod/navigation.service';
 import { Pages } from 'src/app/shared/classes/pages';
 import { ButtonType } from 'src/app/shared/components/trou-btn/trou-btn.component';
@@ -13,20 +15,37 @@ import {
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
 })
-export class MapComponent implements OnInit {
-  currAddress: string = 'Ottenhofener str 13 77815 Bühl';
-  nextAddress: string = 'Ottenhofener str 14';
+export class MapComponent implements OnInit, OnDestroy {
+  currAddress: string = '';
+  nextAddress: string = '';
 
   labelTypes = LabelType;
   textSizes = LabelTextSize;
   btnType = ButtonType;
 
-  constructor(private navigation: NavigationService, private router: Router) {
-    //TODO Map logic and stuff, maybe even a custom Map view (I hope not)
-    //TODO Map with leaflet: https://leafletjs.com/SlavaUkraini/index.html
+  subscription: Subscription;
+
+  constructor(
+    private navigation: NavigationService,
+    private routingManager: MapRoutingManagerService
+  ) {}
+
+  ngOnInit() {
+    this.setAddress();
+    this.subscription = this.routingManager.markerChanges.subscribe(() =>
+      this.setAddress()
+    );
   }
 
-  ngOnInit() {}
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  setAddress() {
+    const deliveries = this.routingManager.getCurrentPrevNextDelivery();
+    this.currAddress = deliveries[1].dstAddress.address;
+    this.nextAddress = deliveries[2].dstAddress.address;
+  }
 
   goToNextDelivery() {
     //TODO Implement goToNextDelivery
