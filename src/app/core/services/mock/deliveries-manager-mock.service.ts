@@ -75,7 +75,7 @@ export class DeliveriesManagerMockService implements DeliveriesManagerModel {
       dstAddress: new Address({
         zipcode: 77815,
         streetName: 'Ottenhofener Str.',
-        streetNumber: 11,
+        streetNumber: 69,
         city: 'Buehl',
         country: 'Germany',
       }),
@@ -147,7 +147,7 @@ export class DeliveriesManagerMockService implements DeliveriesManagerModel {
         city: 'FrauStadt',
         country: 'Hermany',
       }),
-      state: DeliveryStates.IN_CENTRAL,
+      state: DeliveryStates.REQUESTED_PICKUP,
     }),
   ];
 

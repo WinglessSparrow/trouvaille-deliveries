@@ -1,8 +1,26 @@
 <div class="wrapper">
     <map-view></map-view>
-    
-    <trou-label [text]="this.currAddress" [textSize]="textSizes.medium" [type]="labelTypes.link" (btnClick)="goToNextDelivery()"></trou-label>
-    <trou-label [text]="this.nextAddress" [textSize]="textSizes.medium" [type]="labelTypes.link" (btnClick)="goToCurrentDelivery()"></trou-label>
+
+    <trou-label text="Current: " [length]="labelLength.half" ></trou-label>
+    <trou-label 
+        [text]="this.currDelivery != null ? this.currDelivery.dstAddress.address : 'No Deliveries found'" 
+        [textSize]="textSizes.medium" 
+        [type]="labelTypes.link" 
+        (btnClick)="goToNextDelivery()"
+        [disabled]="this.currDelivery == null"
+        >
+    </trou-label>
+
+    <trou-label text="Next: " [length]="labelLength.half"></trou-label>
+    <trou-label 
+        [text]="this.nextDelivery != null ? this.nextDelivery.dstAddress.address : 'No Deliveries found'" 
+        [textSize]="textSizes.medium"
+        [type]="labelTypes.link" 
+        (btnClick)="goToCurrentDelivery()"
+        [disabled]="this.nextDelivery == null"
+        >
+        
+    </trou-label>
 
     <trou-btn class="btn center" (click)="goToDeliveryScan()" [type]="btnType.default">Scan Delivery</trou-btn>
 </div>

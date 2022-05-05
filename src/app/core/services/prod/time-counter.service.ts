@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { delayWhen } from 'rxjs/operators';
 import { TimeInterval } from 'src/app/shared/classes/time-interval';
+import { TimeServiceModel } from 'src/app/shared/models/time-service-model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,11 +28,18 @@ export class TimeCounterService {
 
   private isRunning: boolean = false;
 
-  constructor() {}
+  constructor(private timeService: TimeServiceModel) {}
 
-  public init() {
+  public async init() {
     if (!this.isRunning) {
+      const alreadyDoneIntervals = await this.timeService.getTimes();
+
+      this._workingIntervals = alreadyDoneIntervals[0];
+      this._pauseIntervals = alreadyDoneIntervals[1];
+
       this.isRunning = true;
+
+      this.calcTime();
 
       setInterval(() => {
         this.calcTime();
@@ -40,18 +48,22 @@ export class TimeCounterService {
   }
 
   public addPauseInterval() {
+    this.timeService.startPause();
     this._pauseIntervals.push(new TimeInterval());
   }
 
   public concludePauseInterval() {
+    this.timeService.stopPause();
     this._pauseIntervals[this._pauseIntervals.length - 1].concludeInterval();
   }
 
   public addWorkInterval() {
+    this.timeService.startDriving();
     this._workingIntervals.push(new TimeInterval());
   }
 
   public concludeWorkInterval() {
+    this.timeService.stopDriving();
     this._workingIntervals[
       this._workingIntervals.length - 1
     ].concludeInterval();

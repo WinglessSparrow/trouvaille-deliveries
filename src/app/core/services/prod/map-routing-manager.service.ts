@@ -26,25 +26,28 @@ export class MapRoutingManagerService {
 
   constructor(store: Store, mapNodesRetriever: MapNodesRetrieverServiceModel) {
     store.select(DeliveryState.getDeliveries).subscribe((val) => {
+      // debugger;
       this._deliveries = val;
       mapNodesRetriever.getMapNodes().then((nodes) => {
+        // debugger;
         this._nodes = nodes;
         this.initRoute();
         this._markersChanged.next();
       });
-    });
 
-    this._currNode = this.findCurrentDeliveryIndex();
+      this._currNode = this.findCurrentDeliveryIndex();
+      // debugger;
+    });
   }
 
   private findCurrentDeliveryIndex(): number {
-    debugger;
-
-    return this._deliveries.find((val) => {
+    const delivery = this._deliveries.find((val) => {
       return (
-        val.state === (DeliveryStates.REQUESTED_PICKUP || DeliveryStates.IN_CAR)
+        val.state === DeliveryStates.REQUESTED_PICKUP ||
+        val.state === DeliveryStates.IN_CAR
       );
-    }).index;
+    });
+    return delivery != null ? delivery.index : null;
   }
 
   public initRoute() {
@@ -55,21 +58,39 @@ export class MapRoutingManagerService {
     // this._controls.setWaypoints(waypoints);
   }
 
-  public getCurrentPrevNextDelivery(): Delivery[] {
-    // return this._mapping
-    //   .getAllDeliveries()
-    //FIXME search next node to DELIVER or PICKUP not just any next node
-    //FIXME account if there is it's the last or smth.
-    debugger;
-    return this._deliveries.slice(this._currNode - 2, this.findIdxNext());
+  public getCurrentPrevNextDeliveries(): Delivery[] {
+    let retArr: Delivery[];
+
+    if (this._currNode != null) {
+      retArr = [];
+
+      const idxPrev = this._currNode - 1;
+      const idxNext = this.findNextDeliveryIndex();
+
+      retArr.push(idxPrev > 0 ? this._deliveries[idxPrev] : null);
+
+      retArr.push(this._deliveries[this._currNode]);
+
+      retArr.push(idxNext != null ? this._deliveries[idxNext] : null);
+    } else {
+      //no more current Deliveries
+      retArr = [null, null, null];
+    }
+
+    return retArr;
   }
 
-  private findIdxNext(): number {
-    return this._deliveries.slice(this._currNode).find((val) => {
+  private findNextDeliveryIndex(): number {
+    const temp = this._deliveries.find((val) => {
+      // debugger;
       return (
-        val.state === (DeliveryStates.REQUESTED_PICKUP || DeliveryStates.IN_CAR)
+        (val.state === DeliveryStates.IN_CAR ||
+          val.state === DeliveryStates.REQUESTED_PICKUP) &&
+        val.index > this._currNode
       );
-    }).index;
+    });
+
+    return temp != null ? temp.index : null;
   }
 
   public set controls(controls: Routing.Control) {

@@ -39,6 +39,7 @@ export class TrouLabelComponent implements OnInit {
   @Input() type: LabelType = LabelType.default;
   @Input() length: LabelLength = LabelLength.default;
   @Input() textSize: LabelTextSize = LabelTextSize.default;
+  @Input() disabled: boolean = false;
 
   @Output() btnClick: EventEmitter<any> = new EventEmitter<any>();
 

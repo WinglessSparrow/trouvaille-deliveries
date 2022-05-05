@@ -1,5 +1,5 @@
-<div class="sticky-container">
-  <div class="navigation-wrapper" [ngClass]="!(isOpen | async)?'hidden':'shown'">
+<div class="nav-sticky-container">
+  <nav class="navigation-wrapper" [ngClass]="!(isOpen | async)?'hidden':'shown'">
     <div class="header">
       <img src="../../../assets/svg/logo_minified.svg" class="trou-logo">
       <button class="button" (click)="close()">
@@ -7,6 +7,6 @@
       </button>
     </div>
     <ng-content class="pages"></ng-content>
-  </div>
+  </nav>
   <div class="background" [ngClass]="!(isOpen | async)?'hidden':'shown'" (click)="close()"></div>
 </div>

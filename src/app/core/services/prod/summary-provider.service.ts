@@ -17,16 +17,18 @@ export class SummaryProviderService {
 
   constructor(store: Store, private time: TimeCounterService) {
     this._deliveries$ = store.select(DeliveryState.getDeliveries);
-    this._deliveries$.subscribe((deliveries) => this.getSummary(deliveries));
+    this._deliveries$.subscribe((deliveries) => this.updateSummary(deliveries));
   }
 
-  public getSummary(deliveries: Delivery[]) {
+  public updateSummary(deliveries: Delivery[]) {
     let summaryData: Array<[string, string]> = new Array<[string, string]>();
     summaryData.push(['All Deliveries', deliveries.length + '']);
     summaryData.push(['To Load', this.toLoad(deliveries)]);
     summaryData.push(['In Car', this.allInCar(deliveries)]);
     summaryData.push(['Delivered', this.deliverySummary(deliveries)]);
     summaryData.push(['Pick Up', this.pickUp(deliveries)]);
+
+    //TODO make some observable magic to make it trigger updateSummary to renew the time Data
     summaryData.push(['Driving Time', this.getTime(this.time.workingTime)]);
     summaryData.push(['Pause Time', this.getTime(this.time.pauseTime)]);
 

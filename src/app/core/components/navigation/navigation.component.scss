@@ -3,11 +3,11 @@
 $radius: 25px;
 $margin-header: 10px;
 
-.sticky-container {
+.nav-sticky-container {
     position: sticky;
     top: 0;
 
-    z-index: 1;
+    z-index: 5;
 }
 
 .background {

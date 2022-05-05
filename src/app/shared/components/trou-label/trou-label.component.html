@@ -5,5 +5,5 @@
         </h2>
         <h2 *ngIf="this.type === labelType.numeric" [ngClass]="this.textSize">{{this.secondText}}</h2>
     </div>
-    <button *ngIf="this.type == labelType.link" (click)="btnClick.emit()"><i class="fas fa-angle-right"></i></button>
+    <button *ngIf="this.type == labelType.link" [disabled]="disabled"  (click)="btnClick.emit()"><i class="fas fa-angle-right"></i></button>
 </div>

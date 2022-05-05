@@ -70,6 +70,7 @@ export class TimeInterval {
    */
   public set stop(value: Date) {
     this._stop = value;
+    this._isRunning = false;
   }
 
   /**

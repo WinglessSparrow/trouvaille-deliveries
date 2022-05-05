@@ -6,6 +6,8 @@ $border-radius: 25px;
 .sticky-container {
     position: sticky;
     top: 0;
+
+    z-index: 4;
 }
 
 .menu-button {

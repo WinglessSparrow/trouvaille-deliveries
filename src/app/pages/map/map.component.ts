@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { DeliveryInfoService } from 'src/app/core/services/prod/delivery-info.service';
 import { MapRoutingManagerService } from 'src/app/core/services/prod/map-routing-manager.service';
 import { NavigationService } from 'src/app/core/services/prod/navigation.service';
+import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { Pages } from 'src/app/shared/classes/pages';
 import { ButtonType } from 'src/app/shared/components/trou-btn/trou-btn.component';
 import {
+  LabelLength,
   LabelTextSize,
   LabelType,
 } from 'src/app/shared/components/trou-label/trou-label.component';
@@ -16,18 +18,20 @@ import {
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit, OnDestroy {
-  currAddress: string = '';
-  nextAddress: string = '';
+  currDelivery: Delivery = null;
+  nextDelivery: Delivery = null;
 
   labelTypes = LabelType;
   textSizes = LabelTextSize;
   btnType = ButtonType;
+  labelLength = LabelLength;
 
   subscription: Subscription;
 
   constructor(
     private navigation: NavigationService,
-    private routingManager: MapRoutingManagerService
+    private routingManager: MapRoutingManagerService,
+    private deliveryRouter: DeliveryInfoService
   ) {}
 
   ngOnInit() {
@@ -35,6 +39,8 @@ export class MapComponent implements OnInit, OnDestroy {
     this.subscription = this.routingManager.markerChanges.subscribe(() =>
       this.setAddress()
     );
+
+    console.log('ngOnInit Map');
   }
 
   ngOnDestroy() {
@@ -42,17 +48,19 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   setAddress() {
-    const deliveries = this.routingManager.getCurrentPrevNextDelivery();
-    this.currAddress = deliveries[1].dstAddress.address;
-    this.nextAddress = deliveries[2].dstAddress.address;
+    // debugger;
+    const deliveries = this.routingManager.getCurrentPrevNextDeliveries();
+    this.currDelivery = deliveries[1];
+    this.nextDelivery = deliveries[2];
   }
 
   goToNextDelivery() {
-    //TODO Implement goToNextDelivery
+    this.deliveryRouter.routeToDelivery(this.currDelivery.idDelivery);
   }
   goToCurrentDelivery() {
-    //TODO Implement goToCurrentDelivery
+    this.deliveryRouter.routeToDelivery(this.nextDelivery.idDelivery);
   }
+
   goToDeliveryScan() {
     this.navigation.navigate(Pages.ScanDelivery);
   }

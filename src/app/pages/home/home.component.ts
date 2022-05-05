@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { TimeCounterService } from 'src/app/core/services/prod/time-counter.service';
 import {
   ClearDeliveries,
   InitDeliveriesState,
@@ -23,9 +24,11 @@ export class HomeComponent implements OnInit {
   public positions = Position;
   public labelTypes = LabelType;
 
-  constructor(private router: Router, private store: Store) {}
+    
+    constructor(private router: Router, private store: Store, private timer: TimeCounterService) {}
 
   ngOnInit() {
+    this.timer.init();
     // this.store.dispatch(new InitDeliveriesState());
     //DEBUG
   }
