@@ -30,7 +30,7 @@ export class CarScannerComponent implements OnInit {
   ngOnInit() {}
 
   ngOnDestroy() {
-    this.scannerWrapper.scanner.stopScan();
+    // this.scannerWrapper.scanner.stopScan();
   }
 
   ngAfterViewInit() {
@@ -46,10 +46,14 @@ export class CarScannerComponent implements OnInit {
 
   async receiveCarCode(value: string) {
     if (await this.carVerification.verifyCarId(value)) {
-      this.store.dispatch(new InitDeliveriesState()).subscribe(() => {
-        this.router.navigateByUrl('/' + Pages.Home);
-      });
+      const subscription = this.store
+        .dispatch(new InitDeliveriesState())
+        .subscribe(() => {
+          this.router.navigateByUrl('/' + Pages.Home);
+          subscription.unsubscribe();
+        });
     } else {
+      this.scannerWrapper.scanner.startScan();
       throw Error('The Code is not a Valid Car-ID');
     }
   }

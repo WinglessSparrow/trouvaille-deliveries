@@ -1,10 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConnectionServiceModel } from 'src/app/shared/models/connection-service-model';
 import { HeaderService } from '../../services/prod/header.service';
 import { NavigationService } from '../../services/prod/navigation.service';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -22,8 +20,7 @@ export class AppHeaderComponent implements OnInit {
   constructor(
     public headerService: HeaderService,
     private nav: NavigationService,
-    connection: ConnectionServiceModel,
-    private loc: Location
+    connection: ConnectionServiceModel
   ) {
     connection
       .getConnectionStatus()
@@ -38,7 +35,6 @@ export class AppHeaderComponent implements OnInit {
   connectionStatusChanged(val: boolean) {
     this.isConnected = val;
 
-    console.log('new connection Value: ' + val);
     if (!val) {
       console.log('Connection lost');
       //TODO show Modal on Connection los

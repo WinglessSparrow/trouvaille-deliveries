@@ -38,7 +38,7 @@ export class DeliveryScanService {
         return true;
       }
     } else {
-      throw Error('The code is not a valid Delivery ID');
+      return null;
     }
   }
 }

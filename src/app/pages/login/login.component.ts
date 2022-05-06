@@ -37,8 +37,6 @@ export class LoginComponent implements OnInit {
     const authResult: boolean = await this.auth.authenticate(auth);
 
     if (authResult) {
-      //TODO setting the token and shit
-      //TODO setting of the token should init the Delivery Store
       this.router.navigateByUrl('/carScanner');
     } else {
       throw Error('Wrong Password or Username');

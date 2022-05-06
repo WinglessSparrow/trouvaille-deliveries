@@ -5,8 +5,10 @@ import { Observable } from 'rxjs';
 
 import { HeaderService } from './core/services/prod/header.service';
 import { ModalService } from './core/services/prod/modal.service';
+import { ErrorContext } from './shared/classes/error-context';
 import { PageDescriptor } from './shared/classes/pageDescriptor';
 import { Pages } from './shared/classes/pages';
+import { ErrorComponent } from './shared/components/error/error.component';
 
 @Component({
   selector: 'app-root',
@@ -49,8 +51,6 @@ export class AppComponent {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const url = event.url;
-
-        console.log('Routing to: ' + url);
 
         if (url === '/carScanner' || url === '/') {
           this.headerService.deactivate();

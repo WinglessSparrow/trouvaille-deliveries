@@ -13,6 +13,7 @@ export class TimeMockService extends TimeServiceModel {
   }
 
   public getTimes(): Promise<Array<TimeInterval[]>> {
+
     return new Promise((resolve) => {
       const thirtyFiveMinutes = 60 * 60000;
       const twentyFiveMinutes = 25 * 60000;
@@ -28,7 +29,7 @@ export class TimeMockService extends TimeServiceModel {
       ti2.stop = new Date(new Date().getTime() + twentyFiveMinutes);
 
       // const times: TimeInterval[]  = [ti1, ti2];
-
+ 
       resolve([[ti1], [ti2]]);
     });
   }

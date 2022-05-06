@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
@@ -16,5 +16,6 @@ export class AllDeliveriesListComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }

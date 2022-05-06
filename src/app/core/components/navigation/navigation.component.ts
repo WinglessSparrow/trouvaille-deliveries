@@ -12,7 +12,7 @@ import { NavButtonComponent } from '../nav-button/nav-button.component';
 export class NavigationComponent implements OnInit {
   @ContentChildren(NavButtonComponent) buttons: QueryList<NavButtonComponent>;
 
-  isOpen: Observable<boolean> = new Observable();
+  isOpen$: Observable<boolean> = new Observable();
 
   constructor(public nav: NavigationService) {}
 
@@ -23,8 +23,7 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isOpen = this.nav.isShown.asObservable();
-    // this.nav.buttons = this.buttons;
+    this.isOpen$ = this.nav.isShown.asObservable();
   }
 
   close() {

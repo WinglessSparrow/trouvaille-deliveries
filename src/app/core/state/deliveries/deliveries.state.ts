@@ -71,10 +71,15 @@ export class DeliveryState {
 
   @Action(InitDeliveriesState)
   async initState({ setState }: StateContext<DeliveryStateModel>) {
-    const deliveriesTemp = await this.deliveryManager.getAllPackages();
+    let deliveriesTemp = await this.deliveryManager.getAllPackages();
 
     let newState = new DeliveryStateModel();
-    newState.deliveries = deliveriesTemp.sort((a, b) => a.index - b.index);
+    //??????!!!??!?!
+    newState.deliveries = [...deliveriesTemp].sort((a, b) => {
+      const evaluation: number = a.index - b.index;
+      return evaluation;
+    });
+
     setState(newState);
   }
 

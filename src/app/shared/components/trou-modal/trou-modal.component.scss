@@ -1,7 +1,7 @@
 @use "../../style/variables.scss" as var;
 @import "../../style/mixins.scss";
 
-:host {
+.modal-wrapper {
     position: absolute;
     top: 0;
 
@@ -9,11 +9,12 @@
 
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0);
+
+    pointer-events: none;
 }
 
-.wrapper {
-    position: absolute;
+.modal-container {
+    position: sticky;
     top: 200px;
     left: 0;
     right: 0;
