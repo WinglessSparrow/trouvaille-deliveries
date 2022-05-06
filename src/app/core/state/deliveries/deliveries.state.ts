@@ -94,9 +94,9 @@ export class DeliveryState {
     const tempPayload = payload.payload;
     const newState = produce(getState(), (draft: DeliveryStateModel) => {
       const temp = draft.deliveries.find(
-        (val) => tempPayload.delivery.idDelivery === val.idDelivery
+        (val) => tempPayload.originalDelivery.idDelivery === val.idDelivery
       );
-      temp.state = tempPayload.state;
+      temp.state = tempPayload.nextState;
     });
 
     const success = await this.deliveryStateManger.changeState(tempPayload);
@@ -107,9 +107,9 @@ export class DeliveryState {
       throw Error(
         `Illegal Delivery State Change from ${
           getState().deliveries.find(
-            (val) => tempPayload.delivery.idDelivery === val.idDelivery
+            (val) => tempPayload.originalDelivery.idDelivery === val.idDelivery
           ).state
-        } to ${payload.payload.state}`
+        } to ${payload.payload.nextState}`
       );
     }
   }

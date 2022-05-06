@@ -27,8 +27,19 @@ export class DeliveryScanComponent implements OnInit {
     this.scannerWrapper.scanner.stopScan();
   }
 
-  redirectToDelivery(code: string) {
-    this.delScanService.handleId(code);
+  redirectToDelivery(id: string) {
+    const shouldRoute = this.delScanService.handleId(id);
+
+    if (shouldRoute == null) {
+      this.scannerWrapper.scanner.startScan();
+      throw Error('The code is not a valid Delivery ID');
+    }
+
+    if (shouldRoute) {
+      this.router.navigateByUrl(`${Pages.DeliveryInfo}/${id}`);
+    } else {
+      this.scannerWrapper.scanner.startScan();
+    }
   }
 
   redirectFromCamera(qrCode: QRCode) {

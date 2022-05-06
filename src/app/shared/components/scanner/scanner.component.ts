@@ -3,11 +3,12 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 import jsQR, { QRCode } from 'jsqr';
 
 @Component({
@@ -15,7 +16,7 @@ import jsQR, { QRCode } from 'jsqr';
   templateUrl: './scanner.component.html',
   styleUrls: ['./scanner.component.scss'],
 })
-export class ScannerComponent implements OnInit {
+export class ScannerComponent implements OnInit, OnDestroy {
   @Input() isActive: Boolean = false;
   @Output() isActiveChange = new EventEmitter();
 
@@ -35,6 +36,10 @@ export class ScannerComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  ngOnDestroy() {
+    this.stopScan();
+  }
+
   //init the variables, start scanning
   ngAfterViewInit() {
     this.canvasElement = this.canvas.nativeElement;
@@ -44,7 +49,7 @@ export class ScannerComponent implements OnInit {
     this.startScan();
   }
 
-  async startScan() {
+  public async startScan() {
     //getting the video Stream
     const stream = await navigator.mediaDevices.getUserMedia({
       video: { facingMode: 'environment' },
@@ -63,7 +68,7 @@ export class ScannerComponent implements OnInit {
     requestAnimationFrame(this.scan.bind(this));
   }
 
-  async stopScan() {
+  public async stopScan() {
     this.videoElement.srcObject.getTracks()[0].stop();
   }
 

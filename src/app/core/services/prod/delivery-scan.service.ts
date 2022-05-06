@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { ChangeStatePayload } from 'src/app/shared/classes/change-state-payload';
 import { DeliveryStateParsingHelper } from 'src/app/shared/classes/delivery-state-parsing-helper ';
-import { Pages } from 'src/app/shared/classes/pages';
 import { DeliveryStates } from 'src/app/shared/models/delivery-states';
-import { StateManagerModel } from 'src/app/shared/models/state-manager-model';
 import { ChangeDeliveryState } from '../../state/deliveries/deliveries.action';
 import { DeliveryState } from '../../state/deliveries/deliveries.state';
 
@@ -14,13 +10,14 @@ import { DeliveryState } from '../../state/deliveries/deliveries.state';
   providedIn: 'root',
 })
 export class DeliveryScanService {
-  constructor(
-    private store: Store,
-    private route: Router,
-    private stateManager: StateManagerModel
-  ) {}
+  constructor(private store: Store) {}
 
-  public handleId(id: string) {
+  /**
+   *
+   * @param id delivery id
+   * @returns info if it should be routing after the idHandle
+   */
+  public handleId(id: string): boolean {
     const delivery = this.store.selectSnapshot(DeliveryState.getDelivery(id));
 
     if (delivery != undefined) {
@@ -35,11 +32,10 @@ export class DeliveryScanService {
         this.store.dispatch(
           new ChangeDeliveryState(new ChangeStatePayload(newState, delivery))
         );
-        //TODO Modal for notification
+
+        return false;
       } else {
-        this.route.navigateByUrl(
-          `${Pages.DeliveryInfo}/${delivery.idDelivery}`
-        );
+        return true;
       }
     } else {
       throw Error('The code is not a valid Delivery ID');

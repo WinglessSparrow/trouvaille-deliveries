@@ -12,7 +12,9 @@ export class StateManagerMockService extends StateManagerModel {
   }
 
   changeState(newState: ChangeStatePayload): Promise<boolean> {
-    this.loading.startLoading('changing state');
+    this.loading.startLoading(
+      `changing state from ${newState.originalDelivery.state} to ${newState.nextState}`
+    );
 
     return new Promise((resolve) =>
       setTimeout(() => {
