@@ -1,6 +1,18 @@
 @use "../../style/variables.scss" as var;
 @import "../../style/mixins.scss";
 
+:host {
+    //THIS IS CRUCIAL FOR ANIMATION
+    //DO NOT REMOVE!
+    position: absolute;
+    top: 0;
+
+    display: block;
+
+    width: 100vw;
+    height: 100vh;
+}
+
 .modal-wrapper {
     position: absolute;
     top: 0;
@@ -12,7 +24,7 @@
 }
 
 .modal-container {
-    position: absolute;
+    position: sticky;
     top: 200px;
     left: 0;
     right: 0;

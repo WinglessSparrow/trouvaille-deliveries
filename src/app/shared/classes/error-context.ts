@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { Callback } from '@ngxs/store/src/internal/internals';
 import { ModalContext } from '../models/data-models/modal-context';
 
