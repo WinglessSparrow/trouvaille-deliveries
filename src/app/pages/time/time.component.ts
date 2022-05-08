@@ -18,6 +18,8 @@ import { WorkingTimeDescriptor } from 'src/app/shared/models/working-time-descri
 export class TimeComponent implements OnInit {
   form: FormGroup;
   today: string;
+  timeWorked: string = '-- hrs | --min';
+  timeBreak: string = '-- hrs | --min';
 
   labelType = LabelType;
 
@@ -37,21 +39,24 @@ export class TimeComponent implements OnInit {
 
   ngOnInit() {
     this.today = new Date().toLocaleDateString();
+
+    this.form.valueChanges.subscribe(() => {
+      if (this.form.valid) {
+        this.calcTime();
+      }
+    });
   }
 
   public async validateAndConfirmTime(event: Event) {
-    console.log('submitting time');
-
     event.preventDefault();
+
     const isValid: boolean = this.form.valid;
     const canSendTime: boolean = this.areDeliveriesDone();
 
     if (isValid && canSendTime) {
       await this.confirmTime();
     } else {
-      //TODO show modals
       if (!isValid) {
-        throw Error('as');
         this.modal.openErrorModal('Form Invalid', 'Please fill out the form');
       }
 
@@ -62,6 +67,22 @@ export class TimeComponent implements OnInit {
         );
       }
     }
+  }
+
+  private calcTime() {
+    const dates = this.getDatesFromTime(this.form.value);
+
+    const breakMs = +dates[3] - +dates[2];
+    const workMs = +dates[1] - +dates[0] - breakMs;
+
+    this.timeWorked = this.getHrsMinDiff(workMs);
+    this.timeBreak = this.getHrsMinDiff(breakMs);
+  }
+
+  private getHrsMinDiff(workingMs: number): string {
+    const workingHrs = Math.floor(workingMs / 1000 / 60 / 60);
+    const workingMins = Math.floor(workingMs / 1000 / 60) - workingHrs * 60;
+    return `${workingHrs} hrs | ${workingMins} min`;
   }
 
   private async confirmTime() {

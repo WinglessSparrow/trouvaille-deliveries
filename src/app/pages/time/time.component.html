@@ -8,8 +8,8 @@
   
   <br />
 
-  <trou-label [type]="labelType.numeric" text="Time worked" secondText="0:00"></trou-label>
-  <trou-label [type]="labelType.numeric" text="Break time" secondText="0:00"></trou-label>
+  <trou-label [type]="labelType.numeric" text="Time worked" [secondText]="timeWorked"></trou-label>
+  <trou-label [type]="labelType.numeric" text="Break time" [secondText]="timeBreak"></trou-label>
 
   <trou-btn  [isSubmit]="true">Confirm time</trou-btn>
   
