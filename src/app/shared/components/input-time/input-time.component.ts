@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'input-time',
@@ -6,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./input-time.component.scss'],
 })
 export class InputTimeComponent implements OnInit {
-  @Input() name: string;
+  @Input() inputName: string;
+  @Input() parentForm: FormGroup;
 
   constructor() {}
 

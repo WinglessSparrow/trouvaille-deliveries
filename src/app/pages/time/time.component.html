@@ -1,28 +1,16 @@
-<div class="wrapper">
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="validateAndConfirmTime($event)" class="wrapper">
 
-  <!-- <trou-label text="Todays working time"></trou-label>
+  <trou-label text="Today is:">{{today}}</trou-label>
+  <trou-label text="Todays working time"></trou-label>
 
-  <input-time-interval title="Time working"></input-time-interval>
-  <input-time-interval title="Time break"></input-time-interval>
-
-  <trou-label text="Time worked"></trou-label>
-  <trou-label text="Break time"></trou-label>
-
-  <trou-btn>Confirm time</trou-btn> -->
-
-  <trou-label text="Today">{{today}}</trou-label>
-
-  <trou-label text="Driving Time" [secondText]="(timer.workingTime | async)" [type]="labelType.numeric"></trou-label>
-
-  <trou-btn (click)="startDriving()" [disabled]="(state | async) != timeStates.NotDrive">Start Driving</trou-btn>
-  <trou-btn (click)="stopDriving()" [disabled]="(state | async) != timeStates.Drive">End Driving</trou-btn>
+  <input-time-interval [parentForm]="form" inputName="working" title="Time working"></input-time-interval>
+  <input-time-interval [parentForm]="form" inputName="break" title="Time break"></input-time-interval>
   
-  <trou-label text="Pause Time" [secondText]="(timer.pauseTime | async)" [type]="labelType.numeric"></trou-label>
-  
-  <trou-btn (click)="startPause()" [disabled]="(state | async) != timeStates.Drive">Start Pause</trou-btn>
-  <trou-btn (click)="stopPause()" [disabled]="(state | async) != timeStates.Pause">End Pause</trou-btn>
+  <br />
 
-  <button class="reset-btn" (click)="reset()">
-    <i class="fa fa-refresh" aria-hidden="true"></i> 
-  </button>
-</div>
+  <trou-label [type]="labelType.numeric" text="Time worked" secondText="0:00"></trou-label>
+  <trou-label [type]="labelType.numeric" text="Break time" secondText="0:00"></trou-label>
+
+  <trou-btn  [isSubmit]="true">Confirm time</trou-btn>
+  
+</form>

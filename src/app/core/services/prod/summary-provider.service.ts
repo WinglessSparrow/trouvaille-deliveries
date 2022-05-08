@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Observable, ReplaySubject } from 'rxjs';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { DeliveryStates } from 'src/app/shared/models/delivery-states';
 import { DeliveryState } from '../../state/deliveries/deliveries.state';
-import { TimeCounterService } from './time-counter.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +14,7 @@ export class SummaryProviderService {
     1
   );
 
-  constructor(store: Store, private time: TimeCounterService) {
+  constructor(store: Store) {
     this._deliveries$ = store.select(DeliveryState.getDeliveries);
     this._deliveries$.subscribe((deliveries) => this.updateSummary(deliveries));
   }
@@ -27,10 +26,6 @@ export class SummaryProviderService {
     summaryData.push(['In Car', this.allInCar(deliveries)]);
     summaryData.push(['Delivered', this.deliverySummary(deliveries)]);
     summaryData.push(['Pick Up', this.pickUp(deliveries)]);
-
-    //TODO make some observable magic to make it trigger updateSummary to renew the time Data
-    summaryData.push(['Driving Time', this.getTime(this.time.workingTime)]);
-    summaryData.push(['Pause Time', this.getTime(this.time.pauseTime)]);
 
     this._summary.next(summaryData);
   }

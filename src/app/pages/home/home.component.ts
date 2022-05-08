@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { TimeCounterService } from 'src/app/core/services/prod/time-counter.service';
-import {
-  ClearDeliveries,
-  InitDeliveriesState,
-} from 'src/app/core/state/deliveries/deliveries.action';
+import { ClearDeliveries } from 'src/app/core/state/deliveries/deliveries.action';
 import {
   LabelType,
   Position,
@@ -24,11 +20,9 @@ export class HomeComponent implements OnInit {
   public positions = Position;
   public labelTypes = LabelType;
 
-    
-    constructor(private router: Router, private store: Store, private timer: TimeCounterService) {}
+  constructor(private router: Router, private store: Store) {}
 
   ngOnInit() {
-    this.timer.init();
     // this.store.dispatch(new InitDeliveriesState());
     //DEBUG
   }

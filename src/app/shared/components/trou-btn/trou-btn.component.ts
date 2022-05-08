@@ -14,6 +14,7 @@ export enum ButtonType {
 export class TrouBtnComponent implements OnInit {
   @Input() type: ButtonType = ButtonType.default;
   @Input() disabled: boolean = false;
+  @Input() isSubmit: boolean = false;
 
   constructor() {}
 

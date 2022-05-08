@@ -36,9 +36,13 @@ export class ModalService {
     });
   }
 
-  //FIXME very bad, should have some kind of logger service
-  //the future will take care of that
-  //I'm sure
+  public openErrorModal(header: string = 'Error', text: string) {
+    this.openModal(
+      ErrorComponent,
+      new ErrorContext(header, text, 'got ya', () => this.close())
+    );
+  }
+
   public logModalError(content: Type<ModalContentBase>) {
     console.error(
       `You attempted to open a Modal while another one is already open (opened modal: ${typeof content})`
@@ -54,8 +58,8 @@ export class ModalService {
    * @return {BehaviorSubject<boolean> }
    */
   public get modalActive(): Observable<boolean> {
-    return this._modalActive.asObservable();
     this.nextModalContext = null;
+    return this._modalActive.asObservable();
   }
 
   /**

@@ -1,2 +1,5 @@
-<!-- <input type="time" name="{{name}}" id="{{name}}" formControlName="{{name}}"/> -->
-<input type="time" name="{{name}}" id="{{name}}"/>
+<span [formGroup]="parentForm">
+    <input type="time" name="{{inputName}}" id="{{inputName}}" formControlName="{{inputName}}"/>
+</span>
+
+<!-- <input type="time" name="{{name}}" id="{{name}}"/> -->
