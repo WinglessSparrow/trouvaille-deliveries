@@ -1,9 +1,19 @@
 <div class="wrapper">
+
+  <!-- <trou-label text="Todays working time"></trou-label>
+
+  <input-time-interval title="Time working"></input-time-interval>
+  <input-time-interval title="Time break"></input-time-interval>
+
+  <trou-label text="Time worked"></trou-label>
+  <trou-label text="Break time"></trou-label>
+
+  <trou-btn>Confirm time</trou-btn> -->
+
   <trou-label text="Today">{{today}}</trou-label>
 
   <trou-label text="Driving Time" [secondText]="(timer.workingTime | async)" [type]="labelType.numeric"></trou-label>
-  
-  <!-- TODO move boolean statements somewhere -->
+
   <trou-btn (click)="startDriving()" [disabled]="(state | async) != timeStates.NotDrive">Start Driving</trou-btn>
   <trou-btn (click)="stopDriving()" [disabled]="(state | async) != timeStates.Drive">End Driving</trou-btn>
   

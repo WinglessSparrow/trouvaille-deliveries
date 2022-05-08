@@ -47,7 +47,7 @@ export class AppComponent {
   ngOnInit() {
     this.isModalOpen$ = this.modal.modalActive;
 
-    //TODO move to header service (headerRootingService) or component
+    //FIXME move to header service (headerRootingService) or component
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const url = event.url;

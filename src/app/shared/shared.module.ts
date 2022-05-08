@@ -12,6 +12,8 @@ import { TrouBtnComponent } from './components/trou-btn/trou-btn.component';
 import { TrouLabelComponent } from './components/trou-label/trou-label.component';
 import { TrouModalComponent } from './components/trou-modal/trou-modal.component';
 import { TrouRadioComponent } from './components/trou-radio/trou-radio.component';
+import { InputTimeComponent } from './components/input-time/input-time.component';
+import { InputTimeIntervalComponent } from './components/input-time-interval/input-time-interval.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { TrouRadioComponent } from './components/trou-radio/trou-radio.component
     TrouModalComponent,
     DeliveryPreviewComponent,
     TrouRadioComponent,
+    InputTimeComponent,
+    InputTimeIntervalComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -38,6 +42,8 @@ import { TrouRadioComponent } from './components/trou-radio/trou-radio.component
     TrouModalComponent,
     DeliveryPreviewComponent,
     TrouRadioComponent,
+    InputTimeComponent,
+    InputTimeIntervalComponent,
   ],
 })
 export class SharedModule {}
