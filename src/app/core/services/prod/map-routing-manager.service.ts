@@ -10,12 +10,12 @@ import { DeliveryStates } from 'src/app/shared/models/delivery-states';
 import { MapNodesRetrieverServiceModel } from 'src/app/shared/models/map-node-retriever-service-model';
 import { DeliveryState } from '../../state/deliveries/deliveries.state';
 import { MapNodeDeliveryMapperService } from './map-node-delivery-mapper.service';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MapRoutingManagerService {
-  private _mapping: NodeDeliveryMapping;
   private _markersChanged: Subject<void> = new Subject<void>();
 
   private _controls: Routing.Control;
@@ -26,36 +26,42 @@ export class MapRoutingManagerService {
 
   constructor(store: Store, mapNodesRetriever: MapNodesRetrieverServiceModel) {
     store.select(DeliveryState.getDeliveries).subscribe((val) => {
-      // debugger;
       this._deliveries = val;
+      this._currNode = this.findCurrentDeliveryIndex();
+
       mapNodesRetriever.getMapNodes().then((nodes) => {
-        // debugger;
         this._nodes = nodes;
-        this.initRoute();
         this._markersChanged.next();
       });
-
-      this._currNode = this.findCurrentDeliveryIndex();
-      // debugger;
     });
   }
 
-  private findCurrentDeliveryIndex(): number {
-    const delivery = this._deliveries.find((val) => {
-      return (
-        val.state === DeliveryStates.REQUESTED_PICKUP ||
-        val.state === DeliveryStates.IN_CAR
-      );
-    });
-    return delivery != null ? delivery.index : null;
+  public async getCurrentPosition(): Promise<LatLng> {
+    let posOp: PositionOptions = { enableHighAccuracy: true };
+    let pos = await Geolocation.getCurrentPosition(posOp);
+
+    return new LatLng(pos.coords.latitude, pos.coords.longitude);
   }
 
-  public initRoute() {
-    // const pairs = this._mapping.getAllPairs();
-    // const waypoints: LatLng[] = pairs.map((pair) => {
-    //   return new LatLng(pair[1].latitude, pair[1].longitude);
-    // });
-    // this._controls.setWaypoints(waypoints);
+  public async insertCurrentPosition(waypoints: LatLng[]): Promise<LatLng[]> {
+    const currPos = await this.getCurrentPosition();
+
+    return [
+      ...waypoints.slice(0, this._currNode),
+      currPos,
+      ...waypoints.slice(this._currNode),
+    ];
+  }
+
+  public async initRoute() {
+    let waypoints: LatLng[] = this._nodes.map((node) => {
+      return new LatLng(node.latitude, node.longitude);
+    });
+
+    if (this._currNode != null) {
+      waypoints = await this.insertCurrentPosition(waypoints);
+    }
+    this._controls.setWaypoints(waypoints);
   }
 
   public getCurrentPrevNextDeliveries(): Delivery[] {
@@ -80,6 +86,16 @@ export class MapRoutingManagerService {
     return retArr;
   }
 
+  private findCurrentDeliveryIndex(): number {
+    const delivery = this._deliveries.find((val) => {
+      return (
+        val.state === DeliveryStates.REQUESTED_PICKUP ||
+        val.state === DeliveryStates.IN_CAR
+      );
+    });
+    return delivery != null ? delivery.index : null;
+  }
+
   private findNextDeliveryIndex(): number {
     const temp = this._deliveries.find((val) => {
       // debugger;
@@ -99,6 +115,14 @@ export class MapRoutingManagerService {
 
   public get markerChanges() {
     return this._markersChanged.asObservable();
+  }
+
+  /**
+   * Getter currNode
+   * @return {number }
+   */
+  public get currNode(): number {
+    return this._currNode;
   }
 }
 

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { ClearDeliveries } from 'src/app/core/state/deliveries/deliveries.action';
+import {
+  ClearDeliveries,
+  InitDeliveriesState,
+} from 'src/app/core/state/deliveries/deliveries.action';
 import {
   LabelType,
   Position,
@@ -23,7 +26,7 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private store: Store) {}
 
   ngOnInit() {
-    // this.store.dispatch(new InitDeliveriesState());
+    this.store.dispatch(new InitDeliveriesState());
     //DEBUG
   }
 

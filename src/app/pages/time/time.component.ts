@@ -47,6 +47,8 @@ export class TimeComponent implements OnInit {
     });
   }
 
+  //FIXME should prbly move a bunch of this logic somewhere
+
   public async validateAndConfirmTime(event: Event) {
     event.preventDefault();
 
