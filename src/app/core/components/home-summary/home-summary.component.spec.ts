@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { HomeSummaryComponent } from './home-summary.component';
+
 
 describe('HomeSummaryComponent', () => {
   let component: HomeSummaryComponent;

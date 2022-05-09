@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { SetToken } from 'src/app/core/state/token/token.action';
-
 import { Authentification } from '../../classes/back-end-communication/authentification';
 import { AuthentificationServiceModel } from '../../models/authentification-service-model';
 import { LoadingService } from '../loading.service';
+
 
 @Injectable({
   providedIn: 'root',

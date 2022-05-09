@@ -1,17 +1,15 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavigationEnd, Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { QRCode } from 'jsqr';
 import { ScannerPageTemplateComponent } from 'src/app/core/components/scanner-page-template/scanner-page-template.component';
 import {
-  ClearDeliveries,
-  InitDeliveriesState,
+    ClearDeliveries,
+    InitDeliveriesState
 } from 'src/app/core/state/deliveries/deliveries.action';
 import { ClearToken } from 'src/app/core/state/token/token.action';
 import { CarIdVerificationModel } from 'src/app/shared/classes/car-id-verification-model';
 import { Pages } from 'src/app/shared/classes/pages';
-import { ScannerComponent } from 'src/app/shared/components/scanner/scanner.component';
 @Component({
   selector: 'car-scanner',
   templateUrl: './car-scanner.component.html',

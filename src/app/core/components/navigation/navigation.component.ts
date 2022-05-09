@@ -1,5 +1,4 @@
 import { Component, ContentChildren, OnInit, QueryList } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NavigationService } from '../../services/prod/navigation.service';
 import { NavButtonComponent } from '../nav-button/nav-button.component';

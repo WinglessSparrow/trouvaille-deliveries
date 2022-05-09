@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  CanActivateChild,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
+    ActivatedRouteSnapshot,
+    CanActivate, Router,
+    RouterStateSnapshot,
+    UrlTree
 } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { ScannerPageTemplateComponent } from './scanner-page-template.component';
+
 
 describe('ScannerPageTemplateComponent', () => {
   let component: ScannerPageTemplateComponent;

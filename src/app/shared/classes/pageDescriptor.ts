@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 
 export class PageDescriptor {
   private _route: string;

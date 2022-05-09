@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { NavButtonComponent } from './nav-button.component';
+
 
 describe('NavButtonComponent', () => {
   let component: NavButtonComponent;

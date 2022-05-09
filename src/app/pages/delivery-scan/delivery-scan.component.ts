@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { QRCode } from 'jsqr';
 import { ScannerPageTemplateComponent } from 'src/app/core/components/scanner-page-template/scanner-page-template.component';
 import { DeliveryScanService } from 'src/app/core/services/prod/delivery-scan.service';

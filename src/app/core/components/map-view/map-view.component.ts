@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import * as L from 'leaflet';
 import { Geolocation } from '@capacitor/geolocation';
-import 'leaflet-routing-machine';
-import { MapNodesRetrieverServiceModel } from 'src/app/shared/models/map-node-retriever-service-model';
-import { MapRoutingManagerService } from '../../services/prod/map-routing-manager.service';
+import * as L from 'leaflet';
 import { Routing } from 'leaflet';
+import 'leaflet-routing-machine';
+import { MapRoutingManagerService } from '../../services/prod/map-routing-manager.service';
+
+//TODO REFACTOR!!!
+//TODO Geolocation getter loop
 
 @Component({
   selector: 'map-view',

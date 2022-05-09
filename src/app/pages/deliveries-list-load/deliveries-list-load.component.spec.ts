@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { DeliveriesListLoadComponent } from './deliveries-list-load.component';
+
 
 describe('DeliveriesListLoadComponent', () => {
   let component: DeliveriesListLoadComponent;

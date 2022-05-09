@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { CarScannerComponent } from './car-scanner.component';
+
 
 describe('CarScannerComponent', () => {
   let component: CarScannerComponent;

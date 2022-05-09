@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { MapViewControlsComponent } from './map-view-controls.component';
+
 
 describe('MapViewControlsComponent', () => {
   let component: MapViewControlsComponent;

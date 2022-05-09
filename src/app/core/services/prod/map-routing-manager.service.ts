@@ -1,16 +1,13 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Geolocation } from '@capacitor/geolocation';
 import { Store } from '@ngxs/store';
 import { LatLng, Routing } from 'leaflet';
 import { Subject } from 'rxjs';
-import { TouchSequence } from 'selenium-webdriver';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { MapNode } from 'src/app/shared/classes/back-end-communication/map-node';
-import { NodeDeliveryMapping } from 'src/app/shared/classes/map-routing/node-delivery-mapping';
 import { DeliveryStates } from 'src/app/shared/models/delivery-states';
 import { MapNodesRetrieverServiceModel } from 'src/app/shared/models/map-node-retriever-service-model';
 import { DeliveryState } from '../../state/deliveries/deliveries.state';
-import { MapNodeDeliveryMapperService } from './map-node-delivery-mapper.service';
-import { Geolocation } from '@capacitor/geolocation';
 
 @Injectable({
   providedIn: 'root',
