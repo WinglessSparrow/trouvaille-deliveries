@@ -20,6 +20,7 @@ export class MapRoutingManagerService {
   private _deliveries: Delivery[];
   private _nodes: MapNode[];
   private _currNode: number = 0;
+  private _posNode: number = 0;
 
   constructor(store: Store, mapNodesRetriever: MapNodesRetrieverServiceModel) {
     store.select(DeliveryState.getDeliveries).subscribe((val) => {
@@ -42,6 +43,7 @@ export class MapRoutingManagerService {
 
   public async insertCurrentPosition(waypoints: LatLng[]): Promise<LatLng[]> {
     const currPos = await this.getCurrentPosition();
+    this._posNode = this._currNode;
 
     return [
       ...waypoints.slice(0, this._currNode),
@@ -50,14 +52,8 @@ export class MapRoutingManagerService {
     ];
   }
 
-  public async initRoute() {
-    let waypoints: LatLng[] = this._nodes.map((node) => {
-      return new LatLng(node.latitude, node.longitude);
-    });
-
-    if (this._currNode != null) {
-      waypoints = await this.insertCurrentPosition(waypoints);
-    }
+  public async initRoute(mode: RoutingMode) {
+    let waypoints: LatLng[] = await this.getWaypoints(mode);
     this._controls.setWaypoints(waypoints);
   }
 
@@ -81,6 +77,46 @@ export class MapRoutingManagerService {
     }
 
     return retArr;
+  }
+
+  private async getWaypoints(mode: RoutingMode): Promise<LatLng[]> {
+    let waypoints: LatLng[];
+
+    switch (mode) {
+      case RoutingMode.ALL_NODES:
+        waypoints = this._nodes.map((node) => {
+          return new LatLng(node.latitude, node.longitude);
+        });
+
+        if (this._currNode != null) {
+          waypoints = await this.insertCurrentPosition(waypoints);
+        }
+        break;
+      case RoutingMode.ONLY_NEXT:
+        waypoints = this._nodes
+          .filter((node) => {
+            return (
+              this._deliveries[node.index].state === DeliveryStates.IN_CAR ||
+              this._deliveries[node.index].state ===
+                DeliveryStates.REQUESTED_PICKUP
+            );
+          })
+          .map((node) => {
+            return new LatLng(node.latitude, node.longitude);
+          });
+
+        waypoints = [await this.getCurrentPosition(), ...waypoints];
+        this._posNode = 0;
+        break;
+      case RoutingMode.ONLY_NEAREST_NEXT:
+        break;
+      default:
+        console.log('tf?');
+        waypoints = [];
+        break;
+    }
+
+    return waypoints;
   }
 
   private findCurrentDeliveryIndex(): number {
@@ -121,9 +157,18 @@ export class MapRoutingManagerService {
   public get currNode(): number {
     return this._currNode;
   }
+
+  /**
+   * Getter posNode
+   * @return {number }
+   */
+  public get posNode(): number {
+    return this._posNode;
+  }
 }
 
 export enum RoutingMode {
-  NARROW,
   ALL_NODES,
+  ONLY_NEXT,
+  ONLY_NEAREST_NEXT,
 }

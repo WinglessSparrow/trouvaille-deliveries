@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 import * as L from 'leaflet';
-import { Routing } from 'leaflet';
 import 'leaflet-routing-machine';
-import { MapRoutingManagerService } from '../../services/prod/map-routing-manager.service';
+import { MapFactoryService } from '../../services/prod/map-factory.service';
+import {
+  MapRoutingManagerService,
+  RoutingMode,
+} from '../../services/prod/map-routing-manager.service';
+import { RoutingFactoryService } from '../../services/prod/routing-factory.service';
 
-//TODO REFACTOR!!!
 //TODO Geolocation getter loop
 
 @Component({
@@ -15,99 +18,22 @@ import { MapRoutingManagerService } from '../../services/prod/map-routing-manage
 })
 export class MapViewComponent implements OnInit {
   private _map: L.Map;
-  private _controls: Routing.Control;
 
-  private initMap() {
-    this._map = L.map('map', {
-      center: [49.821594, 9.695208],
-      zoom: 4,
-      zoomControl: false,
-      // dragging: false,
-    });
-
-    const tiles = L.tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      {
-        maxZoom: 18,
-        minZoom: 3,
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }
-    );
-
-    tiles.addTo(this._map);
-  }
-
-  constructor(private routingManager: MapRoutingManagerService) {}
+  constructor(
+    private routingManager: MapRoutingManagerService,
+    private routingFactory: RoutingFactoryService,
+    private mapFactory: MapFactoryService
+  ) {}
 
   ngOnInit() {}
 
   async ngAfterViewInit() {
-    this.initMap();
+    this._map = this.mapFactory.getMap();
 
-    var LeafIcon: L.Icon = new L.Icon<L.IconOptions>({
-      // options: {
-      iconUrl: '../../../assets/map/map-marker-blue.png',
-      shadowUrl: '../../../assets/map/map-marker-shadow.png',
-      iconSize: [20, 32],
-      shadowSize: [20, 21],
-      iconAnchor: [12, 31],
-      shadowAnchor: [0, 20],
-      //   shadowUrl: null,
-      //   iconSize: [38, 95],
-      //   shadowSize: [50, 64],
-      //   iconAnchor: [22, 94],
-      //   shadowAnchor: [4, 62],
-      //   popupAnchor: [-3, -76],
-      // },
-    });
+    this.routingManager.controls = this.routingFactory.controller;
+    this.routingFactory.controller.addTo(this._map);
 
-    var LeafIconPrpl: L.Icon = new L.Icon<L.IconOptions>({
-      // options: {
-      iconUrl: '../../../assets/map/map-marker-purple.png',
-      shadowUrl: '../../../assets/map/map-marker-shadow.png',
-      iconSize: [20, 32],
-      shadowSize: [20, 21],
-      iconAnchor: [12, 31],
-      shadowAnchor: [0, 20],
-      //   shadowUrl: null,
-      //   iconSize: [38, 95],
-      //   shadowSize: [50, 64],
-      //   iconAnchor: [22, 94],
-      //   shadowAnchor: [4, 62],
-      //   popupAnchor: [-3, -76],
-      // },
-    });
-
-    const plan = new Routing.Plan(null, {
-      draggableWaypoints: false,
-      createMarker: (idx, wp, numWp) => {
-        // debugger;
-        if (idx == this.routingManager.currNode) {
-          return new L.Marker(wp.latLng, { icon: LeafIconPrpl });
-        }
-        return new L.Marker(wp.latLng, { icon: LeafIcon });
-      },
-    });
-
-    this._controls = Routing.control({
-      router: Routing.osrmv1({
-        serviceUrl: `http://router.project-osrm.org/route/v1/`,
-      }),
-      fitSelectedRoutes: false,
-      show: false,
-      plan: plan,
-      addWaypoints: false,
-      lineOptions: {
-        extendToWaypoints: false,
-        missingRouteTolerance: 0,
-        styles: [{ color: '#0066ff' }],
-      },
-    }).addTo(this._map);
-
-    this.routingManager.controls = this._controls;
-
-    await this.routingManager.initRoute();
+    await this.routingManager.initRoute(RoutingMode.ONLY_NEXT);
   }
 
   zoomIn() {
@@ -123,20 +49,7 @@ export class MapViewComponent implements OnInit {
     let posOp: PositionOptions = { enableHighAccuracy: true };
     let pos = await Geolocation.getCurrentPosition(posOp);
 
-    var LeafIcon: L.Icon = new L.Icon<L.IconOptions>({
-      // options: {
-      iconUrl: '../../../assets/map/map-marker-blue.png',
-      shadowUrl: '../../../assets/map/map-marker-shadow.png',
-      iconSize: [20, 32],
-      shadowSize: [20, 21],
-      iconAnchor: [12, 31],
-      shadowAnchor: [0, 20],
-    });
-
     this._map.panTo(new L.LatLng(pos.coords.latitude, pos.coords.longitude));
-    // L.marker(new L.LatLng(pos.coords.latitude, pos.coords.longitude), {
-    //   icon: LeafIcon,
-    // }).addTo(this._map);
   }
 
   reload() {
