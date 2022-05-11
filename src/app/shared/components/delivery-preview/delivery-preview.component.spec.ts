@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { DeliveryPreviewComponent } from './delivery-preview.component';
+
 
 describe('PackagePreviewComponent', () => {
   let component: DeliveryPreviewComponent;

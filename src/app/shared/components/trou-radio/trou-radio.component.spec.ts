@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { TrouRadioComponent } from './trou-radio.component';
+
 
 describe('TrouRadioComponent', () => {
   let component: TrouRadioComponent;

@@ -7,6 +7,8 @@
     position: absolute;
     top: 0;
 
+    z-index: 10;
+
     display: block;
 
     width: 100vw;
@@ -40,5 +42,7 @@
     background-color: white;
 
     border-bottom: solid 2px var.$trou-blue-primary;
+
+    overflow-y: scroll;
     @include trou-shadow;
 }

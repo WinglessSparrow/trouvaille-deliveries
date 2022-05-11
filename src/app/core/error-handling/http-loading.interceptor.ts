@@ -19,7 +19,7 @@ export class HttpLoadingInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // this.loadingDialogService.openDialog();
     //TODO Map HTTP Methods to... well, human readable representation
-    this.loadingService.startLoading('name');
+    this.loadingService.startLoading('Requesting Data');
     return next.handle(req).pipe(
       finalize(() => {
         //TODO make it work god damn it!

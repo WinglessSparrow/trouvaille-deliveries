@@ -1,7 +1,12 @@
 import { Injectable, NgZone, Type } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ErrorContext } from 'src/app/shared/classes/error-context';
-import { ErrorComponent } from 'src/app/shared/components/error/error.component';
+import {
+  ErrorContext,
+  ErrorType
+} from 'src/app/shared/classes/modal-contexts/error-context';
+import { HttpModalContext } from 'src/app/shared/classes/modal-contexts/http-context';
+import { ErrorComponent } from 'src/app/shared/components/modal-views/error/error.component';
+import { HttpComponent } from 'src/app/shared/components/modal-views/http/http.component';
 import { TrouModalComponent } from 'src/app/shared/components/trou-modal/trou-modal.component';
 import { ModalContentBase } from 'src/app/shared/models/components/modal-content-base.component';
 import { ModalContext } from 'src/app/shared/models/data-models/modal-context';
@@ -36,10 +41,50 @@ export class ModalService {
     });
   }
 
-  public openErrorModal(header: string = 'Error', text: string) {
+  public openHttpModal(
+    status: number = 200,
+    message: string = 'Ok',
+    url: string = 'http://your-mom.room'
+  ) {
+    this.openModal(HttpComponent, new HttpModalContext(status, message, url));
+  }
+
+  public openErrorModal(text: string, header: string = 'Error') {
     this.openModal(
       ErrorComponent,
-      new ErrorContext(header, text, 'got ya', () => this.close())
+      new ErrorContext(
+        header,
+        text,
+        'got ya',
+        () => this.close(),
+        ErrorType.ERROR
+      )
+    );
+  }
+
+  public openBugModal(text: string, header: string = 'Bug') {
+    this.openModal(
+      ErrorComponent,
+      new ErrorContext(
+        header,
+        text,
+        'got ya',
+        () => this.close(),
+        ErrorType.BUG
+      )
+    );
+  }
+
+  public openNotificationModal(text: string, header: string = 'Notification') {
+    this.openModal(
+      ErrorComponent,
+      new ErrorContext(
+        header,
+        text,
+        'got ya',
+        () => this.close(),
+        ErrorType.NOTIFICATION
+      )
     );
   }
 

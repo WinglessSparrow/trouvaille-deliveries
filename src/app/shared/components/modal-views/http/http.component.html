@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <h2>Http Request went Wrong</h2>
+  <h1>{{context.httpStatus}}</h1>
+  <h2>{{context.message}}</h2>
+
+  <div class="btn-container">
+    <button (click)="retry()"> Retry </button>
+    <button (click)="closeModal()"> Got ya </button>
+  </div>
+</div>

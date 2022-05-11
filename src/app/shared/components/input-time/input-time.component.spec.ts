@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { InputTimeComponent } from './input-time.component';
+
 
 describe('InputTimeComponent', () => {
   let component: InputTimeComponent;

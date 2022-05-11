@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { InputGroupComponent } from './input-group.component';
+
 
 describe('InputGroupComponent', () => {
   let component: InputGroupComponent;

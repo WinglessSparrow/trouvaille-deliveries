@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { TrouBtnComponent } from './trou-btn.component';
+
 
 describe('TrouBtnComponent', () => {
   let component: TrouBtnComponent;

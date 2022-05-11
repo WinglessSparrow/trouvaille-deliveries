@@ -1,9 +1,8 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { DeliveryInfoService } from 'src/app/core/services/prod/delivery-info.service';
 import { Delivery } from '../../classes/back-end-communication/delivery';
-
 import { DeliveryStateParsingHelper } from '../../classes/delivery-state-parsing-helper ';
+
 
 @Component({
   selector: 'delivery-preview',

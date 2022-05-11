@@ -1,16 +1,16 @@
 @use "../../style/variables.scss" as var;
 @import "../../style/mixins.scss";
 
-:host {
-    width: clamp(200px, 50%, 300px);
-    button {
-        @include trou-shadow;
-        &:disabled {
-            background-color: var.$trou-blue-active;
-            border-bottom: 2px solid var.$trou-red-primary;
-        }
+// :host {
+// width: clamp(200px, 50%, 300px);
+button {
+    @include trou-shadow;
+    &:disabled {
+        background-color: var.$trou-blue-active;
+        border-bottom: 2px solid var.$trou-red-primary;
     }
 }
+// }
 
 .default {
     @include trou-prim-button(var.$trou-purple-primary, var.$trou-purple-hover, var.$trou-purple-active);

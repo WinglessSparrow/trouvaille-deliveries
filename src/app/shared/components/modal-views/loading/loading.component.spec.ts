@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { InputTimeIntervalComponent } from './input-time-interval.component';
+import { LoadingComponent } from './loading.component';
 
 
-describe('InputTimeIntervalComponent', () => {
-  let component: InputTimeIntervalComponent;
-  let fixture: ComponentFixture<InputTimeIntervalComponent>;
+describe('LoadingComponent', () => {
+  let component: LoadingComponent;
+  let fixture: ComponentFixture<LoadingComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputTimeIntervalComponent ],
+      declarations: [ LoadingComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(InputTimeIntervalComponent);
+    fixture = TestBed.createComponent(LoadingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

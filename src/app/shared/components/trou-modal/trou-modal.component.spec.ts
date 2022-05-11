@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { TrouModalComponent } from './trou-modal.component';
+
 
 describe('TrouModalComponent', () => {
   let component: TrouModalComponent;

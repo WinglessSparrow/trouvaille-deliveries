@@ -5,7 +5,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { DeliveryStateParsingHelper } from '../../classes/delivery-state-parsing-helper ';

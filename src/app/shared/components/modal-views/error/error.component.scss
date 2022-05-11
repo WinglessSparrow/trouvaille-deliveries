@@ -1,0 +1,47 @@
+@use "../../../style/variables.scss" as var;
+@import "../../../style/mixins.scss";
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 100%;
+
+    h2 {
+        flex-grow: 1.3;
+    }
+
+    i {
+        font-size: 2rem;
+        justify-self: flex-start;
+        flex-grow: 1;
+
+        color: var.$trou-red-primary;
+    }
+
+    .header-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+    }
+
+    p {
+        width: 100%;
+        min-height: 30%;
+        max-height: 100%;
+
+        padding: 5px;
+
+        border: solid 1px grey;
+        border-bottom: solid 2px var.$trou-blue-primary;
+        border-radius: 10px;
+
+        overflow-y: scroll;
+    }
+}

@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <div class="header-wrapper" [ngSwitch]="context.type">
+    <i *ngSwitchCase="errorTypes.BUG" class="fas fa-bug"></i>
+    <i *ngSwitchCase="errorTypes.ERROR" class="fas fa-xmark"></i>
+    <i *ngSwitchCase="errorTypes.NOTIFICATION" class="fas fa-exclamation-circle" style="color: orange"></i>
+    <h2>{{context.header}}</h2>
+  </div>
+  <p>{{context.description}}</p>
+  <trou-btn [type]="btnTypes.contrast" (click)="context.handler()">{{context.buttonName}}</trou-btn>
+</div>

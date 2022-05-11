@@ -1,10 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import {
-  ClearDeliveries,
-  InitDeliveriesState,
-} from 'src/app/core/state/deliveries/deliveries.action';
+import { ModalService } from 'src/app/core/services/prod/modal.service';
+import { ClearDeliveries } from 'src/app/core/state/deliveries/deliveries.action';
 import {
   LabelType,
   Position,
@@ -16,23 +15,22 @@ import {
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  //TODO service for Summary retrieval
-  //TODO service for user data Retrieval
   userName: string = 'Hello Mister Twister';
 
   public positions = Position;
   public labelTypes = LabelType;
 
-  constructor(private router: Router, private store: Store) {}
+  constructor(
+    private router: Router,
+    private store: Store,
+    private http: HttpClient
+  ) {}
 
   ngOnInit() {
-    this.store.dispatch(new InitDeliveriesState());
-    //DEBUG
+    //TODO set user name
   }
 
-  ngAfterViewInit() {
-    // this.modalService.openModal(LoadingComponent, new LoadingContext('Test'));
-  }
+  ngAfterViewInit() {}
 
   back() {
     this.store.dispatch(new ClearDeliveries());
@@ -40,6 +38,6 @@ export class HomeComponent implements OnInit {
   }
 
   reportProblem() {
-    //TODO implement function
+    this.http.get('https://httpstat.us/404?sleep=2000').toPromise();
   }
 }

@@ -1,9 +1,7 @@
 import {
-  animate,
-  state,
-  style,
+  animate, style,
   transition,
-  trigger,
+  trigger
 } from '@angular/animations';
 import {
   Component,
@@ -11,13 +9,13 @@ import {
   OnInit,
   Type,
   ViewChild,
-  ViewContainerRef,
+  ViewContainerRef
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ModalService } from 'src/app/core/services/prod/modal.service';
-
 import { ModalContentBase } from '../../models/components/modal-content-base.component';
 import { ModalContext } from '../../models/data-models/modal-context';
+
 
 export enum ModalType {
   error,

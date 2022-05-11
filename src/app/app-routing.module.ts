@@ -10,7 +10,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { MapComponent } from './pages/map/map.component';
 import { TimeComponent } from './pages/time/time.component';
 import { Pages } from './shared/classes/pages';
-import { AuthGuard } from './shared/guards/auth.guard';
 
 //FIXME AuthGuard ist turned off, for now, do not forget to turn it ON!
 

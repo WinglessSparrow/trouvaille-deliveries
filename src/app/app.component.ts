@@ -2,13 +2,11 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-
 import { HeaderService } from './core/services/prod/header.service';
 import { ModalService } from './core/services/prod/modal.service';
-import { ErrorContext } from './shared/classes/error-context';
 import { PageDescriptor } from './shared/classes/pageDescriptor';
 import { Pages } from './shared/classes/pages';
-import { ErrorComponent } from './shared/components/error/error.component';
+
 
 @Component({
   selector: 'app-root',

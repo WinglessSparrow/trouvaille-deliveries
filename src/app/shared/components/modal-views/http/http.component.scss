@@ -1,0 +1,34 @@
+@use "../../../style/variables.scss" as var;
+@import "../../../style/mixins.scss";
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+
+    h1 {
+        font-size: 2.5rem;
+        color: var.$trou-red-primary;
+        font-weight: bold;
+    }
+
+    .btn-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+        width: 100%;
+
+        button {
+            @include trou-prim-button(var.$trou-purple-primary, var.$trou-purple-hover, var.$trou-purple-active);
+
+            min-width: auto;
+            max-width: 45%;
+        }
+    }
+}

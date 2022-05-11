@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { InputBtnComponent } from './input-btn.component';
+
 
 describe('InputBtnComponent', () => {
   let component: InputBtnComponent;

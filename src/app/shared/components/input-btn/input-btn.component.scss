@@ -18,6 +18,8 @@ input {
     button {
         @include trou-prim-button(var.$trou-purple-primary, var.$trou-purple-hover, var.$trou-purple-active);
 
+        min-width: auto;
+
         font-size: 1.3rem;
         flex-grow: 1;
         height: auto;

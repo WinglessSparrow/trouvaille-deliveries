@@ -34,7 +34,9 @@ $padding: 20px;
 }
 
 @mixin trou-prim-button($prim-color, $hover-color, $active-color) {
-    width: clamp(200px, 50%, 300px);
+    min-width: 200px;
+    width: 50%;
+    max-width: 300xp;
     height: 50px;
 
     color: white;

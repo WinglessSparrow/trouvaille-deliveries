@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModalService } from 'src/app/core/services/prod/modal.service';
-import { LoadingContext } from '../classes/loading-context';
-import { LoadingComponent } from '../components/loading/loading.component';
+import { LoadingContext } from '../classes/modal-contexts/loading-context';
+import { LoadingComponent } from '../components/modal-views/loading/loading.component';
 
 @Injectable({
   providedIn: 'root',

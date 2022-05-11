@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ErrorContext } from '../../classes/error-context';
-import { ModalContentBase } from '../../models/components/modal-content-base.component';
-import { ModalContext } from '../../models/data-models/modal-context';
-import { ButtonType } from '../trou-btn/trou-btn.component';
+import {
+  ErrorContext,
+  ErrorType,
+} from '../../../classes/modal-contexts/error-context';
+import { ModalContentBase } from '../../../models/components/modal-content-base.component';
+import { ModalContext } from '../../../models/data-models/modal-context';
+import { ButtonType } from '../../trou-btn/trou-btn.component';
 
 @Component({
   selector: 'error',
@@ -13,6 +16,7 @@ export class ErrorComponent extends ModalContentBase implements OnInit {
   public context: ErrorContext;
 
   btnTypes = ButtonType;
+  errorTypes = ErrorType;
 
   constructor() {
     super();
