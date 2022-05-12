@@ -105,7 +105,7 @@ jobs:
 
       - name: Generate the Android App Bundle
         working-directory: ./android/
-        run: chmod +x gradlew && ./gradlew assembleDebug
+        run: chmod +x gradlew && ./gradlew assembleDebug && dir
       # - name: Generate the Android App Bundle
       #   working-directory: ./android/
       #   run: ./gradlew bundle
