@@ -1,24 +1,56 @@
-# name: "Deploy Android"
+name: Build Android
 
-# on:
-#   workflow_dispatch:
+on:
+  workflow_dispatch:
 
-# #ionic is a bitch
-# #you need to build the sdk
-# #then open in android studio
-# #deploy from there
-# #tf?!
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
 
-# jobs:
-#   build:
-#     name: Build & Deploy
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout Repo
-#         uses: actions/checkout@master
-#       - name: Install Dependencies
-#         run: npm install
-#       - name: Build
-#         run: npm run build
-#       - name: Run Tests
-#         run: npm run test
+      - name: Setup java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.x
+
+      - name: Install Ionic
+        run: npm install -g @ionic/cli
+
+      - name: Install app dependencies
+        run: npm install
+
+      - name: Build Ionic App
+        run: ionic build
+
+      - name: Copy Android
+        run: ionic capacitor copy android
+
+      - name: Build Android Dev APK
+        run: ionic capacitor build android
+
+      - name: Build Android Release APK
+        run: ionic capacitor build android --release --prod
+
+      - name: Generate the Android App Bundle
+        working-directory: ./android/
+        run: ./gradlew bundle
+
+      - name: Upload dev APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-dev
+          path: apk/app-debug.apk
+
+      - name: Upload release bundle
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release
+          path: apk/app.aab
