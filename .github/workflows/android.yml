@@ -110,9 +110,11 @@ jobs:
       #   working-directory: ./android/
       #   run: ./gradlew bundle
 
+      - name: Dir
+        run: dir && cd android && dir
+
       - name: Upload dev APK
         uses: actions/upload-artifact@v1
-        run: dir
         with:
           name: app-dev
           path: build/outputs/apk/app-debug.apk
