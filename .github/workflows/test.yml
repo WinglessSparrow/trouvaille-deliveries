@@ -3,6 +3,9 @@ name: "Run Tests on Master"
 on:
   workflow_dispatch:
   push:
+    branches:
+      - 'master'
+      - 'release/**'
   pull_request:
     branches:
       - "release/**"
