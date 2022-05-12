@@ -110,17 +110,20 @@ jobs:
       #   working-directory: ./android/
       #   run: ./gradlew bundle
 
-      - name: Dir
-        run: dir && cd android && dir
+      - name: LS1
+        run: ls -l
+
+      - name: LS2
+        run: cd android && ls -l
 
       - name: Upload dev APK
         uses: actions/upload-artifact@v1
         with:
           name: app-dev
-          path: build/outputs/apk/app-debug.apk
+          path: android/build/outputs/apk/app-debug.apk
 
       - name: Upload release bundle
         uses: actions/upload-artifact@v1
         with:
           name: app-release
-          path: build/outputs/apk/app.aab
+          path: android/build/outputs/apk/app.aab
