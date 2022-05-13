@@ -13,12 +13,14 @@ $main-margin: 10px;
     button {
         @include trou-prim-button(var.$trou-purple-primary, var.$trou-purple-hover, var.$trou-purple-active);
 
+        min-width: auto;
+
         font-size: 1.3rem;
         width: 35px;
         height: 35px;
     }
+    
     h2 {
-        // margin: 5px;
         height: fit-content;
     }
 

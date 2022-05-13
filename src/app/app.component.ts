@@ -1,7 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { StatusBar } from '@capacitor/status-bar';
+import { StatusBar, Style } from '@capacitor/status-bar';
 import { Observable } from 'rxjs';
 import { HeaderService } from './core/services/prod/header.service';
 import { ModalService } from './core/services/prod/modal.service';
@@ -42,8 +42,13 @@ export class AppComponent {
     private modal: ModalService
   ) {}
 
-  async ngOnInit() {
-    await StatusBar.hide();
+  ngOnInit() {
+    // try {
+    //   //only on phone
+    //   await StatusBar.setOverlaysWebView({ overlay: true });
+    // } catch (e) {}
+
+    // throw Error('as');
 
     this.isModalOpen$ = this.modal.modalActive;
 

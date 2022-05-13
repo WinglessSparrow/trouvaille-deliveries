@@ -1,7 +1,6 @@
 .center {
     display: block;
-    margin-right: auto;
-    margin-left: auto;
+    align-self: center;
 }
 
 .btn {
@@ -9,5 +8,8 @@
 }
 
 .wrapper {
+    display: flex;
+    flex-direction: column;
+
     padding-bottom: 20px;
 }

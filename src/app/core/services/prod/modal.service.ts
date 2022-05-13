@@ -90,7 +90,7 @@ export class ModalService {
 
   public logModalError(content: Type<ModalContentBase>) {
     console.error(
-      `You attempted to open a Modal while another one is already open (opened modal: ${typeof content})`
+      `You attempted to open a Modal while another one is already open (opened modal: ${content.toString()})`
     );
   }
 

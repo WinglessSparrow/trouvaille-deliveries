@@ -11,6 +11,7 @@ export class GlobalErrorHandler implements ErrorHandler {
   constructor(private modalService: ModalService) {}
 
   handleError(error: any): void {
+    // debugger;
     var context: ErrorContext;
     //TODO whatever nonsense Object the server is going to send back must be accounted for!
     //TODO different callback on different bullshit happening
@@ -25,7 +26,6 @@ export class GlobalErrorHandler implements ErrorHandler {
         );
         return;
       }
-    } else {
       context = new ErrorContext(
         'Client Side Error',
         error?.message,
@@ -34,9 +34,11 @@ export class GlobalErrorHandler implements ErrorHandler {
           this.modalService.close();
         }
       );
-    }
 
-    this.modalService.openModal(ErrorComponent, context);
+      this.modalService.openModal(ErrorComponent, context);
+    } else {
+      this.modalService.openBugModal(error?.stack, error?.message);
+    }
 
     console.error('Error from global error handler', error);
   }

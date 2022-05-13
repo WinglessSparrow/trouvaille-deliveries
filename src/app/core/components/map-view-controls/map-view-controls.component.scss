@@ -8,7 +8,6 @@ $heigh: 50px;
     flex-direction: row;
     justify-content: space-between;
 
-    // width: 100%;
     width: clamp(200px, 100%, 700px);
     height: $heigh;
 
@@ -18,6 +17,7 @@ $heigh: 50px;
     button {
         @include trou-prim-button(var.$trou-purple-primary, var.$trou-purple-hover, var.$trou-purple-active);
         @include trou-shadow;
+        min-width: auto;
     }
 
     .direct-control {
