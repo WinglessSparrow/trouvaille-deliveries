@@ -45,7 +45,6 @@ export class MapViewComponent implements OnInit {
   }
 
   async center() {
-    //FIXME not precise enough!! maybe a problem with the browser << idk
     let posOp: PositionOptions = { enableHighAccuracy: true };
     let pos = await Geolocation.getCurrentPosition(posOp);
 
