@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.trouvaille.deliveries",
+	"appName": "trouvaille-deliveries",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
