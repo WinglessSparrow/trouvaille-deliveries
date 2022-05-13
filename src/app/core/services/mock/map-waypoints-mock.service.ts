@@ -8,14 +8,14 @@ import { MapNodesRetrieverServiceModel } from 'src/app/shared/models/map-node-re
 })
 export class MapWaypointsMockService extends MapNodesRetrieverServiceModel {
   private _wayPoints: MapNode[] = [
-    new MapNode(0, 53.089901, 7.878095),
-    new MapNode(1, 53.195338, 10.076827),
-    new MapNode(2, 52.451825, 13.330952),
-    new MapNode(3, 52.772032, 16.321228),
-    new MapNode(4, 53.24796, 18.69586),
-    new MapNode(5, 50.425144, 19.575353),
-    new MapNode(6, 49.463662, 14.914039),
-    new MapNode(7, 48.463662, 13.914039),
+    new MapNode(0, 48.004143, 7.823216),
+    new MapNode(1, 48.007432, 7.821252),
+    new MapNode(2, 48.016931, 7.840815),
+    new MapNode(3, 48.017389, 7.841782),
+    new MapNode(4, 48.029197, 7.836235),
+    new MapNode(5, 48.035572, 7.801798),
+    new MapNode(6, 48.025669, 7.787756),
+    new MapNode(7, 48.018323, 7.775134),
   ];
 
   constructor() {

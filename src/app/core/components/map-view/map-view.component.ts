@@ -33,7 +33,7 @@ export class MapViewComponent implements OnInit {
     this.routingManager.controls = this.routingFactory.controller;
     this.routingFactory.controller.addTo(this._map);
 
-    await this.routingManager.initRoute(RoutingMode.ONLY_NEXT);
+    await this.routingManager.initRoute(RoutingMode.ALL_NODES);
   }
 
   zoomIn() {

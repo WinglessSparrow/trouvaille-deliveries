@@ -50,12 +50,6 @@ jobs:
       #   working-directory: ./android/
       #   run: ./gradlew bundle
 
-      - name: LS1
-        run: ls -l
-
-      - name: LS2
-        run: cd android && ls -l
-
       - name: Upload dev APK
         uses: actions/upload-artifact@v1
         with:

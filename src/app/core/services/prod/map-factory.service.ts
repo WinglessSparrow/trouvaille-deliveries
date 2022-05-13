@@ -9,8 +9,8 @@ export class MapFactoryService {
 
   public getMap(): L.Map {
     const map = L.map('map', {
-      center: [49.821594, 9.695208],
-      zoom: 4,
+      center: [48.004143, 7.823216],
+      zoom: 13,
       zoomControl: false,
     });
 

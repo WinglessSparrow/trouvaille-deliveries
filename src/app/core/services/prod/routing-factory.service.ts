@@ -34,9 +34,9 @@ export class RoutingFactoryService {
     },
   });
 
-  private readonly _controller: Routing.Control = new Routing.Control({
+  private _controller: Routing.Control = new Routing.Control({
     router: Routing.osrmv1({
-      serviceUrl: `http://router.project-osrm.org/route/v1/`,
+      serviceUrl: 'https://td.vvjm.dev/osrm/route/v1',
     }),
     fitSelectedRoutes: false,
     show: false,

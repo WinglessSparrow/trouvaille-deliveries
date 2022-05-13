@@ -42,13 +42,11 @@ export class AppComponent {
     private modal: ModalService
   ) {}
 
-  ngOnInit() {
-    // try {
-    //   //only on phone
-    //   await StatusBar.setOverlaysWebView({ overlay: true });
-    // } catch (e) {}
-
-    // throw Error('as');
+  async ngOnInit() {
+    // async () => {
+    await StatusBar.hide();
+    await StatusBar.setOverlaysWebView({ overlay: true });
+    // };
 
     this.isModalOpen$ = this.modal.modalActive;
 
