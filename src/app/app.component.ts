@@ -44,9 +44,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     //phone only
-    async () => {
+    const setup = async () => {
       StatusBar.setOverlaysWebView({ overlay: true });
     };
+
+    setup();
 
     this.isModalOpen$ = this.modal.modalActive;
 
