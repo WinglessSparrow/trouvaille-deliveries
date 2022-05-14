@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ModalService } from 'src/app/core/services/prod/modal.service';
 import { Authentification } from 'src/app/shared/classes/back-end-communication/authentification';
 import { AuthentificationServiceModel } from 'src/app/shared/models/authentification-service-model';
 
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AuthentificationServiceModel,
-    private router: Router
+    private router: Router,
+    private modal: ModalService
   ) {
     this.form = this.fb.group({
       username: ['', Validators.required],
@@ -39,7 +41,10 @@ export class LoginComponent implements OnInit {
     if (authResult) {
       this.router.navigateByUrl('/carScanner');
     } else {
-      throw Error('Wrong Password or Username');
+      this.modal.openErrorModal(
+        'Wrong Password or Username',
+        'Authentification Error'
+      );
     }
   }
 }

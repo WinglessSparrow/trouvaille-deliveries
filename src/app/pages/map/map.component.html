@@ -22,5 +22,9 @@
         
     </trou-label>
 
+    <select [(ngModel)]="selectedMode" (change)="onChangeSelect()">
+        <option *ngFor="let mode of routingModes" [value]="mode">{{mode.toString()}}</option>
+    </select>
+
     <trou-btn class="btn center" (click)="goToDeliveryScan()" [type]="btnType.default">Scan Delivery</trou-btn>
 </div>

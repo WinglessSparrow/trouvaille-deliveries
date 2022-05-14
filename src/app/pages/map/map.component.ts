@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DeliveryInfoService } from 'src/app/core/services/prod/delivery-info.service';
-import { MapRoutingManagerService } from 'src/app/core/services/prod/map-routing-manager.service';
+import {
+  MapRoutingManagerService,
+  RoutingMode,
+} from 'src/app/core/services/prod/map-routing-manager.service';
 import { NavigationService } from 'src/app/core/services/prod/navigation.service';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { Pages } from 'src/app/shared/classes/pages';
@@ -25,8 +28,11 @@ export class MapComponent implements OnInit, OnDestroy {
   textSizes = LabelTextSize;
   btnType = ButtonType;
   labelLength = LabelLength;
+  routingModes = Object.values(RoutingMode);
 
   subscription: Subscription;
+
+  selectedMode: RoutingMode = RoutingMode.ALL_NODES;
 
   constructor(
     private navigation: NavigationService,
@@ -39,16 +45,18 @@ export class MapComponent implements OnInit, OnDestroy {
     this.subscription = this.routingManager.markerChanges.subscribe(() =>
       this.setAddress()
     );
-
-    console.log('ngOnInit Map');
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
+  async onChangeSelect() {
+    this.routingManager.mode = this.selectedMode;
+    await this.routingManager.initRoute();
+  }
+
   setAddress() {
-    // debugger;
     const deliveries = this.routingManager.getCurrentPrevNextDeliveries();
     this.currDelivery = deliveries[1];
     this.nextDelivery = deliveries[2];

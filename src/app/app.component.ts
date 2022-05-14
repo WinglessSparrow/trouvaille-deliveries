@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { Observable } from 'rxjs';
@@ -24,7 +24,7 @@ import { Pages } from './shared/classes/pages';
     ]),
   ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public pages = [
     new PageDescriptor(Pages.Home, 'Home'),
     new PageDescriptor(Pages.Map, 'Map'),
@@ -42,11 +42,11 @@ export class AppComponent {
     private modal: ModalService
   ) {}
 
-  async ngOnInit() {
-    // async () => {
-    await StatusBar.hide();
-    await StatusBar.setOverlaysWebView({ overlay: true });
-    // };
+  ngOnInit() {
+    //phone only
+    async () => {
+      StatusBar.setOverlaysWebView({ overlay: true });
+    };
 
     this.isModalOpen$ = this.modal.modalActive;
 

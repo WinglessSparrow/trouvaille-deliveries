@@ -21,6 +21,7 @@ export class MapRoutingManagerService {
   private _nodes: MapNode[];
   private _currNode: number = 0;
   private _posNode: number = 0;
+  private _mode: RoutingMode = RoutingMode.ALL_NODES;
 
   constructor(store: Store, mapNodesRetriever: MapNodesRetrieverServiceModel) {
     store.select(DeliveryState.getDeliveries).subscribe((val) => {
@@ -52,8 +53,8 @@ export class MapRoutingManagerService {
     ];
   }
 
-  public async initRoute(mode: RoutingMode) {
-    let waypoints: LatLng[] = await this.getWaypoints(mode);
+  public async initRoute() {
+    let waypoints: LatLng[] = await this.getWaypoints(this._mode);
     this._controls.setWaypoints(waypoints);
   }
 
@@ -107,8 +108,6 @@ export class MapRoutingManagerService {
 
         waypoints = [await this.getCurrentPosition(), ...waypoints];
         this._posNode = 0;
-        break;
-      case RoutingMode.ONLY_NEAREST_NEXT:
         break;
       default:
         console.log('tf?');
@@ -165,10 +164,13 @@ export class MapRoutingManagerService {
   public get posNode(): number {
     return this._posNode;
   }
+
+  public set mode(mode: RoutingMode) {
+    this._mode = mode;
+  }
 }
 
 export enum RoutingMode {
-  ALL_NODES,
-  ONLY_NEXT,
-  ONLY_NEAREST_NEXT,
+  ALL_NODES = 'All Nodes',
+  ONLY_NEXT = 'Just the Relevant',
 }

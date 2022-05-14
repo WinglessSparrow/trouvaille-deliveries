@@ -25,20 +25,20 @@ export class ModalService {
   };
 
   constructor(private zone: NgZone) {
-    this._modalActive.subscribe((val) => {
-      console.log(`Modal New Status ${val}`);
-    });
+    this._modalActive.subscribe((val) => console.log(val));
   }
 
   public openModal(content: Type<ModalContentBase>, context: ModalContext) {
-    this.zone.run(() => {
-      if (!this._modalActive.value) {
-        this.nextModalContext = { content, context };
-        this._modalActive.next(true);
-      } else {
-        this.logModalError(content);
-      }
-    });
+    setTimeout(() => {
+      this.zone.run(() => {
+        if (!this._modalActive.value) {
+          this.nextModalContext = { content, context };
+          this._modalActive.next(true);
+        } else {
+          this.logModalError(content);
+        }
+      });
+    }, 10);
   }
 
   public openHttpModal(

@@ -5,7 +5,7 @@ export class GlobalResponseModel<T> {
   private _error: ErrorObject;
   private _hasWarnings: boolean;
   private _warnings: string[];
-  private _data: T;
+  private _data: Array<T>;
 
   /**
    * Getter hasError
@@ -41,9 +41,9 @@ export class GlobalResponseModel<T> {
 
   /**
    * Getter data
-   * @return {T}
+   * @return {Array<T>}
    */
-  public get data(): T {
+  public get data(): Array<T> {
     return this._data;
   }
 
@@ -81,9 +81,9 @@ export class GlobalResponseModel<T> {
 
   /**
    * Setter data
-   * @param {T} value
+   * @param {Array<T>} value
    */
-  public set data(value: T) {
+  public set data(value: Array<T>) {
     this._data = value;
   }
 }

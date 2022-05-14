@@ -9,8 +9,6 @@ import {
 } from '../../services/prod/map-routing-manager.service';
 import { RoutingFactoryService } from '../../services/prod/routing-factory.service';
 
-//TODO Geolocation getter loop
-
 @Component({
   selector: 'map-view',
   templateUrl: './map-view.component.html',
@@ -33,7 +31,7 @@ export class MapViewComponent implements OnInit {
     this.routingManager.controls = this.routingFactory.controller;
     this.routingFactory.controller.addTo(this._map);
 
-    await this.routingManager.initRoute(RoutingMode.ALL_NODES);
+    await this.routingManager.initRoute();
   }
 
   zoomIn() {
@@ -51,7 +49,7 @@ export class MapViewComponent implements OnInit {
     this._map.panTo(new L.LatLng(pos.coords.latitude, pos.coords.longitude));
   }
 
-  reload() {
-    //TODO implement
+  async reload() {
+    await this.routingManager.initRoute();
   }
 }

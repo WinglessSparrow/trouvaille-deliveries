@@ -24,6 +24,8 @@ import { TimeServiceModel } from 'src/app/shared/models/time-service-model';
 import { TimeMockService } from 'src/app/core/services/mock/time-mock.service';
 import { MapNodesRetrieverServiceModel } from 'src/app/shared/models/map-node-retriever-service-model';
 import { MapWaypointsMockService } from 'src/app/core/services/mock/map-waypoints-mock.service';
+import { AuthService } from 'src/app/core/services/prod/http-calls/auth.service';
+import { DeliveryManagerService } from 'src/app/core/services/prod/http-calls/delivery-manager.service';
 
 export const environment = {
   production: false,
@@ -31,7 +33,8 @@ export const environment = {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: AuthentificationServiceModel,
-      useClass: AuthentificationMockService,
+      // useClass: AuthentificationMockService,
+      useClass: AuthService,
     },
     {
       provide: ConnectionServiceModel,
@@ -49,6 +52,7 @@ export const environment = {
     {
       provide: DeliveriesManagerModel,
       useClass: DeliveriesManagerMockService,
+      // useClass: DeliveryManagerService,
     },
     {
       provide: TokenRefresherModel,

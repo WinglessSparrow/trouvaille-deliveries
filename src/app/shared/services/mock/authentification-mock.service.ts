@@ -5,7 +5,6 @@ import { Authentification } from '../../classes/back-end-communication/authentif
 import { AuthentificationServiceModel } from '../../models/authentification-service-model';
 import { LoadingService } from '../loading.service';
 
-
 @Injectable({
   providedIn: 'root',
 })
