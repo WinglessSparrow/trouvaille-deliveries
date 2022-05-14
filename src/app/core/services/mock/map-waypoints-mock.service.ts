@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { extend, LatLng, Map } from 'leaflet';
 import { MapNode } from 'src/app/shared/classes/back-end-communication/map-node';
 import { MapNodesRetrieverServiceModel } from 'src/app/shared/models/map-node-retriever-service-model';
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Control, Icon, IconOptions, Marker, Routing } from 'leaflet';
+import { Icon, IconOptions, Marker, Routing } from 'leaflet';
 import { MapRoutingManagerService } from './map-routing-manager.service';
 
 @Injectable({

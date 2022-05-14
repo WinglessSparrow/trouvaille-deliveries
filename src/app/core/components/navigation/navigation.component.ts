@@ -5,7 +5,7 @@ import {
   ElementRef,
   OnInit,
   QueryList,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { GestureController } from '@ionic/angular';
 import { Observable } from 'rxjs';

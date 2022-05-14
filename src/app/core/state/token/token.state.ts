@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { TokenRefresherModel } from 'src/app/shared/models/token-refresher-model';
-import { InitDeliveriesState } from '../deliveries/deliveries.action';
 import { ClearToken, RefreshToken, SetToken } from './token.action';
 
 export class TokenStateModel {

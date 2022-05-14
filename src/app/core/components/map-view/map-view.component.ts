@@ -4,8 +4,7 @@ import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { MapFactoryService } from '../../services/prod/map-factory.service';
 import {
-  MapRoutingManagerService,
-  RoutingMode,
+  MapRoutingManagerService
 } from '../../services/prod/map-routing-manager.service';
 import { RoutingFactoryService } from '../../services/prod/routing-factory.service';
 

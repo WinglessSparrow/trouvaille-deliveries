@@ -1,10 +1,10 @@
 import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    ViewChild
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
