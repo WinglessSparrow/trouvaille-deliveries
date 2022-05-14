@@ -2,6 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { StatusBar, Style } from '@capacitor/status-bar';
+import { Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { HeaderService } from './core/services/prod/header.service';
 import { ModalService } from './core/services/prod/modal.service';
@@ -39,16 +40,14 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private headerService: HeaderService,
-    private modal: ModalService
+    private modal: ModalService,
+    private platform: Platform
   ) {}
 
   ngOnInit() {
-    //phone only
-    const setup = async () => {
+    if (!(this.platform.is('mobileweb') || this.platform.is('desktop'))) {
       StatusBar.setOverlaysWebView({ overlay: true });
-    };
-
-    setup();
+    }
 
     this.isModalOpen$ = this.modal.modalActive;
 

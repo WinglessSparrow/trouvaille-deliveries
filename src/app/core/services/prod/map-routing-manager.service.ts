@@ -33,6 +33,10 @@ export class MapRoutingManagerService {
         this._markersChanged.next();
       });
     });
+
+    setInterval(() => {
+      this.initRoute();
+    }, 30000);
   }
 
   public async getCurrentPosition(): Promise<LatLng> {

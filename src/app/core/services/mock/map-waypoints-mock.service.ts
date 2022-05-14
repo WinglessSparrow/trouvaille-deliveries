@@ -15,6 +15,7 @@ export class MapWaypointsMockService extends MapNodesRetrieverServiceModel {
     new MapNode(5, 48.035572, 7.801798),
     new MapNode(6, 48.025669, 7.787756),
     new MapNode(7, 48.018323, 7.775134),
+    new MapNode(8, 48.018353, 7.715134),
   ];
 
   constructor() {

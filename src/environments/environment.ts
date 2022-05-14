@@ -15,7 +15,6 @@ import { MapWaypointsMockService } from 'src/app/core/services/mock/map-waypoint
 import { StateManagerMockService } from 'src/app/core/services/mock/state-manager-mock.service';
 import { TimeMockService } from 'src/app/core/services/mock/time-mock.service';
 import { TokenRefresherMockService } from 'src/app/core/services/mock/token-refresher-mock.service';
-import { AuthService } from 'src/app/core/services/prod/http-calls/auth.service';
 import { CarIdVerificationModel } from 'src/app/shared/classes/car-id-verification-model';
 import { AuthentificationServiceModel } from 'src/app/shared/models/authentification-service-model';
 import { ConnectionServiceModel } from 'src/app/shared/models/connection-service-model';
@@ -24,6 +23,7 @@ import { MapNodesRetrieverServiceModel } from 'src/app/shared/models/map-node-re
 import { StateManagerModel } from 'src/app/shared/models/state-manager-model';
 import { TimeServiceModel } from 'src/app/shared/models/time-service-model';
 import { TokenRefresherModel } from 'src/app/shared/models/token-refresher-model';
+import { AuthentificationMockService } from 'src/app/shared/services/mock/authentification-mock.service';
 
 export const environment = {
   production: false,
@@ -31,8 +31,8 @@ export const environment = {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: AuthentificationServiceModel,
-      // useClass: AuthentificationMockService,
-      useClass: AuthService,
+      useClass: AuthentificationMockService,
+      // useClass: AuthService,
     },
     {
       provide: ConnectionServiceModel,

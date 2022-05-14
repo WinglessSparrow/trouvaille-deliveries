@@ -12,6 +12,7 @@ import { StateManagerMockService } from 'src/app/core/services/mock/state-manage
 import { TimeMockService } from 'src/app/core/services/mock/time-mock.service';
 import { TokenRefresherMockService } from 'src/app/core/services/mock/token-refresher-mock.service';
 import { AuthService } from 'src/app/core/services/prod/http-calls/auth.service';
+import { DeliveryManagerService } from 'src/app/core/services/prod/http-calls/delivery-manager.service';
 import { CarIdVerificationModel } from 'src/app/shared/classes/car-id-verification-model';
 import { AuthentificationServiceModel } from 'src/app/shared/models/authentification-service-model';
 import { ConnectionServiceModel } from 'src/app/shared/models/connection-service-model';
@@ -45,7 +46,7 @@ export const environment = {
     },
     {
       provide: DeliveriesManagerModel,
-      useClass: DeliveriesManagerMockService,
+      useClass: DeliveryManagerService,
     },
     {
       provide: TokenRefresherModel,
