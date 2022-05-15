@@ -47,6 +47,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (!(this.platform.is('mobileweb') || this.platform.is('desktop'))) {
       StatusBar.setOverlaysWebView({ overlay: true });
+      StatusBar.setStyle({ style: Style.Light });
     }
 
     this.isModalOpen$ = this.modal.modalActive;

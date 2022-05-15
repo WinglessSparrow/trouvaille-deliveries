@@ -62,8 +62,8 @@ $width-aim: 45px;
     justify-content: center;
     overflow: hidden;
 
-    width: 85vw;
-    height: 85vw;
+    width: clamp(200px, 85vw, 300px);
+    height: clamp(200px, 85vw, 300px);
 }
 
 video {

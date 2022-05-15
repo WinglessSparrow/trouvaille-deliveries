@@ -33,7 +33,7 @@ input {
     display: flex;
     flex-direction: column;
 
-    width: 90%;
+    width: clamp(300px, 90%, 500px);
 
     > label {
         margin-bottom: 5px;
