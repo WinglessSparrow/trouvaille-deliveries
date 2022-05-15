@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { ConfigValidator } from '@ngxs/store/src/internal/config-validator';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { DeliveryStates } from 'src/app/shared/models/delivery-states';
