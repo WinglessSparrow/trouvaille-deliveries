@@ -1,5 +1,15 @@
 
 <div class="wrapper">
+    <div class="select-wrapper" [ngClass]="sHidden? 'hide': ''">
+        <trou-label [length]="labelLength.half" text="Map Mode:"></trou-label>
+        <div class="select-btn-group">
+            <select [(ngModel)]="selectedMode" (change)="onChangeSelect()">
+                <option *ngFor="let mode of routingModes" [value]="mode">{{mode.toString()}}</option>
+            </select>
+            <button (click)="toggleSelect()" class="btn"><i class="fas fa-angle-left"></i></button>
+        </div>
+    </div>
+
     <div class="map center" id="map">
     </div>
     <map-view-controls (center)="center()" (reload)="reload()" (zoomIn)="zoomIn()" (zoomOut)="zoomOut()"></map-view-controls>

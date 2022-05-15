@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
+import { ConfigValidator } from '@ngxs/store/src/internal/config-validator';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { DeliveryStates } from 'src/app/shared/models/delivery-states';
@@ -26,12 +27,25 @@ export class SummaryProviderService {
     summaryData.push(['In Car', this.allInCar(deliveries)]);
     summaryData.push(['Delivered', this.deliverySummary(deliveries)]);
     summaryData.push(['Pick Up', this.pickUp(deliveries)]);
+    summaryData.push(['Canceled', this.canceled(deliveries)]);
 
     this._summary.next(summaryData);
   }
 
   public get summary(): Observable<Array<[string, string]>> {
     return this._summary.asObservable();
+  }
+
+  private canceled(deliveries: Delivery[]): string {
+    const canceled = deliveries.filter((val) => {
+      return (
+        val.state === DeliveryStates.PICKUP_FAILED ||
+        val.state === DeliveryStates.ADDRESS_NOT_FOUND ||
+        val.state === DeliveryStates.DELIVERY_FAILED
+      );
+    }).length;
+
+    return `${canceled}`;
   }
 
   private pickUp(deliveries: Delivery[]): string {
@@ -47,15 +61,6 @@ export class SummaryProviderService {
     ).length;
 
     return `${pickedUp}/${toPickUp}`;
-  }
-
-  private getTime(timeObs: Observable<string>) {
-    let time: string;
-    const subscription = timeObs.subscribe((val) => {
-      time = val;
-    });
-    subscription.unsubscribe();
-    return time.split('|')[0];
   }
 
   private toLoad(deliveries: Delivery[]): string {
@@ -82,8 +87,9 @@ export class SummaryProviderService {
   private deliverySummary(deliveries: Delivery[]): string {
     const allToDeliver = deliveries.filter((val) => {
       return (
-        val.state === DeliveryStates.REQUESTED_PICKUP ||
-        val.state === DeliveryStates.PICKED_UP
+        val.state === DeliveryStates.IN_CAR ||
+        val.state === DeliveryStates.IN_CENTRAL ||
+        val.state === DeliveryStates.DELIVERED
       );
     }).length;
 

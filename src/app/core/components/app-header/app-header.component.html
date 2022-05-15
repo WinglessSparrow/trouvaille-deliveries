@@ -4,7 +4,7 @@
         <ng-template #back>
             <button class="menu-button" (click)="goBack()"><i class="fas fa-angle-left"></i></button>
         </ng-template>
-        
+
         <h2 class="name">{{text$ | async}}</h2>
         <div class="connection-indicator connected" [ngClass]="isConnected?'connected':'disconnected'"><i class="fas fa-wifi"></i></div>
         <div class="underline"></div>

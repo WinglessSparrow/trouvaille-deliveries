@@ -1,6 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { Keyboard, KeyboardResize } from '@capacitor/keyboard';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';

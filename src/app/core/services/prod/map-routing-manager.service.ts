@@ -36,7 +36,7 @@ export class MapRoutingManagerService {
 
     setInterval(() => {
       this.initRoute();
-    }, 30000);
+    }, 60000);
   }
 
   public async getCurrentPosition(): Promise<LatLng> {

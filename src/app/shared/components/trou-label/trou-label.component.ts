@@ -6,7 +6,7 @@ export enum LabelLength {
   full = 'full',
 }
 
-export enum Position {
+export enum LabelPosition {
   middle = 'middle',
   left = 'left',
   right = 'right',
@@ -35,7 +35,7 @@ export enum LabelTextSize {
 export class TrouLabelComponent implements OnInit {
   @Input() text: string = '';
   @Input() secondText: string = '';
-  @Input() position = Position.left;
+  @Input() position = LabelPosition.left;
   @Input() type: LabelType = LabelType.default;
   @Input() length: LabelLength = LabelLength.default;
   @Input() textSize: LabelTextSize = LabelTextSize.default;
@@ -43,7 +43,7 @@ export class TrouLabelComponent implements OnInit {
 
   @Output() btnClick: EventEmitter<any> = new EventEmitter<any>();
 
-  positions = Position;
+  positions = LabelPosition;
   labelType = LabelType;
   labelLength = LabelLength;
 

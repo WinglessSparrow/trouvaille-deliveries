@@ -51,7 +51,7 @@ header {
     height: 50px;
     width: 100%;
 
-    padding-top: 10px;
+    padding-top: var.$status-bar-height;
 
     background-color: white;
     border-bottom-left-radius: $border-radius;

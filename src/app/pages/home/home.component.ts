@@ -6,7 +6,7 @@ import { ModalService } from 'src/app/core/services/prod/modal.service';
 import { ClearDeliveries } from 'src/app/core/state/deliveries/deliveries.action';
 import {
   LabelType,
-  Position,
+  LabelPosition,
 } from 'src/app/shared/components/trou-label/trou-label.component';
 
 @Component({
@@ -17,7 +17,7 @@ import {
 export class HomeComponent implements OnInit {
   userName: string = 'Hello Mister Twister';
 
-  public positions = Position;
+  public positions = LabelPosition;
   public labelTypes = LabelType;
 
   constructor(

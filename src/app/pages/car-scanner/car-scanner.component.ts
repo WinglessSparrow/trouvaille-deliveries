@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { QRCode } from 'jsqr';
 import { ScannerPageTemplateComponent } from 'src/app/core/components/scanner-page-template/scanner-page-template.component';
+import { ModalService } from 'src/app/core/services/prod/modal.service';
 import {
-    ClearDeliveries,
-    InitDeliveriesState
+  ClearDeliveries,
+  InitDeliveriesState,
 } from 'src/app/core/state/deliveries/deliveries.action';
 import { ClearToken } from 'src/app/core/state/token/token.action';
 import { CarIdVerificationModel } from 'src/app/shared/classes/car-id-verification-model';
@@ -22,18 +23,11 @@ export class CarScannerComponent implements OnInit {
   constructor(
     private router: Router,
     private store: Store,
-    private carVerification: CarIdVerificationModel
+    private carVerification: CarIdVerificationModel,
+    private modal: ModalService
   ) {}
 
   ngOnInit() {}
-
-  ngOnDestroy() {
-    // this.scannerWrapper.scanner.stopScan();
-  }
-
-  ngAfterViewInit() {
-    //TODO check if camera works
-  }
 
   logOut() {
     //clearing deliveries
@@ -52,7 +46,10 @@ export class CarScannerComponent implements OnInit {
         });
     } else {
       this.scannerWrapper.scanner.startScan();
-      throw Error('The Code is not a Valid Car-ID');
+      this.modal.openErrorModal(
+        'The Car id is not a valid Car Id',
+        'Car Id Error'
+      );
     }
   }
 

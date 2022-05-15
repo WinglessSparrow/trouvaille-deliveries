@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
+import { LabelLength } from 'src/app/shared/components/trou-label/trou-label.component';
 import { MapFactoryService } from '../../services/prod/map-factory.service';
 import {
-  MapRoutingManagerService
+  MapRoutingManagerService,
+  RoutingMode,
 } from '../../services/prod/map-routing-manager.service';
 import { RoutingFactoryService } from '../../services/prod/routing-factory.service';
 
@@ -15,6 +17,12 @@ import { RoutingFactoryService } from '../../services/prod/routing-factory.servi
 })
 export class MapViewComponent implements OnInit {
   private _map: L.Map;
+  selectedMode: RoutingMode = RoutingMode.ALL_NODES;
+  routingModes = Object.values(RoutingMode);
+  labelLength = LabelLength;
+  sHidden: boolean;
+
+  static selectHidden: boolean = false;
 
   constructor(
     private routingManager: MapRoutingManagerService,
@@ -22,7 +30,10 @@ export class MapViewComponent implements OnInit {
     private mapFactory: MapFactoryService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    //angular is retarded, so one must bind static shit to non static shit
+    this.sHidden = MapViewComponent.selectHidden;
+  }
 
   async ngAfterViewInit() {
     this._map = this.mapFactory.getMap();
@@ -31,6 +42,11 @@ export class MapViewComponent implements OnInit {
     this.routingFactory.controller.addTo(this._map);
 
     await this.routingManager.initRoute();
+  }
+
+  toggleSelect() {
+    MapViewComponent.selectHidden = !MapViewComponent.selectHidden;
+    this.sHidden = MapViewComponent.selectHidden;
   }
 
   zoomIn() {
@@ -49,6 +65,11 @@ export class MapViewComponent implements OnInit {
   }
 
   async reload() {
+    await this.routingManager.initRoute();
+  }
+
+  async onChangeSelect() {
+    this.routingManager.mode = this.selectedMode;
     await this.routingManager.initRoute();
   }
 }

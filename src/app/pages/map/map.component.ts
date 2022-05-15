@@ -11,6 +11,7 @@ import { Pages } from 'src/app/shared/classes/pages';
 import { ButtonType } from 'src/app/shared/components/trou-btn/trou-btn.component';
 import {
   LabelLength,
+  LabelPosition,
   LabelTextSize,
   LabelType,
 } from 'src/app/shared/components/trou-label/trou-label.component';

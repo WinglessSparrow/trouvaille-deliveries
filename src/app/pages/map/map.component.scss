@@ -1,15 +1,19 @@
-.center {
-    display: block;
-    align-self: center;
-}
-
-.btn {
-    margin-top: 10%;
-}
+@use "../../shared/style/variables.scss" as var;
+@import "../../shared/style/mixins.scss";
 
 .wrapper {
     display: flex;
     flex-direction: column;
 
     padding-bottom: 20px;
+
+    .center {
+        // display: block;
+        align-self: center;
+        flex-grow: 1;
+    }
+
+    .btn {
+        margin-top: 10%;
+    }
 }

@@ -6,7 +6,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import jsQR, { QRCode } from 'jsqr';
@@ -60,10 +60,6 @@ export class ScannerComponent implements OnInit, OnDestroy {
     this.videoElement.setAttribute('playsinline', true);
     this.videoElement.play();
 
-    //this is needed to make it work, idk why
-    this.loading = await this.loadingController.create({});
-    await this.loading.present();
-
     //start QR recognition
     requestAnimationFrame(this.scan.bind(this));
   }
@@ -74,12 +70,6 @@ export class ScannerComponent implements OnInit, OnDestroy {
 
   private async scan() {
     if (this.videoElement.readyState === this.videoElement.HAVE_ENOUGH_DATA) {
-      if (this.loading) {
-        await this.loading.dismiss();
-        this.loading = null;
-        this.isActive = true;
-      }
-
       this.canvasElement.height = this.videoElement.videoHeight;
       this.canvasElement.width = this.videoElement.videoWidth;
 

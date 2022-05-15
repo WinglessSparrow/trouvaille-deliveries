@@ -1,6 +1,6 @@
 <div class="wrapper">
     <map-view></map-view>
-
+    
     <trou-label text="Current: " [length]="labelLength.half" ></trou-label>
     <trou-label 
         [text]="this.currDelivery != null ? this.currDelivery.dstAddress.address : 'No Deliveries found'" 
@@ -21,10 +21,6 @@
         >
         
     </trou-label>
-
-    <select [(ngModel)]="selectedMode" (change)="onChangeSelect()">
-        <option *ngFor="let mode of routingModes" [value]="mode">{{mode.toString()}}</option>
-    </select>
 
     <trou-btn class="btn center" (click)="goToDeliveryScan()" [type]="btnType.default">Scan Delivery</trou-btn>
 </div>
