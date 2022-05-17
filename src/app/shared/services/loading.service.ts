@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ModalService } from 'src/app/core/services/prod/modal.service';
+import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
 import { LoadingContext } from '../classes/modal-contexts/loading-context';
 import { LoadingComponent } from '../components/modal-views/loading/loading.component';
 

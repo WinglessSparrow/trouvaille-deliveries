@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConnectionServiceModel } from 'src/app/shared/models/connection-service-model';
-import { HeaderService } from '../../services/prod/header.service';
-import { NavigationService } from '../../services/prod/navigation.service';
+import { HeaderService } from '../../services/prod/component-specific/header.service';
+import { NavigationService } from '../../services/prod/component-specific/navigation.service';
 
 @Component({
   selector: 'app-header',

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DeliveryStates } from 'src/app/shared/models/delivery-states';
-import { DeliveryStateMachineService } from '../../services/prod/delivery-state-machine.service';
+import { DeliveryStateMachineService } from '../../services/prod/utility/delivery-state-machine.service';
 
 @Component({
   selector: 'delivery-state-view',

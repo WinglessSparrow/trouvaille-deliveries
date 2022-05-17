@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
+import { ChangeDeliveryState } from 'src/app/core/state/deliveries/deliveries.action';
+import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
 import { ChangeStatePayload } from 'src/app/shared/classes/change-state-payload';
 import { DeliveryStateParsingHelper } from 'src/app/shared/classes/delivery-state-parsing-helper ';
 import { DeliveryStates } from 'src/app/shared/models/delivery-states';
-import { ChangeDeliveryState } from '../../state/deliveries/deliveries.action';
-import { DeliveryState } from '../../state/deliveries/deliveries.state';
 
 @Injectable({
   providedIn: 'root',

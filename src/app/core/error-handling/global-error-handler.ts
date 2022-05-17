@@ -4,7 +4,7 @@ import { ErrorContext } from 'src/app/shared/classes/modal-contexts/error-contex
 import { HttpModalContext } from 'src/app/shared/classes/modal-contexts/http-context';
 import { ErrorComponent } from 'src/app/shared/components/modal-views/error/error.component';
 import { HttpComponent } from 'src/app/shared/components/modal-views/http/http.component';
-import { ModalService } from '../services/prod/modal.service';
+import { ModalService } from '../services/prod/component-specific/modal.service';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {

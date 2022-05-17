@@ -1,19 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { DeliveryInfoService } from 'src/app/core/services/prod/delivery-info.service';
+import { DeliveryInfoService } from 'src/app/core/services/prod/component-specific/delivery-info.service';
+import { NavigationService } from 'src/app/core/services/prod/component-specific/navigation.service';
 import {
   MapRoutingManagerService,
-  RoutingMode,
-} from 'src/app/core/services/prod/map-routing-manager.service';
-import { NavigationService } from 'src/app/core/services/prod/navigation.service';
+  RoutingMode
+} from 'src/app/core/services/prod/utility/map-routing-manager.service';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { Pages } from 'src/app/shared/classes/pages';
 import { ButtonType } from 'src/app/shared/components/trou-btn/trou-btn.component';
 import {
-  LabelLength,
-  LabelPosition,
-  LabelTextSize,
-  LabelType,
+  LabelLength, LabelTextSize,
+  LabelType
 } from 'src/app/shared/components/trou-label/trou-label.component';
 
 @Component({

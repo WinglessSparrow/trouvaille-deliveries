@@ -5,7 +5,7 @@ import {
   LabelTextSize,
   LabelType
 } from '../../../shared/components/trou-label/trou-label.component';
-import { SummaryProviderService } from '../../services/prod/summary-provider.service';
+import { SummaryProviderService } from '../../services/prod/utility/summary-provider.service';
 
 @Component({
   selector: 'home-summary',
@@ -13,7 +13,6 @@ import { SummaryProviderService } from '../../services/prod/summary-provider.ser
   styleUrls: ['./home-summary.component.scss'],
 })
 export class HomeSummaryComponent implements OnInit {
-  // @Input() data: Array<[string, string]>;
   summaryData$: Observable<Array<[string, string]>>;
 
   public length = LabelLength;

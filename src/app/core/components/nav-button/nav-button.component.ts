@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NavigationService } from '../../services/prod/navigation.service';
+import { NavigationService } from '../../services/prod/component-specific/navigation.service';
 
 @Component({
   selector: 'nav-button',

@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { DeliveryInfoService } from 'src/app/core/services/prod/delivery-info.service';
+import { DeliveryInfoService } from 'src/app/core/services/prod/component-specific/delivery-info.service';
 import { Delivery } from '../../classes/back-end-communication/delivery';
 import { DeliveryStateParsingHelper } from '../../classes/delivery-state-parsing-helper ';
 

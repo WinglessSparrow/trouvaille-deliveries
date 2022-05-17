@@ -2,11 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { ModalService } from 'src/app/core/services/prod/modal.service';
 import { ClearDeliveries } from 'src/app/core/state/deliveries/deliveries.action';
 import {
-  LabelType,
-  LabelPosition,
+  LabelPosition, LabelType
 } from 'src/app/shared/components/trou-label/trou-label.component';
 
 @Component({

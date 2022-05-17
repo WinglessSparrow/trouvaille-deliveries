@@ -12,7 +12,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ModalService } from 'src/app/core/services/prod/modal.service';
+import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
 import { ModalContentBase } from '../../models/components/modal-content-base.component';
 import { ModalContext } from '../../models/data-models/modal-context';
 

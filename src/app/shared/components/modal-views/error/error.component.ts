@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
   ErrorContext,
-  ErrorType,
+  ErrorType
 } from '../../../classes/modal-contexts/error-context';
 import { ModalContentBase } from '../../../models/components/modal-content-base.component';
 import { ModalContext } from '../../../models/data-models/modal-context';

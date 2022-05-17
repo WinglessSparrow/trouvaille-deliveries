@@ -6,7 +6,7 @@ import { Customer } from './customer';
 export class Delivery {
   [immerable] = true;
 
-  private _index: number;
+  private _position: number;
 
   private _customer: Customer;
 
@@ -32,11 +32,11 @@ export class Delivery {
   }
 
   /**
-   * Getter index
+   * Getter position
    * @return {number}
    */
-  public get index(): number {
-    return this._index;
+  public get position(): number {
+    return this._position;
   }
 
   /**
@@ -144,11 +144,11 @@ export class Delivery {
   }
 
   /**
-   * Setter index
+   * Setter position
    * @param {number} value
    */
-  public set index(value: number) {
-    this._index = value;
+  public set position(value: number) {
+    this._position = value;
   }
 
   /**

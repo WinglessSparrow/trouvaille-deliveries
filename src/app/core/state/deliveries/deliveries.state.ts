@@ -52,9 +52,9 @@ export class DeliveryState {
         (delivery: Delivery) => delivery.state === DeliveryStates.IN_CENTRAL
       )
       .sort((del1: Delivery, del2: Delivery) => {
-        if (del1.index > del2.index) {
+        if (del1.position > del2.position) {
           return 1;
-        } else if (del1.index < del2.index) {
+        } else if (del1.position < del2.position) {
           return -1;
         }
         return 0;
@@ -74,7 +74,7 @@ export class DeliveryState {
     let newState = new DeliveryStateModel();
     //??????!!!??!?!
     newState.deliveries = [...deliveriesTemp].sort((a, b) => {
-      const evaluation: number = a.index - b.index;
+      const evaluation: number = a.position - b.position;
       return evaluation;
     });
 

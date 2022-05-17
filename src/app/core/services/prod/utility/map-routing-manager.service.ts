@@ -3,11 +3,11 @@ import { Geolocation } from '@capacitor/geolocation';
 import { Store } from '@ngxs/store';
 import { LatLng, Routing } from 'leaflet';
 import { Subject } from 'rxjs';
+import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { MapNode } from 'src/app/shared/classes/back-end-communication/map-node';
 import { DeliveryStates } from 'src/app/shared/models/delivery-states';
 import { MapNodesRetrieverServiceModel } from 'src/app/shared/models/map-node-retriever-service-model';
-import { DeliveryState } from '../../state/deliveries/deliveries.state';
 
 @Injectable({
   providedIn: 'root',
@@ -129,7 +129,7 @@ export class MapRoutingManagerService {
         val.state === DeliveryStates.IN_CAR
       );
     });
-    return delivery != null ? delivery.index : null;
+    return delivery != null ? delivery.position : null;
   }
 
   private findNextDeliveryIndex(): number {
@@ -138,11 +138,11 @@ export class MapRoutingManagerService {
       return (
         (val.state === DeliveryStates.IN_CAR ||
           val.state === DeliveryStates.REQUESTED_PICKUP) &&
-        val.index > this._currNode
+        val.position > this._currNode
       );
     });
 
-    return temp != null ? temp.index : null;
+    return temp != null ? temp.position : null;
   }
 
   public set controls(controls: Routing.Control) {

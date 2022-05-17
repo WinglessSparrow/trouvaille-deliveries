@@ -3,12 +3,12 @@ import { Geolocation } from '@capacitor/geolocation';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { LabelLength } from 'src/app/shared/components/trou-label/trou-label.component';
-import { MapFactoryService } from '../../services/prod/map-factory.service';
+import { MapFactoryService } from '../../services/prod/utility/map-factory.service';
 import {
   MapRoutingManagerService,
-  RoutingMode,
-} from '../../services/prod/map-routing-manager.service';
-import { RoutingFactoryService } from '../../services/prod/routing-factory.service';
+  RoutingMode
+} from '../../services/prod/utility/map-routing-manager.service';
+import { RoutingFactoryService } from '../../services/prod/utility/routing-factory.service';
 
 @Component({
   selector: 'map-view',

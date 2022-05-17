@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ModalService } from 'src/app/core/services/prod/modal.service';
+import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
 import { Authentification } from 'src/app/shared/classes/back-end-communication/authentification';
 import { AuthentificationServiceModel } from 'src/app/shared/models/authentification-service-model';
 

@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { QRCode } from 'jsqr';
 import { ScannerPageTemplateComponent } from 'src/app/core/components/scanner-page-template/scanner-page-template.component';
-import { ModalService } from 'src/app/core/services/prod/modal.service';
+import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
 import {
   ClearDeliveries,
-  InitDeliveriesState,
+  InitDeliveriesState
 } from 'src/app/core/state/deliveries/deliveries.action';
 import { ClearToken } from 'src/app/core/state/token/token.action';
 import { CarIdVerificationModel } from 'src/app/shared/classes/car-id-verification-model';

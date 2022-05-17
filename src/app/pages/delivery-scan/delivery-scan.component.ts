@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { QRCode } from 'jsqr';
 import { ScannerPageTemplateComponent } from 'src/app/core/components/scanner-page-template/scanner-page-template.component';
-import { DeliveryScanService } from 'src/app/core/services/prod/delivery-scan.service';
+import { DeliveryScanService } from 'src/app/core/services/prod/component-specific/delivery-scan.service';
 import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
 import { Pages } from 'src/app/shared/classes/pages';
 

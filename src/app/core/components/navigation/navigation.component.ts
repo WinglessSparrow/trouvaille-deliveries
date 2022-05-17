@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { GestureController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { NavigationService } from '../../services/prod/navigation.service';
+import { NavigationService } from '../../services/prod/component-specific/navigation.service';
 import { NavButtonComponent } from '../nav-button/nav-button.component';
 
 @Component({

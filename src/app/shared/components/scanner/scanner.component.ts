@@ -6,7 +6,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import jsQR, { QRCode } from 'jsqr';

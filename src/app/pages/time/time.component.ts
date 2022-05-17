@@ -1,10 +1,8 @@
-import { Component, DebugEventListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { ModalService } from 'src/app/core/services/prod/modal.service';
+import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
 import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
-import { ErrorContext } from 'src/app/shared/classes/modal-contexts/error-context';
-import { ErrorComponent } from 'src/app/shared/components/modal-views/error/error.component';
 import { LabelType } from 'src/app/shared/components/trou-label/trou-label.component';
 import { DeliveryStates } from 'src/app/shared/models/delivery-states';
 import { TimeServiceModel } from 'src/app/shared/models/time-service-model';
