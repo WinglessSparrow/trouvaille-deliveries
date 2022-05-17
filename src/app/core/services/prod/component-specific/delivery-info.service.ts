@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Pages } from 'src/app/shared/classes/pages';
+import { Pages } from 'src/app/shared/interfaces/enums/pages';
 import { HeaderService } from './header.service';
 
 @Injectable({

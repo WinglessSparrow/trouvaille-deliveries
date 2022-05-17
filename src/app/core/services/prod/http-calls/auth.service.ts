@@ -2,15 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { SetToken } from 'src/app/core/state/token/token.action';
-import { Authentification } from 'src/app/shared/classes/back-end-communication/authentification';
-import { GlobalResponseModel } from 'src/app/shared/classes/back-end-communication/global-response-model';
-import { TokenResponse } from 'src/app/shared/classes/back-end-communication/token-response';
-import { AuthentificationServiceModel } from 'src/app/shared/models/authentification-service-model';
+import { Authentification } from 'src/app/shared/classes/models/back-end-communication/authentification';
+import { GlobalResponseModel } from 'src/app/shared/classes/models/back-end-communication/global-response-model';
+import { TokenResponse } from 'src/app/shared/classes/models/back-end-communication/token-response';
+import { IAuthentification } from 'src/app/shared/interfaces/services-interfaces/i-authentification';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService extends AuthentificationServiceModel {
+export class AuthService extends IAuthentification {
   constructor(private http: HttpClient, private store: Store) {
     super();
   }

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DeliveryStates } from 'src/app/shared/models/delivery-states';
+import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 import { DeliveryStateMachineService } from '../../services/prod/utility/delivery-state-machine.service';
 
 @Component({

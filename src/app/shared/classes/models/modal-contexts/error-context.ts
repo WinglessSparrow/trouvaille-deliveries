@@ -1,5 +1,5 @@
 import { Callback } from '@ngxs/store/src/internal/internals';
-import { ModalContext } from '../../models/data-models/modal-context';
+import { ModalContext } from '../../../interfaces/abstract-classes/modal-context';
 
 export enum ErrorType {
   BUG,

@@ -11,7 +11,7 @@ import { MapWaypointsMockService } from 'src/app/core/services/mock/api/map-wayp
 import { StateManagerMockService } from 'src/app/core/services/mock/api/state-manager-mock.service';
 import { TimeMockService } from 'src/app/core/services/mock/api/time-mock.service';
 import { TokenRefresherMockService } from 'src/app/core/services/mock/api/token-refresher-mock.service';
-import { CarIdVerificationModel } from 'src/app/shared/classes/car-id-verification-model';
+import { ICarIdVerification } from 'src/app/shared/interfaces/services-interfaces/i-car-id-verification';
 import { AuthentificationServiceModel } from 'src/app/shared/models/authentification-service-model';
 import { ConnectionServiceModel } from 'src/app/shared/models/connection-service-model';
 import { DeliveriesManagerModel } from 'src/app/shared/models/deliveries-manager-model';
@@ -53,7 +53,7 @@ export const environment = {
       useClass: TokenRefresherMockService,
     },
     {
-      provide: CarIdVerificationModel,
+      provide: ICarIdVerification,
       useClass: CarIdVerificationMockService,
     },
     {

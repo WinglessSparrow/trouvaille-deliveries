@@ -4,10 +4,10 @@ import { Store } from '@ngxs/store';
 import { LatLng, Routing } from 'leaflet';
 import { Subject } from 'rxjs';
 import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
-import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
-import { MapNode } from 'src/app/shared/classes/back-end-communication/map-node';
-import { DeliveryStates } from 'src/app/shared/models/delivery-states';
-import { MapNodesRetrieverServiceModel } from 'src/app/shared/models/map-node-retriever-service-model';
+import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
+import { MapNode } from 'src/app/shared/classes/models/back-end-communication/map-node';
+import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
+import { IMapNodesRetriever } from 'src/app/shared/interfaces/services-interfaces/i-map-node-retriever';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,7 @@ export class MapRoutingManagerService {
   private _posNode: number = 0;
   private _mode: RoutingMode = RoutingMode.ALL_NODES;
 
-  constructor(store: Store, mapNodesRetriever: MapNodesRetrieverServiceModel) {
+  constructor(store: Store, mapNodesRetriever: IMapNodesRetriever) {
     store.select(DeliveryState.getDeliveries).subscribe((val) => {
       this._deliveries = val;
       this._currNode = this.findCurrentDeliveryIndex();

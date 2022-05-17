@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ConnectionServiceModel } from 'src/app/shared/models/connection-service-model';
+import { IConnection } from 'src/app/shared/interfaces/services-interfaces/i-connection';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ConnectionMockService implements ConnectionServiceModel {
+export class ConnectionMockService implements IConnection {
   private _isConnected: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     true
   );

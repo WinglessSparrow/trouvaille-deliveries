@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
 
-export abstract class ConnectionServiceModel {
+export abstract class IConnection {
   abstract getConnectionStatus(): Observable<boolean>;
 }

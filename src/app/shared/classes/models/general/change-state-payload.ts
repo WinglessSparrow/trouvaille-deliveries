@@ -1,5 +1,5 @@
-import { DeliveryStates } from '../models/delivery-states';
-import { Delivery } from './back-end-communication/delivery';
+import { DeliveryStates } from '../../../interfaces/enums/delivery-states';
+import { Delivery } from '../back-end-communication/delivery';
 
 export class ChangeStatePayload {
   private _nextState: DeliveryStates;

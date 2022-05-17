@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable, ReplaySubject } from 'rxjs';
 import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
-import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
-import { DeliveryStates } from 'src/app/shared/models/delivery-states';
+import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
+import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ConnectionServiceModel } from 'src/app/shared/models/connection-service-model';
+import { IConnection } from 'src/app/shared/interfaces/services-interfaces/i-connection';
 import { HeaderService } from '../../services/prod/component-specific/header.service';
 import { NavigationService } from '../../services/prod/component-specific/navigation.service';
 
@@ -20,7 +20,7 @@ export class AppHeaderComponent implements OnInit {
   constructor(
     public headerService: HeaderService,
     private nav: NavigationService,
-    connection: ConnectionServiceModel
+    connection: IConnection
   ) {
     connection
       .getConnectionStatus()

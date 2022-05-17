@@ -13,8 +13,8 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
-import { ModalContentBase } from '../../models/components/modal-content-base.component';
-import { ModalContext } from '../../models/data-models/modal-context';
+import { ModalContentBase } from '../../interfaces/component-interfaces/modal-content-base.component';
+import { ModalContext } from '../../interfaces/abstract-classes/modal-context';
 
 
 export enum ModalType {

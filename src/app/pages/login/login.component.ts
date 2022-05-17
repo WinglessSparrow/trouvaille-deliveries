@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
-import { Authentification } from 'src/app/shared/classes/back-end-communication/authentification';
-import { AuthentificationServiceModel } from 'src/app/shared/models/authentification-service-model';
+import { Authentification } from 'src/app/shared/classes/models/back-end-communication/authentification';
+import { IAuthentification } from 'src/app/shared/interfaces/services-interfaces/i-authentification';
 
 @Component({
   selector: 'page-login',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private auth: AuthentificationServiceModel,
+    private auth: IAuthentification,
     private router: Router,
     private modal: ModalService
   ) {

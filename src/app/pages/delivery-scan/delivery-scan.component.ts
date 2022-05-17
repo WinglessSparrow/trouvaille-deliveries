@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { QRCode } from 'jsqr';
 import { ScannerPageTemplateComponent } from 'src/app/core/components/scanner-page-template/scanner-page-template.component';
 import { DeliveryScanService } from 'src/app/core/services/prod/component-specific/delivery-scan.service';
-import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
-import { Pages } from 'src/app/shared/classes/pages';
+import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
+import { Pages } from 'src/app/shared/interfaces/enums/pages';
 
 @Component({
   selector: 'delivery-scan',

@@ -15,14 +15,15 @@ import { MapWaypointsMockService } from 'src/app/core/services/mock/api/map-wayp
 import { StateManagerMockService } from 'src/app/core/services/mock/api/state-manager-mock.service';
 import { TimeMockService } from 'src/app/core/services/mock/api/time-mock.service';
 import { TokenRefresherMockService } from 'src/app/core/services/mock/api/token-refresher-mock.service';
-import { CarIdVerificationModel } from 'src/app/shared/classes/car-id-verification-model';
-import { AuthentificationServiceModel } from 'src/app/shared/models/authentification-service-model';
-import { ConnectionServiceModel } from 'src/app/shared/models/connection-service-model';
-import { DeliveriesManagerModel } from 'src/app/shared/models/deliveries-manager-model';
-import { MapNodesRetrieverServiceModel } from 'src/app/shared/models/map-node-retriever-service-model';
-import { StateManagerModel } from 'src/app/shared/models/state-manager-model';
-import { TimeServiceModel } from 'src/app/shared/models/time-service-model';
-import { TokenRefresherModel } from 'src/app/shared/models/token-refresher-model';
+import { AuthService } from 'src/app/core/services/prod/http-calls/auth.service';
+import { IAuthentification } from 'src/app/shared/interfaces/services-interfaces/i-authentification';
+import { ICarIdVerification } from 'src/app/shared/interfaces/services-interfaces/i-car-id-verification';
+import { IConnection } from 'src/app/shared/interfaces/services-interfaces/i-connection';
+import { IDeliveriesManager } from 'src/app/shared/interfaces/services-interfaces/i-deliveries-manager';
+import { IMapNodesRetriever } from 'src/app/shared/interfaces/services-interfaces/i-map-node-retriever';
+import { IStateManager } from 'src/app/shared/interfaces/services-interfaces/i-state-manager';
+import { ITimeManager } from 'src/app/shared/interfaces/services-interfaces/i-time-manager';
+import { ITokenRefresher } from 'src/app/shared/interfaces/services-interfaces/i-token-refresher';
 import { AuthentificationMockService } from 'src/app/shared/services/mock/authentification-mock.service';
 
 export const environment = {
@@ -30,12 +31,12 @@ export const environment = {
   IOC: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
-      provide: AuthentificationServiceModel,
-      useClass: AuthentificationMockService,
-      // useClass: AuthService,
+      provide: IAuthentification,
+      // useClass: AuthentificationMockService,
+      useClass: AuthService,
     },
     {
-      provide: ConnectionServiceModel,
+      provide: IConnection,
       useClass: ConnectionMockService,
     },
     {
@@ -48,28 +49,28 @@ export const environment = {
       multi: true,
     },
     {
-      provide: DeliveriesManagerModel,
+      provide: IDeliveriesManager,
       useClass: DeliveriesManagerMockService,
       // useClass: DeliveryManagerService,
     },
     {
-      provide: TokenRefresherModel,
+      provide: ITokenRefresher,
       useClass: TokenRefresherMockService,
     },
     {
-      provide: CarIdVerificationModel,
+      provide: ICarIdVerification,
       useClass: CarIdVerificationMockService,
     },
     {
-      provide: StateManagerModel,
+      provide: IStateManager,
       useClass: StateManagerMockService,
     },
     {
-      provide: TimeServiceModel,
+      provide: ITimeManager,
       useClass: TimeMockService,
     },
     {
-      provide: MapNodesRetrieverServiceModel,
+      provide: IMapNodesRetriever,
       useClass: MapWaypointsMockService,
     },
   ],

@@ -9,8 +9,8 @@ import {
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { QRCode } from 'jsqr';
-import { Pages } from 'src/app/shared/classes/pages';
 import { ScannerComponent } from 'src/app/shared/components/scanner/scanner.component';
+import { Pages } from 'src/app/shared/interfaces/enums/pages';
 
 @Component({
   selector: 'scanner-page-template',

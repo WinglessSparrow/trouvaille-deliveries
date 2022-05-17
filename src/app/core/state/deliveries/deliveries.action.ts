@@ -1,4 +1,4 @@
-import { ChangeStatePayload } from 'src/app/shared/classes/change-state-payload';
+import { ChangeStatePayload } from 'src/app/shared/classes/models/general/change-state-payload';
 
 export class ChangeDeliveryState {
   static readonly type = '[DELIVERY] ChangeState';

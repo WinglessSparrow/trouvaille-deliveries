@@ -5,10 +5,10 @@ import { Subscription } from 'rxjs';
 import { HeaderService } from 'src/app/core/services/prod/component-specific/header.service';
 import { ChangeDeliveryState } from 'src/app/core/state/deliveries/deliveries.action';
 import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
-import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
-import { ChangeStatePayload } from 'src/app/shared/classes/change-state-payload';
+import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
+import { ChangeStatePayload } from 'src/app/shared/classes/models/general/change-state-payload';
 import { LabelLength } from 'src/app/shared/components/trou-label/trou-label.component';
-import { DeliveryStates } from 'src/app/shared/models/delivery-states';
+import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 
 @Component({
   selector: 'delivery-info',

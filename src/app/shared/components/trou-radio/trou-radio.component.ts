@@ -8,8 +8,8 @@ import {
   Output
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { DeliveryStateParsingHelper } from '../../classes/delivery-state-parsing-helper ';
-import { DeliveryStates } from '../../models/delivery-states';
+import { DeliveryStateParsingHelper } from '../../classes/utility/delivery-state-parsing-helper ';
+import { DeliveryStates } from '../../interfaces/enums/delivery-states';
 
 @Component({
   selector: 'trou-radio',

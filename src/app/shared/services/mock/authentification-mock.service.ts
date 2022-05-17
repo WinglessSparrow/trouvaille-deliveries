@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { SetToken } from 'src/app/core/state/token/token.action';
-import { Authentification } from '../../classes/back-end-communication/authentification';
-import { AuthentificationServiceModel } from '../../models/authentification-service-model';
+import { Authentification } from '../../classes/models/back-end-communication/authentification';
+import { IAuthentification } from '../../interfaces/services-interfaces/i-authentification';
 import { LoadingService } from '../loading.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthentificationMockService extends AuthentificationServiceModel {
+export class AuthentificationMockService extends IAuthentification {
   reAuthenticate() {
     console.log("BipBop I'm a mock: Successfully Authenticated");
   }

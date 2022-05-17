@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
 import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
+import { WorkingTimeDescriptor } from 'src/app/shared/classes/models/general/working-time-descriptor';
 import { LabelType } from 'src/app/shared/components/trou-label/trou-label.component';
-import { DeliveryStates } from 'src/app/shared/models/delivery-states';
-import { TimeServiceModel } from 'src/app/shared/models/time-service-model';
-import { WorkingTimeDescriptor } from 'src/app/shared/models/working-time-descriptor';
+import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
+import { ITimeManager } from 'src/app/shared/interfaces/services-interfaces/i-time-manager';
 
 @Component({
   selector: 'time',
@@ -23,7 +23,7 @@ export class TimeComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private timeService: TimeServiceModel,
+    private timeService: ITimeManager,
     private store: Store,
     private modal: ModalService
   ) {

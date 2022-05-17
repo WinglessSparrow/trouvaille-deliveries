@@ -6,11 +6,11 @@ import { ScannerPageTemplateComponent } from 'src/app/core/components/scanner-pa
 import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
 import {
   ClearDeliveries,
-  InitDeliveriesState
+  InitDeliveriesState,
 } from 'src/app/core/state/deliveries/deliveries.action';
 import { ClearToken } from 'src/app/core/state/token/token.action';
-import { CarIdVerificationModel } from 'src/app/shared/classes/car-id-verification-model';
-import { Pages } from 'src/app/shared/classes/pages';
+import { Pages } from 'src/app/shared/interfaces/enums/pages';
+import { ICarIdVerification } from 'src/app/shared/interfaces/services-interfaces/i-car-id-verification';
 @Component({
   selector: 'car-scanner',
   templateUrl: './car-scanner.component.html',
@@ -23,7 +23,7 @@ export class CarScannerComponent implements OnInit {
   constructor(
     private router: Router,
     private store: Store,
-    private carVerification: CarIdVerificationModel,
+    private carVerification: ICarIdVerification,
     private modal: ModalService
   ) {}
 

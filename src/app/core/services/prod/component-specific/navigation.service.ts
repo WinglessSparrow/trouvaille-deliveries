@@ -2,7 +2,7 @@ import { Injectable, NgZone, QueryList } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { NavButtonComponent } from 'src/app/core/components/nav-button/nav-button.component';
-import { Pages } from 'src/app/shared/classes/pages';
+import { Pages } from 'src/app/shared/interfaces/enums/pages';
 import { HeaderService } from './header.service';
 
 @Injectable({

@@ -6,8 +6,8 @@ import { Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { HeaderService } from './core/services/prod/component-specific/header.service';
 import { ModalService } from './core/services/prod/component-specific/modal.service';
-import { PageDescriptor } from './shared/classes/pageDescriptor';
-import { Pages } from './shared/classes/pages';
+import { PageDescriptor } from './shared/classes/models/general/pageDescriptor';
+import { Pages } from './shared/interfaces/enums/pages';
 
 @Component({
   selector: 'app-root',

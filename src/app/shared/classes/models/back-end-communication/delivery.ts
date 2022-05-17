@@ -1,5 +1,5 @@
 import { immerable } from 'immer';
-import { DeliveryStates } from '../../models/delivery-states';
+import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 import { Address } from './address';
 import { Customer } from './customer';
 

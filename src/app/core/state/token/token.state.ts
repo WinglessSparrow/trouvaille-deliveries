@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { TokenRefresherModel } from 'src/app/shared/models/token-refresher-model';
+import { ITokenRefresher } from 'src/app/shared/interfaces/services-interfaces/i-token-refresher';
 import { ClearToken, RefreshToken, SetToken } from './token.action';
 
 export class TokenStateModel {
@@ -17,7 +17,7 @@ export class TokenStateModel {
 export class TokenState {
   //TODO getting packages from getter Service
 
-  constructor(private tokenRefresher: TokenRefresherModel) {}
+  constructor(private tokenRefresher: ITokenRefresher) {}
 
   @Selector()
   static getToken(state: TokenStateModel) {

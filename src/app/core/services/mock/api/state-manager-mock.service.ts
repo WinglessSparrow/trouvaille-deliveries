@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ChangeStatePayload } from 'src/app/shared/classes/change-state-payload';
-import { StateManagerModel } from 'src/app/shared/models/state-manager-model';
+import { ChangeStatePayload } from 'src/app/shared/classes/models/general/change-state-payload';
+import { IStateManager } from 'src/app/shared/interfaces/services-interfaces/i-state-manager';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class StateManagerMockService extends StateManagerModel {
+export class StateManagerMockService extends IStateManager {
   constructor(private loading: LoadingService) {
     super();
   }

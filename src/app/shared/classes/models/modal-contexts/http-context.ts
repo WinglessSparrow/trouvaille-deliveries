@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ModalContext } from '../../models/data-models/modal-context';
+import { ModalContext } from '../../../interfaces/abstract-classes/modal-context';
 
 /*
 one might say, wrapping the same data twice is stupid.

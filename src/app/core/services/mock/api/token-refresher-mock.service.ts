@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { TokenRefresherModel } from 'src/app/shared/models/token-refresher-model';
+import { ITokenRefresher } from 'src/app/shared/interfaces/services-interfaces/i-token-refresher';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TokenRefresherMockService extends TokenRefresherModel {
+export class TokenRefresherMockService extends ITokenRefresher {
   constructor() {
     super();
   }

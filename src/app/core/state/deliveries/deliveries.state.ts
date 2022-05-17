@@ -4,19 +4,18 @@ import {
   createSelector,
   Selector,
   State,
-  StateContext
+  StateContext,
 } from '@ngxs/store';
 import produce, { immerable } from 'immer';
-import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
-import { DeliveriesManagerModel } from 'src/app/shared/models/deliveries-manager-model';
-import { DeliveryStates } from 'src/app/shared/models/delivery-states';
-import { StateManagerModel } from 'src/app/shared/models/state-manager-model';
+import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
+import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
+import { IDeliveriesManager } from 'src/app/shared/interfaces/services-interfaces/i-deliveries-manager';
+import { IStateManager } from 'src/app/shared/interfaces/services-interfaces/i-state-manager';
 import {
   ChangeDeliveryState,
   ClearDeliveries,
-  InitDeliveriesState
+  InitDeliveriesState,
 } from './deliveries.action';
-
 
 export class DeliveryStateModel {
   [immerable] = true;
@@ -36,8 +35,8 @@ export class DeliveryState {
   //TODO getting packages from getter Service
 
   constructor(
-    private deliveryManager: DeliveriesManagerModel,
-    private deliveryStateManger: StateManagerModel
+    private deliveryManager: IDeliveriesManager,
+    private deliveryStateManger: IStateManager
   ) {}
 
   @Selector()

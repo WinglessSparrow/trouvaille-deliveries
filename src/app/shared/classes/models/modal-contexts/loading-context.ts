@@ -1,4 +1,4 @@
-import { ModalContext } from '../../models/data-models/modal-context';
+import { ModalContext } from '../../../interfaces/abstract-classes/modal-context';
 
 export class LoadingContext extends ModalContext {
   private _name: string;

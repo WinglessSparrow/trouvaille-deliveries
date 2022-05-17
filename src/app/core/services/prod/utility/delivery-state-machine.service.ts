@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DeliveryStates } from 'src/app/shared/models/delivery-states';
+import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 
 @Injectable({
   providedIn: 'root',

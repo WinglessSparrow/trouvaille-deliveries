@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Address } from 'src/app/shared/classes/back-end-communication/address';
-import { Customer } from 'src/app/shared/classes/back-end-communication/customer';
-import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
-import { DeliveriesManagerModel } from 'src/app/shared/models/deliveries-manager-model';
-import { DeliveryStates } from 'src/app/shared/models/delivery-states';
+import { Address } from 'src/app/shared/classes/models/back-end-communication/address';
+import { Customer } from 'src/app/shared/classes/models/back-end-communication/customer';
+import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
+import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
+import { IDeliveriesManager } from 'src/app/shared/interfaces/services-interfaces/i-deliveries-manager';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DeliveriesManagerMockService implements DeliveriesManagerModel {
+export class DeliveriesManagerMockService implements IDeliveriesManager {
   constructor(private loading: LoadingService) {}
 
   private _deliveries: Delivery[] = [

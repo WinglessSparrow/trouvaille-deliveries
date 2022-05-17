@@ -4,15 +4,16 @@ import { DeliveryInfoService } from 'src/app/core/services/prod/component-specif
 import { NavigationService } from 'src/app/core/services/prod/component-specific/navigation.service';
 import {
   MapRoutingManagerService,
-  RoutingMode
+  RoutingMode,
 } from 'src/app/core/services/prod/utility/map-routing-manager.service';
-import { Delivery } from 'src/app/shared/classes/back-end-communication/delivery';
-import { Pages } from 'src/app/shared/classes/pages';
+import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { ButtonType } from 'src/app/shared/components/trou-btn/trou-btn.component';
 import {
-  LabelLength, LabelTextSize,
-  LabelType
+  LabelLength,
+  LabelTextSize,
+  LabelType,
 } from 'src/app/shared/components/trou-label/trou-label.component';
+import { Pages } from 'src/app/shared/interfaces/enums/pages';
 
 @Component({
   selector: 'map',

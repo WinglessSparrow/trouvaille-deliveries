@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { MapNode } from 'src/app/shared/classes/back-end-communication/map-node';
-import { MapNodesRetrieverServiceModel } from 'src/app/shared/models/map-node-retriever-service-model';
+import { MapNode } from 'src/app/shared/classes/models/back-end-communication/map-node';
+import { IMapNodesRetriever } from 'src/app/shared/interfaces/services-interfaces/i-map-node-retriever';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MapWaypointsMockService extends MapNodesRetrieverServiceModel {
+export class MapWaypointsMockService extends IMapNodesRetriever {
   private _wayPoints: MapNode[] = [
     new MapNode(0, 48.004143, 7.823216),
     new MapNode(1, 48.007432, 7.821252),

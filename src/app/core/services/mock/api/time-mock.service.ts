@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { TimeServiceModel } from 'src/app/shared/models/time-service-model';
+import { ITimeManager } from 'src/app/shared/interfaces/services-interfaces/i-time-manager';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TimeMockService extends TimeServiceModel {
+export class TimeMockService extends ITimeManager {
   constructor() {
     super();
   }

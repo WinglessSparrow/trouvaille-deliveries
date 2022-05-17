@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {
   ErrorContext,
   ErrorType
-} from '../../../classes/modal-contexts/error-context';
-import { ModalContentBase } from '../../../models/components/modal-content-base.component';
-import { ModalContext } from '../../../models/data-models/modal-context';
+} from '../../../classes/models/modal-contexts/error-context';
+import { ModalContentBase } from '../../../interfaces/component-interfaces/modal-content-base.component';
+import { ModalContext } from '../../../interfaces/abstract-classes/modal-context';
 import { ButtonType } from '../../trou-btn/trou-btn.component';
 
 @Component({

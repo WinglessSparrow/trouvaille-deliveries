@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CarIdVerificationModel } from 'src/app/shared/classes/car-id-verification-model';
+import { ICarIdVerification } from 'src/app/shared/interfaces/services-interfaces/i-car-id-verification';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CarIdVerificationMockService extends CarIdVerificationModel {
+export class CarIdVerificationMockService extends ICarIdVerification {
   constructor() {
     super();
   }

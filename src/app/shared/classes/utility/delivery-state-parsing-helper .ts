@@ -1,4 +1,4 @@
-import { DeliveryStates } from '../models/delivery-states';
+import { DeliveryStates } from '../../interfaces/enums/delivery-states';
 
 export class DeliveryStateParsingHelper {
   static getColorFromState(state: DeliveryStates): string {

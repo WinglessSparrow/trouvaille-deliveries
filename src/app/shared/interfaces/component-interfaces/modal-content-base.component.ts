@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalContext } from '../data-models/modal-context';
+import { ModalContext } from '../abstract-classes/modal-context';
 
 @Component({
   selector: 'modal-content-base',
