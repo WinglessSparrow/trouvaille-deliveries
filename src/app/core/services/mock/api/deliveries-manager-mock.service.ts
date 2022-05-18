@@ -13,159 +13,159 @@ export class DeliveriesManagerMockService implements IDeliveriesManager {
   constructor(private loading: LoadingService) {}
 
   private _deliveries: Delivery[] = [
-    new Delivery({
-      index: 0,
-      idDelivery: '0-a0',
-      customer: new Customer({
-        firstName: 'Huila',
-        lastName: 'Morzovyi',
-        email: 'mail',
-      }),
-      dstAddress: new Address({
-        zipcode: 77815,
-        streetName: 'Ottenhofener Str.',
-        streetNumber: 13,
-        city: 'Buehl',
-        country: 'Germany',
-      }),
-      state: DeliveryStates.DELIVERED,
-    }),
-    new Delivery({
-      index: 1,
-      idDelivery: '0-a1',
-      customer: new Customer({
-        firstName: 'Holo',
-        lastName: 'The Wise Wolf',
-        email: 'mail',
-      }),
-      dstAddress: new Address({
-        zipcode: 77815,
-        streetName: 'Ottenhofener Str.',
-        streetNumber: 14,
-        city: 'Buehl',
-        country: 'Germany',
-      }),
-      state: DeliveryStates.DELIVERY_FAILED,
-    }),
-    new Delivery({
-      index: 2,
-      idDelivery: '0-a2',
-      customer: new Customer({
-        firstName: 'Pavel',
-        lastName: 'Hujavel',
-        email: 'mail',
-      }),
-      dstAddress: new Address({
-        zipcode: 77815,
-        streetName: 'Ottenhofener Str.',
-        streetNumber: 11,
-        city: 'Buehl',
-        country: 'Germany',
-      }),
-      state: DeliveryStates.IN_CAR,
-    }),
-    new Delivery({
-      index: 3,
-      idDelivery: '0-a3',
-      customer: new Customer({
-        firstName: 'Johnatan',
-        lastName: 'Joestar',
-        email: 'mail',
-      }),
-      dstAddress: new Address({
-        zipcode: 77815,
-        streetName: 'Ottenhofener Str.',
-        streetNumber: 69,
-        city: 'Buehl',
-        country: 'Germany',
-      }),
-      state: DeliveryStates.REQUESTED_PICKUP,
-    }),
-    new Delivery({
-      index: 6,
-      idDelivery: '0-a6',
-      customer: new Customer({
-        firstName: 'Jouske',
-        lastName: 'Jouske',
-        email: 'mail',
-      }),
-      dstAddress: new Address({
-        zipcode: 77815,
-        streetName: 'Ottenhofener Str.',
-        streetNumber: 90,
-        city: 'Buehl',
-        country: 'Germany',
-      }),
-      state: DeliveryStates.PICKED_UP,
-    }),
-    new Delivery({
-      index: 4,
-      idDelivery: '0-a4',
-      customer: new Customer({
-        firstName: 'Otton',
-        lastName: 'Von Otto',
-        email: 'mail',
-      }),
-      dstAddress: new Address({
-        zipcode: 77815,
-        streetName: 'Prueßen Str.',
-        streetNumber: 11,
-        city: 'Brelin',
-        country: 'Germany',
-      }),
-      state: DeliveryStates.IN_CENTRAL,
-    }),
-    new Delivery({
-      index: 5,
-      idDelivery: '0-a5',
-      customer: new Customer({
-        firstName: 'Mann',
-        lastName: 'Männlich',
-        email: 'mail',
-      }),
-      dstAddress: new Address({
-        zipcode: 77815,
-        streetName: 'Mänlicher Str.',
-        streetNumber: 11,
-        city: 'MannStadt',
-        country: 'Germany',
-      }),
-      state: DeliveryStates.IN_CENTRAL,
-    }),
-    new Delivery({
-      index: 7,
-      idDelivery: '0-a7',
-      customer: new Customer({
-        firstName: 'Mister',
-        lastName: 'Weiblich',
-        email: 'mail',
-      }),
-      dstAddress: new Address({
-        zipcode: 77815,
-        streetName: 'Weibliche Str.',
-        streetNumber: 41,
-        city: 'FrauStadt',
-        country: 'Hermany',
-      }),
-      state: DeliveryStates.REQUESTED_PICKUP,
-    }),
-    new Delivery({
-      index: 8,
-      idDelivery: '0-a8',
-      customer: new Customer({
-        firstName: 'Man',
-        lastName: 'Of West',
-        email: 'mail',
-      }),
-      dstAddress: new Address({
-        zipcode: 77815,
-        streetName: 'Westliche Str.',
-        streetNumber: 41,
-        city: 'Tallinn',
-        country: 'AusdachtLand',
-      }),
-      state: DeliveryStates.REQUESTED_PICKUP,
-    }),
+    // new Delivery({
+    //   index: 0,
+    //   idDelivery: '0-a0',
+    //   customer: new Customer({
+    //     firstName: 'Huila',
+    //     lastName: 'Morzovyi',
+    //     email: 'mail',
+    //   }),
+    //   dstAddress: new Address({
+    //     zipcode: 77815,
+    //     streetName: 'Ottenhofener Str.',
+    //     streetNumber: 13,
+    //     city: 'Buehl',
+    //     country: 'Germany',
+    //   }),
+    //   state: DeliveryStates.DELIVERED,
+    // }),
+    // new Delivery({
+    //   index: 1,
+    //   idDelivery: '0-a1',
+    //   customer: new Customer({
+    //     firstName: 'Holo',
+    //     lastName: 'The Wise Wolf',
+    //     email: 'mail',
+    //   }),
+    //   dstAddress: new Address({
+    //     zipcode: 77815,
+    //     streetName: 'Ottenhofener Str.',
+    //     streetNumber: 14,
+    //     city: 'Buehl',
+    //     country: 'Germany',
+    //   }),
+    //   state: DeliveryStates.DELIVERY_FAILED,
+    // }),
+    // new Delivery({
+    //   index: 2,
+    //   idDelivery: '0-a2',
+    //   customer: new Customer({
+    //     firstName: 'Pavel',
+    //     lastName: 'Hujavel',
+    //     email: 'mail',
+    //   }),
+    //   dstAddress: new Address({
+    //     zipcode: 77815,
+    //     streetName: 'Ottenhofener Str.',
+    //     streetNumber: 11,
+    //     city: 'Buehl',
+    //     country: 'Germany',
+    //   }),
+    //   state: DeliveryStates.IN_CAR,
+    // }),
+    // new Delivery({
+    //   index: 3,
+    //   idDelivery: '0-a3',
+    //   customer: new Customer({
+    //     firstName: 'Johnatan',
+    //     lastName: 'Joestar',
+    //     email: 'mail',
+    //   }),
+    //   dstAddress: new Address({
+    //     zipcode: 77815,
+    //     streetName: 'Ottenhofener Str.',
+    //     streetNumber: 69,
+    //     city: 'Buehl',
+    //     country: 'Germany',
+    //   }),
+    //   state: DeliveryStates.REQUESTED_PICKUP,
+    // }),
+    // new Delivery({
+    //   index: 6,
+    //   idDelivery: '0-a6',
+    //   customer: new Customer({
+    //     firstName: 'Jouske',
+    //     lastName: 'Jouske',
+    //     email: 'mail',
+    //   }),
+    //   dstAddress: new Address({
+    //     zipcode: 77815,
+    //     streetName: 'Ottenhofener Str.',
+    //     streetNumber: 90,
+    //     city: 'Buehl',
+    //     country: 'Germany',
+    //   }),
+    //   state: DeliveryStates.PICKED_UP,
+    // }),
+    // new Delivery({
+    //   index: 4,
+    //   idDelivery: '0-a4',
+    //   customer: new Customer({
+    //     firstName: 'Otton',
+    //     lastName: 'Von Otto',
+    //     email: 'mail',
+    //   }),
+    //   dstAddress: new Address({
+    //     zipcode: 77815,
+    //     streetName: 'Prueßen Str.',
+    //     streetNumber: 11,
+    //     city: 'Brelin',
+    //     country: 'Germany',
+    //   }),
+    //   state: DeliveryStates.IN_CENTRAL,
+    // }),
+    // new Delivery({
+    //   index: 5,
+    //   idDelivery: '0-a5',
+    //   customer: new Customer({
+    //     firstName: 'Mann',
+    //     lastName: 'Männlich',
+    //     email: 'mail',
+    //   }),
+    //   dstAddress: new Address({
+    //     zipcode: 77815,
+    //     streetName: 'Mänlicher Str.',
+    //     streetNumber: 11,
+    //     city: 'MannStadt',
+    //     country: 'Germany',
+    //   }),
+    //   state: DeliveryStates.IN_CENTRAL,
+    // }),
+    // new Delivery({
+    //   index: 7,
+    //   idDelivery: '0-a7',
+    //   customer: new Customer({
+    //     firstName: 'Mister',
+    //     lastName: 'Weiblich',
+    //     email: 'mail',
+    //   }),
+    //   dstAddress: new Address({
+    //     zipcode: 77815,
+    //     streetName: 'Weibliche Str.',
+    //     streetNumber: 41,
+    //     city: 'FrauStadt',
+    //     country: 'Hermany',
+    //   }),
+    //   state: DeliveryStates.REQUESTED_PICKUP,
+    // }),
+    // new Delivery({
+    //   index: 8,
+    //   idDelivery: '0-a8',
+    //   customer: new Customer({
+    //     firstName: 'Man',
+    //     lastName: 'Of West',
+    //     email: 'mail',
+    //   }),
+    //   dstAddress: new Address({
+    //     zipcode: 77815,
+    //     streetName: 'Westliche Str.',
+    //     streetNumber: 41,
+    //     city: 'Tallinn',
+    //     country: 'AusdachtLand',
+    //   }),
+    //   state: DeliveryStates.REQUESTED_PICKUP,
+    // }),
   ];
 
   public getAllPackages(): Promise<Delivery[]> {
@@ -193,7 +193,7 @@ export class DeliveriesManagerMockService implements IDeliveriesManager {
   public async changeState(newDelivery: Delivery) {
     await new Promise((resolve) => setTimeout(() => {}, 1000));
     console.log(
-      `bip-bop I'm  a mock, \n I changed the state of the delivery ${newDelivery.idDelivery} to ${newDelivery.state}`
+      `bip-bop I'm  a mock, \n I changed the state of the delivery ${newDelivery.iddelivery} to ${newDelivery.state}`
     );
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable, ReplaySubject } from 'rxjs';
-import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
+import { RouteDataState } from 'src/app/core/store/route-data/route-data.state';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 
@@ -15,7 +15,7 @@ export class SummaryProviderService {
   );
 
   constructor(store: Store) {
-    this._deliveries$ = store.select(DeliveryState.getDeliveries);
+    this._deliveries$ = store.select(RouteDataState.getDeliveries);
     this._deliveries$.subscribe((deliveries) => this.updateSummary(deliveries));
   }
 

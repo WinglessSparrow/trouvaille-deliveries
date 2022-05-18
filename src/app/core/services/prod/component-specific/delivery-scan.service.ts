@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { ChangeDeliveryState } from 'src/app/core/state/deliveries/deliveries.action';
-import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
+import { ChangeDeliveryState } from 'src/app/core/store/route-data/route-data.action';
+import { RouteDataState } from 'src/app/core/store/route-data/route-data.state';
 import { ChangeStatePayload } from 'src/app/shared/classes/models/general/change-state-payload';
 import { DeliveryStateParsingHelper } from 'src/app/shared/classes/utility/delivery-state-parsing-helper ';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
@@ -18,7 +18,7 @@ export class DeliveryScanService {
    * @returns info if it should be routing after the idHandle
    */
   public handleId(id: string): boolean {
-    const delivery = this.store.selectSnapshot(DeliveryState.getDelivery(id));
+    const delivery = this.store.selectSnapshot(RouteDataState.getDelivery(id));
 
     if (delivery != undefined) {
       if (

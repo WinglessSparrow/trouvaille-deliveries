@@ -2,20 +2,20 @@ import { immerable } from 'immer';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 import { Address } from './address';
 import { Customer } from './customer';
+import { IDelivery } from '../../../interfaces/back-end-communication/i-delivery';
 
-export class Delivery {
+export class Delivery implements IDelivery {
   [immerable] = true;
 
   private _position: number;
+
+  private _packageid: number;
+  private _iddelivery: string;
 
   private _customer: Customer;
 
   private _dstAddress: Address;
   private _srcAddress: Address;
-
-  private _idDelivery: string;
-  private _idPickUp: string;
-  private _idReturn: string;
 
   private _state: DeliveryStates;
 
@@ -25,10 +25,13 @@ export class Delivery {
   private _depth: number;
   private _price: number;
 
-  private externTrackingNumber: string;
-
-  constructor(val: any) {
-    Object.assign(this, val);
+  constructor(data: IDelivery) {
+    debugger;
+    Object.assign(this, data);
+    this._dstAddress = new Address(data.dstAddress);
+    this._srcAddress = new Address(data.srcAddress);
+    this._customer = new Customer(data.customer);
+    // this.state = DeliveryStates[data.state];
   }
 
   /**
@@ -37,6 +40,22 @@ export class Delivery {
    */
   public get position(): number {
     return this._position;
+  }
+
+  /**
+   * Getter packageid
+   * @return {number}
+   */
+  public get packageid(): number {
+    return this._packageid;
+  }
+
+  /**
+   * Getter iddelivery
+   * @return {string}
+   */
+  public get iddelivery(): string {
+    return this._iddelivery;
   }
 
   /**
@@ -61,30 +80,6 @@ export class Delivery {
    */
   public get srcAddress(): Address {
     return this._srcAddress;
-  }
-
-  /**
-   * Getter idDelivery
-   * @return {string}
-   */
-  public get idDelivery(): string {
-    return this._idDelivery;
-  }
-
-  /**
-   * Getter idPickUp
-   * @return {string}
-   */
-  public get idPickUp(): string {
-    return this._idPickUp;
-  }
-
-  /**
-   * Getter idReturn
-   * @return {string}
-   */
-  public get idReturn(): string {
-    return this._idReturn;
   }
 
   /**
@@ -136,19 +131,27 @@ export class Delivery {
   }
 
   /**
-   * Getter $externTrackingNumber
-   * @return {string}
-   */
-  public get $externTrackingNumber(): string {
-    return this.externTrackingNumber;
-  }
-
-  /**
    * Setter position
    * @param {number} value
    */
   public set position(value: number) {
     this._position = value;
+  }
+
+  /**
+   * Setter packageid
+   * @param {number} value
+   */
+  public set packageid(value: number) {
+    this._packageid = value;
+  }
+
+  /**
+   * Setter iddelivery
+   * @param {string} value
+   */
+  public set iddelivery(value: string) {
+    this._iddelivery = value;
   }
 
   /**
@@ -173,30 +176,6 @@ export class Delivery {
    */
   public set srcAddress(value: Address) {
     this._srcAddress = value;
-  }
-
-  /**
-   * Setter idDelivery
-   * @param {string} value
-   */
-  public set idDelivery(value: string) {
-    this._idDelivery = value;
-  }
-
-  /**
-   * Setter idPickUp
-   * @param {string} value
-   */
-  public set idPickUp(value: string) {
-    this._idPickUp = value;
-  }
-
-  /**
-   * Setter idReturn
-   * @param {string} value
-   */
-  public set idReturn(value: string) {
-    this._idReturn = value;
   }
 
   /**
@@ -245,13 +224,5 @@ export class Delivery {
    */
   public set price(value: number) {
     this._price = value;
-  }
-
-  /**
-   * Setter $externTrackingNumber
-   * @param {string} value
-   */
-  public set $externTrackingNumber(value: string) {
-    this.externTrackingNumber = value;
   }
 }

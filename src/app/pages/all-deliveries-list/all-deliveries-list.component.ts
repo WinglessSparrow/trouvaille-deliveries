@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
+import { RouteDataState } from 'src/app/core/store/route-data/route-data.state';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 
 @Component({
@@ -12,10 +12,9 @@ import { Delivery } from 'src/app/shared/classes/models/back-end-communication/d
 export class AllDeliveriesListComponent implements OnInit {
   //TODO make up some way to notify the user in case a new delivery is coming in
 
-  @Select(DeliveryState.getDeliveries) deliveries$: Observable<Delivery[]>;
+  @Select(RouteDataState.getDeliveries) deliveries$: Observable<Delivery[]>;
 
   constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

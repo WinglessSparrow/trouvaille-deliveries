@@ -1,20 +1,25 @@
-export class MapNode {
-  private _index: number;
+import { immerable } from 'immer';
+import { IMapNode } from '../../../interfaces/back-end-communication/i-map-node';
+
+export class MapNode implements IMapNode{
+  [immerable] = true;
+
+  private _position: number;
   private _latitude: number;
   private _longitude: number;
 
-  constructor(_index: number, _latitude: number, _longitude: number) {
-    this._index = _index;
-    this._latitude = _latitude;
-    this._longitude = _longitude;
+  constructor(data: IMapNode){
+    this._position = data.position;
+    this._latitude = data.latitude;
+    this._longitude = data.longitude;
   }
 
   /**
    * Getter index
    * @return {number}
    */
-  public get index(): number {
-    return this._index;
+  public get position(): number {
+    return this._position;
   }
 
   /**
@@ -37,8 +42,8 @@ export class MapNode {
    * Setter index
    * @param {number} value
    */
-  public set index(value: number) {
-    this._index = value;
+  public set position(value: number) {
+    this._position = value;
   }
 
   /**

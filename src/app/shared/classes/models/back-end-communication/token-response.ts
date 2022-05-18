@@ -1,8 +1,13 @@
-export class TokenResponse {
+import { ITokenResponse } from '../../../interfaces/back-end-communication/i-token-response';
+
+export class TokenResponse implements ITokenResponse {
   private _token: string;
   private _email: string;
   private _expirationDate: string;
-  private _authorities: any;
+
+  constructor(data: ITokenResponse) {
+    Object.assign(this, data);
+  }
 
   /**
    * Getter token
@@ -29,14 +34,6 @@ export class TokenResponse {
   }
 
   /**
-   * Getter authorities
-   * @return {any}
-   */
-  public get authorities(): any {
-    return this._authorities;
-  }
-
-  /**
    * Setter token
    * @param {string} value
    */
@@ -58,13 +55,5 @@ export class TokenResponse {
    */
   public set expirationDate(value: string) {
     this._expirationDate = value;
-  }
-
-  /**
-   * Setter authorities
-   * @param {any} value
-   */
-  public set authorities(value: any) {
-    this._authorities = value;
   }
 }

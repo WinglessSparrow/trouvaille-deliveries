@@ -21,6 +21,6 @@ export class DeliveryPreviewComponent implements OnInit {
   }
 
   goToDelivery() {
-    this.deliveryService.routeToDelivery(this.delivery.idDelivery);
+    this.deliveryService.routeToDelivery(this.delivery.iddelivery);
   }
 }

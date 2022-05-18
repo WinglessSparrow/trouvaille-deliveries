@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { SetToken } from 'src/app/core/state/token/token.action';
+import { SetToken } from 'src/app/core/store/token/token.action';
 import { Authentification } from '../../classes/models/back-end-communication/authentification';
 import { IAuthentification } from '../../interfaces/services-interfaces/i-authentification';
 import { LoadingService } from '../loading.service';

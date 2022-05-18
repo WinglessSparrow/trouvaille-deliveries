@@ -6,14 +6,8 @@ export class ChangeDeliveryState {
   constructor(public payload: ChangeStatePayload) {}
 }
 
-export class InitDeliveriesState {
+export class InitRouteData {
   static readonly type = '[DELIVERY] InitDeliveriesState';
-
-  constructor() {}
-}
-
-export class ClearDeliveries {
-  static readonly type = '[DELIVERY] ClearDeliveries';
 
   constructor() {}
 }

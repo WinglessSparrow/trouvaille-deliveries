@@ -4,11 +4,7 @@ import { Store } from '@ngxs/store';
 import { QRCode } from 'jsqr';
 import { ScannerPageTemplateComponent } from 'src/app/core/components/scanner-page-template/scanner-page-template.component';
 import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
-import {
-  ClearDeliveries,
-  InitDeliveriesState,
-} from 'src/app/core/state/deliveries/deliveries.action';
-import { ClearToken } from 'src/app/core/state/token/token.action';
+import { InitRouteData } from 'src/app/core/store/route-data/route-data.action';
 import { Pages } from 'src/app/shared/interfaces/enums/pages';
 import { ICarIdVerification } from 'src/app/shared/interfaces/services-interfaces/i-car-id-verification';
 @Component({
@@ -31,7 +27,7 @@ export class CarScannerComponent implements OnInit {
 
   logOut() {
     //clearing deliveries
-    this.store.dispatch([new ClearDeliveries(), new ClearToken()]);
+    // this.store.dispatch([new ClearDeliveries(), new ClearToken()]);
 
     this.router.navigateByUrl('');
   }
@@ -39,7 +35,7 @@ export class CarScannerComponent implements OnInit {
   async receiveCarCode(value: string) {
     if (await this.carVerification.verifyCarId(value)) {
       const subscription = this.store
-        .dispatch(new InitDeliveriesState())
+        .dispatch(new InitRouteData())
         .subscribe(() => {
           this.router.navigateByUrl('/' + Pages.Home);
           subscription.unsubscribe();

@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { ClearDeliveries } from 'src/app/core/state/deliveries/deliveries.action';
 import {
-  LabelPosition, LabelType
+  LabelPosition,
+  LabelType,
 } from 'src/app/shared/components/trou-label/trou-label.component';
 
 @Component({
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   ngAfterViewInit() {}
 
   back() {
-    this.store.dispatch(new ClearDeliveries());
+    // this.store.dispatch(new ClearDeliveries());
     this.router.navigateByUrl('/carScanner');
   }
 

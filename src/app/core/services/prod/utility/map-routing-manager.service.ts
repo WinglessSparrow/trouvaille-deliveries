@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
-import { Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { LatLng, Routing } from 'leaflet';
 import { Subject } from 'rxjs';
-import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
+import { RouteDataState } from 'src/app/core/store/route-data/route-data.state';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { MapNode } from 'src/app/shared/classes/models/back-end-communication/map-node';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
-import { IMapNodesRetriever } from 'src/app/shared/interfaces/services-interfaces/i-map-node-retriever';
+import { RouteData } from 'src/app/shared/classes/models/back-end-communication/route-data';
 
 @Injectable({
   providedIn: 'root',
@@ -23,19 +23,21 @@ export class MapRoutingManagerService {
   private _posNode: number = 0;
   private _mode: RoutingMode = RoutingMode.ALL_NODES;
 
-  constructor(store: Store, mapNodesRetriever: IMapNodesRetriever) {
-    store.select(DeliveryState.getDeliveries).subscribe((val) => {
-      this._deliveries = val;
-      this._currNode = this.findCurrentDeliveryIndex();
+  @Select(RouteDataState.getRoute) $routeData;
 
-      mapNodesRetriever.getMapNodes().then((nodes) => {
-        this._nodes = nodes;
+  constructor() {
+    this.$routeData.subscribe((data: RouteData) => {
+      if (data != null) {
+        this._deliveries = data.packages;
+        this._nodes = data.nodes;
+        this._currNode = this.findCurrentDeliveryIndex();
         this._markersChanged.next();
-      });
+      }
+      this.renewRoute();
     });
 
     setInterval(() => {
-      this.initRoute();
+      this.renewRoute();
     }, 60000);
   }
 
@@ -57,15 +59,21 @@ export class MapRoutingManagerService {
     ];
   }
 
-  public async initRoute() {
-    let waypoints: LatLng[] = await this.getWaypoints(this._mode);
-    this._controls.setWaypoints(waypoints);
+  public async renewRoute() {
+    if (
+      this._nodes != null &&
+      this._deliveries != null &&
+      this._controls != null
+    ) {
+      let waypoints: LatLng[] = await this.getWaypoints(this._mode);
+      this._controls.setWaypoints(waypoints);
+    }
   }
 
   public getCurrentPrevNextDeliveries(): Delivery[] {
     let retArr: Delivery[];
 
-    if (this._currNode != null) {
+    if (this._currNode != null && this._deliveries != null) {
       retArr = [];
 
       const idxPrev = this._currNode - 1;
@@ -87,6 +95,7 @@ export class MapRoutingManagerService {
   private async getWaypoints(mode: RoutingMode): Promise<LatLng[]> {
     let waypoints: LatLng[];
 
+    //TODO should create option class over some interface or smth
     switch (mode) {
       case RoutingMode.ALL_NODES:
         waypoints = this._nodes.map((node) => {
@@ -101,8 +110,8 @@ export class MapRoutingManagerService {
         waypoints = this._nodes
           .filter((node) => {
             return (
-              this._deliveries[node.index].state === DeliveryStates.IN_CAR ||
-              this._deliveries[node.index].state ===
+              this._deliveries[node.position].state === DeliveryStates.IN_CAR ||
+              this._deliveries[node.position].state ===
                 DeliveryStates.REQUESTED_PICKUP
             );
           })
@@ -134,7 +143,6 @@ export class MapRoutingManagerService {
 
   private findNextDeliveryIndex(): number {
     const temp = this._deliveries.find((val) => {
-      // debugger;
       return (
         (val.state === DeliveryStates.IN_CAR ||
           val.state === DeliveryStates.REQUESTED_PICKUP) &&

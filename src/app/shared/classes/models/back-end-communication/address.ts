@@ -1,24 +1,25 @@
 import { immerable } from 'immer';
+import { IAddress } from '../../../interfaces/back-end-communication/i-address';
 
-export class Address {
+export class Address implements IAddress {
   [immerable] = true;
 
   private _zipcode: number;
-  private _streetName: string;
-  private _streetNumber: number;
+  private _streetname: string;
+  private _streetnumber: number;
   private _city: string;
   private _country: string;
 
-  constructor(val: any) {
-    Object.assign(this, val);
+  constructor(data: IAddress) {
+    Object.assign(this, data);
   }
 
   public get address(): string {
-    return `${this._streetName} ${this._streetNumber}, ${this._zipcode} ${this._city}`;
+    return `${this._streetname} ${this._streetnumber}, ${this._zipcode} ${this._city}`;
   }
 
   public get internationalAddress(): string {
-    return `${this._streetName} ${this._streetNumber}, ${this._zipcode} ${this._city}, ${this._country}`;
+    return `${this._streetname} ${this._streetnumber}, ${this._zipcode} ${this._city}, ${this._country}`;
   }
 
   /**
@@ -33,16 +34,16 @@ export class Address {
    * Getter streetName
    * @return {string}
    */
-  public get streetName(): string {
-    return this._streetName;
+  public get streetname(): string {
+    return this._streetname;
   }
 
   /**
    * Getter streetNumber
    * @return {number}
    */
-  public get streetNumber(): number {
-    return this._streetNumber;
+  public get streetnumber(): number {
+    return this._streetnumber;
   }
 
   /**
@@ -73,16 +74,16 @@ export class Address {
    * Setter streetName
    * @param {string} value
    */
-  public set streetName(value: string) {
-    this._streetName = value;
+  public set streetname(value: string) {
+    this._streetname = value;
   }
 
   /**
    * Setter streetNumber
    * @param {number} value
    */
-  public set streetNumber(value: number) {
-    this._streetNumber = value;
+  public set streetnumber(value: number) {
+    this._streetnumber = value;
   }
 
   /**

@@ -3,9 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { Platform } from '@ionic/angular';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { HeaderService } from './core/services/prod/component-specific/header.service';
 import { ModalService } from './core/services/prod/component-specific/modal.service';
+import { InitRouteData } from './core/store/route-data/route-data.action';
+import { TokenState } from './core/store/token/token.state';
 import { PageDescriptor } from './shared/classes/models/general/pageDescriptor';
 import { Pages } from './shared/interfaces/enums/pages';
 
@@ -36,13 +40,21 @@ export class AppComponent implements OnInit {
   ];
 
   isModalOpen$: Observable<boolean> = new Observable();
+  @Select(TokenState.getToken) $token;
 
   constructor(
     private router: Router,
     private headerService: HeaderService,
     private modal: ModalService,
-    private platform: Platform
-  ) {}
+    private platform: Platform,
+    private store: Store
+  ) {
+    this.$token.subscribe((val) => {
+      if (val != null || !environment.production) {
+        // store.dispatch(new InitRouteData());
+      }
+    });
+  }
 
   ngOnInit() {
     if (!(this.platform.is('mobileweb') || this.platform.is('desktop'))) {

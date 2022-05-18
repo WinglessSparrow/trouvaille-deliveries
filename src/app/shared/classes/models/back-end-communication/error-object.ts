@@ -1,16 +1,23 @@
-export class ErrorObject {
+import { IErrorObject } from 'src/app/shared/interfaces/back-end-communication/i-error-object';
+
+export class ErrorObject implements IErrorObject {
   private _timestamp: Date;
   private _status: string;
   private _error: string;
   private _message: string;
   private _path: string;
 
+  constructor(data: IErrorObject) {
+    Object.assign(this, data);
+    this._timestamp = new Date(data.timestamp);
+  }
+
   /**
    * Getter timestamp
    * @return {Date}
    */
-  public get timestamp(): Date {
-    return this._timestamp;
+  public get timestamp(): string {
+    return this._timestamp.toUTCString();
   }
 
   /**
@@ -49,8 +56,8 @@ export class ErrorObject {
    * Setter timestamp
    * @param {Date} value
    */
-  public set timestamp(value: Date) {
-    this._timestamp = value;
+  public set timestamp(value: string) {
+    this._timestamp = new Date(value);
   }
 
   /**

@@ -20,7 +20,7 @@ import { Pages } from 'src/app/shared/interfaces/enums/pages';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
 })
-export class MapComponent implements OnInit, OnDestroy {
+export class MapComponent implements OnInit {
   currDelivery: Delivery = null;
   nextDelivery: Delivery = null;
 
@@ -38,22 +38,19 @@ export class MapComponent implements OnInit, OnDestroy {
     private navigation: NavigationService,
     private routingManager: MapRoutingManagerService,
     private deliveryRouter: DeliveryInfoService
-  ) {}
-
-  ngOnInit() {
-    this.setAddress();
+  ) {
     this.subscription = this.routingManager.markerChanges.subscribe(() =>
       this.setAddress()
     );
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  ngOnInit() {
+    this.setAddress();
   }
 
   async onChangeSelect() {
     this.routingManager.mode = this.selectedMode;
-    await this.routingManager.initRoute();
+    await this.routingManager.renewRoute();
   }
 
   setAddress() {
@@ -63,10 +60,10 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   goToNextDelivery() {
-    this.deliveryRouter.routeToDelivery(this.currDelivery.idDelivery);
+    this.deliveryRouter.routeToDelivery(this.currDelivery.iddelivery);
   }
   goToCurrentDelivery() {
-    this.deliveryRouter.routeToDelivery(this.nextDelivery.idDelivery);
+    this.deliveryRouter.routeToDelivery(this.nextDelivery.iddelivery);
   }
 
   goToDeliveryScan() {

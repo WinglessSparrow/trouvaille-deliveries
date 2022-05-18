@@ -12,15 +12,18 @@ import { CarIdVerificationMockService } from 'src/app/core/services/mock/api/car
 import { ConnectionMockService } from 'src/app/core/services/mock/api/connection-mock.service';
 import { DeliveriesManagerMockService } from 'src/app/core/services/mock/api/deliveries-manager-mock.service';
 import { MapWaypointsMockService } from 'src/app/core/services/mock/api/map-waypoints-mock.service';
+import { RouteDataRetrieverMockService } from 'src/app/core/services/mock/api/route-data-retriever-mock.service';
 import { StateManagerMockService } from 'src/app/core/services/mock/api/state-manager-mock.service';
 import { TimeMockService } from 'src/app/core/services/mock/api/time-mock.service';
 import { TokenRefresherMockService } from 'src/app/core/services/mock/api/token-refresher-mock.service';
 import { AuthService } from 'src/app/core/services/prod/http-calls/auth.service';
+import { RouteDataRetrieverService } from 'src/app/core/services/prod/http-calls/route-data-retriever.service';
 import { IAuthentification } from 'src/app/shared/interfaces/services-interfaces/i-authentification';
 import { ICarIdVerification } from 'src/app/shared/interfaces/services-interfaces/i-car-id-verification';
 import { IConnection } from 'src/app/shared/interfaces/services-interfaces/i-connection';
 import { IDeliveriesManager } from 'src/app/shared/interfaces/services-interfaces/i-deliveries-manager';
 import { IMapNodesRetriever } from 'src/app/shared/interfaces/services-interfaces/i-map-node-retriever';
+import { IRouteRetriever } from 'src/app/shared/interfaces/services-interfaces/i-route-retriever';
 import { IStateManager } from 'src/app/shared/interfaces/services-interfaces/i-state-manager';
 import { ITimeManager } from 'src/app/shared/interfaces/services-interfaces/i-time-manager';
 import { ITokenRefresher } from 'src/app/shared/interfaces/services-interfaces/i-token-refresher';
@@ -72,6 +75,11 @@ export const environment = {
     {
       provide: IMapNodesRetriever,
       useClass: MapWaypointsMockService,
+    },
+    {
+      provide: IRouteRetriever,
+      // useClass: RouteDataRetrieverMockService,
+      useClass: RouteDataRetrieverService,
     },
   ],
 };

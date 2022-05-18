@@ -1,11 +1,19 @@
 import { ErrorObject } from './error-object';
+import { IGlobalResponseModel } from '../../../interfaces/back-end-communication/i-global-response-model';
 
-export class GlobalResponseModel<T> {
+export class GlobalResponseModel<T> implements IGlobalResponseModel<T> {
   private _hasError: boolean;
   private _error: ErrorObject;
   private _hasWarnings: boolean;
   private _warnings: string[];
-  private _data: Array<T>;
+  private _data: Array<T> = [];
+
+  constructor(data: IGlobalResponseModel<T>) {
+    Object.assign(this, data);
+    // for(let entry of data.data){
+    //   this._data.push(new T(entry));
+    // }
+  }
 
   /**
    * Getter hasError

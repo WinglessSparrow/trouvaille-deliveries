@@ -6,7 +6,7 @@ import { LabelLength } from 'src/app/shared/components/trou-label/trou-label.com
 import { MapFactoryService } from '../../services/prod/utility/map-factory.service';
 import {
   MapRoutingManagerService,
-  RoutingMode
+  RoutingMode,
 } from '../../services/prod/utility/map-routing-manager.service';
 import { RoutingFactoryService } from '../../services/prod/utility/routing-factory.service';
 
@@ -41,7 +41,7 @@ export class MapViewComponent implements OnInit {
     this.routingManager.controls = this.routingFactory.controller;
     this.routingFactory.controller.addTo(this._map);
 
-    await this.routingManager.initRoute();
+    await this.routingManager.renewRoute();
   }
 
   toggleSelect() {
@@ -65,11 +65,11 @@ export class MapViewComponent implements OnInit {
   }
 
   async reload() {
-    await this.routingManager.initRoute();
+    await this.routingManager.renewRoute();
   }
 
   async onChangeSelect() {
     this.routingManager.mode = this.selectedMode;
-    await this.routingManager.initRoute();
+    await this.routingManager.renewRoute();
   }
 }

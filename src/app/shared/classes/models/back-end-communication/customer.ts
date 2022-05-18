@@ -1,52 +1,35 @@
 import { immerable } from 'immer';
+import { ICustomer } from '../../../interfaces/back-end-communication/i-customer';
 
-export class Customer {
+export class Customer implements ICustomer {
   [immerable] = true;
 
-  private _idCustomer: string;
-  private _firstName: string;
-  private _lastName: string;
+  private _firstname: string;
+  private _lastname: string;
   private _email: string;
 
-  constructor(val: any) {
-    Object.assign(this, val);
-  }
-
-  /**
-   * Getter name
-   * @return {string}
-   */
-
-  public getName(): string {
-    return this._firstName + ' ' + this._lastName;
+  constructor(data: ICustomer) {
+    Object.assign(this, data);
   }
 
   public get name(): string {
-    return `${this._firstName} ${this._lastName}`;
+    return `${this._firstname} ${this._lastname}`;
   }
 
   /**
-   * Getter idCustomer
+   * Getter firstname
    * @return {string}
    */
-  public get idCustomer(): string {
-    return this._idCustomer;
+  public get firstname(): string {
+    return this._firstname;
   }
 
   /**
-   * Getter firstName
+   * Getter lastname
    * @return {string}
    */
-  public get firstName(): string {
-    return this._firstName;
-  }
-
-  /**
-   * Getter lastName
-   * @return {string}
-   */
-  public get lastName(): string {
-    return this._lastName;
+  public get lastname(): string {
+    return this._lastname;
   }
 
   /**
@@ -58,27 +41,19 @@ export class Customer {
   }
 
   /**
-   * Setter idCustomer
+   * Setter firstname
    * @param {string} value
    */
-  public set idCustomer(value: string) {
-    this._idCustomer = value;
+  public set firstname(value: string) {
+    this._firstname = value;
   }
 
   /**
-   * Setter firstName
+   * Setter lastname
    * @param {string} value
    */
-  public set firstName(value: string) {
-    this._firstName = value;
-  }
-
-  /**
-   * Setter lastName
-   * @param {string} value
-   */
-  public set lastName(value: string) {
-    this._lastName = value;
+  public set lastname(value: string) {
+    this._lastname = value;
   }
 
   /**

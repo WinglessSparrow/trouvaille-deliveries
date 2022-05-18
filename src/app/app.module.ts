@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { DeliveryState } from './core/state/deliveries/deliveries.state';
-import { TokenState } from './core/state/token/token.state';
+import { RouteDataState } from './core/store/route-data/route-data.state';
+import { TokenState } from './core/store/token/token.state';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -30,7 +30,7 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     SharedModule,
     BrowserAnimationsModule,
-    NgxsModule.forRoot([TokenState, DeliveryState], {
+    NgxsModule.forRoot([TokenState, RouteDataState], {
       developmentMode: !environment.production,
     }),
     NgxsReduxDevtoolsPluginModule.forRoot(),

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
-import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
+import { RouteDataState } from 'src/app/core/store/route-data/route-data.state';
 import { WorkingTimeDescriptor } from 'src/app/shared/classes/models/general/working-time-descriptor';
 import { LabelType } from 'src/app/shared/components/trou-label/trou-label.component';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
@@ -97,7 +97,7 @@ export class TimeComponent implements OnInit {
      */
     return (
       this.store
-        .selectSnapshot(DeliveryState.getDeliveries)
+        .selectSnapshot(RouteDataState.getDeliveries)
         .find(
           (val) =>
             val.state === DeliveryStates.IN_CAR ||

@@ -10,7 +10,7 @@ export class TokenStateModel {
 @State<TokenStateModel>({
   name: 'token',
   defaults: {
-    token: '',
+    token: null,
   },
 })
 @Injectable()

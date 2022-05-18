@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { HeaderService } from 'src/app/core/services/prod/component-specific/header.service';
-import { ChangeDeliveryState } from 'src/app/core/state/deliveries/deliveries.action';
-import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
+import { ChangeDeliveryState } from 'src/app/core/store/route-data/route-data.action';
+import { RouteDataState } from 'src/app/core/store/route-data/route-data.state';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { ChangeStatePayload } from 'src/app/shared/classes/models/general/change-state-payload';
 import { LabelLength } from 'src/app/shared/components/trou-label/trou-label.component';
@@ -37,7 +37,7 @@ export class DeliveryInfoComponent implements OnInit, OnDestroy {
   }
 
   renewState() {
-    const delivery$ = this.store.select(DeliveryState.getDelivery(this.id));
+    const delivery$ = this.store.select(RouteDataState.getDelivery(this.id));
     this.deliverySubscription = delivery$.subscribe((val) => {
       this.delivery = val;
     });

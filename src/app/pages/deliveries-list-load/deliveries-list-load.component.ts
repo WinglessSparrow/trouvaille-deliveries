@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs/internal/Observable';
-import { DeliveryState } from 'src/app/core/state/deliveries/deliveries.state';
+import { RouteDataState } from 'src/app/core/store/route-data/route-data.state';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 
 @Component({
@@ -10,7 +10,7 @@ import { Delivery } from 'src/app/shared/classes/models/back-end-communication/d
   styleUrls: ['./deliveries-list-load.component.scss'],
 })
 export class DeliveriesListLoadComponent implements OnInit {
-  @Select(DeliveryState.getDeliveriesToLoad) deliveries$: Observable<
+  @Select(RouteDataState.getDeliveriesToLoad) deliveries$: Observable<
     Delivery[]
   >;
 
