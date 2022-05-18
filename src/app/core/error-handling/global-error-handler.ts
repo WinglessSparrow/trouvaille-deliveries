@@ -13,32 +13,29 @@ export class GlobalErrorHandler implements ErrorHandler {
   handleError(error: any): void {
     // debugger;
     var context: ErrorContext;
-    //TODO whatever nonsense Object the server is going to send back must be accounted for!
-    //TODO different callback on different bullshit happening
-    //FIXME so far there is only a simple "close modal present"
-    if ('rejection' in error) {
-      error = error.rejection;
-      if (error instanceof HttpErrorResponse) {
-        // debugger;
-        this.modalService.openModal(
-          HttpComponent,
-          HttpModalContext.fromHttpError(error)
-        );
-        return;
-      }
-      context = new ErrorContext(
-        'Client Side Error',
-        error?.message,
-        'got ya',
-        () => {
-          this.modalService.close();
-        }
+    // if ('rejection' in error) {
+    // error = error.rejection;
+    if (error instanceof HttpErrorResponse) {
+      // debugger;
+      this.modalService.openModal(
+        HttpComponent,
+        HttpModalContext.fromHttpError(error)
       );
-
-      this.modalService.openModal(ErrorComponent, context);
-    } else {
-      this.modalService.openBugModal(error?.stack, error?.message);
+      return;
     }
+    context = new ErrorContext(
+      'Client Side Error',
+      error?.message,
+      'got ya',
+      () => {
+        this.modalService.close();
+      }
+    );
+
+    this.modalService.openModal(ErrorComponent, context);
+    // } else {
+    // this.modalService.openBugModal(error?.stack, error?.message);
+    // }
 
     console.error('Error from global error handler', error);
   }

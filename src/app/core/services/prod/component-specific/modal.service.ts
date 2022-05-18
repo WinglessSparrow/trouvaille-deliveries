@@ -1,6 +1,10 @@
 import { Injectable, NgZone, Type } from '@angular/core';
+import { Queue } from 'queue-typescript';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ErrorContext, ErrorType } from 'src/app/shared/classes/models/modal-contexts/error-context';
+import {
+  ErrorContext,
+  ErrorType,
+} from 'src/app/shared/classes/models/modal-contexts/error-context';
 import { HttpModalContext } from 'src/app/shared/classes/models/modal-contexts/http-context';
 import { ErrorComponent } from 'src/app/shared/components/modal-views/error/error.component';
 import { HttpComponent } from 'src/app/shared/components/modal-views/http/http.component';
@@ -16,26 +20,21 @@ export class ModalService {
     false
   );
   private _modal: TrouModalComponent;
-  public nextModalContext: {
-    content: Type<ModalContentBase>;
-    context: ModalContext;
-  };
+  public nextModalContext: [Type<ModalContentBase>, ModalContext];
+  private _pendingModals: Queue<[Type<ModalContentBase>, ModalContext]> =
+    new Queue<[Type<ModalContentBase>, ModalContext]>();
 
-  constructor(private zone: NgZone) {
-    this._modalActive.subscribe((val) => console.log(val));
-  }
+  constructor(private zone: NgZone) {}
 
   public openModal(content: Type<ModalContentBase>, context: ModalContext) {
-    setTimeout(() => {
+    if (!this._modalActive.value) {
       this.zone.run(() => {
-        if (!this._modalActive.value) {
-          this.nextModalContext = { content, context };
-          this._modalActive.next(true);
-        } else {
-          this.logModalError(content);
-        }
+        this.nextModalContext = [content, context];
+        this._modalActive.next(true);
       });
-    }, 10);
+    } else {
+      this._pendingModals.enqueue([content, context]);
+    }
   }
 
   public openHttpModal(
@@ -93,6 +92,12 @@ export class ModalService {
 
   public close() {
     this._modalActive.next(false);
+    if (this._pendingModals.length > 0) {
+      setTimeout(() => {
+        const modalData = this._pendingModals.dequeue();
+        this.openModal(modalData[0], modalData[1]);
+      }, 50);
+    }
   }
 
   /**

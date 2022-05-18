@@ -1,21 +1,16 @@
-import {
-  animate, style,
-  transition,
-  trigger
-} from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
 import {
   Component,
   ComponentRef,
   OnInit,
   Type,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
 import { ModalContentBase } from '../../interfaces/component-interfaces/modal-content-base.component';
 import { ModalContext } from '../../interfaces/abstract-classes/modal-context';
-
 
 export enum ModalType {
   error,
@@ -49,8 +44,8 @@ export class TrouModalComponent implements OnInit {
 
   ngOnInit() {
     this.setContent(
-      this.modalService.nextModalContext.content,
-      this.modalService.nextModalContext.context
+      this.modalService.nextModalContext[0],
+      this.modalService.nextModalContext[1]
     );
   }
 
