@@ -5,6 +5,7 @@ import { map } from 'rxjs/internal/operators/map';
 import { SetToken } from 'src/app/core/store/token/token.action';
 import { Authentification } from 'src/app/shared/classes/models/back-end-communication/authentification';
 import { TokenResponse } from 'src/app/shared/classes/models/back-end-communication/token-response';
+import { APIUrls } from 'src/app/shared/classes/utility/api-urls';
 import { IGlobalResponseModel } from 'src/app/shared/interfaces/back-end-communication/i-global-response-model';
 import { ITokenResponse } from 'src/app/shared/interfaces/back-end-communication/i-token-response';
 import { IAuthentification } from 'src/app/shared/interfaces/services-interfaces/i-authentification';
@@ -21,7 +22,7 @@ export class AuthService extends IAuthentification {
     return new Promise<boolean>((resolve) => {
       this.http
         .post<IGlobalResponseModel<ITokenResponse>>(
-          'https://td.vvjm.dev/api/auth',
+          APIUrls.AUTH,
           JSON.stringify(auth),
           { headers: { 'Content-Type': 'application/json; charset=utf-8' } }
         )

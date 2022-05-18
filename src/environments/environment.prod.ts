@@ -23,7 +23,7 @@ import { IConnection } from 'src/app/shared/interfaces/services-interfaces/i-con
 import { IDeliveriesManager } from 'src/app/shared/interfaces/services-interfaces/i-deliveries-manager';
 import { IMapNodesRetriever } from 'src/app/shared/interfaces/services-interfaces/i-map-node-retriever';
 import { IRouteRetriever } from 'src/app/shared/interfaces/services-interfaces/i-route-retriever';
-import { IStateManager } from 'src/app/shared/interfaces/services-interfaces/i-state-manager';
+import { IDeliveryStateManager } from 'src/app/shared/interfaces/services-interfaces/i-delivery-state-manager';
 import { ITimeManager } from 'src/app/shared/interfaces/services-interfaces/i-time-manager';
 import { ITokenRefresher } from 'src/app/shared/interfaces/services-interfaces/i-token-refresher';
 
@@ -63,7 +63,7 @@ export const environment = {
       useClass: CarIdVerificationMockService,
     },
     {
-      provide: IStateManager,
+      provide: IDeliveryStateManager,
       useClass: StateManagerMockService,
     },
     {

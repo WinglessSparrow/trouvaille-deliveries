@@ -23,10 +23,10 @@ export class MapRoutingManagerService {
   private _posNode: number = 0;
   private _mode: RoutingMode = RoutingMode.ALL_NODES;
 
-  @Select(RouteDataState.getRoute) $routeData;
+  @Select(RouteDataState.getRoute) routeData$;
 
   constructor() {
-    this.$routeData.subscribe((data: RouteData) => {
+    this.routeData$.subscribe((data: RouteData) => {
       if (data != null) {
         this._deliveries = data.packages;
         this._nodes = data.nodes;
@@ -110,8 +110,9 @@ export class MapRoutingManagerService {
         waypoints = this._nodes
           .filter((node) => {
             return (
-              this._deliveries[node.position].state === DeliveryStates.IN_CAR ||
-              this._deliveries[node.position].state ===
+              this._deliveries[node.position].currentState ===
+                DeliveryStates.IN_CAR ||
+              this._deliveries[node.position].currentState ===
                 DeliveryStates.REQUESTED_PICKUP
             );
           })
@@ -134,8 +135,8 @@ export class MapRoutingManagerService {
   private findCurrentDeliveryIndex(): number {
     const delivery = this._deliveries.find((val) => {
       return (
-        val.state === DeliveryStates.REQUESTED_PICKUP ||
-        val.state === DeliveryStates.IN_CAR
+        val.currentState === DeliveryStates.REQUESTED_PICKUP ||
+        val.currentState === DeliveryStates.IN_CAR
       );
     });
     return delivery != null ? delivery.position : null;
@@ -144,8 +145,8 @@ export class MapRoutingManagerService {
   private findNextDeliveryIndex(): number {
     const temp = this._deliveries.find((val) => {
       return (
-        (val.state === DeliveryStates.IN_CAR ||
-          val.state === DeliveryStates.REQUESTED_PICKUP) &&
+        (val.currentState === DeliveryStates.IN_CAR ||
+          val.currentState === DeliveryStates.REQUESTED_PICKUP) &&
         val.position > this._currNode
       );
     });

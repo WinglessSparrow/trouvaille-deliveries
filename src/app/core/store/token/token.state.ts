@@ -15,8 +15,6 @@ export class TokenStateModel {
 })
 @Injectable()
 export class TokenState {
-  //TODO getting packages from getter Service
-
   constructor(private tokenRefresher: ITokenRefresher) {}
 
   @Selector()

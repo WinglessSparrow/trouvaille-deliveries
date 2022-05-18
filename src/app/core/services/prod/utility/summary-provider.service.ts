@@ -38,9 +38,9 @@ export class SummaryProviderService {
   private canceled(deliveries: Delivery[]): string {
     const canceled = deliveries.filter((val) => {
       return (
-        val.state === DeliveryStates.PICKUP_FAILED ||
-        val.state === DeliveryStates.ADDRESS_NOT_FOUND ||
-        val.state === DeliveryStates.DELIVERY_FAILED
+        val.currentState === DeliveryStates.PICKUP_FAILED ||
+        val.currentState === DeliveryStates.ADDRESS_NOT_FOUND ||
+        val.currentState === DeliveryStates.DELIVERY_FAILED
       );
     }).length;
 
@@ -50,13 +50,13 @@ export class SummaryProviderService {
   private pickUp(deliveries: Delivery[]): string {
     const toPickUp = deliveries.filter((val) => {
       return (
-        val.state === DeliveryStates.REQUESTED_PICKUP ||
-        val.state === DeliveryStates.PICKED_UP
+        val.currentState === DeliveryStates.REQUESTED_PICKUP ||
+        val.currentState === DeliveryStates.PICKED_UP
       );
     }).length;
 
     const pickedUp = deliveries.filter(
-      (val) => val.state === DeliveryStates.PICKED_UP
+      (val) => val.currentState === DeliveryStates.PICKED_UP
     ).length;
 
     return `${pickedUp}/${toPickUp}`;
@@ -64,7 +64,7 @@ export class SummaryProviderService {
 
   private toLoad(deliveries: Delivery[]): string {
     return (
-      deliveries.filter((val) => val.state === DeliveryStates.IN_CENTRAL)
+      deliveries.filter((val) => val.currentState === DeliveryStates.IN_CENTRAL)
         .length + ''
     );
   }
@@ -73,9 +73,9 @@ export class SummaryProviderService {
     let retVal: string =
       deliveries.filter((val: Delivery) => {
         const truth =
-          val.state != DeliveryStates.IN_CENTRAL &&
-          val.state != DeliveryStates.REQUESTED_PICKUP &&
-          val.state != DeliveryStates.DELIVERED;
+          val.currentState != DeliveryStates.IN_CENTRAL &&
+          val.currentState != DeliveryStates.REQUESTED_PICKUP &&
+          val.currentState != DeliveryStates.DELIVERED;
 
         return truth;
       }).length + '';
@@ -86,14 +86,14 @@ export class SummaryProviderService {
   private deliverySummary(deliveries: Delivery[]): string {
     const allToDeliver = deliveries.filter((val) => {
       return (
-        val.state === DeliveryStates.IN_CAR ||
-        val.state === DeliveryStates.IN_CENTRAL ||
-        val.state === DeliveryStates.DELIVERED
+        val.currentState === DeliveryStates.IN_CAR ||
+        val.currentState === DeliveryStates.IN_CENTRAL ||
+        val.currentState === DeliveryStates.DELIVERED
       );
     }).length;
 
     const delivered = deliveries.filter(
-      (val) => val.state == DeliveryStates.DELIVERED
+      (val) => val.currentState == DeliveryStates.DELIVERED
     ).length;
 
     return `${delivered}/${allToDeliver}`;

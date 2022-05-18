@@ -43,7 +43,7 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
         city: 'Buehl',
         country: 'Germany',
       },
-      state: DeliveryStates.DELIVERED,
+      currentState: DeliveryStates.DELIVERED,
     },
     {
       position: 1,
@@ -73,7 +73,7 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
         city: 'Buehl',
         country: 'Germany',
       },
-      state: DeliveryStates.DELIVERY_FAILED,
+      currentState: DeliveryStates.DELIVERY_FAILED,
     },
     {
       position: 2,
@@ -103,7 +103,7 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
         city: 'Buehl',
         country: 'Germany',
       },
-      state: DeliveryStates.IN_CAR,
+      currentState: DeliveryStates.IN_CAR,
     },
     {
       position: 3,
@@ -133,7 +133,7 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
         city: 'Buehl',
         country: 'Germany',
       },
-      state: DeliveryStates.REQUESTED_PICKUP,
+      currentState: DeliveryStates.REQUESTED_PICKUP,
     },
     {
       position: 6,
@@ -163,7 +163,7 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
         city: 'Buehl',
         country: 'Germany',
       },
-      state: DeliveryStates.PICKED_UP,
+      currentState: DeliveryStates.PICKED_UP,
     },
     {
       position: 4,
@@ -193,7 +193,7 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
         city: 'Brelin',
         country: 'Germany',
       },
-      state: DeliveryStates.IN_CENTRAL,
+      currentState: DeliveryStates.IN_CENTRAL,
     },
     {
       position: 5,
@@ -223,7 +223,7 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
         city: 'MannStadt',
         country: 'Germany',
       },
-      state: DeliveryStates.IN_CENTRAL,
+      currentState: DeliveryStates.IN_CENTRAL,
     },
     {
       position: 7,
@@ -253,7 +253,7 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
         city: 'FrauStadt',
         country: 'Hermany',
       },
-      state: DeliveryStates.REQUESTED_PICKUP,
+      currentState: DeliveryStates.REQUESTED_PICKUP,
     },
     {
       position: 8,
@@ -283,7 +283,7 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
         city: 'Tallinn',
         country: 'AusdachtLand',
       },
-      state: DeliveryStates.REQUESTED_PICKUP,
+      currentState: DeliveryStates.REQUESTED_PICKUP,
     },
   ];
 
@@ -310,7 +310,6 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
   retrieveRoute(): Promise<RouteData> {
     return new Promise((resolve) => {
       setTimeout(() => {
-        debugger;
         const routeData = new RouteData(this._routeData);
         resolve(routeData);
       }, 500);

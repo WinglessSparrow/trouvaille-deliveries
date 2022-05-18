@@ -11,7 +11,7 @@ import { Delivery } from 'src/app/shared/classes/models/back-end-communication/d
 import { RouteData } from 'src/app/shared/classes/models/back-end-communication/route-data';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 import { IRouteRetriever } from 'src/app/shared/interfaces/services-interfaces/i-route-retriever';
-import { IStateManager } from 'src/app/shared/interfaces/services-interfaces/i-state-manager';
+import { IDeliveryStateManager } from 'src/app/shared/interfaces/services-interfaces/i-delivery-state-manager';
 import { ChangeDeliveryState, InitRouteData } from './route-data.action';
 
 export class RouteDataStateModel {
@@ -32,7 +32,7 @@ export class RouteDataState {
   //TODO getting packages from getter Service
 
   constructor(
-    private deliveryStateManger: IStateManager,
+    private deliveryStateManger: IDeliveryStateManager,
     private routeData: IRouteRetriever
   ) {}
 
@@ -50,7 +50,8 @@ export class RouteDataState {
   static getDeliveriesToLoad(state: RouteDataStateModel) {
     return state.routeData.packages
       .filter(
-        (delivery: Delivery) => delivery.state === DeliveryStates.IN_CENTRAL
+        (delivery: Delivery) =>
+          delivery.currentState === DeliveryStates.IN_CENTRAL
       )
       .sort((del1: Delivery, del2: Delivery) => del2.position - del1.position);
   }
@@ -79,7 +80,7 @@ export class RouteDataState {
       const temp = draft.routeData.packages.find(
         (val) => tempPayload.originalDelivery.iddelivery === val.iddelivery
       );
-      temp.state = tempPayload.nextState;
+      temp.currentState = tempPayload.nextState;
     });
 
     const success = await this.deliveryStateManger.changeState(tempPayload);
@@ -91,7 +92,7 @@ export class RouteDataState {
         `Illegal Delivery State Change from ${
           getState().routeData.packages.find(
             (val) => tempPayload.originalDelivery.iddelivery === val.iddelivery
-          ).state
+          ).currentState
         } to ${payload.payload.nextState}`
       );
     }

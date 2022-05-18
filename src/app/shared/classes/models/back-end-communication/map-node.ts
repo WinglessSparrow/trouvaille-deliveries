@@ -1,17 +1,15 @@
 import { immerable } from 'immer';
 import { IMapNode } from '../../../interfaces/back-end-communication/i-map-node';
 
-export class MapNode implements IMapNode{
+export class MapNode implements IMapNode {
   [immerable] = true;
 
   private _position: number;
   private _latitude: number;
   private _longitude: number;
 
-  constructor(data: IMapNode){
-    this._position = data.position;
-    this._latitude = data.latitude;
-    this._longitude = data.longitude;
+  constructor(data: IMapNode) {
+    Object.assign(this, data);
   }
 
   /**

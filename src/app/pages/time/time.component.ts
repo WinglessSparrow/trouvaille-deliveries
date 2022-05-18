@@ -100,9 +100,9 @@ export class TimeComponent implements OnInit {
         .selectSnapshot(RouteDataState.getDeliveries)
         .find(
           (val) =>
-            val.state === DeliveryStates.IN_CAR ||
-            val.state === DeliveryStates.REQUESTED_PICKUP ||
-            val.state === DeliveryStates.IN_CENTRAL
+            val.currentState === DeliveryStates.IN_CAR ||
+            val.currentState === DeliveryStates.REQUESTED_PICKUP ||
+            val.currentState === DeliveryStates.IN_CENTRAL
         ) == null
     );
   }

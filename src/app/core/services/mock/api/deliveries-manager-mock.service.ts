@@ -193,7 +193,7 @@ export class DeliveriesManagerMockService implements IDeliveriesManager {
   public async changeState(newDelivery: Delivery) {
     await new Promise((resolve) => setTimeout(() => {}, 1000));
     console.log(
-      `bip-bop I'm  a mock, \n I changed the state of the delivery ${newDelivery.iddelivery} to ${newDelivery.state}`
+      `bip-bop I'm  a mock, \n I changed the state of the delivery ${newDelivery.iddelivery} to ${newDelivery.currentState}`
     );
   }
 }

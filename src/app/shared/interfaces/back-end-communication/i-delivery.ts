@@ -13,7 +13,7 @@ export interface IDelivery {
   dstAddress: IAddress;
   srcAddress: IAddress;
 
-  state: string;
+  currentState: string;
 
   weight: number;
   height: number;

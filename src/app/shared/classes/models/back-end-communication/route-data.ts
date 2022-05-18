@@ -2,8 +2,12 @@ import { Delivery } from './delivery';
 import { IMapNode } from '../../../interfaces/back-end-communication/i-map-node';
 import { IRouteData } from '../../../interfaces/back-end-communication/i-route-data';
 import { MapNode } from './map-node';
+import { immerable } from 'immer';
+import { DebugNode } from '@angular/core';
 
 export class RouteData implements IRouteData {
+  [immerable] = true;
+
   private _idroute: number;
   private _idvehicle: number;
   private _narrowpass: number;
@@ -19,8 +23,8 @@ export class RouteData implements IRouteData {
       this._nodes.push(new MapNode(node));
     }
 
-    for(let delivery of data.packages){
-        this._packages.push(new Delivery(delivery));
+    for (let delivery of data.packages) {
+      this._packages.push(new Delivery(delivery));
     }
   }
 

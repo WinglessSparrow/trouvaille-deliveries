@@ -17,7 +17,7 @@ export class DeliveryPreviewComponent implements OnInit {
   constructor(private deliveryService: DeliveryInfoService) {}
 
   ngOnInit() {
-    this.color = DeliveryStateParsingHelper.getColorFromState(this.delivery.state);
+    this.color = DeliveryStateParsingHelper.getColorFromState(this.delivery.currentState);
   }
 
   goToDelivery() {

@@ -17,7 +17,7 @@ export class Delivery implements IDelivery {
   private _dstAddress: Address;
   private _srcAddress: Address;
 
-  private _state: DeliveryStates;
+  private _currentState: DeliveryStates;
 
   private _weight: number;
   private _height: number;
@@ -26,12 +26,11 @@ export class Delivery implements IDelivery {
   private _price: number;
 
   constructor(data: IDelivery) {
-    debugger;
     Object.assign(this, data);
     this._dstAddress = new Address(data.dstAddress);
     this._srcAddress = new Address(data.srcAddress);
     this._customer = new Customer(data.customer);
-    // this.state = DeliveryStates[data.state];
+    this._currentState = DeliveryStates[data.currentState];
   }
 
   /**
@@ -86,8 +85,8 @@ export class Delivery implements IDelivery {
    * Getter state
    * @return {DeliveryStates}
    */
-  public get state(): DeliveryStates {
-    return this._state;
+  public get currentState(): DeliveryStates {
+    return this._currentState;
   }
 
   /**
@@ -182,8 +181,8 @@ export class Delivery implements IDelivery {
    * Setter state
    * @param {DeliveryStates} value
    */
-  public set state(value: DeliveryStates) {
-    this._state = value;
+  public set currentState(value: DeliveryStates) {
+    this._currentState = value;
   }
 
   /**

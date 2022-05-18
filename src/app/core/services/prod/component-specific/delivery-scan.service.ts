@@ -22,11 +22,11 @@ export class DeliveryScanService {
 
     if (delivery != undefined) {
       if (
-        delivery.state == DeliveryStates.IN_CENTRAL ||
-        delivery.state == DeliveryStates.REQUESTED_PICKUP
+        delivery.currentState == DeliveryStates.IN_CENTRAL ||
+        delivery.currentState == DeliveryStates.REQUESTED_PICKUP
       ) {
         const newState = DeliveryStateParsingHelper.getOppositeOfState(
-          delivery.state
+          delivery.currentState
         );
 
         this.store.dispatch(
