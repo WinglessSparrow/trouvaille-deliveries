@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import {
   Action,
   createSelector,
@@ -87,8 +87,6 @@ export class RouteDataState {
 
     if (success) {
       setState(newState);
-    } else {
-      setState(getState());
     }
   }
 }

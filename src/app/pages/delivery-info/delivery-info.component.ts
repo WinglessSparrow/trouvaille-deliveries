@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
 import { HeaderService } from 'src/app/core/services/prod/component-specific/header.service';
 import { ChangeDeliveryState } from 'src/app/core/store/route-data/route-data.action';
 import { RouteDataState } from 'src/app/core/store/route-data/route-data.state';
@@ -46,9 +47,15 @@ export class DeliveryInfoComponent implements OnInit, OnDestroy {
   stateChanged(event: DeliveryStates) {
     console.log(event);
 
-    this.store.dispatch(
-      new ChangeDeliveryState(new ChangeStatePayload(event, this.delivery))
-    );
+    this.store
+      .dispatch(
+        new ChangeDeliveryState(new ChangeStatePayload(event, this.delivery))
+      )
+      .subscribe(() => {
+        this.delivery = this.store.selectSnapshot(
+          RouteDataState.getDelivery(this.id)
+        );
+      });
   }
 
   ngOnDestroy() {
