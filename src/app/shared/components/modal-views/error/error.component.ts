@@ -25,9 +25,6 @@ export class ErrorComponent extends ModalContentBase implements OnInit {
   setContext(context: ModalContext) {
     if (context instanceof ErrorContext) {
       this.context = context;
-    } else {
-      //TODO THROW an Error with correct contex
-      //carefull here, because this might lead to a circular error throwing
     }
   }
 

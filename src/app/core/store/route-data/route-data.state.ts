@@ -88,13 +88,7 @@ export class RouteDataState {
     if (success) {
       setState(newState);
     } else {
-      throw Error(
-        `Illegal Delivery State Change from ${
-          getState().routeData.packages.find(
-            (val) => tempPayload.originalDelivery.iddelivery === val.iddelivery
-          ).currentState
-        } to ${payload.payload.nextState}`
-      );
+      setState(getState());
     }
   }
 }

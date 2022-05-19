@@ -5,27 +5,43 @@ import { APIUrls } from 'src/app/shared/classes/utility/api-urls';
 import { IGlobalResponseModel } from 'src/app/shared/interfaces/back-end-communication/i-global-response-model';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 import { IDeliveryStateManager } from 'src/app/shared/interfaces/services-interfaces/i-delivery-state-manager';
+import { ModalService } from '../component-specific/modal.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DeliveryStateManagerService extends IDeliveryStateManager {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private modal: ModalService) {
     super();
   }
 
   changeState(newState: ChangeStatePayload): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
-      const url: string =
-        APIUrls.CHANGE_STATE + `/${newState.originalDelivery.iddelivery}`;
-      const body: string =
-        Object.keys(DeliveryStates)[
-          Object.values(DeliveryStates).indexOf(newState.nextState)
-        ];
-      this.http.put<IGlobalResponseModel<any>>(url, body).subscribe((val) => {
-        const f = val;
-        resolve(true);
-      });
+      this.modal
+        .openYesNoDialog<boolean>(
+          'State Change',
+          `change state from ${newState.originalDelivery.currentState} to ${newState.nextState}`,
+          true,
+          false
+        )
+        .subscribe((response: boolean) => {
+          if (response) {
+            const url: string =
+              APIUrls.CHANGE_STATE + `/${newState.originalDelivery.iddelivery}`;
+            const body: string =
+              Object.keys(DeliveryStates)[
+                Object.values(DeliveryStates).indexOf(newState.nextState)
+              ];
+            this.http
+              .put<IGlobalResponseModel<any>>(url, body)
+              .subscribe((val) => {
+                const f = val;
+                resolve(true);
+              });
+          } else {
+            resolve(false);
+          }
+        });
     });
   }
 }

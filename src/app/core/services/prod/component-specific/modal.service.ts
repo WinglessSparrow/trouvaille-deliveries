@@ -1,6 +1,8 @@
 import { Injectable, NgZone, Type } from '@angular/core';
 import { Queue } from 'queue-typescript';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { DialogContext } from 'src/app/shared/classes/models/modal-contexts/dialog-context';
 import {
   ErrorContext,
   ErrorType,
@@ -8,6 +10,7 @@ import {
 import { HttpModalContext } from 'src/app/shared/classes/models/modal-contexts/http-context';
 import { ErrorComponent } from 'src/app/shared/components/modal-views/error/error.component';
 import { HttpComponent } from 'src/app/shared/components/modal-views/http/http.component';
+import { TrouDialogComponent } from 'src/app/shared/components/modal-views/trou-dialog/trou-dialog.component';
 import { TrouModalComponent } from 'src/app/shared/components/trou-modal/trou-modal.component';
 import { ModalContext } from 'src/app/shared/interfaces/abstract-classes/modal-context';
 import { ModalContentBase } from 'src/app/shared/interfaces/component-interfaces/modal-content-base.component';
@@ -35,6 +38,37 @@ export class ModalService {
     } else {
       this._pendingModals.enqueue([content, context]);
     }
+  }
+
+  /**
+   *
+   * @param header header
+   * @param text text of the dialog
+   * @param yesVal val emitted on yes
+   * @param noVal val emitted on no
+   * @returns observable which automatically unsubscribes as soon as one value arrives
+   */
+  public openYesNoDialog<T>(
+    header: string,
+    text: string,
+    yesVal: T,
+    noVal: T
+  ): Observable<T> {
+    const subject = new Subject<T>();
+    const context = new DialogContext(
+      header,
+      text,
+      () => {
+        subject.next(yesVal);
+      },
+      () => {
+        subject.next(noVal);
+      }
+    );
+
+    this.openModal(TrouDialogComponent, context);
+
+    return subject.asObservable().pipe(first());
   }
 
   public openHttpModal(

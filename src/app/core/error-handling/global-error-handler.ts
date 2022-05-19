@@ -4,23 +4,24 @@ import { ErrorContext } from 'src/app/shared/classes/models/modal-contexts/error
 import { HttpModalContext } from 'src/app/shared/classes/models/modal-contexts/http-context';
 import { ErrorComponent } from 'src/app/shared/components/modal-views/error/error.component';
 import { HttpComponent } from 'src/app/shared/components/modal-views/http/http.component';
+import { IGlobalResponseModel } from 'src/app/shared/interfaces/back-end-communication/i-global-response-model';
 import { ModalService } from '../services/prod/component-specific/modal.service';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
   constructor(private modalService: ModalService) {}
 
+  handleHttpError(response: IGlobalResponseModel<any>, status: number) {
+    this.modalService.openModal(
+      HttpComponent,
+      new HttpModalContext(status, response.error.message, response.error.path)
+    );
+  }
+
   handleError(error: any): void {
-    // debugger;
     var context: ErrorContext;
-    // if ('rejection' in error) {
-    // error = error.rejection;
     if (error instanceof HttpErrorResponse) {
-      // debugger;
-      this.modalService.openModal(
-        HttpComponent,
-        HttpModalContext.fromHttpError(error)
-      );
+      this.handleHttpError(error.error, error.status);
       return;
     }
     context = new ErrorContext(
@@ -33,9 +34,6 @@ export class GlobalErrorHandler implements ErrorHandler {
     );
 
     this.modalService.openModal(ErrorComponent, context);
-    // } else {
-    // this.modalService.openBugModal(error?.stack, error?.message);
-    // }
 
     console.error('Error from global error handler', error);
   }

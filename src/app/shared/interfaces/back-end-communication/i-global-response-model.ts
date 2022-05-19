@@ -1,8 +1,8 @@
-import { ErrorObject } from '../../classes/models/back-end-communication/error-object';
+import { IErrorObject } from './i-error-object';
 
 export interface IGlobalResponseModel<T> {
   hasError: boolean;
-  error: ErrorObject;
+  error: IErrorObject;
   hasWarnings: boolean;
   warnings: string[];
   data: Array<T>;

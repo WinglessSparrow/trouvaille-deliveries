@@ -18,11 +18,7 @@ export class HomeComponent implements OnInit {
   public positions = LabelPosition;
   public labelTypes = LabelType;
 
-  constructor(
-    private router: Router,
-    private store: Store,
-    private http: HttpClient
-  ) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit() {
     //TODO set user name

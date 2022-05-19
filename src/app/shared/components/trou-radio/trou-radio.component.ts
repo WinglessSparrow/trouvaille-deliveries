@@ -5,7 +5,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { DeliveryStateParsingHelper } from '../../classes/utility/delivery-state-parsing-helper ';
@@ -38,7 +38,6 @@ export class TrouRadioComponent implements OnInit, OnDestroy {
 
     this.subscription = this.activeParameters.subscribe((val) => {
       this.isActive = val?.some((valIn) => {
-        // debugger;
         return valIn == this.name;
       });
     });

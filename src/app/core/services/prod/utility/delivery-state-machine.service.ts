@@ -20,16 +20,20 @@ export class DeliveryStateMachineService {
         DeliveryStates.DELIVERED,
       ],
     ],
-    [DeliveryStates.IN_CENTRAL, [DeliveryStates.IN_CAR]],
     [
       DeliveryStates.REQUESTED_PICKUP,
-      [DeliveryStates.PICKUP_FAILED, DeliveryStates.PICKED_UP],
+      [
+        DeliveryStates.PICKUP_FAILED,
+        DeliveryStates.PICKED_UP,
+        DeliveryStates.ADDRESS_NOT_FOUND,
+      ],
     ],
-    [DeliveryStates.DELIVERY_FAILED, [DeliveryStates.IN_CENTRAL]],
-    [DeliveryStates.ADDRESS_NOT_FOUND, [DeliveryStates.IN_CENTRAL]],
-    [DeliveryStates.DELIVERED, [DeliveryStates.IN_CAR]],
-    [DeliveryStates.PICKUP_FAILED, [DeliveryStates.REQUESTED_PICKUP]],
-    [DeliveryStates.PICKED_UP, [DeliveryStates.REQUESTED_PICKUP]],
+    [DeliveryStates.IN_CENTRAL, [DeliveryStates.IN_CAR]],
+    [DeliveryStates.DELIVERY_FAILED, []],
+    [DeliveryStates.ADDRESS_NOT_FOUND, []],
+    [DeliveryStates.DELIVERED, []],
+    [DeliveryStates.PICKUP_FAILED, []],
+    [DeliveryStates.PICKED_UP, []],
   ]);
 
   public nextState(state: DeliveryStates) {
