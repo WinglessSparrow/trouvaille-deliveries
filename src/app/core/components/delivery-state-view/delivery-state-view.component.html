@@ -1,12 +1,13 @@
-<div class="wrapper">
+<form [formGroup]="form" class="wrapper">
   <trou-radio *ngFor="let state of states" 
   [name]="this.state" 
   [value]="this.state" 
   [(model)]="currDelivery" 
   (modelChange)="onNewState($event)" 
-  [activeParameters]="stateMachine.getCurrStateObservable()">
+  [activeParameters]="stateMachine.getCurrStateObservable()"
+  [parentForm]=form>
     <h3>
       {{state}}
     </h3>
   </trou-radio>
-</div>
+</form>

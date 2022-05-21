@@ -61,23 +61,23 @@ export class DeliveryInfoComponent implements OnInit, OnDestroy {
         }, 500);
       });
 
-    // setTimeout(() => {
-    //   console.log('changing');
-    //   this.delivery = new Delivery({
-    //     currentState: DeliveryStates.PICKUP_FAILED,
-    //     customer: null,
-    //     depth: 1,
-    //     dstAddress: null,
-    //     height: 1,
-    //     iddelivery: '1',
-    //     packageid: 1,
-    //     position: 1,
-    //     price: 1,
-    //     srcAddress: null,
-    //     weight: 1,
-    //     width: 1,
-    //   });
-    // }, 2000);
+    setTimeout(() => {
+      console.log('changing');
+      this.delivery = new Delivery({
+        currentState: DeliveryStates.PICKUP_FAILED,
+        customer: null,
+        depth: 1,
+        dstAddress: null,
+        height: 1,
+        iddelivery: '1',
+        packageid: 1,
+        position: 1,
+        price: 1,
+        srcAddress: null,
+        weight: 1,
+        width: 1,
+      });
+    }, 2000);
   }
 
   renewState() {
