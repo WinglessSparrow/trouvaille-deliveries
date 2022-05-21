@@ -3,11 +3,16 @@ import {
   EventEmitter,
   HostBinding,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
+import { Delivery } from '../../classes/models/back-end-communication/delivery';
 import { DeliveryStateParsingHelper } from '../../classes/utility/delivery-state-parsing-helper ';
 import { DeliveryStates } from '../../interfaces/enums/delivery-states';
 
@@ -24,9 +29,11 @@ export class TrouRadioComponent implements OnInit, OnDestroy {
   @Input() activeParameters: Observable<DeliveryStates[]> = new Observable<
     DeliveryStates[]
   >();
-  @Input() model: DeliveryStates;
-  @Output() modelChange: EventEmitter<DeliveryStates> =
-    new EventEmitter<DeliveryStates>();
+  @Input() model: Delivery;
+  @Output() modelChange: EventEmitter<Delivery> =
+    new EventEmitter<Delivery>();
+
+  isChecked: boolean = false;
 
   isActive = true;
   subscription: Subscription;

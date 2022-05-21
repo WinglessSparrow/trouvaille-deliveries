@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 import { DeliveryStateMachineService } from '../../services/prod/utility/delivery-state-machine.service';
 
@@ -9,19 +10,19 @@ import { DeliveryStateMachineService } from '../../services/prod/utility/deliver
   providers: [DeliveryStateMachineService],
 })
 export class DeliveryStateViewComponent implements OnInit {
-  @Input() currState: DeliveryStates;
-  @Output() stateChanged: EventEmitter<DeliveryStates> =
-    new EventEmitter<DeliveryStates>();
+  @Input() currDelivery: Delivery;
+  @Output() stateChanged: EventEmitter<Delivery> =
+    new EventEmitter<Delivery>();
   states = Object.values(DeliveryStates);
 
   constructor(public stateMachine: DeliveryStateMachineService) {}
 
   ngOnInit() {
-    this.stateMachine.nextState(this.currState);
+    this.stateMachine.nextState(this.currDelivery.currentState);
   }
 
-  public onNewState(event: DeliveryStates) {
-    this.stateMachine.nextState(event);
+  public onNewState(event: Delivery) {
+    this.stateMachine.nextState(event.currentState);
     this.stateChanged.emit(event);
   }
 }

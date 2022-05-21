@@ -15,14 +15,14 @@ export class RouteDataRetrieverService extends IRouteRetriever {
     super();
   }
 
+  async p() {}
+
   retrieveRoute(): Promise<RouteData> {
     return new Promise<RouteData>((resolve) => {
       this.http
         .get<IGlobalResponseModel<IRouteData>>(APIUrls.ROUTES_TOKEN)
         .pipe(map((val) => new RouteData(val.data[0])))
-        .subscribe((routeData) => {
-          resolve(routeData);
-        });
+        .subscribe((routeData) => resolve(routeData));
     });
   }
 }

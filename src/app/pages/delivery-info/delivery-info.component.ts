@@ -1,6 +1,18 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngxs/store';
+import {
+  Actions,
+  ofActionCompleted,
+  ofActionDispatched,
+  Store,
+} from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { HeaderService } from 'src/app/core/services/prod/component-specific/header.service';
@@ -21,12 +33,14 @@ export class DeliveryInfoComponent implements OnInit, OnDestroy {
   public delivery: Delivery;
 
   private deliverySubscription: Subscription;
+  private actionSubscription: Subscription;
   private id: string;
 
   constructor(
     private header: HeaderService,
     private route: ActivatedRoute,
-    private store: Store
+    private store: Store,
+    private actions$: Actions
   ) {}
 
   ngOnInit() {
@@ -35,6 +49,35 @@ export class DeliveryInfoComponent implements OnInit, OnDestroy {
     this.id = this.route.snapshot.paramMap.get('id');
 
     this.renewState();
+
+    this.actionSubscription = this.actions$
+      .pipe(ofActionCompleted(ChangeDeliveryState))
+      .subscribe(() => {
+        setTimeout(() => {
+          debugger;
+          this.delivery = this.store.selectSnapshot(
+            RouteDataState.getDelivery(this.id)
+          );
+        }, 500);
+      });
+
+    // setTimeout(() => {
+    //   console.log('changing');
+    //   this.delivery = new Delivery({
+    //     currentState: DeliveryStates.PICKUP_FAILED,
+    //     customer: null,
+    //     depth: 1,
+    //     dstAddress: null,
+    //     height: 1,
+    //     iddelivery: '1',
+    //     packageid: 1,
+    //     position: 1,
+    //     price: 1,
+    //     srcAddress: null,
+    //     weight: 1,
+    //     width: 1,
+    //   });
+    // }, 2000);
   }
 
   renewState() {
@@ -44,22 +87,17 @@ export class DeliveryInfoComponent implements OnInit, OnDestroy {
     });
   }
 
-  stateChanged(event: DeliveryStates) {
-    console.log(event);
-
-    this.store
-      .dispatch(
-        new ChangeDeliveryState(new ChangeStatePayload(event, this.delivery))
+  stateChanged(event: Delivery) {
+    this.store.dispatch(
+      new ChangeDeliveryState(
+        new ChangeStatePayload(event.currentState, this.delivery)
       )
-      .subscribe(() => {
-        this.delivery = this.store.selectSnapshot(
-          RouteDataState.getDelivery(this.id)
-        );
-      });
+    );
   }
 
   ngOnDestroy() {
     this.deliverySubscription.unsubscribe();
+    this.actionSubscription.unsubscribe();
     this.header.menuOn();
   }
 }
