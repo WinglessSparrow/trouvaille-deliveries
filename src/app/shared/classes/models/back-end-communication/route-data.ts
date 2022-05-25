@@ -1,9 +1,7 @@
-import { Delivery } from './delivery';
-import { IMapNode } from '../../../interfaces/back-end-communication/i-map-node';
-import { IRouteData } from '../../../interfaces/back-end-communication/i-route-data';
-import { MapNode } from './map-node';
 import { immerable } from 'immer';
-import { DebugNode } from '@angular/core';
+import { IRouteData } from '../../../interfaces/back-end-communication/i-route-data';
+import { Delivery } from './delivery';
+import { MapNode } from './map-node';
 
 export class RouteData implements IRouteData {
   [immerable] = true;

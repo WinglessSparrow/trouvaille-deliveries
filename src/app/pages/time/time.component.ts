@@ -52,28 +52,48 @@ export class TimeComponent implements OnInit {
 
     const isValid: boolean = this.form.valid;
     const canSendTime: boolean = this.areDeliveriesDone();
+    const timesMakeSense: boolean = this.sanityCheckTimes();
 
-    if (isValid && canSendTime) {
+    if (isValid && canSendTime && timesMakeSense) {
       await this.confirmTime();
     } else {
       if (!isValid) {
-        this.modal.openErrorModal('Form Invalid', 'Please fill out the form');
+        this.modal.openNotificationModal(
+          'Invalid Form',
+          'Please fill in all the times'
+        );
       }
 
       if (!canSendTime) {
-        this.modal.openErrorModal(
-          'Deliveries Error',
-          'There are still Deliveries Pending'
+        this.modal.openNotificationModal(
+          'There are still Deliveries in an unfinished state!',
+          'Deliveries Pending'
+        );
+      }
+
+      if (!timesMakeSense) {
+        this.modal.openNotificationModal(
+          'The Times are malformed, the pause is longer than the working time! Did you mix up the input fields?',
+          'Malformed Times'
         );
       }
     }
   }
 
-  private calcTime() {
+  private calcBreakAndWorkingMS(): [number, number] {
     const dates = this.getDatesFromTime(this.form.value);
 
     const breakMs = +dates[3] - +dates[2];
     const workMs = +dates[1] - +dates[0] - breakMs;
+
+    return [breakMs, workMs];
+  }
+
+  private calcTime() {
+    const workBreakMs: [number, number] = this.calcBreakAndWorkingMS();
+
+    const breakMs: number = workBreakMs[0];
+    const workMs: number = workBreakMs[1];
 
     this.timeWorked = this.getHrsMinDiff(workMs);
     this.timeBreak = this.getHrsMinDiff(breakMs);
@@ -88,6 +108,22 @@ export class TimeComponent implements OnInit {
   private async confirmTime() {
     const dates = this.getDatesFromTime(this.form.value);
     this.timeService.sendWorkingTimes(new WorkingTimeDescriptor(dates));
+  }
+
+  private sanityCheckTimes(): boolean {
+    /*
+     * checks if break times are smaller then the working times
+     */
+    let ret: boolean = false;
+
+    const workBreakMs: [number, number] = this.calcBreakAndWorkingMS();
+
+    const breakMs: number = workBreakMs[0];
+    const workMs: number = workBreakMs[1];
+
+    ret = breakMs < workMs;
+
+    return ret;
   }
 
   private areDeliveriesDone(): boolean {

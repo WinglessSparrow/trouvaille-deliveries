@@ -29,6 +29,7 @@ import { ITimeManager } from 'src/app/shared/interfaces/services-interfaces/i-ti
 import { ITokenRefresher } from 'src/app/shared/interfaces/services-interfaces/i-token-refresher';
 import { AuthentificationMockService } from 'src/app/shared/services/mock/authentification-mock.service';
 import { DeliveryStateManagerService } from 'src/app/core/services/prod/http-calls/delivery-state-manager.service';
+import { TimeManagerService } from 'src/app/core/services/prod/http-calls/time-manager.service';
 
 export const environment = {
   production: false,
@@ -72,11 +73,8 @@ export const environment = {
     },
     {
       provide: ITimeManager,
-      useClass: TimeMockService,
-    },
-    {
-      provide: IMapNodesRetriever,
-      useClass: MapWaypointsMockService,
+      // useClass: TimeMockService,
+      useClass: TimeManagerService,
     },
     {
       provide: IRouteRetriever,

@@ -1,5 +1,5 @@
-import { ErrorObject } from './error-object';
 import { IGlobalResponseModel } from '../../../interfaces/back-end-communication/i-global-response-model';
+import { ErrorObject } from './error-object';
 
 export class GlobalResponseModel<T> implements IGlobalResponseModel<T> {
   private _hasError: boolean;

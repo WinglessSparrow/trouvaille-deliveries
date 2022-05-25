@@ -1,8 +1,8 @@
 import { immerable } from 'immer';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
+import { IDelivery } from '../../../interfaces/back-end-communication/i-delivery';
 import { Address } from './address';
 import { Customer } from './customer';
-import { IDelivery } from '../../../interfaces/back-end-communication/i-delivery';
 
 export class Delivery implements IDelivery {
   [immerable] = true;

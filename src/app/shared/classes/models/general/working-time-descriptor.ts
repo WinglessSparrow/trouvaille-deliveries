@@ -1,3 +1,5 @@
+import { IWorkingTime } from 'src/app/shared/interfaces/back-end-communication/i-working-time';
+
 export class WorkingTimeDescriptor {
   public static readonly WORK_FROM: number = 0;
   public static readonly WORK_TO: number = 1;
@@ -17,6 +19,16 @@ export class WorkingTimeDescriptor {
     this._workingTimeTo = dates[WorkingTimeDescriptor.WORK_TO];
     this._breakTimeFrom = dates[WorkingTimeDescriptor.BREAK_FROM];
     this._breakTimeTo = dates[WorkingTimeDescriptor.BREAK_TO];
+  }
+
+  public parseToIWorkingTime(): IWorkingTime {
+    return {
+      timefrom: this._workingTimeFrom.toISOString(),
+      timeto: this._workingTimeTo.toISOString(),
+
+      pausefrom: this._breakTimeFrom.toISOString(),
+      pauseto: this._breakTimeTo.toISOString(),
+    };
   }
 
   /**

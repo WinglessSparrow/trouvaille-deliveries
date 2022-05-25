@@ -6,8 +6,8 @@ import { Subject } from 'rxjs';
 import { RouteDataState } from 'src/app/core/store/route-data/route-data.state';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { MapNode } from 'src/app/shared/classes/models/back-end-communication/map-node';
-import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 import { RouteData } from 'src/app/shared/classes/models/back-end-communication/route-data';
+import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 
 @Injectable({
   providedIn: 'root',
