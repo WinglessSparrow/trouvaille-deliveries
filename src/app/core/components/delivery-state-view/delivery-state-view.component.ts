@@ -8,9 +8,12 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Store } from '@ngxs/store';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
+import { ChangeStatePayload } from 'src/app/shared/classes/models/general/change-state-payload';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 import { DeliveryStateMachineService } from '../../services/prod/utility/delivery-state-machine.service';
+import { ChangeDeliveryState } from '../../store/route-data/route-data.action';
 
 @Component({
   selector: 'delivery-state-view',
@@ -18,26 +21,19 @@ import { DeliveryStateMachineService } from '../../services/prod/utility/deliver
   styleUrls: ['./delivery-state-view.component.scss'],
   providers: [DeliveryStateMachineService],
 })
-export class DeliveryStateViewComponent implements OnInit, OnChanges {
+export class DeliveryStateViewComponent implements OnInit {
   @Input() currDelivery: Delivery;
-  @Output() stateChanged: EventEmitter<Delivery> = new EventEmitter<Delivery>();
 
   states = Object.values(DeliveryStates);
   form: FormGroup;
 
+  private isSameValue: boolean = false;
+
   constructor(
     public stateMachine: DeliveryStateMachineService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private store: Store
   ) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    debugger;
-    if (this.form != null) {
-      this.form.controls['deliveryState'].setValue(
-        this.currDelivery.currentState
-      );
-    }
-  }
 
   ngOnInit() {
     this.stateMachine.nextState(this.currDelivery.currentState);
@@ -46,13 +42,28 @@ export class DeliveryStateViewComponent implements OnInit, OnChanges {
     });
 
     this.form.valueChanges.subscribe((val) => {
-      const f = val;
-      debugger;
-    });
-  }
+      //parsing to enum
+      const nextDelState: DeliveryStates = val.deliveryState as DeliveryStates;
+      //renew state machine
+      this.stateMachine.nextState(nextDelState);
 
-  public onNewState(event: Delivery) {
-    this.stateMachine.nextState(event.currentState);
-    this.stateChanged.emit(event);
+      //check for blank reset
+      if (!this.isSameValue) {
+        this.isSameValue = true;
+        this.store
+          .dispatch(
+            new ChangeDeliveryState(
+              new ChangeStatePayload(nextDelState, this.currDelivery)
+            )
+          )
+          .subscribe(() => {
+            this.form.controls['deliveryState'].setValue(
+              this.currDelivery.currentState
+            );
+          });
+      } else {
+        this.isSameValue = false;
+      }
+    });
   }
 }

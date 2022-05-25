@@ -31,9 +31,6 @@ export class TrouRadioComponent implements OnInit, OnDestroy {
   @Input() activeParameters: Observable<DeliveryStates[]> = new Observable<
     DeliveryStates[]
   >();
-  @Input() model: Delivery;
-  @Output() modelChange: EventEmitter<Delivery> =
-    new EventEmitter<Delivery>();
 
   isChecked: boolean = false;
 

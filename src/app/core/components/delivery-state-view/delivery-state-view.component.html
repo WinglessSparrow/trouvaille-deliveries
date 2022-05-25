@@ -2,8 +2,6 @@
   <trou-radio *ngFor="let state of states" 
   [name]="this.state" 
   [value]="this.state" 
-  [(model)]="currDelivery" 
-  (modelChange)="onNewState($event)" 
   [activeParameters]="stateMachine.getCurrStateObservable()"
   [parentForm]=form>
     <h3>
