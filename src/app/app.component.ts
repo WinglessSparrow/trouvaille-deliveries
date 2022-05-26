@@ -4,16 +4,12 @@ import { NavigationEnd, Router } from '@angular/router';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { Platform } from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
-import { Observable, Subject } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HeaderService } from './core/services/prod/component-specific/header.service';
 import { ModalService } from './core/services/prod/component-specific/modal.service';
-import { InitRouteData } from './core/store/route-data/route-data.action';
 import { TokenState } from './core/store/token/token.state';
 import { PageDescriptor } from './shared/classes/models/general/pageDescriptor';
-import { DialogContext } from './shared/classes/models/modal-contexts/dialog-context';
-import { TrouDialogComponent } from './shared/components/modal-views/trou-dialog/trou-dialog.component';
 import { Pages } from './shared/interfaces/enums/pages';
 
 @Component({
