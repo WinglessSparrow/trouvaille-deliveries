@@ -19,6 +19,7 @@ import { TokenRefresherMockService } from 'src/app/core/services/mock/api/token-
 import { AuthService } from 'src/app/core/services/prod/http-calls/auth.service';
 import { CarIdVerificationService } from 'src/app/core/services/prod/http-calls/car-id-verification.service';
 import { DeliveryStateManagerService } from 'src/app/core/services/prod/http-calls/delivery-state-manager.service';
+import { EmployeeRetrieverService } from 'src/app/core/services/prod/http-calls/employee-retriever.service';
 import { RouteDataRetrieverService } from 'src/app/core/services/prod/http-calls/route-data-retriever.service';
 import { TimeManagerService } from 'src/app/core/services/prod/http-calls/time-manager.service';
 import { IAuthentification } from 'src/app/shared/interfaces/services-interfaces/i-authentification';
@@ -46,16 +47,17 @@ export const environment = {
       multi: true,
     },
     {
-      provide: IEmployeeRetriever,
-      useClass: EmployeeRetrieverMockService,
-    },
-    {
       provide: IConnection,
       useClass: ConnectionMockService,
     },
     {
       provide: ITokenRefresher,
       useClass: TokenRefresherMockService,
+    },
+    {
+      provide: IEmployeeRetriever,
+      // useClass: EmployeeRetrieverMockService,
+      useClass: EmployeeRetrieverService,
     },
     {
       provide: ICarIdVerification,
