@@ -11,8 +11,13 @@ import { HttpLoadingInterceptor } from 'src/app/core/error-handling/http-loading
 import { CarIdVerificationMockService } from 'src/app/core/services/mock/api/car-id-verification-mock.service';
 import { ConnectionMockService } from 'src/app/core/services/mock/api/connection-mock.service';
 import { DeliveriesManagerMockService } from 'src/app/core/services/mock/api/deliveries-manager-mock.service';
+import { EmployeeRetrieverMockService } from 'src/app/core/services/mock/api/employee-retriever-mock.service';
+import { RouteDataRetrieverMockService } from 'src/app/core/services/mock/api/route-data-retriever-mock.service';
+import { StateManagerMockService } from 'src/app/core/services/mock/api/state-manager-mock.service';
+import { TimeMockService } from 'src/app/core/services/mock/api/time-mock.service';
 import { TokenRefresherMockService } from 'src/app/core/services/mock/api/token-refresher-mock.service';
 import { AuthService } from 'src/app/core/services/prod/http-calls/auth.service';
+import { CarIdVerificationService } from 'src/app/core/services/prod/http-calls/car-id-verification.service';
 import { DeliveryStateManagerService } from 'src/app/core/services/prod/http-calls/delivery-state-manager.service';
 import { RouteDataRetrieverService } from 'src/app/core/services/prod/http-calls/route-data-retriever.service';
 import { TimeManagerService } from 'src/app/core/services/prod/http-calls/time-manager.service';
@@ -21,23 +26,16 @@ import { ICarIdVerification } from 'src/app/shared/interfaces/services-interface
 import { IConnection } from 'src/app/shared/interfaces/services-interfaces/i-connection';
 import { IDeliveriesManager } from 'src/app/shared/interfaces/services-interfaces/i-deliveries-manager';
 import { IDeliveryStateManager } from 'src/app/shared/interfaces/services-interfaces/i-delivery-state-manager';
+import { IEmployeeRetriever } from 'src/app/shared/interfaces/services-interfaces/i-employee-retriever';
 import { IRouteRetriever } from 'src/app/shared/interfaces/services-interfaces/i-route-retriever';
 import { ITimeManager } from 'src/app/shared/interfaces/services-interfaces/i-time-manager';
 import { ITokenRefresher } from 'src/app/shared/interfaces/services-interfaces/i-token-refresher';
+import { AuthentificationMockService } from 'src/app/shared/services/mock/authentification-mock.service';
 
 export const environment = {
   production: false,
   IOC: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    {
-      provide: IAuthentification,
-      // useClass: AuthentificationMockService,
-      useClass: AuthService,
-    },
-    {
-      provide: IConnection,
-      useClass: ConnectionMockService,
-    },
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler,
@@ -48,9 +46,12 @@ export const environment = {
       multi: true,
     },
     {
-      provide: IDeliveriesManager,
-      useClass: DeliveriesManagerMockService,
-      // useClass: DeliveryManagerService,
+      provide: IEmployeeRetriever,
+      useClass: EmployeeRetrieverMockService,
+    },
+    {
+      provide: IConnection,
+      useClass: ConnectionMockService,
     },
     {
       provide: ITokenRefresher,
@@ -58,22 +59,28 @@ export const environment = {
     },
     {
       provide: ICarIdVerification,
-      useClass: CarIdVerificationMockService,
+      // useClass: CarIdVerificationMockService,
+      useClass: CarIdVerificationService,
+    },
+    {
+      provide: IAuthentification,
+      // useClass: AuthentificationMockService,
+      useClass: AuthService,
     },
     {
       provide: IDeliveryStateManager,
-      // useClass: StateManagerMockService,
-      useClass: DeliveryStateManagerService,
+      useClass: StateManagerMockService,
+      // useClass: DeliveryStateManagerService,
     },
     {
       provide: ITimeManager,
-      // useClass: TimeMockService,
-      useClass: TimeManagerService,
+      useClass: TimeMockService,
+      // useClass: TimeManagerService,
     },
     {
       provide: IRouteRetriever,
-      // useClass: RouteDataRetrieverMockService,
-      useClass: RouteDataRetrieverService,
+      useClass: RouteDataRetrieverMockService,
+      // useClass: RouteDataRetrieverService,
     },
   ],
 };

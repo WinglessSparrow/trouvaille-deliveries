@@ -5,4 +5,5 @@ export class APIUrls {
   public static readonly CHANGE_STATE: string =
     this.API + '/deliveries/changeState';
   public static readonly SEND_TIME: string = this.API + '/v1/real-working-time';
+  public static readonly VERIFY_VEHICLE: string = this.API + '/vehicle';
 }

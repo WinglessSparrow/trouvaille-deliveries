@@ -21,7 +21,7 @@ export class RouteDataStateModel {
 }
 
 @State<RouteDataStateModel>({
-  name: 'deliveries',
+  name: 'routeData',
   defaults: {
     [immerable]: true,
     routeData: null,

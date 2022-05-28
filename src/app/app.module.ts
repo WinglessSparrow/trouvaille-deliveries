@@ -10,11 +10,11 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { EmployeeState } from './core/store/employee/employee.state';
 import { RouteDataState } from './core/store/route-data/route-data.state';
 import { TokenState } from './core/store/token/token.state';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
-
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,13 +24,13 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    FormsModule,
+  FormsModule,
     ReactiveFormsModule,
     PagesModule,
     CoreModule,
     SharedModule,
     BrowserAnimationsModule,
-    NgxsModule.forRoot([TokenState, RouteDataState], {
+    NgxsModule.forRoot([TokenState, RouteDataState, EmployeeState], {
       developmentMode: !environment.production,
     }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
