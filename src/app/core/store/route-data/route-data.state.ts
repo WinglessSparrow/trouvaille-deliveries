@@ -1,17 +1,17 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
-  Action,
-  createSelector,
-  Selector,
-  State,
-  StateContext,
+    Action,
+    createSelector,
+    Selector,
+    State,
+    StateContext
 } from '@ngxs/store';
 import produce, { immerable } from 'immer';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { RouteData } from 'src/app/shared/classes/models/back-end-communication/route-data';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
-import { IRouteRetriever } from 'src/app/shared/interfaces/services-interfaces/i-route-retriever';
 import { IDeliveryStateManager } from 'src/app/shared/interfaces/services-interfaces/i-delivery-state-manager';
+import { IRouteRetriever } from 'src/app/shared/interfaces/services-interfaces/i-route-retriever';
 import { ChangeDeliveryState, InitRouteData } from './route-data.action';
 
 export class RouteDataStateModel {

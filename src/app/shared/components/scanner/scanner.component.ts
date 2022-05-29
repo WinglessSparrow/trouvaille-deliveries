@@ -8,7 +8,6 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
 import jsQR, { QRCode } from 'jsqr';
 
 @Component({
@@ -30,9 +29,8 @@ export class ScannerComponent implements OnInit, OnDestroy {
   private canvasElement: any;
   private canvasContext: any;
   private videoElement: any;
-  private loading: HTMLIonLoadingElement = null;
 
-  constructor(private loadingController: LoadingController) {}
+  constructor() {}
 
   ngOnInit(): void {}
 

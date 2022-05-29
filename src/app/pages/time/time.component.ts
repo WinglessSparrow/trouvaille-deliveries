@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
 import { RouteDataState } from 'src/app/core/store/route-data/route-data.state';
 import { WorkingTimeDescriptor } from 'src/app/shared/classes/models/general/working-time-descriptor';
@@ -13,13 +14,15 @@ import { ITimeManager } from 'src/app/shared/interfaces/services-interfaces/i-ti
   templateUrl: './time.component.html',
   styleUrls: ['./time.component.scss'],
 })
-export class TimeComponent implements OnInit {
+export class TimeComponent implements OnInit, OnDestroy {
   form: FormGroup;
   today: string;
   timeWorked: string = '-- hrs | --min';
   timeBreak: string = '-- hrs | --min';
 
   labelType = LabelType;
+
+  private formSub: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -38,11 +41,15 @@ export class TimeComponent implements OnInit {
   ngOnInit() {
     this.today = new Date().toLocaleDateString();
 
-    this.form.valueChanges.subscribe(() => {
+    this.formSub = this.form.valueChanges.subscribe(() => {
       if (this.form.valid) {
         this.calcTime();
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.formSub.unsubscribe();
   }
 
   //FIXME should prbly move a bunch of this logic somewhere

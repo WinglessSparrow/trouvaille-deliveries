@@ -1,16 +1,13 @@
 import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    ViewChild
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
 } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
 import { QRCode } from 'jsqr';
 import { ScannerComponent } from 'src/app/shared/components/scanner/scanner.component';
-import { Pages } from 'src/app/shared/interfaces/enums/pages';
 
 @Component({
   selector: 'scanner-page-template',
@@ -26,35 +23,7 @@ export class ScannerPageTemplateComponent implements OnInit {
   @Output() qrRead: EventEmitter<QRCode> = new EventEmitter<QRCode>();
   @Output() manualInputClick: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor() {}
 
   ngOnInit() {}
-
-  ngAfterViewInit() {
-    //TODO check if camera works
-    //TODO SHOW MODAL IF NOT
-  }
-
-  logOut() {
-    //TODO logOut resets Token, Car Id, ?Session? etc.
-    this.router.navigateByUrl('');
-  }
-
-  verifyCarCode(code: string): boolean {
-    //TODO TEMP JUST RETURNS TRUE -> REDO WITH SERVICE CALL AND SHIT
-    return true;
-  }
-
-  receiveCarCode(value: string) {
-    if (this.verifyCarCode(value)) {
-      //TODO starts the async service that gets the Data, because the server needs both car and credentials
-      this.router.navigateByUrl('/' + Pages.Home);
-    } else {
-      //TODO SHOW MODAL FOR WRONG INPUT
-    }
-  }
-
-  setQRFromCamera(code: QRCode) {
-    this.receiveCarCode(code.data);
-  }
 }

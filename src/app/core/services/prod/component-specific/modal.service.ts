@@ -4,14 +4,13 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { DialogContext } from 'src/app/shared/classes/models/modal-contexts/dialog-context';
 import {
-    ErrorContext,
-    ErrorType
+  ErrorContext,
+  ErrorType
 } from 'src/app/shared/classes/models/modal-contexts/error-context';
 import { HttpModalContext } from 'src/app/shared/classes/models/modal-contexts/http-context';
 import { ErrorComponent } from 'src/app/shared/components/modal-views/error/error.component';
 import { HttpComponent } from 'src/app/shared/components/modal-views/http/http.component';
 import { TrouDialogComponent } from 'src/app/shared/components/modal-views/trou-dialog/trou-dialog.component';
-import { TrouModalComponent } from 'src/app/shared/components/trou-modal/trou-modal.component';
 import { ModalContext } from 'src/app/shared/interfaces/abstract-classes/modal-context';
 import { ModalContentBase } from 'src/app/shared/interfaces/component-interfaces/modal-content-base.component';
 
@@ -22,7 +21,6 @@ export class ModalService {
   private _modalActive: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
-  private _modal: TrouModalComponent;
   public nextModalContext: [Type<ModalContentBase>, ModalContext];
   private _pendingModals: Queue<[Type<ModalContentBase>, ModalContext]> =
     new Queue<[Type<ModalContentBase>, ModalContext]>();
@@ -141,13 +139,5 @@ export class ModalService {
   public get modalActive(): Observable<boolean> {
     this.nextModalContext = null;
     return this._modalActive.asObservable();
-  }
-
-  /**
-   * Setter modal
-   * @param {TrouModalComponent} value
-   */
-  public set modal(value: TrouModalComponent) {
-    this._modal = value;
   }
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import {
-    LabelLength,
-    LabelTextSize,
-    LabelType
+  LabelLength,
+  LabelTextSize,
+  LabelType
 } from '../../../shared/components/trou-label/trou-label.component';
 import { SummaryProviderService } from '../../services/prod/utility/summary-provider.service';
 

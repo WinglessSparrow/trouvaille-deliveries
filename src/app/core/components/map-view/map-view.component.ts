@@ -5,8 +5,8 @@ import 'leaflet-routing-machine';
 import { LabelLength } from 'src/app/shared/components/trou-label/trou-label.component';
 import { MapFactoryService } from '../../services/prod/utility/map-factory.service';
 import {
-    MapRoutingManagerService,
-    RoutingMode
+  MapRoutingManagerService,
+  RoutingMode
 } from '../../services/prod/utility/map-routing-manager.service';
 import { RoutingFactoryService } from '../../services/prod/utility/routing-factory.service';
 
@@ -17,9 +17,12 @@ import { RoutingFactoryService } from '../../services/prod/utility/routing-facto
 })
 export class MapViewComponent implements OnInit {
   private _map: L.Map;
+
   selectedMode: RoutingMode = RoutingMode.ALL_NODES;
   routingModes = Object.values(RoutingMode);
+  
   labelLength = LabelLength;
+
   sHidden: boolean;
 
   static selectHidden: boolean = false;

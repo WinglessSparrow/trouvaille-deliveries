@@ -1,11 +1,11 @@
 import {
-    AfterViewInit,
-    Component,
-    ContentChildren,
-    ElementRef,
-    OnInit,
-    QueryList,
-    ViewChild
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  ElementRef,
+  OnInit,
+  QueryList,
+  ViewChild
 } from '@angular/core';
 import { GestureController } from '@ionic/angular';
 import { Observable } from 'rxjs';

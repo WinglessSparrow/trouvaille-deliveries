@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { QRCode } from 'jsqr';
+import { first } from 'rxjs/operators';
 import { ScannerPageTemplateComponent } from 'src/app/core/components/scanner-page-template/scanner-page-template.component';
 import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
 import { InitEmployee } from 'src/app/core/store/employee/employee.action';
@@ -38,11 +39,11 @@ export class CarScannerComponent implements OnInit {
     if (await this.carVerification.verifyCarId(value)) {
       this.store.dispatch(new InitEmployee());
       
-      const subscription = this.store
+      this.store
         .dispatch(new InitRouteData())
+        .pipe(first())
         .subscribe(() => {
           this.router.navigateByUrl('/' + Pages.Home);
-          subscription.unsubscribe();
         });
     } else {
       this.scannerWrapper.scanner.startScan();

@@ -5,12 +5,12 @@ import {
   OnInit,
   Type,
   ViewChild,
-  ViewContainerRef,
+  ViewContainerRef
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
-import { ModalContentBase } from '../../interfaces/component-interfaces/modal-content-base.component';
 import { ModalContext } from '../../interfaces/abstract-classes/modal-context';
+import { ModalContentBase } from '../../interfaces/component-interfaces/modal-content-base.component';
 
 export enum ModalType {
   error,
@@ -54,15 +54,5 @@ export class TrouModalComponent implements OnInit {
 
     this.modalContentRef = this.viewContainer.createComponent(content);
     this.modalContentRef.instance.setContext(context);
-  }
-
-  ngAfterViewInit() {}
-
-  ngOnDestroy(): void {
-    // this.modalContentRef.destroy();
-  }
-
-  changeHidden() {
-    //TODO animation from here or smth;
   }
 }

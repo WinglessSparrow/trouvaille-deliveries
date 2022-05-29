@@ -12,11 +12,6 @@ import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states'
 export class DeliveryScanService {
   constructor(private store: Store) {}
 
-  /**
-   *
-   * @param id delivery id
-   * @returns info if it should be routing after the idHandle
-   */
   public handleId(id: string): boolean {
     const delivery = this.store.selectSnapshot(RouteDataState.getDelivery(id));
 

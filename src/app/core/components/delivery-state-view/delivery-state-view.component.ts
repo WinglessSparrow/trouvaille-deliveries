@@ -1,8 +1,8 @@
-import {
-  Component, Input, OnInit
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { ChangeStatePayload } from 'src/app/shared/classes/models/general/change-state-payload';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
@@ -15,13 +15,14 @@ import { ChangeDeliveryState } from '../../store/route-data/route-data.action';
   styleUrls: ['./delivery-state-view.component.scss'],
   providers: [DeliveryStateMachineService],
 })
-export class DeliveryStateViewComponent implements OnInit {
+export class DeliveryStateViewComponent implements OnInit, OnDestroy {
   @Input() currDelivery: Delivery;
 
   states = Object.values(DeliveryStates);
   form: FormGroup;
 
   private isSameValue: boolean = false;
+  private formSub: Subscription;
 
   constructor(
     public stateMachine: DeliveryStateMachineService,
@@ -35,7 +36,7 @@ export class DeliveryStateViewComponent implements OnInit {
       deliveryState: [this.currDelivery.currentState],
     });
 
-    this.form.valueChanges.subscribe((val) => {
+    this.formSub = this.form.valueChanges.subscribe((val) => {
       //parsing to enum
       const nextDelState: DeliveryStates = val.deliveryState as DeliveryStates;
       //renew state machine
@@ -50,6 +51,7 @@ export class DeliveryStateViewComponent implements OnInit {
               new ChangeStatePayload(nextDelState, this.currDelivery)
             )
           )
+          .pipe(first())
           .subscribe(() => {
             this.form.controls['deliveryState'].setValue(
               this.currDelivery.currentState
@@ -59,5 +61,9 @@ export class DeliveryStateViewComponent implements OnInit {
         this.isSameValue = false;
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.formSub.unsubscribe();
   }
 }

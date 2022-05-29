@@ -46,13 +46,17 @@ export const environment = {
       useClass: HttpLoadingInterceptor,
       multi: true,
     },
+    //FIXME implement me, when you know how
     {
       provide: IConnection,
       useClass: ConnectionMockService,
+      // useClass: ConnectionService,
     },
+    //FIXME implement me, when you know how
     {
       provide: ITokenRefresher,
       useClass: TokenRefresherMockService,
+      // useClass: TokenRefresherService,
     },
     {
       provide: IEmployeeRetriever,

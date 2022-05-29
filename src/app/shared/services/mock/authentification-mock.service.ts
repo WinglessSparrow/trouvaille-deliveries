@@ -46,7 +46,7 @@ export class AuthentificationMockService extends IAuthentification {
         }
 
         resolve(temp);
-      }, 2000)
+      }, 500)
     );
   }
 

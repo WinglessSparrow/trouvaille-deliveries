@@ -1,19 +1,10 @@
 import {
-  Component,
-  EventEmitter,
-  HostBinding,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Output,
-  SimpleChanges,
+  Component, HostBinding,
+  Input, OnDestroy,
+  OnInit
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
-import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
-import { Delivery } from '../../classes/models/back-end-communication/delivery';
 import { DeliveryStateParsingHelper } from '../../classes/utility/delivery-state-parsing-helper ';
 import { DeliveryStates } from '../../interfaces/enums/delivery-states';
 
@@ -35,14 +26,14 @@ export class TrouRadioComponent implements OnInit, OnDestroy {
   isChecked: boolean = false;
 
   isActive = true;
-  subscription: Subscription;
+  activeParametersSub: Subscription;
 
   constructor() {}
 
   ngOnInit() {
     this.color = DeliveryStateParsingHelper.getColorFromState(this.value);
 
-    this.subscription = this.activeParameters.subscribe((val) => {
+    this.activeParametersSub = this.activeParameters.subscribe((val) => {
       this.isActive = val?.some((valIn) => {
         return valIn == this.name;
       });
@@ -50,6 +41,6 @@ export class TrouRadioComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.activeParametersSub.unsubscribe();
   }
 }

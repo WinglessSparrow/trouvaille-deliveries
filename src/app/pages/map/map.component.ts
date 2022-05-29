@@ -1,17 +1,17 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DeliveryInfoService } from 'src/app/core/services/prod/component-specific/delivery-info.service';
 import { NavigationService } from 'src/app/core/services/prod/component-specific/navigation.service';
 import {
   MapRoutingManagerService,
-  RoutingMode,
+  RoutingMode
 } from 'src/app/core/services/prod/utility/map-routing-manager.service';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { ButtonType } from 'src/app/shared/components/trou-btn/trou-btn.component';
 import {
   LabelLength,
   LabelTextSize,
-  LabelType,
+  LabelType
 } from 'src/app/shared/components/trou-label/trou-label.component';
 import { Pages } from 'src/app/shared/interfaces/enums/pages';
 
@@ -30,7 +30,7 @@ export class MapComponent implements OnInit {
   labelLength = LabelLength;
   routingModes = Object.values(RoutingMode);
 
-  subscription: Subscription;
+  routeManagerSub: Subscription;
 
   selectedMode: RoutingMode = RoutingMode.ALL_NODES;
 
@@ -39,7 +39,7 @@ export class MapComponent implements OnInit {
     private routingManager: MapRoutingManagerService,
     private deliveryRouter: DeliveryInfoService
   ) {
-    this.subscription = this.routingManager.markerChanges.subscribe(() =>
+    this.routeManagerSub = this.routingManager.markerChanges.subscribe(() =>
       this.setAddress()
     );
   }

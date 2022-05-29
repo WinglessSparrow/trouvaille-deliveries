@@ -3,7 +3,6 @@ import { RouteData } from 'src/app/shared/classes/models/back-end-communication/
 import { IDelivery } from 'src/app/shared/interfaces/back-end-communication/i-delivery';
 import { IMapNode } from 'src/app/shared/interfaces/back-end-communication/i-map-node';
 import { IRouteData } from 'src/app/shared/interfaces/back-end-communication/i-route-data';
-import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 import { IRouteRetriever } from 'src/app/shared/interfaces/services-interfaces/i-route-retriever';
 
 @Injectable({

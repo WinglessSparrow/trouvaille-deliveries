@@ -11,6 +11,7 @@ import {
   Actions,
   ofActionCompleted,
   ofActionDispatched,
+  Select,
   Store,
 } from '@ngxs/store';
 import produce from 'immer';
@@ -52,10 +53,11 @@ export class DeliveryInfoComponent implements OnInit, OnDestroy {
   }
 
   initState() {
-    const delivery$ = this.store.select(RouteDataState.getDelivery(this.id));
-    this.deliverySubscription = delivery$.subscribe((val) => {
-      this.delivery = val;
-    });
+    this.deliverySubscription = this.store
+      .select(RouteDataState.getDelivery(this.id))
+      .subscribe((val) => {
+        this.delivery = val;
+      });
   }
 
   ngOnDestroy() {

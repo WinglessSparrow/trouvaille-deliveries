@@ -14,7 +14,6 @@ import { Pages } from 'src/app/shared/interfaces/enums/pages';
 export class DeliveryScanComponent implements OnInit {
   @ViewChild(ScannerPageTemplateComponent)
   scannerWrapper: ScannerPageTemplateComponent;
-  private delivery: Delivery;
 
   constructor(
     private router: Router,
