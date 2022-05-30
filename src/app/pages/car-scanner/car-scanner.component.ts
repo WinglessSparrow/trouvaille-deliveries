@@ -8,7 +8,6 @@ import { ModalService } from 'src/app/core/services/prod/component-specific/moda
 import { InitEmployee } from 'src/app/core/store/employee/employee.action';
 import { InitRouteData } from 'src/app/core/store/route-data/route-data.action';
 import { ClearToken } from 'src/app/core/store/token/token.action';
-import { Employee } from 'src/app/shared/classes/models/back-end-communication/employee';
 import { Pages } from 'src/app/shared/interfaces/enums/pages';
 import { ICarIdVerification } from 'src/app/shared/interfaces/services-interfaces/i-car-id-verification';
 @Component({
@@ -30,15 +29,21 @@ export class CarScannerComponent implements OnInit {
   ngOnInit() {}
 
   logOut() {
-    this.store.dispatch(new ClearToken());
+    this.modal
+      .openYesNoDialog('Log Out', 'Do you want to log out?')
+      .subscribe((yes) => {
+        if (yes) {
+          this.store.dispatch(new ClearToken());
 
-    this.router.navigateByUrl('');
+          this.router.navigateByUrl('');
+        }
+      });
   }
 
   async receiveCarCode(value: string) {
     if (await this.carVerification.verifyCarId(value)) {
       this.store.dispatch(new InitEmployee());
-      
+
       this.store
         .dispatch(new InitRouteData())
         .pipe(first())

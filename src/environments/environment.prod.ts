@@ -10,7 +10,6 @@ import { GlobalErrorHandler } from 'src/app/core/error-handling/global-error-han
 import { HttpLoadingInterceptor } from 'src/app/core/error-handling/http-loading.interceptor';
 import { CarIdVerificationMockService } from 'src/app/core/services/mock/api/car-id-verification-mock.service';
 import { ConnectionMockService } from 'src/app/core/services/mock/api/connection-mock.service';
-import { DeliveriesManagerMockService } from 'src/app/core/services/mock/api/deliveries-manager-mock.service';
 import { MapWaypointsMockService } from 'src/app/core/services/mock/api/map-waypoints-mock.service';
 import { StateManagerMockService } from 'src/app/core/services/mock/api/state-manager-mock.service';
 import { TimeMockService } from 'src/app/core/services/mock/api/time-mock.service';
@@ -20,7 +19,6 @@ import { RouteDataRetrieverService } from 'src/app/core/services/prod/http-calls
 import { IAuthentification } from 'src/app/shared/interfaces/services-interfaces/i-authentification';
 import { ICarIdVerification } from 'src/app/shared/interfaces/services-interfaces/i-car-id-verification';
 import { IConnection } from 'src/app/shared/interfaces/services-interfaces/i-connection';
-import { IDeliveriesManager } from 'src/app/shared/interfaces/services-interfaces/i-deliveries-manager';
 import { IDeliveryStateManager } from 'src/app/shared/interfaces/services-interfaces/i-delivery-state-manager';
 import { IMapNodesRetriever } from 'src/app/shared/interfaces/services-interfaces/i-map-node-retriever';
 import { IRouteRetriever } from 'src/app/shared/interfaces/services-interfaces/i-route-retriever';
@@ -48,11 +46,6 @@ export const environment = {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpLoadingInterceptor,
       multi: true,
-    },
-    {
-      provide: IDeliveriesManager,
-      useClass: DeliveriesManagerMockService,
-      // useClass: DeliveryManagerService,
     },
     {
       provide: ITokenRefresher,

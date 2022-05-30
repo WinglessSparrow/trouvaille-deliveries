@@ -1,11 +1,11 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import {
-  Component,
-  ComponentRef,
-  OnInit,
-  Type,
-  ViewChild,
-  ViewContainerRef
+    Component,
+    ComponentRef,
+    OnInit,
+    Type,
+    ViewChild,
+    ViewContainerRef
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';

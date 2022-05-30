@@ -17,31 +17,27 @@ export class DeliveryStateManagerService extends IDeliveryStateManager {
 
   changeState(newState: ChangeStatePayload): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
-      this.modal
-        .openYesNoDialog<boolean>(
-          'State Change',
-          `change state from ${newState.originalDelivery.currentState} to ${newState.nextState}`,
-          true,
-          false
-        )
-        .subscribe((response: boolean) => {
-          if (response) {
-            const url: string =
-              APIUrls.CHANGE_STATE + `/${newState.originalDelivery.iddelivery}`;
-            const body: string =
-              Object.keys(DeliveryStates)[
-                Object.values(DeliveryStates).indexOf(newState.nextState)
-              ];
-            this.http
-              .put<IGlobalResponseModel<any>>(url, body)
-              .subscribe((val) => {
-                const f = val;
-                resolve(true);
-              });
-          } else {
-            resolve(false);
-          }
-        });
+      // this.modal
+      //   .openYesNoDialog(
+      //     'State Change',
+      //     `change state from ${newState.originalDelivery.currentState} to ${newState.nextState}`
+      //   )
+      //   .subscribe((yes) => {
+      //     if (yes) {
+      const url: string =
+        APIUrls.CHANGE_STATE + `/${newState.originalDelivery.iddelivery}`;
+      const body: string =
+        Object.keys(DeliveryStates)[
+          Object.values(DeliveryStates).indexOf(newState.nextState)
+        ];
+      this.http.put<IGlobalResponseModel<any>>(url, body).subscribe((val) => {
+        const f = val;
+        resolve(true);
+      });
+      //   } else {
+      //     resolve(false);
+      //   }
+      // });
     });
   }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  ErrorContext,
-  ErrorType
+    ErrorContext,
+    ErrorType
 } from '../../../classes/models/modal-contexts/error-context';
-import { ModalContentBase } from '../../../interfaces/component-interfaces/modal-content-base.component';
 import { ModalContext } from '../../../interfaces/abstract-classes/modal-context';
+import { ModalContentBase } from '../../../interfaces/component-interfaces/modal-content-base.component';
 import { ButtonType } from '../../trou-btn/trou-btn.component';
 
 @Component({

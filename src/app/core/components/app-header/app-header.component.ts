@@ -1,9 +1,9 @@
 import {
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output
+    Component,
+    EventEmitter,
+    OnDestroy,
+    OnInit,
+    Output
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { IConnection } from 'src/app/shared/interfaces/services-interfaces/i-connection';

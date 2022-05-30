@@ -74,7 +74,9 @@ export class NavigationService {
 
   public open() {
     this.zone.run(() => {
-      this._isShown.next(true);
+      if (this.header.isActive) {
+        this._isShown.next(true);
+      }
     });
   }
 

@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <trou-label [text]="(this.$employee | async)?.fullName" [position]="this.positions.middle" [type]="this.labelTypes.centered"></trou-label>
+  <trou-label [text]="(this.employee$ | async)?.fullName" [position]="this.positions.middle" [type]="this.labelTypes.centered"></trou-label>
   
   <home-summary></home-summary>
   

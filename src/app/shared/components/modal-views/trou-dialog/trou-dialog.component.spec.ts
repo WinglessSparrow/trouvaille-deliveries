@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { TrouDialogComponent } from './trou-dialog.component';
+
 
 describe('DialogComponent', () => {
   let component: TrouDialogComponent;

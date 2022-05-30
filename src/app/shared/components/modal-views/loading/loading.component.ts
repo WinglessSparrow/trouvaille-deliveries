@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingContext } from '../../../classes/models/modal-contexts/loading-context';
-import { ModalContentBase } from '../../../interfaces/component-interfaces/modal-content-base.component';
 import { ModalContext } from '../../../interfaces/abstract-classes/modal-context';
+import { ModalContentBase } from '../../../interfaces/component-interfaces/modal-content-base.component';
 
 @Component({
   selector: 'loading',

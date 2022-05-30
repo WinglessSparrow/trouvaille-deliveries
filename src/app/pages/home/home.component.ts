@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs/internal/Observable';
+import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
 import { EmployeeState } from 'src/app/core/store/employee/employee.state';
 import { Employee } from 'src/app/shared/classes/models/back-end-communication/employee';
 import {
@@ -21,12 +22,22 @@ export class HomeComponent implements OnInit {
   public positions = LabelPosition;
   public labelTypes = LabelType;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private modal: ModalService
+  ) {}
 
   ngOnInit() {}
 
   back() {
-    this.router.navigateByUrl('/carScanner');
+    this.modal
+      .openYesNoDialog('Return', 'Return to Car Scanner')
+      .subscribe((yes) => {
+        if (yes) {
+          this.router.navigateByUrl('/carScanner');
+        }
+      });
   }
 
   reportProblem() {

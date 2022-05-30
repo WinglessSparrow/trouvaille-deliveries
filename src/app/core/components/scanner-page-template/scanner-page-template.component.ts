@@ -1,10 +1,10 @@
 import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    ViewChild
 } from '@angular/core';
 import { QRCode } from 'jsqr';
 import { ScannerComponent } from 'src/app/shared/components/scanner/scanner.component';

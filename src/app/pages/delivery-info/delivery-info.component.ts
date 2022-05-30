@@ -1,30 +1,16 @@
 import {
-  ChangeDetectorRef,
-  Component,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
+  Component, OnDestroy,
+  OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
-  Actions,
-  ofActionCompleted,
-  ofActionDispatched,
-  Select,
-  Store,
+  Store
 } from '@ngxs/store';
-import produce from 'immer';
 import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
 import { HeaderService } from 'src/app/core/services/prod/component-specific/header.service';
-import { ChangeDeliveryState } from 'src/app/core/store/route-data/route-data.action';
 import { RouteDataState } from 'src/app/core/store/route-data/route-data.state';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
-import { ChangeStatePayload } from 'src/app/shared/classes/models/general/change-state-payload';
 import { LabelLength } from 'src/app/shared/components/trou-label/trou-label.component';
-import { IDelivery } from 'src/app/shared/interfaces/back-end-communication/i-delivery';
-import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
 
 @Component({
   selector: 'delivery-info',

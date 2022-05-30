@@ -2,10 +2,10 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { ChangeStatePayload } from 'src/app/shared/classes/models/general/change-state-payload';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
+import { ModalService } from '../../services/prod/component-specific/modal.service';
 import { DeliveryStateMachineService } from '../../services/prod/utility/delivery-state-machine.service';
 import { ChangeDeliveryState } from '../../store/route-data/route-data.action';
 
@@ -27,7 +27,8 @@ export class DeliveryStateViewComponent implements OnInit, OnDestroy {
   constructor(
     public stateMachine: DeliveryStateMachineService,
     private fb: FormBuilder,
-    private store: Store
+    private store: Store,
+    private modal: ModalService
   ) {}
 
   ngOnInit() {
@@ -37,25 +38,31 @@ export class DeliveryStateViewComponent implements OnInit, OnDestroy {
     });
 
     this.formSub = this.form.valueChanges.subscribe((val) => {
-      //parsing to enum
-      const nextDelState: DeliveryStates = val.deliveryState as DeliveryStates;
-      //renew state machine
-      this.stateMachine.nextState(nextDelState);
-
-      //check for blank reset
       if (!this.isSameValue) {
         this.isSameValue = true;
-        this.store
-          .dispatch(
-            new ChangeDeliveryState(
-              new ChangeStatePayload(nextDelState, this.currDelivery)
-            )
+        //parsing to enum
+        const nextDelState: DeliveryStates =
+          val.deliveryState as DeliveryStates;
+        //renew state machine
+        this.stateMachine.nextState(nextDelState);
+
+        this.modal
+          .openYesNoDialog(
+            'State Change',
+            `Change state from "${this.currDelivery.currentState}" to "${nextDelState}"?`
           )
-          .pipe(first())
-          .subscribe(() => {
-            this.form.controls['deliveryState'].setValue(
-              this.currDelivery.currentState
-            );
+          .subscribe((yes) => {
+            if (yes) {
+              this.renewDeliveryState(nextDelState);
+              //new set is not set, so the next call is not blank
+              this.isSameValue = false;
+            } else {
+              //reset
+              this.form.controls['deliveryState'].setValue(
+                this.currDelivery.currentState
+              );
+              this.stateMachine.nextState(this.currDelivery.currentState);
+            }
           });
       } else {
         this.isSameValue = false;
@@ -65,5 +72,19 @@ export class DeliveryStateViewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.formSub.unsubscribe();
+  }
+
+  renewDeliveryState(nextDelState: DeliveryStates) {
+    this.store.dispatch(
+      new ChangeDeliveryState(
+        new ChangeStatePayload(nextDelState, this.currDelivery)
+      )
+    );
+    // .pipe(first())
+    // .subscribe(() => {
+    //   this.form.controls['deliveryState'].setValue(
+    //     this.currDelivery.currentState
+    //   );
+    // });
   }
 }

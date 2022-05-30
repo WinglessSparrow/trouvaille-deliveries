@@ -46,21 +46,16 @@ export class ModalService {
    * @param noVal val emitted on no
    * @returns observable which automatically unsubscribes as soon as one value arrives
    */
-  public openYesNoDialog<T>(
-    header: string,
-    text: string,
-    yesVal: T,
-    noVal: T
-  ): Observable<T> {
-    const subject = new Subject<T>();
+  public openYesNoDialog(header: string, text: string): Observable<boolean> {
+    const subject = new Subject<boolean>();
     const context = new DialogContext(
       header,
       text,
       () => {
-        subject.next(yesVal);
+        subject.next(true);
       },
       () => {
-        subject.next(noVal);
+        subject.next(false);
       }
     );
 

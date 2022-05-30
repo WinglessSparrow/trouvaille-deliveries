@@ -48,11 +48,9 @@ export class NavigationComponent implements OnInit, AfterViewInit {
       el: menu.nativeElement,
       gestureName: 'swipeClose',
       onStart: (ev) => {
-        console.log(ev);
         posX = ev.currentX;
       },
       onEnd: (ev) => {
-        console.log(ev);
         const delta = posX - ev.currentX;
 
         if (delta > 100) {
@@ -72,11 +70,9 @@ export class NavigationComponent implements OnInit, AfterViewInit {
       el: sidebar.nativeElement,
       gestureName: 'swipeOpen',
       onStart: (ev) => {
-        console.log(ev);
         posX = ev.currentX;
       },
       onEnd: (ev) => {
-        console.log(ev);
         const delta = ev.currentX - posX;
 
         if (delta > 100) {
