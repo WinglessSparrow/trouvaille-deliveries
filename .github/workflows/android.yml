@@ -49,11 +49,14 @@ jobs:
       - name: Generate Resources
         run: cordova-res android --skip-config --copy
 
+      - name: DEBUG 1
+        run: dir
+
       - name: Generate the Android App Bundle
         working-directory: ./android/
         run: chmod +x gradlew && ./gradlew assembleDebug
 
-      - name: DEBUG
+      - name: DEBUG 2
         working-directory: android/app/build/outputs/apk
         run: dir
 
