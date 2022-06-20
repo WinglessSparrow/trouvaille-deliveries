@@ -37,9 +37,6 @@ jobs:
       - name: Build Ionic App
         run: ionic build
 
-      - name: Generate Resources
-        run: cordova-res android --skip-config --copy
-
       - name: Copy Android
         run: ionic capacitor copy android
 
@@ -48,6 +45,9 @@ jobs:
 
       - name: Build Android Release APK
         run: ionic capacitor build android --no-open --release --prod
+
+      - name: Generate Resources
+        run: cordova-res android --skip-config --copy
 
       - name: Generate the Android App Bundle
         working-directory: ./android/

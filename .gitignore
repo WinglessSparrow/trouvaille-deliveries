@@ -17,6 +17,12 @@ $RECYCLE.BIN/
 log.txt
 npm-debug.log*
 
+/resources/android/icon
+/resources/android/splash
+/resources/ios/icon
+/resources/ios/splash
+/resources/windows/icon
+/resources/windows/splash
 /.angular
 /.idea
 /.ionic
