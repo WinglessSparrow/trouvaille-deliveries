@@ -30,6 +30,7 @@
     "@capacitor/status-bar": "1.0.6",
     "@ionic/angular": "^6.1.1",
     "@ngxs/store": "^3.7.3",
+    "cordova-res": "^0.15.4",
     "immer": "^9.0.12",
     "jsqr": "^1.4.0",
     "leaflet": "^1.8.0",
