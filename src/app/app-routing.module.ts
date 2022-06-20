@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MapComponent } from './pages/map/map.component';
 import { TimeComponent } from './pages/time/time.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 import { Pages } from './shared/interfaces/enums/pages';
 
 //FIXME AuthGuard ist turned off, for now, do not forget to turn it ON!
@@ -21,42 +22,42 @@ const routes: Routes = [
   {
     path: Pages.CarScanner,
     component: CarScannerComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: Pages.Home,
     component: HomeComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: Pages.DeliveriesToLoad,
     component: DeliveriesListLoadComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: Pages.DeliveryInfo + '/:id',
     component: DeliveryInfoComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: Pages.AllDeliveries,
     component: AllDeliveriesListComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: Pages.ScanDelivery,
     component: DeliveryScanComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: Pages.Time,
     component: TimeComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: Pages.Map,
     component: MapComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
 ];
 

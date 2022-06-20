@@ -24,7 +24,7 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-  FormsModule,
+    FormsModule,
     ReactiveFormsModule,
     PagesModule,
     CoreModule,

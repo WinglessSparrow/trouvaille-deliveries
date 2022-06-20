@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {
-    ActivatedRouteSnapshot,
-    CanActivate, Router,
-    RouterStateSnapshot,
-    UrlTree
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
 } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { TokenState } from 'src/app/core/store/token/token.state';
-import { Pages } from '../classes/pages';
+import { Pages } from '../interfaces/enums/pages';
 
 @Injectable({
   providedIn: 'root',

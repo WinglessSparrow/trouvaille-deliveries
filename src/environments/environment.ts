@@ -38,56 +38,37 @@ export const environment = {
       useClass: HttpLoadingInterceptor,
       multi: true,
     },
-    //FIXME implement me, when you know how
     {
       provide: IConnection,
       useClass: ConnectionMockService,
-      // useClass: ConnectionService,
     },
-    //FIXME implement me, when you know how
     {
       provide: ITokenRefresher,
       useClass: TokenRefresherMockService,
-      // useClass: TokenRefresherService,
     },
     {
       provide: IEmployeeRetriever,
       useClass: EmployeeRetrieverMockService,
-      // useClass: EmployeeRetrieverService,
     },
     {
       provide: ICarIdVerification,
-      // useClass: CarIdVerificationMockService,
       useClass: CarIdVerificationService,
     },
     {
       provide: IAuthentification,
-      // useClass: AuthentificationMockService,
       useClass: AuthService,
     },
     {
       provide: IDeliveryStateManager,
       useClass: StateManagerMockService,
-      // useClass: DeliveryStateManagerService,
     },
     {
       provide: ITimeManager,
       useClass: TimeMockService,
-      // useClass: TimeManagerService,
     },
     {
       provide: IRouteRetriever,
       useClass: RouteDataRetrieverMockService,
-      // useClass: RouteDataRetrieverService,
     },
   ],
 };
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

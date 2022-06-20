@@ -31,7 +31,6 @@ export const environment = {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: IAuthentification,
-      // useClass: AuthentificationMockService,
       useClass: AuthService,
     },
     {
