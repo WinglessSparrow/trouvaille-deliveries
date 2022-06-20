@@ -47,10 +47,6 @@ jobs:
         working-directory: ./android/
         run: chmod +x gradlew && ./gradlew assembleDebug
 
-      - name: Generate the Android App Bundle
-        working-directory: ./android/
-        run: ./gradlew bundle
-
       - name: Upload dev APK
         uses: actions/upload-artifact@v1
         with:
@@ -61,4 +57,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: app-release
-          path: android/app/build/outputs/apk/debug/app.aab
+          path: android/app/build/outputs/apk/debug/app.apk
