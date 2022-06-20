@@ -37,6 +37,9 @@ jobs:
       - name: Copy Android
         run: ionic capacitor copy android
 
+      - name: Generate Resources
+        run: cordova-res android --skip-config --copy
+
       - name: Build Android Dev APK
         run: ionic capacitor build android --no-open
 
@@ -46,6 +49,10 @@ jobs:
       - name: Generate the Android App Bundle
         working-directory: ./android/
         run: chmod +x gradlew && ./gradlew assembleDebug
+
+      - name: DEBUG
+        working-directory: android/app/build/outputs/apk
+        run: dir
 
       - name: Upload dev APK
         uses: actions/upload-artifact@v1
