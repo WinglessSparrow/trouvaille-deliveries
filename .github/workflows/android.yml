@@ -31,14 +31,17 @@ jobs:
       - name: Install app dependencies
         run: npm install
 
+      - name: install cordova-res
+        run: npm install -g cordova-res
+
       - name: Build Ionic App
         run: ionic build
 
-      - name: Copy Android
-        run: ionic capacitor copy android
-
       - name: Generate Resources
         run: cordova-res android --skip-config --copy
+
+      - name: Copy Android
+        run: ionic capacitor copy android
 
       - name: Build Android Dev APK
         run: ionic capacitor build android --no-open
