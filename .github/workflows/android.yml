@@ -53,18 +53,6 @@ jobs:
         working-directory: ./android/
         run: chmod +x gradlew && ./gradlew assembleDebug
 
-      - name: DEBUG 2
-        working-directory: android/app/build/outputs
-        run: dir
-
-      - name: DEBUG 3
-        working-directory: android/app/build/outputs/apk/debug
-        run: dir
-
-      - name: DEBUG 3
-        working-directory: android/app/build
-        run: dir
-
       - name: Upload dev APK
         uses: actions/upload-artifact@v1
         with:
@@ -75,4 +63,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: app-release
-          path: android/app/build/outputs/apk/debug/app.apk
+          path: android/app/build/outputs/bundle/release/app-release.aab
