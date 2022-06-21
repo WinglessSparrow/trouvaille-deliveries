@@ -51,7 +51,7 @@ jobs:
 
       - name: Generate the Android App Bundle
         working-directory: ./android/
-        run: chmod +x gradlew && ./gradlew assembleDebug
+        run: chmod +x gradlew && ./gradlew bundle
 
       - name: Upload dev APK
         uses: actions/upload-artifact@v1
