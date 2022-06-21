@@ -17,6 +17,8 @@ $RECYCLE.BIN/
 log.txt
 npm-debug.log*
 
+/android
+/android/*
 /resources/android/icon
 /resources/android/splash
 /resources/ios/icon
