@@ -51,16 +51,10 @@ jobs:
 
       - name: Generate the Android App Bundle
         working-directory: ./android/
-        run: chmod +x gradlew && ./gradlew bundle
+        run: chmod +x gradlew && ./gradlew assembleRelease
 
-      - name: Upload dev APK
+      - name: Upload Release APK
         uses: actions/upload-artifact@v1
         with:
           name: app-dev
-          path: android/app/build/outputs/bundle/debug/app-debug.aab
-
-      - name: Upload release bundle
-        uses: actions/upload-artifact@v1
-        with:
-          name: app-release
-          path: android/app/build/outputs/bundle/release/app-release.aab
+          path: android/app/build/outputs/apk/release/app-release-unsigned.apk
