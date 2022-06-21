@@ -1,0 +1,12 @@
+{
+	"appId": "io.ionic.trouvaille.deliveries",
+	"appName": "Trouvaille Deliveries",
+	"webDir": "www",
+	"bundledWebRuntime": false,
+	"plugins": {
+		"keyboard": {
+			"resizeOnFullScreen": true
+		},
+		"status-bar": {}
+	}
+}
