@@ -40,21 +40,21 @@ jobs:
       - name: Copy Android
         run: ionic capacitor copy android
 
-      - name: Build Android Dev APK
-        run: ionic capacitor build android --no-open
+      - name: Build Android Dev APK with Production Flag set
+        run: ionic capacitor build android --no-open --prod
 
-      - name: Build Android Release APK
-        run: ionic capacitor build android --no-open --release --prod
+      # - name: Build Android Release APK
+      #   run: ionic capacitor build android --no-open --release --prod
 
       - name: Generate Resources
         run: cordova-res android --skip-config --copy
 
       - name: Generate the Android App Bundle
         working-directory: ./android/
-        run: chmod +x gradlew && ./gradlew assembleRelease
+        run: chmod +x gradlew && ./gradlew assembleDebug
 
-      - name: Upload Release APK
+      - name: Upload Dev APK
         uses: actions/upload-artifact@v1
         with:
           name: app-dev
-          path: android/app/build/outputs/apk/release/app-release-unsigned.apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
