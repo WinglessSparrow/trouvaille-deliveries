@@ -43,9 +43,6 @@ jobs:
       - name: Build Android Dev APK with Production Flag set
         run: ionic capacitor build android --no-open --prod
 
-      # - name: Build Android Release APK
-      #   run: ionic capacitor build android --no-open --release --prod
-
       - name: Generate Resources
         run: cordova-res android --skip-config --copy
 
