@@ -1,11 +1,14 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngxs/store';
+import { never_used } from 'immer/dist/internal';
 import { Subscription } from 'rxjs';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { ChangeStatePayload } from 'src/app/shared/classes/models/general/change-state-payload';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
+import { Pages } from 'src/app/shared/interfaces/enums/pages';
 import { ModalService } from '../../services/prod/component-specific/modal.service';
+import { NavigationService } from '../../services/prod/component-specific/navigation.service';
 import { DeliveryStateMachineService } from '../../services/prod/utility/delivery-state-machine.service';
 import { ChangeDeliveryState } from '../../store/route-data/route-data.action';
 
@@ -28,7 +31,8 @@ export class DeliveryStateViewComponent implements OnInit, OnDestroy {
     public stateMachine: DeliveryStateMachineService,
     private fb: FormBuilder,
     private store: Store,
-    private modal: ModalService
+    private modal: ModalService,
+    private nav: NavigationService
   ) {}
 
   ngOnInit() {
@@ -56,6 +60,12 @@ export class DeliveryStateViewComponent implements OnInit, OnDestroy {
               this.renewDeliveryState(nextDelState);
               //new set is not set, so the next call is not blank
               this.isSameValue = false;
+
+              //automatically return if coming from map
+              if (this.nav.currSelected.route == Pages.Map) {
+                this.nav.select(this.nav.currSelected);
+                this.nav.navigateToSelected();
+              }
             } else {
               //reset
               this.form.controls['deliveryState'].setValue(

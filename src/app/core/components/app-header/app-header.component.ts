@@ -1,15 +1,13 @@
 import {
   Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output,
+  EventEmitter, OnInit,
+  Output
 } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { HeaderService } from '../../services/prod/component-specific/header.service';
-import { NavigationService } from '../../services/prod/component-specific/navigation.service';
 import { Network } from '@capacitor/network';
+import { Observable } from 'rxjs';
+import { HeaderService } from '../../services/prod/component-specific/header.service';
 import { ModalService } from '../../services/prod/component-specific/modal.service';
+import { NavigationService } from '../../services/prod/component-specific/navigation.service';
 
 @Component({
   selector: 'app-header',
@@ -35,9 +33,9 @@ export class AppHeaderComponent implements OnInit {
     this.isMenu$ = this.headerService.isMenu$;
     this.text$ = this.headerService.getTextObservable();
 
-    Network.addListener('networkStatusChange', (status) => {
-      this.connectionStatusChanged(status.connected);
-    });
+    Network.addListener('networkStatusChange', (status) =>
+      this.connectionStatusChanged(status.connected)
+    );
   }
 
   connectionStatusChanged(val: boolean) {
@@ -45,7 +43,7 @@ export class AppHeaderComponent implements OnInit {
 
     if (!val) {
       this.modal.openErrorModal(
-        'Connection to the Internet has been lost, The state of the Delivery cannot be changed without the Internet!',
+        'Connection to the Internet has been lost, App can not function properly without the internet Connectivity',
         'Connection Lost'
       );
     }
@@ -56,7 +54,6 @@ export class AppHeaderComponent implements OnInit {
   }
 
   goBack() {
-    //TODO prompt and shit
     this.nav.select(this.nav.currSelected);
     this.nav.navigateToSelected();
   }
