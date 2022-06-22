@@ -4,14 +4,14 @@ import { DeliveryInfoService } from 'src/app/core/services/prod/component-specif
 import { NavigationService } from 'src/app/core/services/prod/component-specific/navigation.service';
 import {
   MapRoutingManagerService,
-  RoutingMode
+  RoutingMode,
 } from 'src/app/core/services/prod/utility/map-routing-manager.service';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { ButtonType } from 'src/app/shared/components/trou-btn/trou-btn.component';
 import {
   LabelLength,
   LabelTextSize,
-  LabelType
+  LabelType,
 } from 'src/app/shared/components/trou-label/trou-label.component';
 import { Pages } from 'src/app/shared/interfaces/enums/pages';
 
@@ -32,8 +32,6 @@ export class MapComponent implements OnInit {
 
   routeManagerSub: Subscription;
 
-  selectedMode: RoutingMode = RoutingMode.ALL_NODES;
-
   constructor(
     private navigation: NavigationService,
     private routingManager: MapRoutingManagerService,
@@ -44,13 +42,8 @@ export class MapComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.setAddress();
-  }
-
-  async onChangeSelect() {
-    this.routingManager.mode = this.selectedMode;
-    await this.routingManager.renewRoute();
   }
 
   setAddress() {
@@ -59,11 +52,8 @@ export class MapComponent implements OnInit {
     this.nextDelivery = deliveries[2];
   }
 
-  goToNextDelivery() {
-    this.deliveryRouter.routeToDelivery(this.currDelivery.iddelivery);
-  }
   goToCurrentDelivery() {
-    this.deliveryRouter.routeToDelivery(this.nextDelivery.iddelivery);
+    this.deliveryRouter.routeToDelivery(this.currDelivery.iddelivery);
   }
 
   goToDeliveryScan() {

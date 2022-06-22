@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@capacitor/storage';
 import { Store } from '@ngxs/store';
 import { SetToken } from 'src/app/core/store/token/token.action';
+import {
+  TokenState,
+  TokenStateModel,
+} from 'src/app/core/store/token/token.state';
 import { Authentification } from '../../classes/models/back-end-communication/authentification';
 import { IAuthentification } from '../../interfaces/services-interfaces/i-authentification';
 import { LoadingService } from '../loading.service';
@@ -9,9 +14,6 @@ import { LoadingService } from '../loading.service';
   providedIn: 'root',
 })
 export class AuthentificationMockService extends IAuthentification {
-  reAuthenticate() {
-    console.log("BipBop I'm a mock: Successfully Authenticated");
-  }
   allowedPasswords: Array<Authentification> = new Array<Authentification>();
 
   constructor(private loading: LoadingService, private store: Store) {
@@ -23,6 +25,14 @@ export class AuthentificationMockService extends IAuthentification {
     this.allowedPasswords.push(new Authentification('email4', 'pass4'));
     this.allowedPasswords.push(new Authentification('email5', 'pass5'));
     this.allowedPasswords.push(new Authentification('email6', 'pass6'));
+  }
+
+  reAuthenticate(): Promise<boolean> {
+    return new Promise<boolean>(async (resolve) => {
+      const token: string = (await Storage.get({ key: 'token' })).value;
+      const tokenInStore = this.store.selectSnapshot(TokenState).token;
+      resolve(token === tokenInStore);
+    });
   }
 
   async authenticate(auth: Authentification): Promise<boolean> {
@@ -42,7 +52,8 @@ export class AuthentificationMockService extends IAuthentification {
         this.loading.stopLoading();
 
         if (temp) {
-          this.store.dispatch(new SetToken('TOKEN-MOCK-' + this.makeId(10)));
+          const token = 'TOKEN-MOCK-' + this.makeId(10);
+          this.store.dispatch(new SetToken(token));
         }
 
         resolve(temp);

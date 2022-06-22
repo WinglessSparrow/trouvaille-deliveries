@@ -3,5 +3,5 @@ import { Authentification } from '../../classes/models/back-end-communication/au
 export abstract class IAuthentification {
   abstract authenticate(auth: Authentification): Promise<boolean>;
   abstract logOff();
-  abstract reAuthenticate();
+  abstract reAuthenticate(): Promise<boolean>;
 }

@@ -18,7 +18,7 @@ import { RoutingFactoryService } from '../../services/prod/utility/routing-facto
 export class MapViewComponent implements OnInit {
   private _map: L.Map;
 
-  selectedMode: RoutingMode = RoutingMode.ALL_NODES;
+  selectedMode: RoutingMode;
   routingModes = Object.values(RoutingMode);
 
   labelLength = LabelLength;
@@ -36,6 +36,7 @@ export class MapViewComponent implements OnInit {
   ngOnInit() {
     //angular is retarded, so one must bind static shit to non static shit
     this.sHidden = MapViewComponent.selectHidden;
+    this.selectedMode = this.routingManager.mode;
   }
 
   async ngAfterViewInit() {

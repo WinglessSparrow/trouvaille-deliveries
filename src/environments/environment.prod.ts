@@ -8,35 +8,24 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicRouteStrategy } from '@ionic/angular';
 import { GlobalErrorHandler } from 'src/app/core/error-handling/global-error-handler';
 import { HttpLoadingInterceptor } from 'src/app/core/error-handling/http-loading.interceptor';
-import { CarIdVerificationMockService } from 'src/app/core/services/mock/api/car-id-verification-mock.service';
-import { ConnectionMockService } from 'src/app/core/services/mock/api/connection-mock.service';
-import { MapWaypointsMockService } from 'src/app/core/services/mock/api/map-waypoints-mock.service';
-import { StateManagerMockService } from 'src/app/core/services/mock/api/state-manager-mock.service';
 import { TimeMockService } from 'src/app/core/services/mock/api/time-mock.service';
-import { TokenRefresherMockService } from 'src/app/core/services/mock/api/token-refresher-mock.service';
 import { AuthService } from 'src/app/core/services/prod/http-calls/auth.service';
+import { CarIdVerificationService } from 'src/app/core/services/prod/http-calls/car-id-verification.service';
+import { DeliveryStateManagerService } from 'src/app/core/services/prod/http-calls/delivery-state-manager.service';
+import { EmployeeRetrieverService } from 'src/app/core/services/prod/http-calls/employee-retriever.service';
 import { RouteDataRetrieverService } from 'src/app/core/services/prod/http-calls/route-data-retriever.service';
+import { TimeManagerService } from 'src/app/core/services/prod/http-calls/time-manager.service';
 import { IAuthentification } from 'src/app/shared/interfaces/services-interfaces/i-authentification';
 import { ICarIdVerification } from 'src/app/shared/interfaces/services-interfaces/i-car-id-verification';
-import { IConnection } from 'src/app/shared/interfaces/services-interfaces/i-connection';
 import { IDeliveryStateManager } from 'src/app/shared/interfaces/services-interfaces/i-delivery-state-manager';
-import { IMapNodesRetriever } from 'src/app/shared/interfaces/services-interfaces/i-map-node-retriever';
+import { IEmployeeRetriever } from 'src/app/shared/interfaces/services-interfaces/i-employee-retriever';
 import { IRouteRetriever } from 'src/app/shared/interfaces/services-interfaces/i-route-retriever';
 import { ITimeManager } from 'src/app/shared/interfaces/services-interfaces/i-time-manager';
-import { ITokenRefresher } from 'src/app/shared/interfaces/services-interfaces/i-token-refresher';
 
 export const environment = {
   production: true,
   IOC: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    {
-      provide: IAuthentification,
-      useClass: AuthService,
-    },
-    {
-      provide: IConnection,
-      useClass: ConnectionMockService,
-    },
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler,
@@ -47,24 +36,24 @@ export const environment = {
       multi: true,
     },
     {
-      provide: ITokenRefresher,
-      useClass: TokenRefresherMockService,
+      provide: IEmployeeRetriever,
+      useClass: EmployeeRetrieverService,
     },
     {
       provide: ICarIdVerification,
-      useClass: CarIdVerificationMockService,
+      useClass: CarIdVerificationService,
+    },
+    {
+      provide: IAuthentification,
+      useClass: AuthService,
     },
     {
       provide: IDeliveryStateManager,
-      useClass: StateManagerMockService,
+      useClass: DeliveryStateManagerService,
     },
     {
       provide: ITimeManager,
-      useClass: TimeMockService,
-    },
-    {
-      provide: IMapNodesRetriever,
-      useClass: MapWaypointsMockService,
+      useClass: TimeManagerService,
     },
     {
       provide: IRouteRetriever,

@@ -1,7 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { ITokenRefresher } from 'src/app/shared/interfaces/services-interfaces/i-token-refresher';
-import { ClearToken, RefreshToken, SetToken } from './token.action';
+import {
+  Action,
+  NgxsOnInit,
+  Selector,
+  State,
+  StateContext,
+  Store,
+} from '@ngxs/store';
+import { ClearToken, SetToken } from './token.action';
+import { Storage } from '@capacitor/storage';
+import { IAuthentification } from 'src/app/shared/interfaces/services-interfaces/i-authentification';
+import { InitRouteData } from '../route-data/route-data.action';
+import { InitEmployee } from '../employee/employee.action';
 
 export class TokenStateModel {
   token: string;
@@ -14,8 +24,32 @@ export class TokenStateModel {
   },
 })
 @Injectable()
-export class TokenState {
-  constructor(private tokenRefresher: ITokenRefresher) {}
+export class TokenState implements NgxsOnInit {
+  constructor(private store: Store, private auth: IAuthentification) {}
+
+  async ngxsOnInit({ setState }: StateContext<TokenStateModel>) {
+    let isValidTokenPresent: boolean = false;
+
+    const token = (await Storage.get({ key: 'token' })).value;
+
+    if (token) {
+      isValidTokenPresent = true;
+
+      let nextState = new TokenStateModel();
+      nextState.token = token;
+
+      setState(nextState);
+
+      isValidTokenPresent = await this.auth.reAuthenticate();
+    }
+
+    if (isValidTokenPresent) {
+      this.store.dispatch(InitRouteData);
+      this.store.dispatch(InitEmployee);
+    } else {
+      this.store.dispatch(ClearToken);
+    }
+  }
 
   @Selector()
   static getToken(state: TokenStateModel) {
@@ -23,22 +57,25 @@ export class TokenState {
   }
 
   @Action(SetToken)
-  setToken({ setState }: StateContext<TokenStateModel>, { payload }: SetToken) {
+  async setToken(
+    { setState }: StateContext<TokenStateModel>,
+    { payload }: SetToken
+  ) {
     let newState = new TokenStateModel();
     newState.token = payload;
+
+    await Storage.set({ key: 'token', value: payload });
+
     setState(newState);
   }
 
   @Action(ClearToken)
-  clearToken({ setState }: StateContext<TokenStateModel>) {
+  async clearToken({ setState }: StateContext<TokenStateModel>) {
     let newState = new TokenStateModel();
     newState.token = '';
-    setState(newState);
-  }
 
-  @Action(RefreshToken)
-  refreshToken() {
-    //TODO maybe I might need to reset the token here, IDK
-    this.tokenRefresher.refreshToken();
+    await Storage.remove({ key: 'token' });
+
+    setState(newState);
   }
 }

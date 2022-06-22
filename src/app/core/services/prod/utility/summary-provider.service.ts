@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, Subscription } from 'rxjs';
 import { RouteDataState } from 'src/app/core/store/route-data/route-data.state';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states';
@@ -20,6 +20,7 @@ export class SummaryProviderService {
   }
 
   public updateSummary(deliveries: Delivery[]) {
+    deliveries = deliveries ? deliveries : [];
     let summaryData: Array<[string, string]> = new Array<[string, string]>();
     summaryData.push(['All Deliveries', deliveries.length + '']);
     summaryData.push(['To Load', this.toLoad(deliveries)]);

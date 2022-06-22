@@ -21,7 +21,7 @@ export class MapRoutingManagerService {
   private _nodes: MapNode[];
   private _currNode: number = 0;
   private _posNode: number = 0;
-  private _mode: RoutingMode = RoutingMode.ALL_NODES;
+  private _mode: RoutingMode = RoutingMode.NEXT;
 
   @Select(RouteDataState.getRoute) routeData$;
 
@@ -106,7 +106,7 @@ export class MapRoutingManagerService {
           waypoints = await this.insertCurrentPosition(waypoints);
         }
         break;
-      case RoutingMode.ONLY_NEXT:
+      case RoutingMode.ALL_NEXT:
         waypoints = this._nodes
           .filter((node) => {
             return (
@@ -123,9 +123,25 @@ export class MapRoutingManagerService {
         waypoints = [await this.getCurrentPosition(), ...waypoints];
         this._posNode = 0;
         break;
+
+      case RoutingMode.NEXT:
+        const nodes = this._nodes
+          .filter((node) => {
+            return (
+              this._deliveries[node.position].currentState ===
+                DeliveryStates.IN_CAR ||
+              this._deliveries[node.position].currentState ===
+                DeliveryStates.REQUESTED_PICKUP
+            );
+          })
+          .map((node) => {
+            return new LatLng(node.latitude, node.longitude);
+          });
+
+        waypoints = [await this.getCurrentPosition(), nodes[0]];
+        this._posNode = 0;
+        break;
       default:
-        console.log('tf?');
-        waypoints = [];
         break;
     }
 
@@ -181,9 +197,14 @@ export class MapRoutingManagerService {
   public set mode(mode: RoutingMode) {
     this._mode = mode;
   }
+
+  public get mode(): RoutingMode {
+    return this._mode;
+  }
 }
 
 export enum RoutingMode {
-  ALL_NODES = 'All Nodes',
-  ONLY_NEXT = 'Just the Relevant',
+  NEXT = 'Next Point',
+  ALL_NEXT = 'TO DO Points',
+  ALL_NODES = 'All Points',
 }

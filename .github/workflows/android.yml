@@ -41,7 +41,7 @@ jobs:
         run: ionic capacitor copy android
 
       - name: Build Android Dev APK with Production Flag set
-        run: ionic capacitor build android --no-open
+        run: ionic capacitor build android --no-open --prod
 
       - name: Generate Resources
         run: cordova-res android --skip-config --copy
@@ -53,5 +53,5 @@ jobs:
       - name: Upload Dev APK
         uses: actions/upload-artifact@v1
         with:
-          name: app-dev
+          name: trou-deliveries-app
           path: android/app/build/outputs/apk/debug/app-debug.apk

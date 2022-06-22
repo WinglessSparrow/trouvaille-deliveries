@@ -4,12 +4,6 @@ export class SetToken {
   constructor(public payload: string) {}
 }
 
-export class RefreshToken {
-  static readonly type = '[TOKEN] refreshToken';
-
-  constructor() {}
-}
-
 export class ClearToken {
   static readonly type = '[TOKEN] clearToken';
 

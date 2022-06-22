@@ -37,7 +37,17 @@ export class AuthService extends IAuthentification {
   logOff(): void {
     throw new Error('Method not implemented.');
   }
-  reAuthenticate() {
-    throw new Error('Method not implemented.');
+
+  reAuthenticate(): Promise<boolean> {
+    return new Promise<boolean>((resolve) => {
+      this.http.get(APIUrls.AUTH_REFRESH).subscribe(
+        (data) => {
+          resolve(true);
+        },
+        (error) => {
+          resolve(false);
+        }
+      );
+    });
   }
 }

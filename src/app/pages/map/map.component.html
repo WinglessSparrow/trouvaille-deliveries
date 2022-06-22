@@ -6,7 +6,7 @@
         [text]="this.currDelivery != null ? this.currDelivery.dstAddress.address : 'No Deliveries found'" 
         [textSize]="textSizes.medium" 
         [type]="labelTypes.link" 
-        (btnClick)="goToNextDelivery()"
+        (btnClick)="goToCurrentDelivery()"
         [disabled]="this.currDelivery == null"
         >
     </trou-label>
@@ -15,8 +15,6 @@
     <trou-label 
         [text]="this.nextDelivery != null ? this.nextDelivery.dstAddress.address : 'No Deliveries found'" 
         [textSize]="textSizes.medium"
-        [type]="labelTypes.link" 
-        (btnClick)="goToCurrentDelivery()"
         [disabled]="this.nextDelivery == null"
         >
         

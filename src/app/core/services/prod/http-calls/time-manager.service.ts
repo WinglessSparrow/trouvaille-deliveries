@@ -15,6 +15,6 @@ export class TimeManagerService extends ITimeManager {
   public async sendWorkingTimes(workingTimes: WorkingTimeDescriptor) {
     await this.http
       .post(APIUrls.SEND_TIME, workingTimes.parseToIWorkingTime())
-      .toPromise()
+      .toPromise();
   }
 }
