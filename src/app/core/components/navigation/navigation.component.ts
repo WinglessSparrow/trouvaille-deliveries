@@ -5,11 +5,15 @@ import {
   ElementRef,
   OnInit,
   QueryList,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { GestureController } from '@ionic/angular';
+import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { Pages } from 'src/app/shared/interfaces/enums/pages';
 import { NavigationService } from '../../services/prod/component-specific/navigation.service';
+import { ClearToken } from '../../store/token/token.action';
 import { NavButtonComponent } from '../nav-button/nav-button.component';
 
 @Component({
@@ -27,7 +31,9 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 
   constructor(
     public nav: NavigationService,
-    private gestureCtrl: GestureController
+    private gestureCtrl: GestureController,
+    private store: Store,
+    private router: Router
   ) {}
 
   ngAfterViewInit() {
@@ -37,6 +43,12 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 
     this.swipeClose();
     this.swipeOpen();
+  }
+
+  logout() {
+    this.store.dispatch(ClearToken);
+    this.nav.close();
+    this.router.navigateByUrl('/' + Pages.Login);
   }
 
   swipeClose() {

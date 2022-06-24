@@ -1,4 +1,5 @@
 import {
+  HttpErrorResponse,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
@@ -6,8 +7,8 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { finalize, take, timeout } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, finalize, take, timeout } from 'rxjs/operators';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { TokenState } from '../store/token/token.state';
 
@@ -29,7 +30,6 @@ export class HttpLoadingInterceptor implements HttpInterceptor {
 
     return next.handle(modifiedRequest).pipe(
       finalize(() => {
-        debugger;
         this.loadingService.stopLoading();
       })
     ) as Observable<HttpEvent<any>>;

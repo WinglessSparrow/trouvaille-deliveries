@@ -90,11 +90,5 @@ export class DeliveryStateViewComponent implements OnInit, OnDestroy {
         new ChangeStatePayload(nextDelState, this.currDelivery)
       )
     );
-    // .pipe(first())
-    // .subscribe(() => {
-    //   this.form.controls['deliveryState'].setValue(
-    //     this.currDelivery.currentState
-    //   );
-    // });
   }
 }

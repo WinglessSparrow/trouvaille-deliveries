@@ -12,16 +12,22 @@ export class GlobalErrorHandler implements ErrorHandler {
   constructor(private modalService: ModalService) {}
 
   handleHttpError(response: IGlobalResponseModel<any>, status: number) {
-    this.modalService.openModal(
-      HttpComponent,
-      new HttpModalContext(status, response.error.message, response.error.path)
-    );
+    setTimeout(() => {
+      this.modalService.openModal(
+        HttpComponent,
+        new HttpModalContext(
+          status,
+          response.error.message,
+          response.error.path
+        )
+      );
+    }, 200);
   }
 
   handleError(error: any): void {
     var context: ErrorContext;
     if (error instanceof HttpErrorResponse) {
-      this.handleHttpError(error.error, error.status);
+      console.error('Error from global error handler', error);
       return;
     }
     context = new ErrorContext(

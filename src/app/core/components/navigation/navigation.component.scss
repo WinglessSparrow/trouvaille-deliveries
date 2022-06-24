@@ -35,6 +35,9 @@ $margin-header: 10px;
     top: 0;
     left: 0;
 
+    display: flex;
+    flex-direction: column;
+
     width: 75%;
     height: calc(100vh - var.$status-bar-height);
 
@@ -58,6 +61,15 @@ $margin-header: 10px;
 
     &.shown {
         transform: translate(0);
+    }
+
+    > button {
+        @include trou-prim-button(var.$trou-red-primary, var.$trou-red-hover, var.$trou-red-active);
+        align-self: flex-end;
+
+        margin-top: auto;
+
+        width: 100%;
     }
 }
 

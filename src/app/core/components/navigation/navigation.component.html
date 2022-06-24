@@ -7,6 +7,8 @@
       </button>
     </div>
     <ng-content class="pages"></ng-content>
+
+    <button (click)="logout()"><i class="fas fa-sign-out-alt"></i></button>
   </nav>
   <div class="background" [ngClass]="!(isOpen$ | async)?'hidden':'shown'" (click)="close()"></div>
   <div #invisibleSidebar class="invisible-sidebar"></div>
