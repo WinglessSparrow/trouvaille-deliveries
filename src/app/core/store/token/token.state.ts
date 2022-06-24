@@ -12,6 +12,7 @@ import { Storage } from '@capacitor/storage';
 import { IAuthentification } from 'src/app/shared/interfaces/services-interfaces/i-authentification';
 import { InitRouteData } from '../route-data/route-data.action';
 import { InitEmployee } from '../employee/employee.action';
+import { first } from 'rxjs/operators';
 
 export class TokenStateModel {
   token: string;
@@ -44,10 +45,12 @@ export class TokenState implements NgxsOnInit {
     }
 
     if (isValidTokenPresent) {
-      this.store.dispatch(InitRouteData);
-      setTimeout(() => {
-        this.store.dispatch(InitEmployee);
-      }, 200);
+      this.store
+        .dispatch(InitRouteData)
+        .pipe(first())
+        .subscribe(() => {
+          this.store.dispatch(InitEmployee);
+        });
     } else {
       this.store.dispatch(ClearToken);
     }
