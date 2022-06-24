@@ -10,6 +10,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { MapComponent } from './pages/map/map.component';
 import { TimeComponent } from './pages/time/time.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { RedirectOnTokenGuard } from './shared/guards/redirect-on-token.guard';
 import { Pages } from './shared/interfaces/enums/pages';
 
 //FIXME AuthGuard ist turned off, for now, do not forget to turn it ON!
@@ -18,6 +19,7 @@ const routes: Routes = [
   {
     path: Pages.Login,
     component: LoginComponent,
+    canActivate: [RedirectOnTokenGuard]
   },
   {
     path: Pages.CarScanner,

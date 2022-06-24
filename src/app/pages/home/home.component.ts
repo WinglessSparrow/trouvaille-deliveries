@@ -41,6 +41,10 @@ export class HomeComponent implements OnInit {
   }
 
   reportProblem() {
-    this.http.get('https://httpstat.us/404?sleep=2000').toPromise();
+    this.http.get('https://httpstat.us/200?sleep=2000').toPromise();
+    this.modal.openNotificationModal(
+      'Problem Reporting has not been implemented on the Backend yet, but we believe in you',
+      'Report Notification'
+    );
   }
 }
