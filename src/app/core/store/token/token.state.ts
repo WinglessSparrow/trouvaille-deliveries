@@ -45,7 +45,9 @@ export class TokenState implements NgxsOnInit {
 
     if (isValidTokenPresent) {
       this.store.dispatch(InitRouteData);
-      this.store.dispatch(InitEmployee);
+      setTimeout(() => {
+        this.store.dispatch(InitEmployee);
+      }, 200);
     } else {
       this.store.dispatch(ClearToken);
     }

@@ -1,13 +1,13 @@
 import {
-    HttpEvent,
-    HttpHandler,
-    HttpInterceptor,
-    HttpRequest
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, take, timeout } from 'rxjs/operators';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { TokenState } from '../store/token/token.state';
 
@@ -25,15 +25,12 @@ export class HttpLoadingInterceptor implements HttpInterceptor {
       headers: req.headers.set('Authorization', `Bearer ${token}`),
     });
 
-    // this.loadingDialogService.openDialog();
-    //TODO Map HTTP Methods to... well, human readable representation
     this.loadingService.startLoading('Requesting Data');
+
     return next.handle(modifiedRequest).pipe(
       finalize(() => {
-        //TODO make it work god damn it!
-        // setTimeout(() => {
+        debugger;
         this.loadingService.stopLoading();
-        // }, 2000);
       })
     ) as Observable<HttpEvent<any>>;
   }

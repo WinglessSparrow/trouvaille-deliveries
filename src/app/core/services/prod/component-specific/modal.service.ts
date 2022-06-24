@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { DialogContext } from 'src/app/shared/classes/models/modal-contexts/dialog-context';
 import {
   ErrorContext,
-  ErrorType
+  ErrorType,
 } from 'src/app/shared/classes/models/modal-contexts/error-context';
 import { HttpModalContext } from 'src/app/shared/classes/models/modal-contexts/http-context';
 import { ErrorComponent } from 'src/app/shared/components/modal-views/error/error.component';
@@ -123,7 +123,7 @@ export class ModalService {
       setTimeout(() => {
         const modalData = this._pendingModals.dequeue();
         this.openModal(modalData[0], modalData[1]);
-      }, 50);
+      }, 150);
     }
   }
 
