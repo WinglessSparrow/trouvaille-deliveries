@@ -54,6 +54,8 @@ $margin-header: 10px;
 
     transition: 0.7s;
 
+    overflow: hidden;
+
     &.hidden {
         transform: translateX(-101%);
         box-shadow: none;

@@ -1,14 +1,9 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandler } from '@angular/core';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicRouteStrategy } from '@ionic/angular';
 import { GlobalErrorHandler } from 'src/app/core/error-handling/global-error-handler';
 import { HttpLoadingInterceptor } from 'src/app/core/error-handling/http-loading.interceptor';
-import { TimeMockService } from 'src/app/core/services/mock/api/time-mock.service';
 import { AuthService } from 'src/app/core/services/prod/http-calls/auth.service';
 import { CarIdVerificationService } from 'src/app/core/services/prod/http-calls/car-id-verification.service';
 import { DeliveryStateManagerService } from 'src/app/core/services/prod/http-calls/delivery-state-manager.service';

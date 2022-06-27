@@ -12,7 +12,7 @@ export class GlobalErrorHandler implements ErrorHandler {
   constructor(private modalService: ModalService) {}
 
   handleHttpError(response: IGlobalResponseModel<any>, status: number) {
-    setTimeout(() => {
+    if (response.hasError) {
       this.modalService.openModal(
         HttpComponent,
         new HttpModalContext(
@@ -21,13 +21,18 @@ export class GlobalErrorHandler implements ErrorHandler {
           response.error.path
         )
       );
-    }, 200);
+    } else {
+      throw Error(
+        'Error Response doe not contain Error, the backend should set it!'
+      );
+    }
   }
 
   handleError(error: any): void {
     var context: ErrorContext;
     if (error instanceof HttpErrorResponse) {
       console.error('Error from global error handler', error);
+      this.handleHttpError(error.error, error.status);
       return;
     }
     context = new ErrorContext(

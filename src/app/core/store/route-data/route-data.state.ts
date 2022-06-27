@@ -15,9 +15,6 @@ import { DeliveryStates } from 'src/app/shared/interfaces/enums/delivery-states'
 import { IDeliveryStateManager } from 'src/app/shared/interfaces/services-interfaces/i-delivery-state-manager';
 import { IRouteRetriever } from 'src/app/shared/interfaces/services-interfaces/i-route-retriever';
 import { ChangeDeliveryState, InitRouteData } from './route-data.action';
-import { Storage } from '@capacitor/storage';
-import { SetToken } from '../token/token.action';
-import { IAuthentification } from 'src/app/shared/interfaces/services-interfaces/i-authentification';
 
 export class RouteDataStateModel {
   [immerable] = true;
@@ -71,6 +68,10 @@ export class RouteDataState {
   async initState({ setState }: StateContext<RouteDataStateModel>) {
     let newState = new RouteDataStateModel();
     newState.routeData = await this.routeData.retrieveRoute();
+
+    newState.routeData.packages = newState.routeData.packages.sort(
+      (a, b) => a.position - b.position
+    );
 
     setState(newState);
   }

@@ -47,9 +47,9 @@ export class MapComponent implements OnInit {
   }
 
   setAddress() {
-    const deliveries = this.routingManager.getCurrentPrevNextDeliveries();
-    this.currDelivery = deliveries[1];
-    this.nextDelivery = deliveries[2];
+    const deliveries = this.routingManager.getCurrentNextDeliveries();
+    this.currDelivery = deliveries[0];
+    this.nextDelivery = deliveries[1];
   }
 
   goToCurrentDelivery() {

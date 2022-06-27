@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BYPASS_LOG } from 'src/app/core/error-handling/http-loading.interceptor';
 import { APIUrls } from 'src/app/shared/classes/utility/api-urls';
 import { IGlobalResponseModel } from 'src/app/shared/interfaces/back-end-communication/i-global-response-model';
 import { ICarIdVerification } from 'src/app/shared/interfaces/services-interfaces/i-car-id-verification';
@@ -15,9 +16,11 @@ export class CarIdVerificationService extends ICarIdVerification {
   verifyCarId(id: string): Promise<boolean> {
     const url: string = APIUrls.VERIFY_VEHICLE + `/${id}`;
     return new Promise<boolean>((resolve) => {
-      this.http.get<IGlobalResponseModel<any>>(url).subscribe(() => {
-        resolve(true);
-      });
+      this.http.get<IGlobalResponseModel<any>>(url, { context: new HttpContext().set(BYPASS_LOG, true) }).subscribe(
+        (val) => {
+          resolve(true);
+        }
+      );
     });
   }
 }

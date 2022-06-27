@@ -15,6 +15,15 @@ export class RoutingFactoryService {
     shadowAnchor: [0, 20],
   });
 
+  private readonly _orangeIcon: Icon = new Icon<IconOptions>({
+    iconUrl: '../../../assets/map/map-marker-orange.png',
+    shadowUrl: '../../../assets/map/map-marker-shadow.png',
+    iconSize: [20, 32],
+    shadowSize: [20, 21],
+    iconAnchor: [12, 31],
+    shadowAnchor: [0, 20],
+  });
+
   private readonly _purpleIcon: Icon = new Icon<IconOptions>({
     iconUrl: '../../../assets/map/map-marker-purple.png',
     shadowUrl: '../../../assets/map/map-marker-shadow.png',
@@ -30,6 +39,11 @@ export class RoutingFactoryService {
       if (idx == this.routingManager.posNode) {
         return new Marker(wp.latLng, { icon: this._purpleIcon });
       }
+
+      if (this.routingManager.isDone) {
+        return new Marker(wp.latLng, { icon: this._orangeIcon });
+      }
+
       return new Marker(wp.latLng, { icon: this._blueIcon });
     },
   });

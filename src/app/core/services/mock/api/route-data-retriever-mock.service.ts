@@ -304,6 +304,8 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
     narrowpass: 0,
     nodes: this._wayPoints,
     packages: this._deliveries,
+    depoLat: 48.00017,
+    depoLng: 7.849277,
   };
 
   retrieveRoute(): Promise<RouteData> {

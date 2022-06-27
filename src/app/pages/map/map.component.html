@@ -5,7 +5,7 @@
     <trou-label 
         [text]="this.currDelivery != null ? this.currDelivery.dstAddress.address : 'No Deliveries found'" 
         [textSize]="textSizes.medium" 
-        [type]="labelTypes.link" 
+        [type]="this.currDelivery != null? labelTypes.link : labelTypes.default" 
         (btnClick)="goToCurrentDelivery()"
         [disabled]="this.currDelivery == null"
         >
@@ -17,7 +17,6 @@
         [textSize]="textSizes.medium"
         [disabled]="this.nextDelivery == null"
         >
-        
     </trou-label>
 
     <trou-btn class="btn center" (click)="goToDeliveryScan()" [type]="btnType.default">Scan Delivery</trou-btn>

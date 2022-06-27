@@ -22,6 +22,8 @@ export class MapRoutingManagerService {
   private _currNode: number = 0;
   private _posNode: number = 0;
   private _mode: RoutingMode = RoutingMode.NEXT;
+  private _depoCoords: LatLng = null;
+  private _isDone: boolean = false;
 
   @Select(RouteDataState.getRoute) routeData$;
 
@@ -32,6 +34,8 @@ export class MapRoutingManagerService {
         this._nodes = data.nodes;
         this._currNode = this.findCurrentDeliveryIndex();
         this._markersChanged.next();
+        this._depoCoords = new LatLng(data.depoLat, data.depoLng);
+        this._isDone = this.areDeliveriesDone();
       }
       this.renewRoute();
     });
@@ -70,23 +74,23 @@ export class MapRoutingManagerService {
     }
   }
 
-  public getCurrentPrevNextDeliveries(): Delivery[] {
+  public getCurrentNextDeliveries(): Delivery[] {
     let retArr: Delivery[];
 
     if (this._currNode != null && this._deliveries != null) {
-      retArr = [];
+      const next = this.findNextDeliveryIndex();
 
-      const idxPrev = this._currNode - 1;
-      const idxNext = this.findNextDeliveryIndex();
-
-      retArr.push(idxPrev > 0 ? this._deliveries[idxPrev] : null);
-
-      retArr.push(this._deliveries[this._currNode]);
-
-      retArr.push(idxNext != null ? this._deliveries[idxNext] : null);
+      if (next) {
+        retArr = [
+          this._deliveries[this._currNode],
+          this._deliveries[this.findNextDeliveryIndex()],
+        ];
+      } else {
+        retArr = [this._deliveries[this._currNode], null];
+      }
     } else {
       //no more current Deliveries
-      retArr = [null, null, null];
+      retArr = [null, null];
     }
 
     return retArr;
@@ -95,7 +99,13 @@ export class MapRoutingManagerService {
   private async getWaypoints(mode: RoutingMode): Promise<LatLng[]> {
     let waypoints: LatLng[];
 
-    //TODO should create option class over some interface or smth
+    if (this._isDone) {
+      waypoints = [];
+      waypoints.push(await this.getCurrentPosition());
+      waypoints.push(this._depoCoords);
+      return waypoints;
+    }
+
     switch (mode) {
       case RoutingMode.ALL_NODES:
         waypoints = this._nodes.map((node) => {
@@ -146,6 +156,17 @@ export class MapRoutingManagerService {
     }
 
     return waypoints;
+  }
+
+  private areDeliveriesDone(): boolean {
+    return (
+      this._deliveries.find(
+        (val) =>
+          val.currentState === DeliveryStates.IN_CAR ||
+          val.currentState === DeliveryStates.REQUESTED_PICKUP ||
+          val.currentState === DeliveryStates.IN_CENTRAL
+      ) == null
+    );
   }
 
   private findCurrentDeliveryIndex(): number {
@@ -200,6 +221,10 @@ export class MapRoutingManagerService {
 
   public get mode(): RoutingMode {
     return this._mode;
+  }
+
+  public get isDone(): boolean {
+    return this._isDone;
   }
 }
 

@@ -38,7 +38,7 @@
         transition: 0.5s;
 
         &.hide {
-            transform: translate(-75%, -50%);
+            transform: translate(-75%, -15%);
 
             pointer-events: none;
 
@@ -76,6 +76,48 @@
 
                 border: none;
                 border-bottom: solid 2px var.$trou-blue-primary;
+            }
+        }
+
+        .legend {
+            display: flex;
+            flex-direction: column;
+
+            box-sizing: border-box;
+            padding: 0.5em;
+
+            gap: 1em;
+
+            background: linear-gradient(90deg, var.$trou-blue-active 0%, rgba(238, 238, 238, 0) 90%);
+
+            color: white;
+
+            &::before {
+                content: "Summary:";
+                font-size: 1.6rem;
+                font-weight: bold;
+            }
+
+            .legend-entry {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                p {
+                    display: inline;
+
+                    height: 100%;
+
+                    font-weight: bold;
+                    font-size: 1.5rem;
+                    margin: 0;
+                }
+
+                img {
+                    width: 1.5rem;
+                    aspect-ratio: 40/64;
+                    margin-right: 8px;
+                }
             }
         }
     }

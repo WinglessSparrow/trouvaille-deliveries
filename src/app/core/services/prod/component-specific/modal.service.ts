@@ -28,18 +28,14 @@ export class ModalService {
   constructor(private zone: NgZone) {}
 
   public openModal(content: Type<ModalContentBase>, context: ModalContext) {
-    console.log('Open');
-
-    setTimeout(() => {
-      if (!this._modalActive.value) {
-        this.zone.run(() => {
-          this.nextModalContext = [content, context];
-          this._modalActive.next(true);
-        });
-      } else {
-        this._pendingModals.enqueue([content, context]);
-      }
-    }, 10);
+    if (!this._modalActive.value) {
+      this.zone.run(() => {
+        this.nextModalContext = [content, context];
+        this._modalActive.next(true);
+      });
+    } else {
+      this._pendingModals.enqueue([content, context]);
+    }
   }
 
   /**
@@ -122,14 +118,14 @@ export class ModalService {
   }
 
   public close() {
-    console.log('Close');
-
     this._modalActive.next(false);
     if (this._pendingModals.length > 0) {
-      setTimeout(() => {
-        const modalData = this._pendingModals.dequeue();
-        this.openModal(modalData[0], modalData[1]);
-      }, 50);
+      this.zone.run(() => {
+        setTimeout(() => {
+          const modalData = this._pendingModals.dequeue();
+          this.openModal(modalData[0], modalData[1]);
+        }, 50);
+      });
     }
   }
 
