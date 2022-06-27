@@ -34,7 +34,7 @@ export class MapRoutingManagerService {
         this._nodes = data.nodes;
         this._currNode = this.findCurrentDeliveryIndex();
         this._markersChanged.next();
-        this._depoCoords = new LatLng(data.depoLat, data.depoLng);
+        this._depoCoords = new LatLng(data.depotLat, data.depotLng);
         this._isDone = this.areDeliveriesDone();
       }
       this.renewRoute();

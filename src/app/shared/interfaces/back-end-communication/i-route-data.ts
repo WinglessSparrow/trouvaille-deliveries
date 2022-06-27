@@ -7,6 +7,6 @@ export interface IRouteData {
   narrowpass: number;
   nodes: IMapNode[];
   packages: IDelivery[];
-  depoLat: number;
-  depoLng: number;
+  depotLat: number;
+  depotLng: number;
 }

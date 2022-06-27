@@ -6,8 +6,8 @@ import { MapNode } from './map-node';
 export class RouteData implements IRouteData {
   [immerable] = true;
 
-  private _depoLat: number;
-  private _depoLng: number;
+  private _depotLat: number;
+  private _depotLng: number;
   private _idroute: number;
   private _idvehicle: number;
   private _narrowpass: number;
@@ -18,8 +18,8 @@ export class RouteData implements IRouteData {
     this._idroute = data.idroute;
     this._idvehicle = data.idvehicle;
     this._narrowpass = data.narrowpass;
-    this._depoLat = data.depoLat;
-    this._depoLng = data.depoLng;
+    this._depotLat = data.depotLat;
+    this._depotLng = data.depotLng;
 
     for (let node of data.nodes) {
       this._nodes.push(new MapNode(node));
@@ -114,31 +114,31 @@ export class RouteData implements IRouteData {
    * Getter depoLat
    * @return {number}
    */
-  public get depoLat(): number {
-    return this._depoLat;
+  public get depotLat(): number {
+    return this._depotLat;
   }
 
   /**
    * Getter depoLng
    * @return {number}
    */
-  public get depoLng(): number {
-    return this._depoLng;
+  public get depotLng(): number {
+    return this._depotLng;
   }
 
   /**
    * Setter depoLat
    * @param {number} value
    */
-  public set depoLat(value: number) {
-    this._depoLat = value;
+  public set depotLat(value: number) {
+    this._depotLat = value;
   }
 
   /**
    * Setter depoLng
    * @param {number} value
    */
-  public set depoLng(value: number) {
-    this._depoLng = value;
+  public set depotLng(value: number) {
+    this._depotLng = value;
   }
 }

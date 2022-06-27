@@ -1,3 +1,7 @@
 <div class="wrapper">
   <delivery-preview *ngFor="let delivery of (deliveries$ | async)" [delivery]="delivery"></delivery-preview>
+  <div *ngIf="(deliveries$ | async)?.length == 0" class="check">
+    <i class="fa-solid fa-check"></i>
+    <p>no deliveries => no job</p>
+  </div>
 </div>
