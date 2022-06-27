@@ -17,6 +17,8 @@ export class LoadingService {
   }
 
   public stopLoading() {
+    console.log('close');
+
     this.modalService.close();
   }
 }

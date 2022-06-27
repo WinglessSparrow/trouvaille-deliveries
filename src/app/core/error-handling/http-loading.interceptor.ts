@@ -9,7 +9,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, timeout } from 'rxjs/operators';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { TokenState } from '../store/token/token.state';
 
@@ -23,17 +23,18 @@ export class HttpLoadingInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (req.context.get(BYPASS_LOG) === true) return next.handle(req);
-
     const token = this.store.selectSnapshot(TokenState.getToken);
 
     const modifiedRequest = req.clone({
       headers: req.headers.set('Authorization', `Bearer ${token}`),
     });
 
+    if (req.context.get(BYPASS_LOG) === true) return next.handle(modifiedRequest);
+
     this.loadingService.startLoading('Requesting Data');
 
     return next.handle(modifiedRequest).pipe(
+      timeout(3000),
       finalize(() => {
         this.loadingService.stopLoading();
       })

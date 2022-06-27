@@ -25,7 +25,7 @@ export class MapViewComponent implements OnInit {
 
   sHidden: boolean;
 
-  static selectHidden: boolean = false;
+  static selectHidden: boolean = true;
 
   constructor(
     private routingManager: MapRoutingManagerService,
