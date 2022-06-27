@@ -31,8 +31,8 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
       },
       iddelivery: '0-a0',
       customer: {
-        firstname: 'Huila',
-        lastname: 'Morzovyi',
+        firstname: 'Marco',
+        lastname: 'Polo',
         email: 'mail',
       },
       dstAddress: {
@@ -61,8 +61,8 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
       },
       iddelivery: '0-a1',
       customer: {
-        firstname: 'Holo',
-        lastname: 'The Wise Wolf',
+        firstname: 'Timo',
+        lastname: 'Brandenburg',
         email: 'mail',
       },
       dstAddress: {
@@ -92,7 +92,7 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
       iddelivery: '0-a2',
       customer: {
         firstname: 'Pavel',
-        lastname: 'Hujavel',
+        lastname: 'Smirnov',
         email: 'mail',
       },
       dstAddress: {
@@ -151,8 +151,8 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
       },
       iddelivery: '0-a6',
       customer: {
-        firstname: 'Jouske',
-        lastname: 'Jouske',
+        firstname: 'Dio',
+        lastname: 'Brando',
         email: 'mail',
       },
       dstAddress: {
@@ -181,8 +181,8 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
       },
       iddelivery: '0-a4',
       customer: {
-        firstname: 'Otton',
-        lastname: 'Von Otto',
+        firstname: 'Manuel',
+        lastname: 'Schmidt',
         email: 'mail',
       },
       dstAddress: {
@@ -211,8 +211,8 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
       },
       iddelivery: '0-a5',
       customer: {
-        firstname: 'Mann',
-        lastname: 'Männlich',
+        firstname: 'Stefan',
+        lastname: 'Henderbrenger',
         email: 'mail',
       },
       dstAddress: {
@@ -241,8 +241,8 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
       },
       iddelivery: '0-a7',
       customer: {
-        firstname: 'Mister',
-        lastname: 'Weiblich',
+        firstname: 'Andreas',
+        lastname: 'Klose',
         email: 'mail',
       },
       dstAddress: {
@@ -271,8 +271,8 @@ export class RouteDataRetrieverMockService extends IRouteRetriever {
       },
       iddelivery: '0-a8',
       customer: {
-        firstname: 'Man',
-        lastname: 'Of West',
+        firstname: 'Grong',
+        lastname: 'Brong',
         email: 'mail',
       },
       dstAddress: {

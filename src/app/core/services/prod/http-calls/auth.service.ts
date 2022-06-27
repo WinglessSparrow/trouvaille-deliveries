@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { map } from 'rxjs/internal/operators/map';
+import { first } from 'rxjs/operators';
 import { SetToken } from 'src/app/core/store/token/token.action';
 import { Authentification } from 'src/app/shared/classes/models/back-end-communication/authentification';
 import { TokenResponse } from 'src/app/shared/classes/models/back-end-communication/token-response';
@@ -28,8 +29,12 @@ export class AuthService extends IAuthentification {
         )
         .pipe(map((val) => new TokenResponse(val.data[0])))
         .subscribe((val) => {
-          this.store.dispatch(new SetToken(val.token));
-          resolve(true);
+          this.store
+            .dispatch(new SetToken(val.token))
+            .pipe(first())
+            .subscribe((val) => {
+              resolve(true);
+            });
         });
     });
   }

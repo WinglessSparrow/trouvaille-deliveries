@@ -16,8 +16,8 @@ export class EmployeeRetrieverMockService extends IEmployeeRetriever {
         resolve(
           new Employee({
             birthday: '12/12/2012',
-            firstname: 'Mister',
-            lastname: 'Twister',
+            firstname: 'Peter',
+            lastname: 'Peterson',
             idemployee: '1',
           })
         );

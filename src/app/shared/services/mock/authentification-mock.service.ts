@@ -29,7 +29,9 @@ export class AuthentificationMockService extends IAuthentification {
 
   reAuthenticate(): Promise<boolean> {
     return new Promise<boolean>(async (resolve) => {
-      const token: string = (await Storage.get({ key: 'token' })).value;
+      const token: string = JSON.parse(
+        (await Storage.get({ key: 'token-data' })).value
+      ).token;
       const tokenInStore = this.store.selectSnapshot(TokenState).token;
       resolve(token === tokenInStore);
     });
