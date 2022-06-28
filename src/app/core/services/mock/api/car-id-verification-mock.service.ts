@@ -14,8 +14,10 @@ export class CarIdVerificationMockService extends ICarIdVerification {
     this.loading.startLoading('verifying Car');
     return new Promise((resolve) => {
       setTimeout(() => {
-        this.loading.stopLoading();
-        resolve(id == 'a token');
+        setTimeout(() => {
+          this.loading.stopLoading();
+        }, 20);
+        resolve(id == '50');
       }, 300);
     });
   }

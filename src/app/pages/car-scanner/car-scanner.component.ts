@@ -41,9 +41,22 @@ export class CarScannerComponent implements OnInit {
       });
   }
 
+  private isNumber(str: string): boolean {
+    if (typeof str !== 'string') {
+      return false;
+    }
+
+    if (str.trim() === '') {
+      return false;
+    }
+
+    return Number.isNaN(Number(str));
+  }
+
   async receiveCarCode(value: string) {
-    
-    if (Number.isNaN(value)) {
+    const f = Number(value);
+
+    if (this.isNumber(value)) {
       this.modal.openErrorModal(
         'The Car ID is a valid Number, please enter a number',
         'Malformed Car Id'
