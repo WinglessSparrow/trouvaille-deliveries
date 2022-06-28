@@ -45,15 +45,8 @@ export class AppComponent implements OnInit {
     private router: Router,
     private headerService: HeaderService,
     private modal: ModalService,
-    private platform: Platform,
-    private store: Store
-  ) {
-    this.$token.subscribe((val) => {
-      if (val != null || !environment.production) {
-        // store.dispatch(new InitRouteData());
-      }
-    });
-  }
+    private platform: Platform
+  ) {}
 
   ngOnInit() {
     if (!(this.platform.is('mobileweb') || this.platform.is('desktop'))) {
