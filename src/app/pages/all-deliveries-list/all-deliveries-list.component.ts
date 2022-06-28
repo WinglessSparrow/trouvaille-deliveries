@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { MapRoutingManagerService } from 'src/app/core/services/prod/utility/map-routing-manager.service';
 import { RouteDataState } from 'src/app/core/store/route-data/route-data.state';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 
@@ -14,7 +15,9 @@ export class AllDeliveriesListComponent implements OnInit {
 
   @Select(RouteDataState.getDeliveries) deliveries$: Observable<Delivery[]>;
 
-  constructor() {}
+  constructor(public routingManager: MapRoutingManagerService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 }

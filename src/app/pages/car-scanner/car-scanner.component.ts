@@ -58,7 +58,23 @@ export class CarScannerComponent implements OnInit {
 
     if (this.isNumber(value)) {
       this.modal.openErrorModal(
-        'The Car ID is a valid Number, please enter a number',
+        'The Car ID is not a valid Number, please enter a number!',
+        'Malformed Car Id'
+      );
+      return;
+    }
+
+    if (value.length > 5) {
+      this.modal.openErrorModal(
+        'The Car ID is too long, please enter a valid number!',
+        'Malformed Car Id'
+      );
+      return;
+    }
+
+    if (Number(value) <= 0) {
+      this.modal.openErrorModal(
+        'The Car ID is a negative number, please enter a valid number greater than 0!',
         'Malformed Car Id'
       );
       return;

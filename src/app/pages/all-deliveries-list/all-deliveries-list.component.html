@@ -1,4 +1,8 @@
 <div class="wrapper">
+  <div *ngIf="this.routingManager.isDone" class="check" id="done">
+    <i class="fa-solid fa-check"></i>
+    <p>All Deliveries done!</p>
+  </div>
   <delivery-preview *ngFor="let delivery of (deliveries$ | async)" [delivery]="delivery"></delivery-preview>
   <div *ngIf="(deliveries$ | async)?.length == 0" class="check">
     <i class="fa-solid fa-check"></i>

@@ -59,9 +59,9 @@ export class TimeComponent implements OnInit, OnDestroy {
 
     const isValid: boolean = this.form.valid;
     const canSendTime: boolean = this.areDeliveriesDone();
-    const timesMakeSense: boolean = this.sanityCheckTimes();
+    const timesMakeSense: boolean[] = this.sanityCheckTimes();
 
-    if (isValid && canSendTime && timesMakeSense) {
+    if (isValid && canSendTime && timesMakeSense[0] && timesMakeSense[1]) {
       await this.confirmTime();
     } else {
       if (!isValid) {
@@ -78,9 +78,16 @@ export class TimeComponent implements OnInit, OnDestroy {
         );
       }
 
-      if (!timesMakeSense) {
+      if (!timesMakeSense[0]) {
         this.modal.openNotificationModal(
           'The Times are malformed, the pause is longer than the working time! Did you mix up the input fields?',
+          'Malformed Times'
+        );
+      }
+
+      if (!timesMakeSense[1]) {
+        this.modal.openNotificationModal(
+          'The Times are malformed, in this universe times tend to be not negative! The later date MUST be bigger than the previous!',
           'Malformed Times'
         );
       }
@@ -117,7 +124,7 @@ export class TimeComponent implements OnInit, OnDestroy {
     this.timeService.sendWorkingTimes(new WorkingTimeDescriptor(dates));
   }
 
-  private sanityCheckTimes(): boolean {
+  private sanityCheckTimes(): boolean[] {
     /*
      * checks if break times are smaller then the working times
      */
@@ -130,7 +137,10 @@ export class TimeComponent implements OnInit, OnDestroy {
 
     ret = breakMs < workMs;
 
-    return ret;
+    let ret2: boolean = breakMs > 0;
+    ret = workMs > 0;
+
+    return [ret, ret2];
   }
 
   private areDeliveriesDone(): boolean {

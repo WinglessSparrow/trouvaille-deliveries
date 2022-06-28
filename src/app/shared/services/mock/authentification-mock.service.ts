@@ -51,7 +51,9 @@ export class AuthentificationMockService extends IAuthentification {
             );
           }).length > 0;
 
-        this.loading.stopLoading();
+        setTimeout(() => {
+          this.loading.stopLoading();
+        }, 50);
 
         if (temp) {
           const token = 'TOKEN-MOCK-' + this.makeId(10);

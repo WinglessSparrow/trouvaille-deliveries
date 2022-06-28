@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { QRCode } from 'jsqr';
 import { ScannerPageTemplateComponent } from 'src/app/core/components/scanner-page-template/scanner-page-template.component';
 import { DeliveryScanService } from 'src/app/core/services/prod/component-specific/delivery-scan.service';
+import { ModalService } from 'src/app/core/services/prod/component-specific/modal.service';
 import { Delivery } from 'src/app/shared/classes/models/back-end-communication/delivery';
 import { Pages } from 'src/app/shared/interfaces/enums/pages';
 
@@ -17,7 +18,8 @@ export class DeliveryScanComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private delScanService: DeliveryScanService
+    private delScanService: DeliveryScanService,
+    private modal: ModalService
   ) {}
 
   ngOnInit() {}
@@ -31,7 +33,10 @@ export class DeliveryScanComponent implements OnInit {
 
     if (shouldRoute == null) {
       this.scannerWrapper.scanner.startScan();
-      throw Error('The code is not a valid Delivery ID');
+      this.modal.openErrorModal(
+        'Not a valid Delivery ID',
+        'Malformed Delivery ID'
+      );
     }
 
     if (shouldRoute) {
